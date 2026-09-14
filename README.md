@@ -305,19 +305,32 @@ DRBG with vectors, the draw order, the archive format, the two positions. An aft
 
 ## Making a sitting of your own
 
-Not required for anything above: checking a folder needs none of it. Running a sitting of your own
-needs an API key of your own, and it is the one part of this that talks to the network.
+Checking the folders above needs none of this. Running a sitting does, and it needs an API key of
+your own; it is the one part of this that touches the network.
 
 ```bash
 npx @mikeargento/exam-cli run --provider anthropic --model <id> --name mine
 ```
 
-The same package verifies a folder anywhere, with nothing installed and nothing cloned, which is
-the useful one if you want to point this at evidence of your own:
+The same package points the verifier at evidence of your own, with nothing installed and nothing
+cloned:
 
 ```bash
 npx @mikeargento/exam-cli verify ./some-folder.exam
 ```
+
+**On your own bank.** The two positions do not care where the questions come from, and `exam-bank`
+is only one bank. A family here is a deterministic generator and a checker: given a seed it produces
+the same instance every time, and given an answer it says right or wrong with no model in the loop.
+Anything of that shape drops in, and the paper is derived from the commitment exactly as it is here.
+That derivation is what produces the floor, so a generated bank is the case this was built for.
+
+A hand-written set is the other case, and it is worth being exact about what it buys. You can commit
+the set at a position, which binds those bytes to it: the set becomes tamper evident, and it is
+ordered against everything recorded afterwards. It does not give the questions a floor. They were
+written before they were committed, so the commitment is a postmark, and a postmark is the wrong
+direction for contamination. A held-out set gets the ordering; only a derived set gets the
+not-before.
 
 ---
 
