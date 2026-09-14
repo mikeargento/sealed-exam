@@ -1,4 +1,4 @@
-// Copyright (c) Mike Argento. All rights reserved. See LICENSE.
+// Copyright (c) Argento Computing Inc. All rights reserved. See LICENSE.
 
 /**
  * HMAC_DRBG with SHA-256, NIST SP 800-90A Rev. 1 section 10.1.2, vendored so

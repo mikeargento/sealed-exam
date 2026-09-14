@@ -1,4 +1,4 @@
-// Copyright (c) Mike Argento. Licensed under the MIT License. See LICENSE.
+// Copyright (c) Argento Computing Inc. Licensed under the MIT License. See LICENSE.
 
 /**
  * @mikeargento/exam-verify: offline verification and grading of a sealed

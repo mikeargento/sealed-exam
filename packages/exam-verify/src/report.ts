@@ -1,4 +1,4 @@
-// Copyright (c) Mike Argento. Licensed under the MIT License. See LICENSE.
+// Copyright (c) Argento Computing Inc. Licensed under the MIT License. See LICENSE.
 
 /**
  * report.html: one self-contained page for everyone who is not a developer.

@@ -308,7 +308,9 @@ DRBG with vectors, the draw order, the archive format, the two positions. An aft
 Not required for anything above: checking a folder needs none of it. Running a sitting of your own
 needs an API key of your own, and it is the one part of this that talks to the network.
 
-From a clone, `npm run build` has already built the CLI:
+From a clone, `npm run build` has already built the CLI. Call it by path rather than through npx:
+in a clone there is no local `exam` binary to find, and an unrelated package of that name on the
+public registry is what npx would fetch and run.
 
 ```bash
 node packages/exam-cli/dist/cli.js run --provider anthropic --model <id> --name mine
@@ -321,8 +323,6 @@ npm install ./packages/*.tgz
 npx exam run --provider anthropic --model <id> --name mine
 ```
 
-⚠️ In a clone there is no local `exam` to find, and an unrelated package of that name exists on the
-public registry, so `npx exam` there will fetch and run somebody else's program. Use the path.
 
 ---
 

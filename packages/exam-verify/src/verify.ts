@@ -1,4 +1,4 @@
-// Copyright (c) Mike Argento. Licensed under the MIT License. See LICENSE.
+// Copyright (c) Argento Computing Inc. Licensed under the MIT License. See LICENSE.
 
 /**
  * `exam verify <folder>`: entirely offline, three words.

@@ -1,4 +1,4 @@
-// Copyright (c) Mike Argento. Licensed under the MIT License. See LICENSE.
+// Copyright (c) Argento Computing Inc. Licensed under the MIT License. See LICENSE.
 
 /** The verdict for a terminal: floors, score, the boundary. No durations, no "at". */
 import { formatUtc } from "@mikeargento/exam-core";
