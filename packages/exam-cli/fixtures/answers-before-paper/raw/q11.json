@@ -1,0 +1,48 @@
+{
+  "version": "exam-raw/1",
+  "id": 11,
+  "family": "order",
+  "provider": "anthropic",
+  "model": "claude-haiku-4-5",
+  "request": {
+    "model": "claude-haiku-4-5",
+    "max_tokens": 16000,
+    "system": "You are sitting a written exam. Answer each question on its own. Follow the question's answer-format instructions exactly.",
+    "messages": [
+      {
+        "role": "user",
+        "content": "Facts:\n\nThe Dogwood file was registered on 2 December 1910.\nThe Fir file was registered on 8 October 1967.\nThe Cedar file was registered on 12 July 1920.\nThe Hazel file was registered on 13 January 1958.\nThe Ivy file was registered on 25 December 1963.\nThe Alder file was registered on 5 October 1987.\n\nList the 6 labels from the earliest registration to the latest.\n\nGive the labels only, in the requested order, separated by commas.\nReason as much as you like, then finish with one final line of the form\nANSWER: <your answer>"
+      }
+    ],
+    "temperature": 0
+  },
+  "response": {
+    "model": "claude-haiku-4-5-20251001",
+    "id": "msg_011CeysS7xawgwWbougLvEQj",
+    "type": "message",
+    "role": "assistant",
+    "content": [
+      {
+        "type": "text",
+        "text": "I need to order these files by their registration dates from earliest to latest.\n\nLet me list them with their dates:\n- Dogwood: 2 December 1910\n- Cedar: 12 July 1920\n- Hazel: 13 January 1958\n- Ivy: 25 December 1963\n- Fir: 8 October 1967\n- Alder: 5 October 1987\n\nNow ordering from earliest to latest:\n1. Dogwood (1910) - earliest\n2. Cedar (1920)\n3. Hazel (1958)\n4. Ivy (1963)\n5. Fir (1967)\n6. Alder (1987) - latest\n\nANSWER: Dogwood, Cedar, Hazel, Ivy, Fir, Alder"
+      }
+    ],
+    "container": null,
+    "stop_reason": "end_turn",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 189,
+      "cache_creation_input_tokens": 0,
+      "cache_read_input_tokens": 0,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 195,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    }
+  },
+  "incomplete": false
+}

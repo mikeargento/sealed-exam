@@ -1,0 +1,13 @@
+{
+  "name": "sealed-exam",
+  "private": true,
+  "type": "module",
+  "description": "A paper that could not have existed before a public block: the sealed exam, its six sittings, and the offline verifier.",
+  "license": "SEE LICENSE IN LICENSE.txt",
+  "workspaces": ["packages/*", "verifier"],
+  "engines": { "node": ">=20" },
+  "scripts": {
+    "build": "npm run build -w @mikeargento/exam-bank -w @mikeargento/exam-core -w @mikeargento/exam-ask -w @mikeargento/exam-verify -w @mikeargento/exam-cli",
+    "test": "npm run build && node verifier/exam.mjs selftest"
+  }
+}

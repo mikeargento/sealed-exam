@@ -1,0 +1,62 @@
+{
+  "version": "exam-raw/1",
+  "id": 8,
+  "family": "order",
+  "provider": "google",
+  "model": "gemini-3.1-pro-preview",
+  "request": {
+    "systemInstruction": {
+      "parts": [
+        {
+          "text": "You are sitting a written exam. Answer each question on its own. Follow the question's answer-format instructions exactly."
+        }
+      ]
+    },
+    "contents": [
+      {
+        "role": "user",
+        "parts": [
+          {
+            "text": "Facts:\n\nThe Ivy file was registered on 19 June 1997.\nThe Juniper file was registered on 1 March 1951.\nThe Birch file was registered on 26 March 1940.\nThe Elm file was registered on 23 July 1926.\nThe Ginkgo file was registered on 7 March 2020.\nThe Alder file was registered on 3 August 1901.\nThe Dogwood file was registered on 23 February 1915.\n\nList the 7 labels from the earliest registration to the latest.\n\nGive the labels only, in the requested order, separated by commas.\nReason as much as you like, then finish with one final line of the form\nANSWER: <your answer>"
+          }
+        ]
+      }
+    ],
+    "generationConfig": {
+      "temperature": 0
+    }
+  },
+  "response": {
+    "candidates": [
+      {
+        "content": {
+          "parts": [
+            {
+              "text": "To determine the correct order, we can look at the registration year for each file:\n\n* Alder: 3 August 1901\n* Dogwood: 23 February 1915\n* Elm: 23 July 1926\n* Birch: 26 March 1940\n* Juniper: 1 March 1951\n* Ivy: 19 June 1997\n* Ginkgo: 7 March 2020\n\nSorting these from the earliest year to the latest year gives us the chronological order.\n\nANSWER: Alder, Dogwood, Elm, Birch, Juniper, Ivy, Ginkgo",
+              "thoughtSignature": "Eq0JCqoJARFNMg9xv6qiVFpdGSGMXxU9mnNnxlAZXq9BvpA5fJaYoW3N76pXk62p6UIFppqmiVEEdczFdOB0CAacZlsRv17Umhz1S9DTEHF+RnEreu4CJnHmImcIUutzDAHYQmeifdvlWlnBwDdVtILs4YIW1etR/bf9WD88pb1QmTraGKNYhke18oGbSzd9wgFF50OUCmcu+Ogx+vmC17wU0FNe7EJPFf6oe9xPUtNXmBeYkQQ6vWi/S/lXslfCCrPN9iOkWQHrMe2LF4SEo/hPIWecvCXXyMwJiZhNEBVuzQ9dlChYosWLmpWJVNKvVdi1MmFHVd+eu/VjscV+Zmau00gzgkeWhHHjvx8nb2RZkWzdX/07O0iPXD1X6VMUa3bTkXDEWPyniRoSWpnsdZ9y/hGzh09eCqFbrVSs8UF7QBCliTNvKDf2lCO4qMzeYYMgS5V9noO91S37GKR46E7GYH9pGyMb4uJJ6+9aUTlP+G2vri6to9GcnWjlOCFvmieKxRII5lsa6mF/p6yTUCYQ/j1lh3NdG3PC9b1Yv5g1xIAJEbPeAn39DRO4tHbKGmueWQpUkF6CzYt+LwKiw+buHv+TTcQiOtYpE02jae4Nlo4aHyf23Cl7gDJEaUu2QesMS7qOOeBR1UzPSBh4Oa3mywAKWbp1fFvdGh0Sq9HJJJlnJjsvNPaCEVDwRgZcDdTCIGnGOvaMrHaiwW96b3v3CXQllSq+cRjqqSmmhd5LE6IMv2Er2x+zkFVCR5CCQHouqrkKFfWeGQ3XgLwI5MM5HSt9Da/3ZwSvjM8KqVwZu3rGvy9/3gkLVyqtJtTi1FHZJnLR/hUn5Qy9odEMD4ud6zL6DQZyzDhFE4axldMoT7DDZ/gNf02ZDDu4wdjGeMZNwI87UhkuJbKAywNM8b2c0pValhVhgKaYlUXZvrtmlLqogwzOcfkLlc8WtI6RA/FA7XFWJNW4Op840YgJrNFx60YEACEfCEAv9vrUjE+/uW02ezr9szPOPUesMSLbXc60olnqwJAWa9Xv8tfUP9eYFeWov3mpGqFKITT+di4gF5+36bdVZmx2mOJuMKTXgIayia7kq4v92Z/LPGhARcIoH5F4elCQsJ057lN04OX5l17MIo2Ow4dlJfMcTafYLSy0EoDtTO1GmenYO4A1H0G1wp6FhY6SNq2fvxUDOhJTcRwzu+EWpZCLUtRa5+XQxTalAOZ23tI8dRvFjfIBJcRJM7xorK6RlLZklVY7XjPRu+jsB7rmGhuHBjU1Qv3CcUNYyuRrY+bE255jIWlO8EPhpeeKDUNi3jVIXmTcHTKHLilAAvjKYOuuFdIKX7srAmC5QQBa0xSWLVHGQPJMEVwnxkloswpxM9V0UY1vruIYlOlH2KWf/C+qd8o7FYXZ7GozGKRxpZPelEiEMVG3gqGnfMJZ/iMGl4iT13xUcslFo+WoVj/w1ZPzcSnqgNMGEFX9lBaM7p1wywR2c+MwUOVe6Q1hD7gQ5Bd7m9BeZsBxnfo/YVhCY4BdgNsqQ9t2y2QnlE9sjgyAckasWOxdju1o9GiOClFrTRQpIaE+DC3G+Bv0y9c2lFJyfNb4R2KP"
+            }
+          ],
+          "role": "model"
+        },
+        "finishReason": "STOP",
+        "index": 0
+      }
+    ],
+    "usageMetadata": {
+      "promptTokenCount": 199,
+      "candidatesTokenCount": 142,
+      "totalTokenCount": 880,
+      "promptTokensDetails": [
+        {
+          "modality": "TEXT",
+          "tokenCount": 199
+        }
+      ],
+      "thoughtsTokenCount": 539,
+      "serviceTier": "standard"
+    },
+    "modelVersion": "gemini-3.1-pro-preview",
+    "responseId": "zvCmap2ZCJLP_uMPj87hyQs"
+  },
+  "incomplete": false
+}

@@ -1,0 +1,55 @@
+{
+  "version": "exam-raw/1",
+  "id": 16,
+  "family": "arith",
+  "provider": "anthropic",
+  "model": "claude-opus-5",
+  "request": {
+    "model": "claude-opus-5",
+    "max_tokens": 16000,
+    "system": "You are sitting a written exam. Answer each question on its own. Follow the question's answer-format instructions exactly.",
+    "messages": [
+      {
+        "role": "user",
+        "content": "Compute exactly:\n\n(881134 + 626868) * 144450945 - 7521016\n\nGive the exact integer, with no thousands separators.\nReason as much as you like, then finish with one final line of the form\nANSWER: <your answer>"
+      }
+    ]
+  },
+  "response": {
+    "model": "claude-opus-5",
+    "id": "msg_011Ceyse7XdojNCpzsitrfCb",
+    "type": "message",
+    "role": "assistant",
+    "content": [
+      {
+        "type": "thinking",
+        "thinking": "",
+        "signature": "CAISxQYKjgEIERgCKkCrJoB9ojaGl4HKzjxmYqoQpddSsNzWoj8gRKsgcgJI0D3sKVJcEARPu8ukr7YE7VvqymSpEqXy9O1uR5VyOhPVMg1jbGF1ZGUtb3B1cy01OAFCCHRoaW5raW5nWiQ1OTk1ZWU0Zi0xOGU5LTQ2NjMtOGFhZi1lNmY3N2EwMDc1YjeoAf7/ldUGEgwUQq4lMKyWnp+9ECYaDFahMSWpDqWki/owJyIwPSA4ODiNZPuksjxUKAq/934K4hUUqof0oiNKc5d105ETg7aKtw01f4tB2mhS6nFAKuMEj2KJw6Cacxay/ioAV/MW4LizM/sK+HXK8LkxB1X37RgDQr849f3aQtLjyrska1qFcEh39EkoweQWbxxUkpO/aDNnjkNZPgSioNzwzndHmISfs1es2Cf+fk55gE4fZRAMsnDd8R1bawxfgUsE4KX+ctZGi84mssN6ys14/s2GsgxSnpELjpQ+ZqZUPEGmQ2SPISzYsZWRLPv+Hh7rAGopVLTm5vndhl/+7VSqZuS7UC4vldbndiSlE3RlCq+jOu7hKMhigv8nOl9TR7Z2PbbFJ0t/yjMRMUPybpQDe3QKCBWzG7Fk2z0uKiK+JGnLxHev8DaNT5wg4A6uc9JQtggmMULVgotGcb8ATw05Q7pPU9BR3BdrVIPjUhpWo4n31WD8zRlRk0qrW1ArDh+VBEbTde/xEaM14U0DKPo/JN1QEoZxCc7brrHx3pNIwg4QOGZTD35QWeQYpjBun+EOeAwFrqb6fOQtAIz/72EcfWdvBMttPHnk3QBwOnzxviFo6RmLuJwJ4L3q2I8YmO68FKP5tZzRtRDiVvGvJarHtABxPk6DUZfbvlwaTBOWEYwnkDgF0TGca5WSAUyj1Rrloip5Xill/MvON10AS0cIqIqhdjDy0MI/w8FKprmUGggvIe6GgWWtMCF4tb4r14Bo6QbE1ihxrhpFckBJ817IyRo+yfhSKK6BqFr85rKKfDzhj3BdT4Z9D2KWjdifbvI7E8ZtYOPAhrAi8G8w8VjaAHtr1bxh7B0ccY0Fc4cZax2VKqu7FKbsZOJsQLqslhlvGV6H1VMeNQ/5V22l7b60KSSs0Yzjt8EYAQ=="
+      },
+      {
+        "type": "text",
+        "text": "**Step 1:** 881134 + 626868 = 1,508,002\n\n**Step 2:** 1,508,002 × 144,450,945\n- 144,450,945 × 1,500,000 = 216,676,417,500,000\n- 144,450,945 × 8,000 = 1,155,607,560,000\n- 144,450,945 × 2 = 288,901,890\n\nSum: 216,676,417,500,000 + 1,155,607,560,000 + 288,901,890 = 217,832,313,961,890\n\n**Step 3:** 217,832,313,961,890 − 7,521,016 = 217,832,306,440,874\n\nANSWER: 217832306440874"
+      }
+    ],
+    "container": null,
+    "stop_reason": "end_turn",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 120,
+      "cache_creation_input_tokens": 0,
+      "cache_read_input_tokens": 0,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 558,
+      "output_tokens_details": {
+        "thinking_tokens": 339
+      },
+      "service_tier": "standard",
+      "inference_geo": "global"
+    }
+  },
+  "incomplete": false
+}

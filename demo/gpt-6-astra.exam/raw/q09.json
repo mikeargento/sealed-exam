@@ -1,0 +1,57 @@
+{
+  "version": "exam-raw/1",
+  "id": 9,
+  "family": "arith",
+  "provider": "openai",
+  "model": "gpt-6-astra",
+  "request": {
+    "model": "gpt-6-astra",
+    "messages": [
+      {
+        "role": "system",
+        "content": "You are sitting a written exam. Answer each question on its own. Follow the question's answer-format instructions exactly."
+      },
+      {
+        "role": "user",
+        "content": "Compute exactly:\n\n18881964 * 88269664 - 910272 * 1783204\n\nGive the exact integer, with no thousands separators.\nReason as much as you like, then finish with one final line of the form\nANSWER: <your answer>"
+      }
+    ]
+  },
+  "response": {
+    "id": "chatcmpl-ENjX6wIl7qwJEbyFOS82oEIE26EfO",
+    "object": "chat.completion",
+    "created": 1789325280,
+    "model": "gpt-6-astra",
+    "choices": [
+      {
+        "index": 0,
+        "message": {
+          "role": "assistant",
+          "content": "ANSWER: 1665081417268608",
+          "refusal": null,
+          "annotations": []
+        },
+        "finish_reason": "stop"
+      }
+    ],
+    "usage": {
+      "prompt_tokens": 87,
+      "completion_tokens": 331,
+      "total_tokens": 418,
+      "prompt_tokens_details": {
+        "cached_tokens": 0,
+        "cache_write_tokens": 0,
+        "audio_tokens": 0
+      },
+      "completion_tokens_details": {
+        "reasoning_tokens": 313,
+        "audio_tokens": 0,
+        "accepted_prediction_tokens": 0,
+        "rejected_prediction_tokens": 0
+      }
+    },
+    "service_tier": "default",
+    "system_fingerprint": null
+  },
+  "incomplete": false
+}

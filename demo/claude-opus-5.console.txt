@@ -1,0 +1,9 @@
+Opened position 8587. Floor: block 25962577, 12 Sep 2026 16:37:47Z.
+Wrote 20 questions from that position and sealed them at position 8590. Floor: block 25962577, 12 Sep 2026 16:37:47Z.
+Sealed the answers at position 8598. Floor: block 25962579.
+Asked claude-opus-5. 20 answers back.
+Verified
+Score 16/20. Report: claude-opus-5.exam/report.html
+Paper not before block 25962577 (header time 12 Sep 2026 16:37:47Z).
+Answers not before block 25962579 (header time 12 Sep 2026 16:38:11Z).
+exit=0

@@ -1,0 +1,57 @@
+{
+  "version": "exam-raw/1",
+  "id": 19,
+  "family": "logic",
+  "provider": "openai",
+  "model": "gpt-6-astra",
+  "request": {
+    "model": "gpt-6-astra",
+    "messages": [
+      {
+        "role": "system",
+        "content": "You are sitting a written exam. Answer each question on its own. Follow the question's answer-format instructions exactly."
+      },
+      {
+        "role": "user",
+        "content": "5 people (Dev, Bram, Fitz, Cleo, Ada) sit in a row of 5 seats numbered 1 to 5 from left to right. All of the following are true:\n\n1. Dev does not sit at either end of the row.\n2. There are exactly 1 seat between Cleo and Ada.\n3. Bram sits at one end of the row.\n4. Dev sits somewhere to the left of Ada.\n5. Bram sits somewhere to the left of Dev.\n6. Cleo sits immediately to the left of Fitz.\n\nWho sits where?\n\nGive the names in seat order from seat 1 to the last seat, separated by commas.\nReason as much as you like, then finish with one final line of the form\nANSWER: <your answer>"
+      }
+    ]
+  },
+  "response": {
+    "id": "chatcmpl-ENjXD6nIIw7ll8xt44E49w4teB571",
+    "object": "chat.completion",
+    "created": 1789325287,
+    "model": "gpt-6-astra",
+    "choices": [
+      {
+        "index": 0,
+        "message": {
+          "role": "assistant",
+          "content": "ANSWER: Bram, Dev, Cleo, Fitz, Ada",
+          "refusal": null,
+          "annotations": []
+        },
+        "finish_reason": "stop"
+      }
+    ],
+    "usage": {
+      "prompt_tokens": 191,
+      "completion_tokens": 98,
+      "total_tokens": 289,
+      "prompt_tokens_details": {
+        "cached_tokens": 0,
+        "cache_write_tokens": 0,
+        "audio_tokens": 0
+      },
+      "completion_tokens_details": {
+        "reasoning_tokens": 77,
+        "audio_tokens": 0,
+        "accepted_prediction_tokens": 0,
+        "rejected_prediction_tokens": 0
+      }
+    },
+    "service_tier": "default",
+    "system_fingerprint": null
+  },
+  "incomplete": false
+}

@@ -1,0 +1,48 @@
+{
+  "name": "@mikeargento/exam-bank",
+  "version": "0.1.0",
+  "description": "The sealed exam's public item bank: five template families, deterministic generators, checkers, and the bank digest.",
+  "license": "SEE LICENSE IN LICENSE",
+  "type": "module",
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "import": "./dist/index.js",
+      "types": "./dist/index.d.ts"
+    }
+  },
+  "files": [
+    "dist",
+    "src",
+    "bank.json",
+    "README.md",
+    "proof",
+    "LICENSE"
+  ],
+  "scripts": {
+    "build": "tsc",
+    "bank": "tsc && node dist/make-bank.js",
+    "test": "tsc && node --test \"dist/__tests__/*.test.js\""
+  },
+  "engines": {
+    "node": ">=20"
+  },
+  "dependencies": {
+    "@mikeargento/bitgraph-verify": "^1.11.0",
+    "@noble/hashes": "^1.4.0"
+  },
+  "devDependencies": {
+    "@types/node": "^20.0.0",
+    "typescript": "^5.4.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/mikeargento/sealed-exam.git",
+    "directory": "packages/exam-bank"
+  },
+  "homepage": "https://bitgraph.ing",
+  "publishConfig": {
+    "access": "public"
+  }
+}

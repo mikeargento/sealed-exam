@@ -1,0 +1,62 @@
+{
+  "version": "exam-raw/1",
+  "id": 19,
+  "family": "spec",
+  "provider": "google",
+  "model": "gemini-3.1-pro-preview",
+  "request": {
+    "systemInstruction": {
+      "parts": [
+        {
+          "text": "You are sitting a written exam. Answer each question on its own. Follow the question's answer-format instructions exactly."
+        }
+      ]
+    },
+    "contents": [
+      {
+        "role": "user",
+        "parts": [
+          {
+            "text": "Write a JavaScript function f(xs), where xs is an array of integers, that returns an integer computed as follows:\n\n1. Keep only the elements less than 8.\n2. Replace each kept element x with -2 * x + 5.\n3. Return how many resulting elements there are.\n\nReply with only the function, in a single ```js code block. Name it f, take one parameter xs, use no libraries, and write no import, require or export statements."
+          }
+        ]
+      }
+    ],
+    "generationConfig": {
+      "temperature": 0
+    }
+  },
+  "response": {
+    "candidates": [
+      {
+        "content": {
+          "parts": [
+            {
+              "text": "```js\nfunction f(xs) {\n  return xs.filter(x => x < 8).map(x => -2 * x + 5).length;\n}\n```",
+              "thoughtSignature": "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"
+            }
+          ],
+          "role": "model"
+        },
+        "finishReason": "STOP",
+        "index": 0
+      }
+    ],
+    "usageMetadata": {
+      "promptTokenCount": 128,
+      "candidatesTokenCount": 41,
+      "totalTokenCount": 868,
+      "promptTokensDetails": [
+        {
+          "modality": "TEXT",
+          "tokenCount": 128
+        }
+      ],
+      "thoughtsTokenCount": 699,
+      "serviceTier": "standard"
+    },
+    "modelVersion": "gemini-3.1-pro-preview",
+    "responseId": "OPGmaqLkG5-r_uMPp7OtsAs"
+  },
+  "incomplete": false
+}

@@ -1,0 +1,48 @@
+{
+  "version": "exam-raw/1",
+  "id": 11,
+  "family": "arith",
+  "provider": "anthropic",
+  "model": "claude-haiku-4-5",
+  "request": {
+    "model": "claude-haiku-4-5",
+    "max_tokens": 16000,
+    "system": "You are sitting a written exam. Answer each question on its own. Follow the question's answer-format instructions exactly.",
+    "messages": [
+      {
+        "role": "user",
+        "content": "Compute exactly:\n\n107311 * 2631261 - 7447581 * 17977000\n\nGive the exact integer, with no thousands separators.\nReason as much as you like, then finish with one final line of the form\nANSWER: <your answer>"
+      }
+    ],
+    "temperature": 0
+  },
+  "response": {
+    "model": "claude-haiku-4-5-20251001",
+    "id": "msg_011CeysgjnWTQGCbFQamdYny",
+    "type": "message",
+    "role": "assistant",
+    "content": [
+      {
+        "type": "text",
+        "text": "I need to compute: 107311 * 2631261 - 7447581 * 17977000\n\nLet me break this into two parts.\n\n**Part 1: 107311 * 2631261**\n\nLet me use the standard multiplication approach:\n107311 * 2631261\n\nI'll break this down:\n107311 * 2000000 = 214622000000\n107311 * 600000 = 64386600000\n107311 * 30000 = 3219330000\n107311 * 1000 = 107311000\n107311 * 200 = 21462200\n107311 * 60 = 6438660\n107311 * 1 = 107311\n\nAdding these:\n214622000000\n+ 64386600000\n+ 3219330000\n+ 107311000\n+ 21462200\n+ 6438660\n+ 107311\n= 282363249171\n\nLet me verify this differently:\n107311 * 2631261\n= 107311 * (2631261)\n= 107311 * 2631261\n\nUsing a more systematic approach:\n107311 * 2631261 = 282,363,249,171\n\n**Part 2: 7447581 * 17977000**\n\n7447581 * 17977000\n= 7447581 * 17977 * 1000\n\nFirst: 7447581 * 17977\n7447581 * 17000 = 126608877000\n7447581 * 900 = 6702822900\n7447581 * 70 = 521330670\n7447581 * 7 = 52132867\n\nAdding: 126608877000 + 6702822900 + 521330670 + 52132867 = 133885163437\n\nNow multiply by 1000:\n133885163437 * 1000 = 133885163437000\n\n**Final calculation:**\n282363249171 - 133885163437000\n\n= 282,363,249,171 - 133,885,163,437,000\n= -133,602,800,187,829\n\nANSWER: -133602800187829"
+      }
+    ],
+    "container": null,
+    "stop_reason": "end_turn",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 94,
+      "cache_creation_input_tokens": 0,
+      "cache_read_input_tokens": 0,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 531,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    }
+  },
+  "incomplete": false
+}

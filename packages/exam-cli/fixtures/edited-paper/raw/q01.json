@@ -1,0 +1,48 @@
+{
+  "version": "exam-raw/1",
+  "id": 1,
+  "family": "arith",
+  "provider": "anthropic",
+  "model": "claude-haiku-4-5",
+  "request": {
+    "model": "claude-haiku-4-5",
+    "max_tokens": 16000,
+    "system": "You are sitting a written exam. Answer each question on its own. Follow the question's answer-format instructions exactly.",
+    "messages": [
+      {
+        "role": "user",
+        "content": "Compute exactly:\n\n(475633 - 83900893) * (190936 + 1530729)\n\nGive the exact integer, with no thousands separators.\nReason as much as you like, then finish with one final line of the form\nANSWER: <your answer>"
+      }
+    ],
+    "temperature": 0
+  },
+  "response": {
+    "model": "claude-haiku-4-5-20251001",
+    "id": "msg_011Ceyscm2oWmxAii2s4hr5g",
+    "type": "message",
+    "role": "assistant",
+    "content": [
+      {
+        "type": "text",
+        "text": "I need to compute (475633 - 83900893) * (190936 + 1530729).\n\nLet me break this into two parts:\n\n**Part 1: 475633 - 83900893**\n475633 - 83900893 = -(83900893 - 475633) = -83425260\n\n**Part 2: 190936 + 1530729**\n190936 + 1530729 = 1721665\n\n**Final multiplication:**\n(-83425260) * 1721665\n\nLet me compute this carefully:\n83425260 * 1721665\n\nI'll break this down:\n83425260 * 1721665\n= 83425260 * (1000000 + 721665)\n= 83425260 * 1000000 + 83425260 * 721665\n= 83425260000000 + 83425260 * 721665\n\nNow for 83425260 * 721665:\n= 83425260 * (700000 + 21665)\n= 83425260 * 700000 + 83425260 * 21665\n= 58397682000000 + 83425260 * 21665\n\nFor 83425260 * 21665:\n= 83425260 * (20000 + 1665)\n= 83425260 * 20000 + 83425260 * 1665\n= 1668505200000 + 83425260 * 1665\n\nFor 83425260 * 1665:\n= 83425260 * (1000 + 665)\n= 83425260000 + 83425260 * 665\n= 83425260000 + 55427797900\n= 138853057900\n\nSo:\n83425260 * 21665 = 1668505200000 + 138853057900 = 1807358257900\n\n83425260 * 721665 = 58397682000000 + 1807358257900 = 60205040257900\n\n83425260 * 1721665 = 83425260000000 + 60205040257900 = 143630300257900\n\nSince we had a negative sign:\n(-83425260) * 1721665 = -143630300257900\n\nANSWER: -143630300257900"
+      }
+    ],
+    "container": null,
+    "stop_reason": "end_turn",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 95,
+      "cache_creation_input_tokens": 0,
+      "cache_read_input_tokens": 0,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 567,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    }
+  },
+  "incomplete": false
+}

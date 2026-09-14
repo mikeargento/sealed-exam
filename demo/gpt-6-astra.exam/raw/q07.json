@@ -1,0 +1,57 @@
+{
+  "version": "exam-raw/1",
+  "id": 7,
+  "family": "strings",
+  "provider": "openai",
+  "model": "gpt-6-astra",
+  "request": {
+    "model": "gpt-6-astra",
+    "messages": [
+      {
+        "role": "system",
+        "content": "You are sitting a written exam. Answer each question on its own. Follow the question's answer-format instructions exactly."
+      },
+      {
+        "role": "user",
+        "content": "Start with the string (between the brackets, without them): [DGZ7ow2lGoFHsKw]\n\nApply these steps in order:\n\n1. Sort the characters in ascending ASCII order (digits before uppercase letters before lowercase letters).\n2. Replace every occurrence of the character o with u (case-sensitive).\n3. Rotate the string left by 11: move its first 11 characters to the end, in the same order.\n\nWhat is the resulting string?\n\nGive the final string exactly, and nothing else after ANSWER:.\nReason as much as you like, then finish with one final line of the form\nANSWER: <your answer>"
+      }
+    ]
+  },
+  "response": {
+    "id": "chatcmpl-ENjX5E6GCjkdnJ7dcPxSkXnlLnwwS",
+    "object": "chat.completion",
+    "created": 1789325279,
+    "model": "gpt-6-astra",
+    "choices": [
+      {
+        "index": 0,
+        "message": {
+          "role": "assistant",
+          "content": "ANSWER: usww27DFGGHKZlu",
+          "refusal": null,
+          "annotations": []
+        },
+        "finish_reason": "stop"
+      }
+    ],
+    "usage": {
+      "prompt_tokens": 164,
+      "completion_tokens": 147,
+      "total_tokens": 311,
+      "prompt_tokens_details": {
+        "cached_tokens": 0,
+        "cache_write_tokens": 0,
+        "audio_tokens": 0
+      },
+      "completion_tokens_details": {
+        "reasoning_tokens": 128,
+        "audio_tokens": 0,
+        "accepted_prediction_tokens": 0,
+        "rejected_prediction_tokens": 0
+      }
+    },
+    "service_tier": "default",
+    "system_fingerprint": null
+  },
+  "incomplete": false
+}

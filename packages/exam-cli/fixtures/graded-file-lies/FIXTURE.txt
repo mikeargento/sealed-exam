@@ -1,0 +1,1 @@
+graded-file-lies: a grade.json claiming 20/20 sits in the folder; the verifier ignores it and prints the recomputed score. Expected: ACCEPT

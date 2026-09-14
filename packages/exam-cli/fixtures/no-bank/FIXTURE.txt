@@ -1,0 +1,1 @@
+no-bank: the folder without bank/. Expected: NO-EVIDENCE

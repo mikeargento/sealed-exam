@@ -1,0 +1,48 @@
+{
+  "version": "exam-raw/1",
+  "id": 17,
+  "family": "strings",
+  "provider": "anthropic",
+  "model": "claude-haiku-4-5",
+  "request": {
+    "model": "claude-haiku-4-5",
+    "max_tokens": 16000,
+    "system": "You are sitting a written exam. Answer each question on its own. Follow the question's answer-format instructions exactly.",
+    "messages": [
+      {
+        "role": "user",
+        "content": "Start with the string (between the brackets, without them): [LcLQ9M3Ep8eYh]\n\nApply these steps in order:\n\n1. Swap the case of every letter (lowercase becomes uppercase and uppercase becomes lowercase); leave digits unchanged.\n2. Sort the characters in ascending ASCII order (digits before uppercase letters before lowercase letters).\n3. Shift every letter forward by 16 places in the alphabet, wrapping from z back to a (and Z back to A); keep each letter's case; leave digits unchanged.\n4. Reverse the string.\n\nWhat is the resulting string?\n\nGive the final string exactly, and nothing else after ANSWER:.\nReason as much as you like, then finish with one final line of the form\nANSWER: <your answer>"
+      }
+    ],
+    "temperature": 0
+  },
+  "response": {
+    "model": "claude-haiku-4-5-20251001",
+    "id": "msg_011CeysSHbH5DkREr7yef33E",
+    "type": "message",
+    "role": "assistant",
+    "content": [
+      {
+        "type": "text",
+        "text": "I'll work through this step-by-step.\n\n**Starting string:** LcLQ9M3Ep8eYh\n\n**Step 1: Swap the case of every letter**\n- L → l\n- c → C\n- L → l\n- Q → q\n- 9 → 9 (unchanged)\n- M → m\n- 3 → 3 (unchanged)\n- E → e\n- p → P\n- 8 → 8 (unchanged)\n- e → E\n- Y → y\n- h → H\n\nResult: **lClq9m3eP8EyH**\n\n**Step 2: Sort characters in ascending ASCII order**\nASCII values: digits (48-57) < uppercase letters (65-90) < lowercase letters (97-122)\n\nCharacters to sort: l, C, l, q, 9, m, 3, e, P, 8, E, y, H\n- Digits: 3, 8, 9\n- Uppercase: C, E, H, P\n- Lowercase: e, l, l, m, q, y\n\nSorted: **389CEHPellmqy**\n\n**Step 3: Shift every letter forward by 16 places in the alphabet**\n- C (3rd letter) + 16 = 19th letter = S\n- E (5th letter) + 16 = 21st letter = U\n- H (8th letter) + 16 = 24th letter = X\n- P (16th letter) + 16 = 32nd, wraps to 6th letter = F\n- e (5th letter) + 16 = 21st letter = u\n- l (12th letter) + 16 = 28th, wraps to 2nd letter = b\n- l (12th letter) + 16 = 28th, wraps to 2nd letter = b\n- m (13th letter) + 16 = 29th, wraps to 3rd letter = c\n- q (17th letter) + 16 = 33rd, wraps to 7th letter = g\n- y (25th letter) + 16 = 41st, wraps to 15th letter = o\n\nResult: **389SUXFubbcgo**\n\n**Step 4: Reverse the string**\n**ogcbbufXUS983**\n\nANSWER: ogcbbufXUS983"
+      }
+    ],
+    "container": null,
+    "stop_reason": "end_turn",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 203,
+      "cache_creation_input_tokens": 0,
+      "cache_read_input_tokens": 0,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 573,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    }
+  },
+  "incomplete": false
+}

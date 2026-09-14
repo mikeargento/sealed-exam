@@ -1,0 +1,55 @@
+{
+  "version": "exam-raw/1",
+  "id": 19,
+  "family": "strings",
+  "provider": "anthropic",
+  "model": "claude-sonnet-5",
+  "request": {
+    "model": "claude-sonnet-5",
+    "max_tokens": 16000,
+    "system": "You are sitting a written exam. Answer each question on its own. Follow the question's answer-format instructions exactly.",
+    "messages": [
+      {
+        "role": "user",
+        "content": "Start with the string (between the brackets, without them): [TgqaTbH9gBMZVXRaB]\n\nApply these steps in order:\n\n1. Shift every letter forward by 1 place in the alphabet, wrapping from z back to a (and Z back to A); keep each letter's case; leave digits unchanged.\n2. Delete every 3rd character (the 3rd, 6th, 9th, … counting from 1).\n3. Sort the characters in ascending ASCII order (digits before uppercase letters before lowercase letters).\n4. Replace every occurrence of the character U with M (case-sensitive).\n\nWhat is the resulting string?\n\nGive the final string exactly, and nothing else after ANSWER:.\nReason as much as you like, then finish with one final line of the form\nANSWER: <your answer>"
+      }
+    ]
+  },
+  "response": {
+    "model": "claude-sonnet-5",
+    "id": "msg_011CeysgnDbwyhGfzVNqhJ6T",
+    "type": "message",
+    "role": "assistant",
+    "content": [
+      {
+        "type": "thinking",
+        "thinking": "",
+        "signature": "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"
+      },
+      {
+        "type": "text",
+        "text": "**Reasoning:**\n\nOriginal: `TgqaTbH9gBMZVXRaB`\n\n**Step 1 – Shift letters +1:**\nT→U, g→h, q→r, a→b, T→U, b→c, H→I, 9→9, g→h, B→C, M→N, Z→A, V→W, X→Y, R→S, a→b, B→C\n\nResult: `UhrbUcI9hCNAWYSbC`\n\n**Step 2 – Delete every 3rd character (positions 3,6,9,12,15):**\nRemove r, c, h, A, S\n\nRemaining: `UhbUI9CNWYbC`\n\n**Step 3 – Sort ascending ASCII (digits < uppercase < lowercase):**\n\nDigits: 9\nUppercase (sorted): C, C, I, N, U, U, W, Y\nLowercase (sorted): b, b, h\n\nSorted string: `9CCINUUWYbbh`\n\n**Step 4 – Replace U with M:**\n\n`9CCINMMWYbbh`\n\nANSWER: 9CCINMMWYbbh"
+      }
+    ],
+    "container": null,
+    "stop_reason": "end_turn",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 303,
+      "cache_creation_input_tokens": 0,
+      "cache_read_input_tokens": 0,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 1330,
+      "output_tokens_details": {
+        "thinking_tokens": 969
+      },
+      "service_tier": "standard",
+      "inference_geo": "global"
+    }
+  },
+  "incomplete": false
+}

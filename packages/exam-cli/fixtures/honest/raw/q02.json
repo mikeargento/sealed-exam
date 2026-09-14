@@ -1,0 +1,48 @@
+{
+  "version": "exam-raw/1",
+  "id": 2,
+  "family": "logic",
+  "provider": "anthropic",
+  "model": "claude-haiku-4-5",
+  "request": {
+    "model": "claude-haiku-4-5",
+    "max_tokens": 16000,
+    "system": "You are sitting a written exam. Answer each question on its own. Follow the question's answer-format instructions exactly.",
+    "messages": [
+      {
+        "role": "user",
+        "content": "4 people (Gwen, Esme, Ada, Cleo) sit in a row of 4 seats numbered 1 to 4 from left to right. All of the following are true:\n\n1. There are exactly 2 seats between Ada and Esme.\n2. Ada does not sit in seat 2.\n3. Cleo sits somewhere to the left of Ada.\n4. Esme sits somewhere to the left of Ada.\n5. There are exactly 0 seats between Ada and Cleo.\n\nWho sits where?\n\nGive the names in seat order from seat 1 to the last seat, separated by commas.\nReason as much as you like, then finish with one final line of the form\nANSWER: <your answer>"
+      }
+    ],
+    "temperature": 0
+  },
+  "response": {
+    "model": "claude-haiku-4-5-20251001",
+    "id": "msg_011CeysRXqzTSY7E88Mu5gnm",
+    "type": "message",
+    "role": "assistant",
+    "content": [
+      {
+        "type": "text",
+        "text": "I need to work through these constraints systematically.\n\nLet me denote the positions as 1, 2, 3, 4 from left to right.\n\n**From constraint 5:** There are exactly 0 seats between Ada and Cleo.\nThis means Ada and Cleo sit in adjacent seats.\n\n**From constraint 3:** Cleo sits somewhere to the left of Ada.\nCombined with constraint 5, this means Cleo is immediately to the left of Ada.\nSo Cleo and Ada occupy consecutive seats with Cleo first.\n\nPossible positions for (Cleo, Ada):\n- (1, 2)\n- (2, 3)\n- (3, 4)\n\n**From constraint 2:** Ada does not sit in seat 2.\nThis eliminates (Cleo, Ada) = (1, 2).\n\nRemaining possibilities:\n- (Cleo, Ada) = (2, 3)\n- (Cleo, Ada) = (3, 4)\n\n**From constraint 1:** There are exactly 2 seats between Ada and Esme.\nThis means Ada and Esme are 3 positions apart (with 2 seats in between).\n\nIf Ada is in seat 3: Esme must be in seat 3 - 3 = 0 (impossible) or seat 3 + 3 = 6 (impossible).\n\nIf Ada is in seat 4: Esme must be in seat 4 - 3 = 1 or seat 4 + 3 = 7 (impossible).\nSo Esme would be in seat 1.\n\nTherefore: (Cleo, Ada) = (3, 4) and Esme is in seat 1.\n\n**From constraint 4:** Esme sits somewhere to the left of Ada.\nWith Esme in seat 1 and Ada in seat 4, this is satisfied. ✓\n\nSo we have:\n- Seat 1: Esme\n- Seat 2: Gwen (the only person left)\n- Seat 3: Cleo\n- Seat 4: Ada\n\nLet me verify all constraints:\n1. Exactly 2 seats between Ada (4) and Esme (1): seats 2 and 3 are between them. ✓\n2. Ada does not sit in seat 2: Ada is in seat 4. ✓\n3. Cleo (3) sits left of Ada (4). ✓\n4. Esme (1) sits left of Ada (4). ✓\n5. Exactly 0 seats between Ada (4) and Cleo (3): they are adjacent. ✓\n\nANSWER: Esme, Gwen, Cleo, Ada"
+      }
+    ],
+    "container": null,
+    "stop_reason": "end_turn",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 206,
+      "cache_creation_input_tokens": 0,
+      "cache_read_input_tokens": 0,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 644,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    }
+  },
+  "incomplete": false
+}

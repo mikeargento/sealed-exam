@@ -1,0 +1,55 @@
+{
+  "version": "exam-raw/1",
+  "id": 19,
+  "family": "arith",
+  "provider": "anthropic",
+  "model": "claude-opus-5",
+  "request": {
+    "model": "claude-opus-5",
+    "max_tokens": 16000,
+    "system": "You are sitting a written exam. Answer each question on its own. Follow the question's answer-format instructions exactly.",
+    "messages": [
+      {
+        "role": "user",
+        "content": "Compute exactly:\n\n(879010 + 404626) * 1370715 - 971008448\n\nGive the exact integer, with no thousands separators.\nReason as much as you like, then finish with one final line of the form\nANSWER: <your answer>"
+      }
+    ]
+  },
+  "response": {
+    "model": "claude-opus-5",
+    "id": "msg_011CeyseL5gCxT3PgaMbdgAA",
+    "type": "message",
+    "role": "assistant",
+    "content": [
+      {
+        "type": "thinking",
+        "thinking": "",
+        "signature": "CAIS9QYKjgEIERgCKkBh8lsbdiOKqflC+irHpZ6V6ZE/5Pg7MqlE7Pm1+NPTM+lEOQ7Nb8aHdnJHrFMPxRAx3+M1fRDPb2p1vxHxElFWMg1jbGF1ZGUtb3B1cy01OAFCCHRoaW5raW5nWiQ1OTk1ZWU0Zi0xOGU5LTQ2NjMtOGFhZi1lNmY3N2EwMDc1YjeoAYGAltUGEgxuqnleQzZBB4Z8zSAaDDq1l0uTBXIj1MkNwiIwhHEu2jIeV8ctTC3oj5isFmdPqAmZ8dLBscg4An06r0QPaHXHF77quqZMJXwuDThbKpMFTJIh0C4gz6tclv/2znXpmVZBrB9Iyv+1VlnUMATHOD4efWNwq9W7SSinadNH+XkVFqeR5/sjLAk9LSdPtVX1lwRB44DxipsqOJ57zSXgPQrBxErB71AX35o0A6nkuYZ38PdhQrhj/thWsNuZy4/4oK9OXreCnsODK3WCI76Q47ss7xfysbZ950ssyE5x9SAiEppzcehNjvgxumC3H8csWlczd7u7lL2BG4bXR2ua1TTswxgXCf5syOGj7MGg5B9/moc7QjVlcLF5HocsQ/DldDtbmGQ8Cnvzq/Qkf1qyFmGFgErcpmrgDR7WZ9b2FL4KLQFK3GwFR5iNN8vNHj4oy0t1aL9lTB7b61jqzFbpuJTpyCYvVVcvlGHLHGcBe5NQE+5jM+BmiDtCSjDU2snk6svuCDCHTFvmtWTitMKy7DSlD89KVMdf0EaGpT47pFSRPenh2BhaimbPIPcCgqCWu3UNHboWwMA/0/2U2jQennuvFw3JYqrzMDjXjM7urNnLmYNulLh4iIHxGyV330yJ6Spmwc/38ivkltoJWvv0mqcfNycSIsMxAJtPxzPOziMhQza5Mie5k8YWra/SJMExyo8aWp9eGMDyyM4ATt+QA1B/pd54CcpothDa7VYCCN4Tli1kXnnmIJkyhQpcgurLwvM3zYkyXGfExukKilENU7JayDZDt6V6Z6xAS7uT+J5lCj3nbIOuo/G/wOlag0NGQ7thCcdTQYuTt4w7AtUalCB0LNDN2dzOlYF/uDsBsy6w3uTCWsNnL9jRj33CZPg16MS9cXCiCa3GQCeD4TytCLUEDDoS910U6W4U0WVAE5sKuUgM93DUjt+n6RhJbhF/yBVQrAaFjZHEUmSPWVULJ7f6oRsYAQ=="
+      },
+      {
+        "type": "text",
+        "text": "**Step 1:** 879010 + 404626 = 1283636\n\n**Step 2:** 1283636 × 1370715\n- 1283636 × 1,000,000 = 1,283,636,000,000\n- 1283636 × 300,000 = 385,090,800,000\n- 1283636 × 70,000 = 89,854,520,000\n- 1283636 × 700 = 898,545,200\n- 1283636 × 15 = 19,254,540\n\nSum: 1,283,636,000,000 + 385,090,800,000 = 1,668,726,800,000\n+ 89,854,520,000 = 1,758,581,320,000\n+ 898,545,200 = 1,759,479,865,200\n+ 19,254,540 = 1,759,499,119,740\n\n**Step 3:** 1,759,499,119,740 − 971,008,448 = 1,758,528,111,292\n\nANSWER: 1758528111292"
+      }
+    ],
+    "container": null,
+    "stop_reason": "end_turn",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 120,
+      "cache_creation_input_tokens": 0,
+      "cache_read_input_tokens": 0,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 682,
+      "output_tokens_details": {
+        "thinking_tokens": 382
+      },
+      "service_tier": "standard",
+      "inference_geo": "global"
+    }
+  },
+  "incomplete": false
+}

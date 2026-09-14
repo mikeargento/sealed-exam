@@ -1,0 +1,48 @@
+{
+  "version": "exam-raw/1",
+  "id": 5,
+  "family": "logic",
+  "provider": "anthropic",
+  "model": "claude-haiku-4-5",
+  "request": {
+    "model": "claude-haiku-4-5",
+    "max_tokens": 16000,
+    "system": "You are sitting a written exam. Answer each question on its own. Follow the question's answer-format instructions exactly.",
+    "messages": [
+      {
+        "role": "user",
+        "content": "4 people (Hugo, Dev, Bram, Cleo) sit in a row of 4 seats numbered 1 to 4 from left to right. All of the following are true:\n\n1. Dev sits immediately to the left of Bram.\n2. Dev does not sit at either end of the row.\n3. Hugo sits in seat 1.\n4. Dev sits somewhere to the left of Cleo.\n5. Dev does not sit in seat 3.\n6. Cleo does not sit in seat 2.\n\nWho sits where?\n\nGive the names in seat order from seat 1 to the last seat, separated by commas.\nReason as much as you like, then finish with one final line of the form\nANSWER: <your answer>"
+      }
+    ],
+    "temperature": 0
+  },
+  "response": {
+    "model": "claude-haiku-4-5-20251001",
+    "id": "msg_011CeysRcrd93rCfj6GGZwd2",
+    "type": "message",
+    "role": "assistant",
+    "content": [
+      {
+        "type": "text",
+        "text": "I need to figure out where each person sits based on the constraints.\n\nLet me work through this systematically:\n\n**From constraint 3:** Hugo sits in seat 1.\n- Seat 1: Hugo\n\n**From constraint 1:** Dev sits immediately to the left of Bram.\n- This means Dev and Bram are in consecutive seats, with Dev on the left.\n- Possible positions for (Dev, Bram): (2,3) or (3,4)\n\n**From constraint 5:** Dev does not sit in seat 3.\n- This eliminates the (3,4) option for (Dev, Bram)\n- Therefore: Dev is in seat 2, Bram is in seat 3\n- Seat 1: Hugo\n- Seat 2: Dev\n- Seat 3: Bram\n- Seat 4: Cleo (the only person left)\n\n**Let me verify all constraints:**\n\n1. Dev sits immediately to the left of Bram: ✓ (Dev in 2, Bram in 3)\n2. Dev does not sit at either end of the row: ✓ (Dev in seat 2, not 1 or 4)\n3. Hugo sits in seat 1: ✓\n4. Dev sits somewhere to the left of Cleo: ✓ (Dev in 2, Cleo in 4)\n5. Dev does not sit in seat 3: ✓ (Dev in seat 2)\n6. Cleo does not sit in seat 2: ✓ (Cleo in seat 4)\n\nAll constraints are satisfied.\n\nANSWER: Hugo, Dev, Bram, Cleo"
+      }
+    ],
+    "container": null,
+    "stop_reason": "end_turn",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 208,
+      "cache_creation_input_tokens": 0,
+      "cache_read_input_tokens": 0,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 394,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    }
+  },
+  "incomplete": false
+}

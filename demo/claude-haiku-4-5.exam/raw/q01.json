@@ -1,0 +1,48 @@
+{
+  "version": "exam-raw/1",
+  "id": 1,
+  "family": "logic",
+  "provider": "anthropic",
+  "model": "claude-haiku-4-5",
+  "request": {
+    "model": "claude-haiku-4-5",
+    "max_tokens": 16000,
+    "system": "You are sitting a written exam. Answer each question on its own. Follow the question's answer-format instructions exactly.",
+    "messages": [
+      {
+        "role": "user",
+        "content": "5 people (Gwen, Hugo, Cleo, Bram, Dev) sit in a row of 5 seats numbered 1 to 5 from left to right. All of the following are true:\n\n1. Hugo and Dev do not sit next to each other.\n2. Cleo sits in seat 3.\n3. Gwen does not sit at either end of the row.\n4. Bram and Dev do not sit next to each other.\n5. Gwen sits immediately to the left of Dev.\n6. Bram sits at one end of the row.\n\nWho sits where?\n\nGive the names in seat order from seat 1 to the last seat, separated by commas.\nReason as much as you like, then finish with one final line of the form\nANSWER: <your answer>"
+      }
+    ],
+    "temperature": 0
+  },
+  "response": {
+    "model": "claude-haiku-4-5-20251001",
+    "id": "msg_011CeysgCb2jCwciYCFRX8JC",
+    "type": "message",
+    "role": "assistant",
+    "content": [
+      {
+        "type": "text",
+        "text": "I need to find the seating arrangement that satisfies all 6 conditions.\n\nLet me denote the seats as: 1, 2, 3, 4, 5\n\n**From condition 2:** Cleo sits in seat 3.\nSeats: _, _, Cleo, _, _\n\n**From condition 6:** Bram sits at one end (seat 1 or seat 5).\n\n**From condition 5:** Gwen sits immediately to the left of Dev.\nThis means Gwen and Dev are consecutive, with Gwen's seat number being one less than Dev's.\nPossible positions for (Gwen, Dev): (1,2), (2,3), (3,4), (4,5)\n\nBut Cleo is in seat 3, so (Gwen, Dev) cannot be (2,3) or (3,4).\nPossible positions: (1,2) or (4,5)\n\n**From condition 3:** Gwen does not sit at either end.\nSo Gwen is not in seat 1 or seat 5.\nThis eliminates (Gwen, Dev) = (1,2) and (4,5).\n\nWait, let me reconsider. If (Gwen, Dev) = (4,5), then Gwen is in seat 4 (not an end), which is allowed.\nIf (Gwen, Dev) = (1,2), then Gwen is in seat 1 (an end), which violates condition 3.\n\nSo **(Gwen, Dev) must be in seats (4,5)**.\n\nSeats: _, _, Cleo, Gwen, Dev\n\n**From condition 6:** Bram sits at one end (seat 1 or 5).\nSince Dev is in seat 5, Bram must be in seat 1.\n\nSeats: Bram, _, Cleo, Gwen, Dev\n\n**The remaining person is Hugo**, who must sit in seat 2.\n\nSeats: Bram, Hugo, Cleo, Gwen, Dev\n\nNow let me verify all conditions:\n\n1. **Hugo and Dev do not sit next to each other.** Hugo is in seat 2, Dev is in seat 5. They are not adjacent. ✓\n2. **Cleo sits in seat 3.** Yes. ✓\n3. **Gwen does not sit at either end.** Gwen is in seat 4 (not seat 1 or 5). ✓\n4. **Bram and Dev do not sit next to each other.** Bram is in seat 1, Dev is in seat 5. They are not adjacent. ✓\n5. **Gwen sits immediately to the left of Dev.** Gwen is in seat 4, Dev is in seat 5. ✓\n6. **Bram sits at one end of the row.** Bram is in seat 1. ✓\n\nAll conditions are satisfied!\n\nANSWER: Bram, Hugo, Cleo, Gwen, Dev"
+      }
+    ],
+    "container": null,
+    "stop_reason": "end_turn",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 220,
+      "cache_creation_input_tokens": 0,
+      "cache_read_input_tokens": 0,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 715,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    }
+  },
+  "incomplete": false
+}

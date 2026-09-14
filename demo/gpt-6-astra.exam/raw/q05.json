@@ -1,0 +1,57 @@
+{
+  "version": "exam-raw/1",
+  "id": 5,
+  "family": "strings",
+  "provider": "openai",
+  "model": "gpt-6-astra",
+  "request": {
+    "model": "gpt-6-astra",
+    "messages": [
+      {
+        "role": "system",
+        "content": "You are sitting a written exam. Answer each question on its own. Follow the question's answer-format instructions exactly."
+      },
+      {
+        "role": "user",
+        "content": "Start with the string (between the brackets, without them): [rSnRVCT4TwAYfzEmD]\n\nApply these steps in order:\n\n1. Sort the characters in ascending ASCII order (digits before uppercase letters before lowercase letters).\n2. Swap the case of every letter (lowercase becomes uppercase and uppercase becomes lowercase); leave digits unchanged.\n3. Rotate the string left by 7: move its first 7 characters to the end, in the same order.\n\nWhat is the resulting string?\n\nGive the final string exactly, and nothing else after ANSWER:.\nReason as much as you like, then finish with one final line of the form\nANSWER: <your answer>"
+      }
+    ]
+  },
+  "response": {
+    "id": "chatcmpl-ENjX2xz2oVlPrNdGKfwljspKqubk4",
+    "object": "chat.completion",
+    "created": 1789325276,
+    "model": "gpt-6-astra",
+    "choices": [
+      {
+        "index": 0,
+        "message": {
+          "role": "assistant",
+          "content": "ANSWER: ttvyFMNRWZ4acders",
+          "refusal": null,
+          "annotations": []
+        },
+        "finish_reason": "stop"
+      }
+    ],
+    "usage": {
+      "prompt_tokens": 171,
+      "completion_tokens": 119,
+      "total_tokens": 290,
+      "prompt_tokens_details": {
+        "cached_tokens": 0,
+        "cache_write_tokens": 0,
+        "audio_tokens": 0
+      },
+      "completion_tokens_details": {
+        "reasoning_tokens": 99,
+        "audio_tokens": 0,
+        "accepted_prediction_tokens": 0,
+        "rejected_prediction_tokens": 0
+      }
+    },
+    "service_tier": "default",
+    "system_fingerprint": null
+  },
+  "incomplete": false
+}

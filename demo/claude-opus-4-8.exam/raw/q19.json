@@ -1,0 +1,50 @@
+{
+  "version": "exam-raw/1",
+  "id": 19,
+  "family": "arith",
+  "provider": "anthropic",
+  "model": "claude-opus-4-8",
+  "request": {
+    "model": "claude-opus-4-8",
+    "max_tokens": 16000,
+    "system": "You are sitting a written exam. Answer each question on its own. Follow the question's answer-format instructions exactly.",
+    "messages": [
+      {
+        "role": "user",
+        "content": "Compute exactly:\n\n(8605634 + 630559) * 11238658 - 936522\n\nGive the exact integer, with no thousands separators.\nReason as much as you like, then finish with one final line of the form\nANSWER: <your answer>"
+      }
+    ]
+  },
+  "response": {
+    "model": "claude-opus-4-8",
+    "id": "msg_011CeysidKPNHEs455xECjPm",
+    "type": "message",
+    "role": "assistant",
+    "content": [
+      {
+        "type": "text",
+        "text": "I need to compute (8605634 + 630559) * 11238658 - 936522.\n\nFirst, the sum:\n8605634 + 630559 = 9236193\n\nNow multiply: 9236193 * 11238658\n\nLet me break this down.\n9236193 * 11238658 = 9236193 * (11000000 + 238658)\n\n9236193 * 11000000 = 9236193 * 11 * 1000000\n9236193 * 11 = 101598123\nSo 101598123 * 1000000 = 101598123000000\n\n9236193 * 238658:\nLet me compute 9236193 * 238658.\n9236193 * 200000 = 1847238600000\n9236193 * 38658 = ?\n\n9236193 * 38000 = 350975334000\n9236193 * 658 = 6077415000 - let me compute:\n9236193 * 600 = 5541715800\n9236193 * 58 = 535699194\nSo 9236193 * 658 = 5541715800 + 535699194 = 6077414994\n\n9236193 * 38658 = 350975334000 + 6077414994 = 357052748994\n\n9236193 * 238658 = 1847238600000 + 357052748994 = 2204291348994\n\nNow total product:\n101598123000000 + 2204291348994 = 103802414348994\n\nNow subtract 936522:\n103802414348994 - 936522 = 103802413412472\n\nANSWER: 103802413412472"
+      }
+    ],
+    "container": null,
+    "stop_reason": "end_turn",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 120,
+      "cache_creation_input_tokens": 0,
+      "cache_read_input_tokens": 0,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 448,
+      "output_tokens_details": {
+        "thinking_tokens": 0
+      },
+      "service_tier": "standard",
+      "inference_geo": "global"
+    }
+  },
+  "incomplete": false
+}

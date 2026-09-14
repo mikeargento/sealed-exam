@@ -1,0 +1,48 @@
+{
+  "version": "exam-raw/1",
+  "id": 4,
+  "family": "logic",
+  "provider": "anthropic",
+  "model": "claude-haiku-4-5",
+  "request": {
+    "model": "claude-haiku-4-5",
+    "max_tokens": 16000,
+    "system": "You are sitting a written exam. Answer each question on its own. Follow the question's answer-format instructions exactly.",
+    "messages": [
+      {
+        "role": "user",
+        "content": "5 people (Esme, Dev, Hugo, Fitz, Gwen) sit in a row of 5 seats numbered 1 to 5 from left to right. All of the following are true:\n\n1. Esme sits in seat 3.\n2. There are exactly 1 seat between Gwen and Esme.\n3. Dev sits immediately to the left of Fitz.\n4. Fitz sits in seat 5.\n5. Dev does not sit in seat 3.\n\nWho sits where?\n\nGive the names in seat order from seat 1 to the last seat, separated by commas.\nReason as much as you like, then finish with one final line of the form\nANSWER: <your answer>"
+      }
+    ],
+    "temperature": 0
+  },
+  "response": {
+    "model": "claude-haiku-4-5-20251001",
+    "id": "msg_011CeysgCPdhxvLbRpPupmrj",
+    "type": "message",
+    "role": "assistant",
+    "content": [
+      {
+        "type": "text",
+        "text": "I'll work through this step-by-step using the given constraints.\n\n**From constraint 1:** Esme sits in seat 3.\n\n**From constraint 4:** Fitz sits in seat 5.\n\n**From constraint 3:** Dev sits immediately to the left of Fitz.\n- Since Fitz is in seat 5, Dev must be in seat 4.\n\n**From constraint 5:** Dev does not sit in seat 3.\n- This is consistent with Dev being in seat 4.\n\n**From constraint 2:** There are exactly 1 seat between Gwen and Esme.\n- Esme is in seat 3.\n- \"Exactly 1 seat between\" means they are 2 seats apart.\n- So Gwen is either in seat 1 (with seat 2 between them) or seat 5 (with seat 4 between them).\n- But seat 5 is occupied by Fitz, so Gwen must be in seat 1.\n\n**Remaining person:** Hugo must sit in the remaining seat, which is seat 2.\n\n**Verification:**\n1. Esme in seat 3 ✓\n2. Gwen (seat 1) and Esme (seat 3) have exactly 1 seat between them (seat 2) ✓\n3. Dev (seat 4) immediately left of Fitz (seat 5) ✓\n4. Fitz in seat 5 ✓\n5. Dev in seat 4, not seat 3 ✓\n\nANSWER: Gwen, Hugo, Esme, Dev, Fitz"
+      }
+    ],
+    "container": null,
+    "stop_reason": "end_turn",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 203,
+      "cache_creation_input_tokens": 0,
+      "cache_read_input_tokens": 0,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 380,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    }
+  },
+  "incomplete": false
+}

@@ -1,0 +1,62 @@
+{
+  "version": "exam-raw/1",
+  "id": 18,
+  "family": "spec",
+  "provider": "google",
+  "model": "gemini-3.1-pro-preview",
+  "request": {
+    "systemInstruction": {
+      "parts": [
+        {
+          "text": "You are sitting a written exam. Answer each question on its own. Follow the question's answer-format instructions exactly."
+        }
+      ]
+    },
+    "contents": [
+      {
+        "role": "user",
+        "parts": [
+          {
+            "text": "Write a JavaScript function f(xs), where xs is an array of integers, that returns an integer computed as follows:\n\n1. Keep only the elements at odd indices (index 1, 3, 5, …).\n2. Replace each kept element x with 2 * x - 1.\n3. Return the alternating sum of the resulting elements: the first minus the second plus the third minus the fourth, and so on (0 if there are none).\n\nReply with only the function, in a single ```js code block. Name it f, take one parameter xs, use no libraries, and write no import, require or export statements."
+          }
+        ]
+      }
+    ],
+    "generationConfig": {
+      "temperature": 0
+    }
+  },
+  "response": {
+    "candidates": [
+      {
+        "content": {
+          "parts": [
+            {
+              "text": "```js\nfunction f(xs) {\n  let sum = 0;\n  let sign = 1;\n  for (let i = 1; i < xs.length; i += 2) {\n    sum += sign * (2 * xs[i] - 1);\n    sign = -sign;\n  }\n  return sum;\n}\n```",
+              "thoughtSignature": "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"
+            }
+          ],
+          "role": "model"
+        },
+        "finishReason": "STOP",
+        "index": 0
+      }
+    ],
+    "usageMetadata": {
+      "promptTokenCount": 162,
+      "candidatesTokenCount": 83,
+      "totalTokenCount": 1228,
+      "promptTokensDetails": [
+        {
+          "modality": "TEXT",
+          "tokenCount": 162
+        }
+      ],
+      "thoughtsTokenCount": 983,
+      "serviceTier": "standard"
+    },
+    "modelVersion": "gemini-3.1-pro-preview",
+    "responseId": "L_GmavXkNouR_uMP4eqYuAg"
+  },
+  "incomplete": false
+}

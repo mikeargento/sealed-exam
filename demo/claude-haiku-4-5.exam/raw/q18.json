@@ -1,0 +1,48 @@
+{
+  "version": "exam-raw/1",
+  "id": 18,
+  "family": "strings",
+  "provider": "anthropic",
+  "model": "claude-haiku-4-5",
+  "request": {
+    "model": "claude-haiku-4-5",
+    "max_tokens": 16000,
+    "system": "You are sitting a written exam. Answer each question on its own. Follow the question's answer-format instructions exactly.",
+    "messages": [
+      {
+        "role": "user",
+        "content": "Start with the string (between the brackets, without them): [nMjWTteIP8eepXA]\n\nApply these steps in order:\n\n1. Delete every 4th character (the 4th, 8th, 12th, … counting from 1).\n2. Shift every letter forward by 3 places in the alphabet, wrapping from z back to a (and Z back to A); keep each letter's case; leave digits unchanged.\n3. Rotate the string left by 2: move its first 2 characters to the end, in the same order.\n\nWhat is the resulting string?\n\nGive the final string exactly, and nothing else after ANSWER:.\nReason as much as you like, then finish with one final line of the form\nANSWER: <your answer>"
+      }
+    ],
+    "temperature": 0
+  },
+  "response": {
+    "model": "claude-haiku-4-5-20251001",
+    "id": "msg_011Ceysh8MaUkgbs1eVgbm2b",
+    "type": "message",
+    "role": "assistant",
+    "content": [
+      {
+        "type": "text",
+        "text": "I'll work through this step-by-step.\n\n**Starting string:** nMjWTteIP8eepXA\n\n**Step 1: Delete every 4th character (4th, 8th, 12th, ...)**\n\nLet me number the positions:\n1. n\n2. M\n3. j\n4. W (DELETE)\n5. T\n6. t\n7. e\n8. I (DELETE)\n9. P\n10. 8\n11. e\n12. e (DELETE)\n13. p\n14. X\n15. A\n\nAfter deletion: nMjTteP8epXA\n\n**Step 2: Shift every letter forward by 3 places, keep case, leave digits unchanged**\n\n- n → q\n- M → P\n- j → m\n- T → W\n- t → w\n- e → h\n- P → S\n- 8 → 8 (unchanged)\n- e → h\n- p → s\n- X → A\n- A → D\n\nResult: qPmWwhS8hsAD\n\n**Step 3: Rotate left by 2 (move first 2 characters to the end)**\n\nFirst 2 characters: qP\nRemaining: mWwhS8hsAD\nMove qP to end: mWwhS8hsADqP\n\nANSWER: mWwhS8hsADqP"
+      }
+    ],
+    "container": null,
+    "stop_reason": "end_turn",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 209,
+      "cache_creation_input_tokens": 0,
+      "cache_read_input_tokens": 0,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 328,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    }
+  },
+  "incomplete": false
+}

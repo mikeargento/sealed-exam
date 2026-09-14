@@ -1,0 +1,17 @@
+{
+  "version": "bitgraph-anchor-status/1",
+  "position": {
+    "epochId": "C+9anWqI/eLjcB+eKyA4Gdhe17fIN3ebaR+z0H6+fyE=",
+    "counter": "8604"
+  },
+  "before": {
+    "state": "anchored",
+    "note": "An Ethereum anchor bounds this position on this side.",
+    "askedAt": "2026-09-12T16:39:05.322Z"
+  },
+  "after": {
+    "state": "pending",
+    "note": "No anchor follows this position yet. Its epoch is still open, so one is still coming: ask again later and this side completes.",
+    "askedAt": "2026-09-12T16:39:05.322Z"
+  }
+}

@@ -1,0 +1,13 @@
+{
+  "name": "sealed-exam-verifier",
+  "private": true,
+  "type": "module",
+  "description": "The verification path with the network nailed shut; run node verifier/exam.mjs",
+  "dependencies": {
+    "@mikeargento/exam-ask": "^0.1.0",
+    "@mikeargento/exam-bank": "^0.1.0",
+    "@mikeargento/exam-cli": "^0.1.0",
+    "@mikeargento/exam-core": "^0.1.0",
+    "@mikeargento/exam-verify": "^0.1.0"
+  }
+}

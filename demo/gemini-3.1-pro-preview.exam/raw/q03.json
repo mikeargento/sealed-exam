@@ -1,0 +1,62 @@
+{
+  "version": "exam-raw/1",
+  "id": 3,
+  "family": "order",
+  "provider": "google",
+  "model": "gemini-3.1-pro-preview",
+  "request": {
+    "systemInstruction": {
+      "parts": [
+        {
+          "text": "You are sitting a written exam. Answer each question on its own. Follow the question's answer-format instructions exactly."
+        }
+      ]
+    },
+    "contents": [
+      {
+        "role": "user",
+        "parts": [
+          {
+            "text": "Facts:\n\nThe Birch crate weighs 36,554 kg.\nThe Ginkgo crate weighs 73,012 kg.\nThe Alder crate weighs 38,411 kg.\nThe Dogwood crate weighs 46,589 kg.\nThe Cedar crate weighs 95,242 kg.\nThe Hazel crate weighs 95,798 kg.\n\nList the 6 labels from the lightest crate to the heaviest.\n\nGive the labels only, in the requested order, separated by commas.\nReason as much as you like, then finish with one final line of the form\nANSWER: <your answer>"
+          }
+        ]
+      }
+    ],
+    "generationConfig": {
+      "temperature": 0
+    }
+  },
+  "response": {
+    "candidates": [
+      {
+        "content": {
+          "parts": [
+            {
+              "text": "To find the correct order from lightest to heaviest, we can compare the weights of each crate:\n\n1. Birch: 36,554 kg\n2. Alder: 38,411 kg\n3. Dogwood: 46,589 kg\n4. Ginkgo: 73,012 kg\n5. Cedar: 95,242 kg\n6. Hazel: 95,798 kg\n\nOrdering these weights from smallest to largest gives us: 36,554 < 38,411 < 46,589 < 73,012 < 95,242 < 95,798. \n\nMatching these back to their respective labels gives the final order.\n\nANSWER: Birch, Alder, Dogwood, Ginkgo, Cedar, Hazel",
+              "thoughtSignature": "EpMGCpAGARFNMg9v0MilO7M3lCojVXNzMuaK6GvZXffJc2sykwVfneMjbZH/dKHMWpsDwkrOr2Q1zULrApF3Ppl3i2lPWthXUlNlHJMecUCZvXN61LvkAlBlcLAGyHU9a1UdlEGaJDjSiCOZQbHs8k/2Vs/W6+5nzkDXZX5xsxPxW5wPOyq382jjWDC35EEY38N/2GiTnxJl61hnytIL7ETLLQaycVeUNPgp1IhtiL9CR1A8ByhxDzlUlj5U2x2pjww/rMYVenCTYL9iXmEclh5PxnLrYDQPhPa8lqri7Pm6q8K6kXDh/waD3caiiZ9SxAa8pjceeHqxX9lsgwWseIKTFHsglhw/ZmLKMYYOv244tWkD6Otc92uTv7zmUYhDjvUhQg0MYKB7R9n9++40AslSwUmr1gp/PlZ7RbIHYaV53GtxCkL3UweVNz50jTJnrWWstR+Oq5Ve8LOf0WlZuOT3hmAHx/vt60A/Xf00ch1LeYleFvmANyZT/OcZrjOlJjj1+sl9G5AS2k/jFhUohpNHapFc2gVzE8eHANT+ba5ZY3drp2Mdh03BTkfvw7O5DWq88xL6nUQ7jttHSNt2nTr7mbUxNXpeY7euvjjZNXro95kePYfddL/dWsVuCHHfcH52mi8hQx2SVUJQgGDoJe4ow0yZf4Qhh5XDzsIbi2hL2v9Se+7qlLw0t5rdXBRCiszzgjB+II+eSO89INGGv+RmYMNCYM//swvx9JsJJFCH6vhR50AmecfUpcq4IKhsDluI7v4hdFhYjC0BQ1LR8Vba/z/x40b3N3LjCLLFgluYI3KlYMzerDT7hl5k6/fDaEq14TrYDkS8sIpxsqVb8lW5zNG429Gy4EEh4rehpEy7sM/HTvVx39Gc8S5FNzXFCZkXDV21THD8BkMIXlc0N9RyF2cNBHa/xs1IjPqNNZ9+PSudlfpAidKbyZE91pkjPkBFn2ZLqW433h9GK5aHLkv0BAkzPK1g/j+IbJdbYxZr8VNw9EhEVKyKikLEz68TO3uXzHXGjbdtytWyERfHI57OqKlmSw=="
+            }
+          ],
+          "role": "model"
+        },
+        "finishReason": "STOP",
+        "index": 0
+      }
+    ],
+    "usageMetadata": {
+      "promptTokenCount": 167,
+      "candidatesTokenCount": 188,
+      "totalTokenCount": 657,
+      "promptTokensDetails": [
+        {
+          "modality": "TEXT",
+          "tokenCount": 167
+        }
+      ],
+      "thoughtsTokenCount": 302,
+      "serviceTier": "standard"
+    },
+    "modelVersion": "gemini-3.1-pro-preview",
+    "responseId": "u_CmasztDLPf_uMP-8yasQk"
+  },
+  "incomplete": false
+}

@@ -1,0 +1,18 @@
+Copyright (c) 2024-2026 Mike Argento. All rights reserved.
+
+The source code and related materials in this package are proprietary and are not licensed for
+copying, modification, distribution, sublicensing, or commercial use except pursuant to a separate
+written agreement with the copyright owner or as expressly granted below.
+
+Verification grant. Permission is granted, free of charge and irrevocably, to any person obtaining
+a copy of this software, to copy, build, and run the software solely for the purposes of verifying
+BitGraph proofs and of reproducing and auditing the published enclave measurements. This
+permission does not extend to constructing proofs, operating a proof-issuing service, or any other
+use.
+
+Evaluation grant. In addition, any person obtaining a copy of this package may run `exam run` and
+the other commands of @mikeargento/exam-cli against https://bitgraph.ing to make and verify sealed
+exams for the purpose of evaluating the sealed-exam demonstration.
+
+Patent pending. Verification of BitGraph proofs is and remains permissionless. The verifier,
+@mikeargento/exam-verify, is MIT.

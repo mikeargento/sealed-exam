@@ -1,0 +1,48 @@
+{
+  "version": "exam-raw/1",
+  "id": 3,
+  "family": "arith",
+  "provider": "anthropic",
+  "model": "claude-haiku-4-5",
+  "request": {
+    "model": "claude-haiku-4-5",
+    "max_tokens": 16000,
+    "system": "You are sitting a written exam. Answer each question on its own. Follow the question's answer-format instructions exactly.",
+    "messages": [
+      {
+        "role": "user",
+        "content": "Compute exactly:\n\n(9390745 - 715657479) * (7093081 + 99781260)\n\nGive the exact integer, with no thousands separators.\nReason as much as you like, then finish with one final line of the form\nANSWER: <your answer>"
+      }
+    ],
+    "temperature": 0
+  },
+  "response": {
+    "model": "claude-haiku-4-5-20251001",
+    "id": "msg_011CeysgCZ3sWCayJAstg4vT",
+    "type": "message",
+    "role": "assistant",
+    "content": [
+      {
+        "type": "text",
+        "text": "I need to compute (9390745 - 715657479) * (7093081 + 99781260).\n\nLet me break this into two parts:\n\n**Part 1: 9390745 - 715657479**\n9390745 - 715657479 = -(715657479 - 9390745)\n= -706266734\n\n**Part 2: 7093081 + 99781260**\n7093081 + 99781260 = 106874341\n\n**Final multiplication:**\n(-706266734) * 106874341\n\nLet me compute this carefully. I'll use the fact that:\n706266734 * 106874341\n\nLet me break this down:\n706266734 * 106874341\n= 706266734 * (100000000 + 6874341)\n= 706266734 * 100000000 + 706266734 * 6874341\n= 70626673400000000 + 706266734 * 6874341\n\nNow for 706266734 * 6874341:\n= 706266734 * (7000000 - 125659)\n= 706266734 * 7000000 - 706266734 * 125659\n= 4943867538000000 - 706266734 * 125659\n\nFor 706266734 * 125659:\n= 706266734 * (125000 + 659)\n= 706266734 * 125000 + 706266734 * 659\n= 88283341750000 + 465569799706\n= 88748911549706\n\nSo: 706266734 * 6874341\n= 4943867538000000 - 88748911549706\n= 4855118626450294\n\nTherefore: 706266734 * 106874341\n= 70626673400000000 + 4855118626450294\n= 75481792026450294\n\nSince we had a negative sign:\n(-706266734) * 106874341 = -75481792026450294\n\nANSWER: -75481792026450294"
+      }
+    ],
+    "container": null,
+    "stop_reason": "end_turn",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 97,
+      "cache_creation_input_tokens": 0,
+      "cache_read_input_tokens": 0,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 505,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    }
+  },
+  "incomplete": false
+}

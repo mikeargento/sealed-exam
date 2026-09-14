@@ -1,0 +1,48 @@
+{
+  "version": "exam-raw/1",
+  "id": 7,
+  "family": "order",
+  "provider": "anthropic",
+  "model": "claude-haiku-4-5",
+  "request": {
+    "model": "claude-haiku-4-5",
+    "max_tokens": 16000,
+    "system": "You are sitting a written exam. Answer each question on its own. Follow the question's answer-format instructions exactly.",
+    "messages": [
+      {
+        "role": "user",
+        "content": "Facts:\n\nThe Fir crate weighs 67,746 kg.\nThe Ivy crate weighs 1,820 kg.\nThe Hazel crate weighs 54,871 kg.\nThe Elm crate weighs 52,217 kg.\nThe Cedar crate weighs 48,002 kg.\nThe Ginkgo crate weighs 69,662 kg.\nThe Dogwood crate weighs 51,144 kg.\n\nList the 7 labels from the lightest crate to the heaviest.\n\nGive the labels only, in the requested order, separated by commas.\nReason as much as you like, then finish with one final line of the form\nANSWER: <your answer>"
+      }
+    ],
+    "temperature": 0
+  },
+  "response": {
+    "model": "claude-haiku-4-5-20251001",
+    "id": "msg_011CeysgXmxJgM4FkroJVJYX",
+    "type": "message",
+    "role": "assistant",
+    "content": [
+      {
+        "type": "text",
+        "text": "I need to order the crates from lightest to heaviest by their weights.\n\nLet me list the weights:\n- Fir: 67,746 kg\n- Ivy: 1,820 kg\n- Hazel: 54,871 kg\n- Elm: 52,217 kg\n- Cedar: 48,002 kg\n- Ginkgo: 69,662 kg\n- Dogwood: 51,144 kg\n\nNow I'll sort from lightest to heaviest:\n1. Ivy: 1,820 kg (lightest)\n2. Cedar: 48,002 kg\n3. Dogwood: 51,144 kg\n4. Elm: 52,217 kg\n5. Hazel: 54,871 kg\n6. Fir: 67,746 kg\n7. Ginkgo: 69,662 kg (heaviest)\n\nANSWER: Ivy, Cedar, Dogwood, Elm, Hazel, Fir, Ginkgo"
+      }
+    ],
+    "container": null,
+    "stop_reason": "end_turn",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 202,
+      "cache_creation_input_tokens": 0,
+      "cache_read_input_tokens": 0,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 244,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    }
+  },
+  "incomplete": false
+}

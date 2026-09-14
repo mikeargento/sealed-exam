@@ -1,0 +1,9 @@
+Opened position 9749. Floor: block 25970404, 13 Sep 2026 18:47:23Z.
+Wrote 20 questions from that position and sealed them at position 9750. Floor: block 25970404, 13 Sep 2026 18:47:23Z.
+Asked gpt-6-astra. 20 answers back.
+Sealed the answers at position 9756. Floor: block 25970407.
+Verified
+Score 20/20. Report: gpt-6-astra.exam/report.html
+Paper not before block 25970404 (header time 13 Sep 2026 18:47:23Z).
+Answers not before block 25970407 (header time 13 Sep 2026 18:47:59Z).
+exit=0

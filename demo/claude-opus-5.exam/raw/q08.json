@@ -1,0 +1,55 @@
+{
+  "version": "exam-raw/1",
+  "id": 8,
+  "family": "order",
+  "provider": "anthropic",
+  "model": "claude-opus-5",
+  "request": {
+    "model": "claude-opus-5",
+    "max_tokens": 16000,
+    "system": "You are sitting a written exam. Answer each question on its own. Follow the question's answer-format instructions exactly.",
+    "messages": [
+      {
+        "role": "user",
+        "content": "Facts:\n\nThe Elm file was registered on 1 August 1987.\nThe Cedar file was registered on 23 September 2003.\nThe Hazel file was registered on 14 July 1986.\nThe Ginkgo file was registered on 21 September 1954.\nThe Juniper file was registered on 27 July 1911.\nThe Alder file was registered on 18 September 1901.\n\nList the 6 labels from the earliest registration to the latest.\n\nGive the labels only, in the requested order, separated by commas.\nReason as much as you like, then finish with one final line of the form\nANSWER: <your answer>"
+      }
+    ]
+  },
+  "response": {
+    "model": "claude-opus-5",
+    "id": "msg_011CeysdeE4EFStPUL8wgxXD",
+    "type": "message",
+    "role": "assistant",
+    "content": [
+      {
+        "type": "thinking",
+        "thinking": "",
+        "signature": "CAIS3QIKjgEIERgCKkBKXKRmBqtNFFvsxl3981EgSK0ELYJm1jh/SbEjNIU3hcFQke4+Rt56mu0gTOAd//DBibOsPmqmGdV6WoWbTZVgMg1jbGF1ZGUtb3B1cy01OAFCCHRoaW5raW5nWiQ1OTk1ZWU0Zi0xOGU5LTQ2NjMtOGFhZi1lNmY3N2EwMDc1YjeoAfb/ldUGEgyPwIfiykAqckLOjs8aDL1i+kdq0uoWS8SzkiIwEqPfRW4ARFS1YlR5D1ahdr6BgyBINAEc9cjdrlJAxP0wqOJtBCZUQfUJxV+EeMIDKnzHWOeVS3EnewENGFUNXrM+ChIhJxnBTZr9BH9GYmcokJDInlUAJxow3IAM7Hgm9pCuNIhVIg3wPXeaM9mlyJwdwmSSNkvPsFv8xBSlQr1OjP6IiIKfB87zbJc/J9i8FiEDGMvmlUO3IqT8LyQ6azf6KirUpEsSVTcRYcNPGAE="
+      },
+      {
+        "type": "text",
+        "text": "Ordering by date:\n\n- Alder: 18 Sep 1901\n- Juniper: 27 Jul 1911\n- Ginkgo: 21 Sep 1954\n- Hazel: 14 Jul 1986\n- Elm: 1 Aug 1987\n- Cedar: 23 Sep 2003\n\nANSWER: Alder, Juniper, Ginkgo, Hazel, Elm, Cedar"
+      }
+    ],
+    "container": null,
+    "stop_reason": "end_turn",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 233,
+      "cache_creation_input_tokens": 0,
+      "cache_read_input_tokens": 0,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 215,
+      "output_tokens_details": {
+        "thinking_tokens": 74
+      },
+      "service_tier": "standard",
+      "inference_geo": "global"
+    }
+  },
+  "incomplete": false
+}

@@ -1,0 +1,55 @@
+{
+  "version": "exam-raw/1",
+  "id": 9,
+  "family": "arith",
+  "provider": "anthropic",
+  "model": "claude-sonnet-5",
+  "request": {
+    "model": "claude-sonnet-5",
+    "max_tokens": 16000,
+    "system": "You are sitting a written exam. Answer each question on its own. Follow the question's answer-format instructions exactly.",
+    "messages": [
+      {
+        "role": "user",
+        "content": "Compute exactly:\n\n(4655567 + 3301284) * 319257147 - 76753797\n\nGive the exact integer, with no thousands separators.\nReason as much as you like, then finish with one final line of the form\nANSWER: <your answer>"
+      }
+    ]
+  },
+  "response": {
+    "model": "claude-sonnet-5",
+    "id": "msg_011CeysfBdy4ES4D8RYKtXgd",
+    "type": "message",
+    "role": "assistant",
+    "content": [
+      {
+        "type": "thinking",
+        "thinking": "",
+        "signature": "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"
+      },
+      {
+        "type": "text",
+        "text": "I need to compute (4655567 + 3301284) * 319257147 - 76753797\n\n**Step 1: Add the first two numbers**\n4655567 + 3301284 = 7956851\n\n**Step 2: Multiply 7956851 × 319257147**\n\nBreak 319257147 = 300000000 + 19257147\n\n- 7956851 × 300000000 = 2387055300000000\n\nFor 7956851 × 19257147, break further: 19257147 = 19000000 + 257147\n\n- 7956851 × 19000000 = 151180169000000\n\nFor 7956851 × 257147, break: 257147 = 257000 + 147\n\n- 7956851 × 257000 = 7956851 × 257 × 1000\n  - 7956851 × 257 = 7956851×250 + 7956851×7 = 1989212750 + 55697957 = 2044910707\n  - So 7956851 × 257000 = 2044910707000\n\n- 7956851 × 147 = 7956851×150 − 7956851×3 = 1193527650 − 23870553 = 1169657097\n\nSum: 2044910707000 + 1169657097 = 2046080364097\n\nNow combine:\n7956851 × 19257147 = 151180169000000 + 2046080364097 = 153226249364097\n\nTotal multiplication:\n7956851 × 319257147 = 2387055300000000 + 153226249364097 = 2540281549364097\n\n**Step 3: Subtract 76753797**\n\n2540281549364097 − 76753797 = 2540281472610300\n\nANSWER: 2540281472610300"
+      }
+    ],
+    "container": null,
+    "stop_reason": "end_turn",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 122,
+      "cache_creation_input_tokens": 0,
+      "cache_read_input_tokens": 0,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 1414,
+      "output_tokens_details": {
+        "thinking_tokens": 912
+      },
+      "service_tier": "standard",
+      "inference_geo": "global"
+    }
+  },
+  "incomplete": false
+}

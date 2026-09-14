@@ -1,0 +1,62 @@
+{
+  "version": "exam-raw/1",
+  "id": 10,
+  "family": "order",
+  "provider": "google",
+  "model": "gemini-3.1-pro-preview",
+  "request": {
+    "systemInstruction": {
+      "parts": [
+        {
+          "text": "You are sitting a written exam. Answer each question on its own. Follow the question's answer-format instructions exactly."
+        }
+      ]
+    },
+    "contents": [
+      {
+        "role": "user",
+        "parts": [
+          {
+            "text": "Facts:\n\nThe Elm crate weighs 81,595 kg.\nThe Ivy crate weighs 43,618 kg.\nThe Ginkgo crate weighs 77,727 kg.\nThe Cedar crate weighs 82,801 kg.\nThe Juniper crate weighs 86,584 kg.\n\nList the 5 labels from the lightest crate to the heaviest.\n\nGive the labels only, in the requested order, separated by commas.\nReason as much as you like, then finish with one final line of the form\nANSWER: <your answer>"
+          }
+        ]
+      }
+    ],
+    "generationConfig": {
+      "temperature": 0
+    }
+  },
+  "response": {
+    "candidates": [
+      {
+        "content": {
+          "parts": [
+            {
+              "text": "To find the correct order from lightest to heaviest, we can compare the weights of each crate:\n\n- Ivy crate: 43,618 kg\n- Ginkgo crate: 77,727 kg\n- Elm crate: 81,595 kg\n- Cedar crate: 82,801 kg\n- Juniper crate: 86,584 kg\n\nOrdering these weights from smallest to largest gives us 43,618 < 77,727 < 81,595 < 82,801 < 86,584. \n\nANSWER: Ivy, Ginkgo, Elm, Cedar, Juniper",
+              "thoughtSignature": "EocHCoQHARFNMg/ALAHjAKUY7ipWFDz0H56gmOs4uZ5HMNLD88ArKt41+0WOTwIk2T6cCd7BQ8F80PGrw8jnkS8nxTAI1GEVsRJ5DjhFRzW93sPntTKqwSsW1v/4REOzjpumBh0OyBbtdJ3xsaMsvxMLai76oJClBe21b+8RW/eKa94AIzwqcFVZvBCjscRKmYDMeqFtBSHFQH6K4gll/JwciviY/xtXpvzIE/VJgs5Miww/PqtuFQJYkems4VgjVthBPkdIP+r7GMTaJrpDCjOD/uqLGj7djOVynte4re9ZWLnX5X0dmtN1gR7jdAHirNzritaFSy1AdXXAkZa/4cGeIsMajaUdagjvnx/Hbd8mZ++ePahUMLi/YBwMRnI7/9/NlUnSzbN4/9nMf6dGs8R9nPeLu5d/fxwVfoSq+WsEHW/XlOP8b6SJVAHLMK6a59DOJHjWfaILs/a25uLChy8k8CUsipU0OXgTosvZy9rsyjm1JEGR6FJ7r9KNZz/tdpXEKqvt4G2lQ7xVXLLroE5nbNxqkNArhyYUfR0I+Qv1FuaLeDdHlhgmBooTLsvQOkAKqEfRDXbGvR8fNdrmpxRRb2g9igtBHzCJoAHRlX67D04DndE5APlTRF33F35lDTL+neEmx5x4CyUue8dZxQ/fxloHNZtIjvZhEVx+GJ1wj6qRYtygv7aHpGyL4oBFbsQbFArSO654V1UpR+OlP5V+mQn9hMWt1OuPrlihY4I2YN8C/UzG5bkiWnpm6gU/d0zVU0SiRFjkBHyF/31CdrEB+IFCGQwYey7DzR01QoK8HeDcnN4q3Sw2GHhdf+AKRZnGpjzOihEE5NTnwKy+oFYgR0QBtkz72E/sEmPEKg1eCaGbLZrRQOioLPxy/QB+AIDvfzQi9FO5uPx/pJHO5nd95sYRyyvcjLyDtqRuhplbx2CTI/WFXGsn7cfcgXTncylGqhjCUHbjsHAnngBZUbsUWjv/CgEZGP28KuGE5Zmx2N/UfKUuAw9kB4nZcpdxH+Y4mlY/9lDU+pdXYLyUlvVSdjGLgAHIcxcIdI3A+fs4bEizAdZywk/ihNn5oYO+OBfyC8rFfOvolz1s/FLkxRe3pR60Pedeet7Kth6AhEdm5gYnC9M9asLyqxJa62K7yryA3GApQoA1W9wjbGkdaIYH4CnKbS0b2ycD451WHA2YlngQxu1yMJam"
+            }
+          ],
+          "role": "model"
+        },
+        "finishReason": "STOP",
+        "index": 0
+      }
+    ],
+    "usageMetadata": {
+      "promptTokenCount": 152,
+      "candidatesTokenCount": 149,
+      "totalTokenCount": 684,
+      "promptTokensDetails": [
+        {
+          "modality": "TEXT",
+          "tokenCount": 152
+        }
+      ],
+      "thoughtsTokenCount": 383,
+      "serviceTier": "standard"
+    },
+    "modelVersion": "gemini-3.1-pro-preview",
+    "responseId": "1PCmasTtAqeM_PUPhL3AqAY"
+  },
+  "incomplete": false
+}

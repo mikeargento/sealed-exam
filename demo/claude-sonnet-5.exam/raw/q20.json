@@ -1,0 +1,55 @@
+{
+  "version": "exam-raw/1",
+  "id": 20,
+  "family": "strings",
+  "provider": "anthropic",
+  "model": "claude-sonnet-5",
+  "request": {
+    "model": "claude-sonnet-5",
+    "max_tokens": 16000,
+    "system": "You are sitting a written exam. Answer each question on its own. Follow the question's answer-format instructions exactly.",
+    "messages": [
+      {
+        "role": "user",
+        "content": "Start with the string (between the brackets, without them): [QCCJaJEKDCQHlFnce]\n\nApply these steps in order:\n\n1. Reverse the string.\n2. Shift every letter forward by 8 places in the alphabet, wrapping from z back to a (and Z back to A); keep each letter's case; leave digits unchanged.\n3. Replace every occurrence of the character S with I (case-sensitive).\n\nWhat is the resulting string?\n\nGive the final string exactly, and nothing else after ANSWER:.\nReason as much as you like, then finish with one final line of the form\nANSWER: <your answer>"
+      }
+    ]
+  },
+  "response": {
+    "model": "claude-sonnet-5",
+    "id": "msg_011CeysgwZgAGMGpDngs9oNn",
+    "type": "message",
+    "role": "assistant",
+    "content": [
+      {
+        "type": "thinking",
+        "thinking": "",
+        "signature": "Ev8KCpABCBEYAipAEXBuc3UQFHGZC6+tsYKHuQ5oBsG7/0isDKx8MwVQIU3KGubGldL0dRn4yiaBT24o27ebrN1k6wbqVL3UKhrcVzIPY2xhdWRlLXNvbm5ldC01OABCCHRoaW5raW5nWiQ1OTk1ZWU0Zi0xOGU5LTQ2NjMtOGFhZi1lNmY3N2EwMDc1YjeoAaaAltUGEgyN3kWQNH9+XwY7ot0aDEZXXq2LUUQ9p6zokCIwKM7EdFt+i9IrW+u7fx5uOUbnryd2ZGE0iPTe+Af46P9plDR6uRPibScTIQEUHLJJKpsJUrjKHnywvG9gG+V/9vpnXQqJS7t0FlBfsV9zBbuzkGVn/Sn/Q0Tg1emQXwP7nVlO7D9DcTF01enyCQWQqcAWaviQGssgaf6nZxGxjqZwBM8WKql69dxhiR2qN8e93awzSeglfes0NQUjKgSc/zK+oqA3AoAQ2rvDMIv8XKq0MZvdv+/0Ehe39Sm2gytdM/Morc15BUnV63msJ0xYZB79Vc2QSB9VBrrF3eduL4oWrzZ/ozEaZ48P4C2TCsjvTq8lwAuGU1ISKy0JlKFHGk96og0GtfhucUAz20AlLqjg39Bq0MG3suh+ZPPeiVm//JBTPOc7xnqLWV9Fz5rVabyV/LDLh+tgkfL35w0C3VykUvVM/Iq02Mx4naQPH4A3pIELGmbeNxDwM6zY9Wo8qNWIu7cnmIgvbrJhJXDCVVms3YilyVV5Eat8NnVsDrL76onViBMYnKrGsJUJ5aP98gdZUb2H4Wn0kYsqoSKrIFSW+yDsDnkCR6tA2i6CsT7qhGnYLu15TT+2abix0w5A2pKIchAhJfFX/lgm/PnAVgI+4Apn/cec0gkfDy4jWv8yTkvSYOzrzKs89zaQdUBvq0UNsmEjkS5lpsSNaJck517OESJVNpniOFRMIU5Yd/lMHMDXu6RtCnxlyf2dcDiE8NCWeUX+KBIUM35OzSD2QErR4J0WlJVbAhmTc2Eg3U7nmCSmeO6+QyPoTpDRxgTOx3jqkheNjZ851So+Zta7/HAsrTKAtqiMSm7M5AFLdALfX6ps4YEf1OD8UeZMh9crm2vXY1Tc53D8jd2o5DHagNVT1ICVusiBY0pRBTVn+TlwGIQB5/SQeHRa00QbslHW5OK6G6dCWGNrCFiasrL5Trygq3FMqQHyRYuXxOtftmGbYTHaakAv4SktRcbyqe1TtwjTO0mvUlB5ah7DAeHOVZr30IJCWDl+MVLrJ9q1VgZp0neatcrGPpt5HyPQk+gKoTytIAqcRiUx3AnqbZbmeofo9RS6CQqi9eKhDRL9XC50h0de4JPStCX3s51ap4LdNgQsgf7jSiIJap2acQsDNEgUiqMkMPrG7V/Yc+JCnbNjMuylwGqEXQBCZ4vJSlEKXOSy5LkpAAQDik35Nx2VAc0jx2t6TgH/xLYDDSvgzRdREK5cr33NchAhjweUbFRc3wcEN3C1Msoc9MpEeqr0U6tEi2BnT5cPhTjkkvR3SHQ8+SlAE81IAcuqfrYPrnYfO1Y4Ub3mfOvmNq8tgqQ4c9KO8b6MhnFiWMCFHz2n54m0CK6RuSoC90nPbtO8BlndGscgsDmRHBub/9ZFnb3MJGaesl+JuX6jUNzo7d4mDRSrbW5CCMDJLlkYppot/AkWEC3H9EbeINXCZWPQQPJ7Hr1u0BSlyceCxetd7JqO/Y2DTmDtkouUrdEZxsL65lGxj6OS+AHDmRpQ8A+QUfPKNTzWNdpb6TOu2540kmIo8sYvWye6ILDmc7GDAQUVLDC+J4HUiUBc8eV9oyi9asPTVE7paJCvuswhoiM2sYFXNKKlMs0vmFhCVxmA8JdtaQxHzdN/bdF+3CJuysu8W0jFGAE="
+      },
+      {
+        "type": "text",
+        "text": "Reversed: ecnFlHQCDKEJaJCCQ\n\nShift +8 each letter:\ne→m, c→k, n→v, F→N, l→t, H→P, Q→Y, C→K, D→L, K→S, E→M, J→R, a→i, J→R, C→K, C→K, Q→Y\n\nResult: mkvNtPYKLSMRiRKKY\n\nReplace S→I: mkvNtPYKLIMRiRKKY\n\nANSWER: mkvNtPYKLIMRiRKKY"
+      }
+    ],
+    "container": null,
+    "stop_reason": "end_turn",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 242,
+      "cache_creation_input_tokens": 0,
+      "cache_read_input_tokens": 0,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 935,
+      "output_tokens_details": {
+        "thinking_tokens": 755
+      },
+      "service_tier": "standard",
+      "inference_geo": "global"
+    }
+  },
+  "incomplete": false
+}

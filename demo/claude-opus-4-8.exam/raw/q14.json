@@ -1,0 +1,50 @@
+{
+  "version": "exam-raw/1",
+  "id": 14,
+  "family": "logic",
+  "provider": "anthropic",
+  "model": "claude-opus-4-8",
+  "request": {
+    "model": "claude-opus-4-8",
+    "max_tokens": 16000,
+    "system": "You are sitting a written exam. Answer each question on its own. Follow the question's answer-format instructions exactly.",
+    "messages": [
+      {
+        "role": "user",
+        "content": "4 people (Gwen, Fitz, Bram, Esme) sit in a row of 4 seats numbered 1 to 4 from left to right. All of the following are true:\n\n1. There are exactly 0 seats between Bram and Esme.\n2. Fitz sits somewhere to the left of Bram.\n3. There are exactly 1 seat between Fitz and Esme.\n4. Esme and Gwen do not sit next to each other.\n5. There are exactly 0 seats between Bram and Fitz.\n6. Gwen sits in seat 1.\n\nWho sits where?\n\nGive the names in seat order from seat 1 to the last seat, separated by commas.\nReason as much as you like, then finish with one final line of the form\nANSWER: <your answer>"
+      }
+    ]
+  },
+  "response": {
+    "model": "claude-opus-4-8",
+    "id": "msg_011CeysiN4rMDeqW5X86TWSh",
+    "type": "message",
+    "role": "assistant",
+    "content": [
+      {
+        "type": "text",
+        "text": "From clue 6: Gwen in seat 1.\n\nClue 1: Bram and Esme adjacent.\nClue 5: Bram and Fitz adjacent.\nClue 2: Fitz left of Bram.\nClue 3: exactly 1 seat between Fitz and Esme (positions differ by 2).\n\nFitz, Bram, Esme in seats 2,3,4.\n\nFitz left of Bram, adjacent: possible Fitz-Bram pairs: (2,3),(3,4).\n\nIf Fitz=2,Bram=3: Esme adjacent to Bram → Esme=4. Fitz-Esme distance=2 ✓. Check clue 4: Esme(4) and Gwen(1) not adjacent ✓.\n\nSeats: Gwen, Fitz, Bram, Esme.\n\nANSWER: Gwen, Fitz, Bram, Esme"
+      }
+    ],
+    "container": null,
+    "stop_reason": "end_turn",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 288,
+      "cache_creation_input_tokens": 0,
+      "cache_read_input_tokens": 0,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 297,
+      "output_tokens_details": {
+        "thinking_tokens": 0
+      },
+      "service_tier": "standard",
+      "inference_geo": "global"
+    }
+  },
+  "incomplete": false
+}

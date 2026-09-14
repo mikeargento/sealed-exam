@@ -1,0 +1,48 @@
+{
+  "version": "exam-raw/1",
+  "id": 15,
+  "family": "order",
+  "provider": "anthropic",
+  "model": "claude-haiku-4-5",
+  "request": {
+    "model": "claude-haiku-4-5",
+    "max_tokens": 16000,
+    "system": "You are sitting a written exam. Answer each question on its own. Follow the question's answer-format instructions exactly.",
+    "messages": [
+      {
+        "role": "user",
+        "content": "Facts:\n\nThe Hazel file was registered on 9 December 1997.\nThe Alder file was registered on 2 May 1931.\nThe Cedar file was registered on 4 January 1923.\nThe Birch file was registered on 22 August 1988.\nThe Elm file was registered on 24 August 1943.\nThe Ivy file was registered on 25 April 2025.\n\nList the 6 labels from the earliest registration to the latest.\n\nGive the labels only, in the requested order, separated by commas.\nReason as much as you like, then finish with one final line of the form\nANSWER: <your answer>"
+      }
+    ],
+    "temperature": 0
+  },
+  "response": {
+    "model": "claude-haiku-4-5-20251001",
+    "id": "msg_011CeysgyG8LEVaaKhQmfUq1",
+    "type": "message",
+    "role": "assistant",
+    "content": [
+      {
+        "type": "text",
+        "text": "I need to order these files by their registration dates from earliest to latest.\n\nLet me list them with their dates:\n- Cedar: 4 January 1923\n- Alder: 2 May 1931\n- Elm: 24 August 1943\n- Birch: 22 August 1988\n- Hazel: 9 December 1997\n- Ivy: 25 April 2025\n\nNow ordering from earliest to latest:\n1. Cedar (1923) - earliest\n2. Alder (1931)\n3. Elm (1943)\n4. Birch (1988)\n5. Hazel (1997)\n6. Ivy (2025) - latest\n\nANSWER: Cedar, Alder, Elm, Birch, Hazel, Ivy"
+      }
+    ],
+    "container": null,
+    "stop_reason": "end_turn",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 188,
+      "cache_creation_input_tokens": 0,
+      "cache_read_input_tokens": 0,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 192,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    }
+  },
+  "incomplete": false
+}

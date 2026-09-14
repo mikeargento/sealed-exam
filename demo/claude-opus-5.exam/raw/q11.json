@@ -1,0 +1,55 @@
+{
+  "version": "exam-raw/1",
+  "id": 11,
+  "family": "arith",
+  "provider": "anthropic",
+  "model": "claude-opus-5",
+  "request": {
+    "model": "claude-opus-5",
+    "max_tokens": 16000,
+    "system": "You are sitting a written exam. Answer each question on its own. Follow the question's answer-format instructions exactly.",
+    "messages": [
+      {
+        "role": "user",
+        "content": "Compute exactly:\n\n(958375045 + 643845916) * 6063587 - 22741276\n\nGive the exact integer, with no thousands separators.\nReason as much as you like, then finish with one final line of the form\nANSWER: <your answer>"
+      }
+    ]
+  },
+  "response": {
+    "model": "claude-opus-5",
+    "id": "msg_011CeysdmQQTNjaij35fZq17",
+    "type": "message",
+    "role": "assistant",
+    "content": [
+      {
+        "type": "thinking",
+        "thinking": "",
+        "signature": "CAISqggKjgEIERgCKkChyEiRN7zhRhngdbGbzx2+EfrVijZmVcs39yrJ3M9lZlemySAn4qBVosHGOb4oLAgkUuIeBD3UuOqwvkrpLsyuMg1jbGF1ZGUtb3B1cy01OAFCCHRoaW5raW5nWiQ1OTk1ZWU0Zi0xOGU5LTQ2NjMtOGFhZi1lNmY3N2EwMDc1YjeoAfr/ldUGEgwDvxisU+l+vy5EcmgaDGPsFbr5IgeIBOsJbSIwf/43ksNvg8LS5VPLLREg6DJHCagYEAIzze33khZFHaOc/PMWPXtr8nwNwD92Df5eKsgGKllmXLEoEVOA+5ptez7fmIyorb/vMgYgF/kQMjsSNoZZ1MFKRbac7Zoq1Ij3eovarx2pIhAoP6pRKvRl8tNSsqu9/P2gKZLi3BZd4dVHPrF8rPkPsu8Fg9aLKAHUELcPya0irNfbNTKjSad0ALZCYMF1VRj4kyJMB1dWJ9OoET5Z6DgNIh7RLOLruj9Nnsg8VgmNUETy1bDpVOVdi2NPZ4B05gxAGrEiWKwtS5thLsK2V4PSNhJZioag3Rvd5olnEM/P9pDWVE0N6yhzDMbrxJmM5fgCCKKWqB6JWMMzcNwZcq/hqxREqrdihep0sdBdcph+MdvG5oiU27qjnYBh1wizLUQMcvGUB1i9RQRr2dZFOVvQuXKO8w4iY+eAG3hc1GBpg/DLWMyMxKn+7hO2klT3ZAdOa5pKAMDwQDM+p2/hrleiRJMK0UqL59DZzyhfbeBLWUpozvzX2+TYJw5CTlpmIQs4xHZ9eVpV/nCHr2wC7Drt7AFrZrU0bwoz1kxHgKNnD+a/ietklDcdLpN3ftc++u2AXCFWIAXCV3u6f7+mH2g4BY+TVJSD71hgB5ieYpCxG6znVJ8dqDbVdatFKRO4zN8OR+utuFmAzYM1KGkzcVEVX9fdPXMgffXIZuuzxFVlX1SrVXng9RnGBKsNoSnluh40v/slOWnkdMY/gRj9hubj4rq5A4leGExTIJ0C6H+ZOhrVtNxZbZZ0EwPUnjVxjA35ytO6ElXDXy5bprAboZ4kutWI5WyPeELMjdHzPb9sCSHXCq6cQ2gZxzOLs/VghBUn84mQ4mOgev8utXxskDWSBL5xwks9uZZBqwtb8ypIR1MegDSUc3Hts9r2ab1pvVMUOGUtWrBZ+dZs4ZHjCetX8bHlpPB5Jeki2S3nrtw0rumpm2QKyeM6ylSfsYvGlVnNwIFKjpnkuF41fittR6dwSeKgSHlq5G5nAvOHTCYr8q2KPYlleCWXgC4IKDiyR0TE3RgweHjV98GLc77Mnl6sdc0GEurbO0+6hmhOJ3LbCfFnKVQOaBLK7oKTDhjKweCvoEYu5C4Kf95EtHltZURp2XNk9BJUvEI2NIOnYF62bnb9KybDESzkEYRYowgw7leE56FyGAE="
+      },
+      {
+        "type": "text",
+        "text": "**Step 1:** 958375045 + 643845916 = 1602220961\n\n**Step 2:** 1602220961 × 6063587\n\n- 1602220961 × 6,000,000 = 9,613,325,766,000,000\n- 1602220961 × 60,000 = 96,133,257,660,000\n- 1602220961 × 3,000 = 4,806,662,883,000\n- 1602220961 × 500 = 801,110,480,500\n- 1602220961 × 87 = 139,393,223,607\n\nSum of last four: 101,880,424,247,107\nTotal: 9,613,325,766,000,000 + 101,880,424,247,107 = 9,715,206,190,247,107\n\n**Step 3:** 9,715,206,190,247,107 − 22,741,276 = 9,715,206,167,505,831\n\nANSWER: 9715206167505831"
+      }
+    ],
+    "container": null,
+    "stop_reason": "end_turn",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 122,
+      "cache_creation_input_tokens": 0,
+      "cache_read_input_tokens": 0,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 737,
+      "output_tokens_details": {
+        "thinking_tokens": 455
+      },
+      "service_tier": "standard",
+      "inference_geo": "global"
+    }
+  },
+  "incomplete": false
+}

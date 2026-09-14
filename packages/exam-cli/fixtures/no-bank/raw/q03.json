@@ -1,0 +1,48 @@
+{
+  "version": "exam-raw/1",
+  "id": 3,
+  "family": "logic",
+  "provider": "anthropic",
+  "model": "claude-haiku-4-5",
+  "request": {
+    "model": "claude-haiku-4-5",
+    "max_tokens": 16000,
+    "system": "You are sitting a written exam. Answer each question on its own. Follow the question's answer-format instructions exactly.",
+    "messages": [
+      {
+        "role": "user",
+        "content": "4 people (Ada, Hugo, Dev, Fitz) sit in a row of 4 seats numbered 1 to 4 from left to right. All of the following are true:\n\n1. Fitz and Hugo do not sit next to each other.\n2. There are exactly 1 seat between Fitz and Hugo.\n3. Fitz sits immediately to the left of Ada.\n4. Hugo and Ada sit next to each other.\n5. There are exactly 0 seats between Fitz and Ada.\n6. Ada does not sit in seat 2.\n7. Ada and Dev do not sit next to each other.\n\nWho sits where?\n\nGive the names in seat order from seat 1 to the last seat, separated by commas.\nReason as much as you like, then finish with one final line of the form\nANSWER: <your answer>"
+      }
+    ],
+    "temperature": 0
+  },
+  "response": {
+    "model": "claude-haiku-4-5-20251001",
+    "id": "msg_011CeysRXsVYo9pNBYXnq66J",
+    "type": "message",
+    "role": "assistant",
+    "content": [
+      {
+        "type": "text",
+        "text": "I need to work through these constraints systematically.\n\nLet me start with the most specific constraints:\n\n**From constraint 5:** \"There are exactly 0 seats between Fitz and Ada\"\n- This means Fitz and Ada sit immediately next to each other.\n\n**From constraint 3:** \"Fitz sits immediately to the left of Ada\"\n- Combined with constraint 5, Fitz is directly left of Ada.\n- So Fitz and Ada occupy consecutive seats with Fitz on the left.\n\nPossible positions for (Fitz, Ada):\n- Seats (1,2)\n- Seats (2,3)\n- Seats (3,4)\n\n**From constraint 6:** \"Ada does not sit in seat 2\"\n- This eliminates (Fitz, Ada) in seats (1,2)\n\nRemaining possibilities:\n- Seats (2,3): Fitz in 2, Ada in 3\n- Seats (3,4): Fitz in 3, Ada in 4\n\n**From constraint 2:** \"There are exactly 1 seat between Fitz and Hugo\"\n- This means Hugo and Fitz have exactly one seat between them.\n\nLet me check each case:\n\n**Case 1: Fitz in seat 2, Ada in seat 3**\n- For exactly 1 seat between Fitz (seat 2) and Hugo: Hugo must be in seat 4 (one seat between: seat 3)\n- But seat 3 is Ada, so Hugo in seat 4 works (seat 3 is between them)\n- This leaves Dev in seat 1\n- Arrangement: Dev(1), Fitz(2), Ada(3), Hugo(4)\n\nLet me verify all constraints:\n1. Fitz (2) and Hugo (4) not next to each other? ✓ (seats 2 and 4 are not adjacent)\n2. Exactly 1 seat between Fitz (2) and Hugo (4)? ✓ (seat 3 is between them)\n3. Fitz immediately left of Ada? ✓ (Fitz in 2, Ada in 3)\n4. Hugo and Ada sit next to each other? ✗ (Hugo in 4, Ada in 3 - they ARE next to each other) ✓\n5. Exactly 0 seats between Fitz and Ada? ✓ (consecutive)\n6. Ada not in seat 2? ✓ (Ada in seat 3)\n7. Ada and Dev not next to each other? ✓ (Ada in 3, Dev in 1 - not adjacent)\n\nAll constraints satisfied!\n\n**Case 2: Fitz in seat 3, Ada in seat 4**\n- For exactly 1 seat between Fitz (seat 3) and Hugo: Hugo must be in seat 1 (one seat between: seat 2)\n- This leaves Dev in seat 2\n- Arrangement: Hugo(1), Dev(2), Fitz(3), Ada(4)\n\nLet me verify:\n1. Fitz (3) and Hugo (1) not next to each other? ✓ (not adjacent)\n2. Exactly 1 seat between Fitz (3) and Hugo (1)? ✓ (seat 2 is between them)\n3. Fitz immediately left of Ada? ✓ (Fitz in 3, Ada in 4)\n4. Hugo and Ada sit next to each other? ✗ (Hugo in 1, Ada in 4 - not adjacent)\n\nCase 2 fails constraint 4.\n\nTherefore, the answer is from Case 1:\n\nANSWER: Dev, Fitz, Ada, Hugo"
+      }
+    ],
+    "container": null,
+    "stop_reason": "end_turn",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 230,
+      "cache_creation_input_tokens": 0,
+      "cache_read_input_tokens": 0,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 872,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    }
+  },
+  "incomplete": false
+}

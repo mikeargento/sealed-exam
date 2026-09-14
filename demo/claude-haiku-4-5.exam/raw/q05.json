@@ -1,0 +1,48 @@
+{
+  "version": "exam-raw/1",
+  "id": 5,
+  "family": "strings",
+  "provider": "anthropic",
+  "model": "claude-haiku-4-5",
+  "request": {
+    "model": "claude-haiku-4-5",
+    "max_tokens": 16000,
+    "system": "You are sitting a written exam. Answer each question on its own. Follow the question's answer-format instructions exactly.",
+    "messages": [
+      {
+        "role": "user",
+        "content": "Start with the string (between the brackets, without them): [vF9OXmGpRMFHzGaqJuh]\n\nApply these steps in order:\n\n1. Keep only the characters at odd positions (the 1st, 3rd, 5th, …, counting from 1).\n2. Delete every 4th character (the 4th, 8th, 12th, … counting from 1).\n3. Rotate the string left by 7: move its first 7 characters to the end, in the same order.\n\nWhat is the resulting string?\n\nGive the final string exactly, and nothing else after ANSWER:.\nReason as much as you like, then finish with one final line of the form\nANSWER: <your answer>"
+      }
+    ],
+    "temperature": 0
+  },
+  "response": {
+    "model": "claude-haiku-4-5-20251001",
+    "id": "msg_011CeysgGJn1GxaEN7Fk1Nho",
+    "type": "message",
+    "role": "assistant",
+    "content": [
+      {
+        "type": "text",
+        "text": "I'll work through this step-by-step.\n\n**Starting string:** vF9OXmGpRMFHzGaqJuh\n\n**Step 1: Keep only characters at odd positions (1st, 3rd, 5th, ...)**\n\nPositions: 1=v, 2=F, 3=9, 4=O, 5=X, 6=m, 7=G, 8=p, 9=R, 10=M, 11=F, 12=H, 13=z, 14=G, 15=a, 16=q, 17=J, 18=u, 19=h\n\nOdd positions (1,3,5,7,9,11,13,15,17,19): v, 9, X, G, R, F, z, a, J, h\n\nResult after step 1: **v9XGRFzaJh**\n\n**Step 2: Delete every 4th character (4th, 8th, 12th, ...)**\n\nCurrent string: v9XGRFzaJh (10 characters)\nPositions: 1=v, 2=9, 3=X, 4=G, 5=R, 6=F, 7=z, 8=a, 9=J, 10=h\n\nEvery 4th character: position 4=G, position 8=a\nDelete these: v, 9, X, R, F, z, J, h\n\nResult after step 2: **v9XRFzJh**\n\n**Step 3: Rotate left by 7**\n\nCurrent string: v9XRFzJh (8 characters)\nRotate left by 7 means move the first 7 characters to the end.\n\nFirst 7 characters: v9XRFzJ\nRemaining: h\n\nAfter rotation: h + v9XRFzJ = **hv9XRFzJ**\n\nANSWER: hv9XRFzJ"
+      }
+    ],
+    "container": null,
+    "stop_reason": "end_turn",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 204,
+      "cache_creation_input_tokens": 0,
+      "cache_read_input_tokens": 0,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 482,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    }
+  },
+  "incomplete": false
+}

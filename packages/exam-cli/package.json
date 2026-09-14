@@ -1,0 +1,47 @@
+{
+  "name": "@mikeargento/exam-cli",
+  "version": "0.1.0",
+  "description": "exam: open a position, derive and seal a paper, ask a model, seal the answers, grade, export, verify.",
+  "license": "SEE LICENSE IN LICENSE",
+  "type": "module",
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "bin": {
+    "exam": "./dist/cli.js"
+  },
+  "files": [
+    "dist",
+    "src",
+    "fixtures",
+    "README.md",
+    "LICENSE"
+  ],
+  "scripts": {
+    "build": "tsc",
+    "test": "tsc && node --test \"dist/__tests__/*.test.js\"",
+    "selftest": "tsc && node dist/cli.js selftest"
+  },
+  "engines": {
+    "node": ">=20"
+  },
+  "dependencies": {
+    "@mikeargento/bitgraph-verify": "^1.11.0",
+    "@mikeargento/exam-ask": "^0.1.0",
+    "@mikeargento/exam-bank": "^0.1.0",
+    "@mikeargento/exam-core": "^0.1.0",
+    "@mikeargento/exam-verify": "^0.1.0"
+  },
+  "devDependencies": {
+    "@types/node": "^20.0.0",
+    "typescript": "^5.4.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/mikeargento/sealed-exam.git",
+    "directory": "packages/exam-cli"
+  },
+  "homepage": "https://bitgraph.ing",
+  "publishConfig": {
+    "access": "public"
+  }
+}

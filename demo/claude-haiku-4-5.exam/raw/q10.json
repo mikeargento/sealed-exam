@@ -1,0 +1,48 @@
+{
+  "version": "exam-raw/1",
+  "id": 10,
+  "family": "arith",
+  "provider": "anthropic",
+  "model": "claude-haiku-4-5",
+  "request": {
+    "model": "claude-haiku-4-5",
+    "max_tokens": 16000,
+    "system": "You are sitting a written exam. Answer each question on its own. Follow the question's answer-format instructions exactly.",
+    "messages": [
+      {
+        "role": "user",
+        "content": "Compute exactly:\n\n(16865147 - 5632809) * (253175869 + 61524249)\n\nGive the exact integer, with no thousands separators.\nReason as much as you like, then finish with one final line of the form\nANSWER: <your answer>"
+      }
+    ],
+    "temperature": 0
+  },
+  "response": {
+    "model": "claude-haiku-4-5-20251001",
+    "id": "msg_011CeysghSsYNg9T6Tpmbhm9",
+    "type": "message",
+    "role": "assistant",
+    "content": [
+      {
+        "type": "text",
+        "text": "I need to compute (16865147 - 5632809) * (253175869 + 61524249).\n\nLet me break this into two parts:\n\n**Part 1: 16865147 - 5632809**\n```\n  16865147\n-  5632809\n----------\n  11232338\n```\n\nLet me verify: 5632809 + 11232338 = 16865147 ✓\n\n**Part 2: 253175869 + 61524249**\n```\n  253175869\n+  61524249\n-----------\n  314700118\n```\n\nLet me verify: 253175869 + 61524249 = 314700118 ✓\n\n**Part 3: 11232338 * 314700118**\n\nThis is a large multiplication. Let me break it down:\n\n11232338 * 314700118\n\nI'll use the standard approach, breaking it into manageable pieces:\n\n11232338 * 314700118\n= 11232338 * (314700000 + 118)\n= 11232338 * 314700000 + 11232338 * 118\n\nFirst part: 11232338 * 314700000\n= 11232338 * 3147 * 100000\n= 35,357,351,286 * 100000\n= 3,535,735,128,600,000\n\nLet me recalculate more carefully:\n11232338 * 3147 = ?\n- 11232338 * 3000 = 33,697,014,000\n- 11232338 * 147 = 1,651,153,686\n- Total: 33,697,014,000 + 1,651,153,686 = 35,348,167,686\n\nSo: 35,348,167,686 * 100,000 = 3,534,816,768,600,000\n\nSecond part: 11232338 * 118\n= 11232338 * 100 + 11232338 * 18\n= 1,123,233,800 + 202,182,084\n= 1,325,415,884\n\nTotal: 3,534,816,768,600,000 + 1,325,415,884 = 3,534,818,094,015,884\n\nLet me verify this calculation using a different method:\n11232338 * 314700118\n\nActually, let me recalculate 11232338 * 3147 more carefully:\n11232338 * 3147\n= 11232338 * (3000 + 147)\n= 33,697,014,000 + 11232338 * 147\n\n11232338 * 147:\n= 11232338 * (150 - 3)\n= 11232338 * 150 - 11232338 * 3\n= 1,684,850,700 - 33,697,014\n= 1,651,153,686\n\nSo 11232338 * 3147 = 33,697,014,000 + 1,651,153,686 = 35,348,167,686\n\nTherefore: 11232338 * 314700000 = 3,534,816,768,600,000\n\nAnd: 11232338 * 118 = 1,325,415,884\n\nFinal answer: 3,534,816,768,600,000 + 1,325,415,884 = 3,534,818,094,015,884\n\nANSWER: 3534818094015884"
+      }
+    ],
+    "container": null,
+    "stop_reason": "end_turn",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 97,
+      "cache_creation_input_tokens": 0,
+      "cache_read_input_tokens": 0,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 856,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    }
+  },
+  "incomplete": false
+}

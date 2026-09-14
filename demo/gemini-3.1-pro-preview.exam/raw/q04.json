@@ -1,0 +1,62 @@
+{
+  "version": "exam-raw/1",
+  "id": 4,
+  "family": "logic",
+  "provider": "google",
+  "model": "gemini-3.1-pro-preview",
+  "request": {
+    "systemInstruction": {
+      "parts": [
+        {
+          "text": "You are sitting a written exam. Answer each question on its own. Follow the question's answer-format instructions exactly."
+        }
+      ]
+    },
+    "contents": [
+      {
+        "role": "user",
+        "parts": [
+          {
+            "text": "4 people (Fitz, Cleo, Esme, Ada) sit in a row of 4 seats numbered 1 to 4 from left to right. All of the following are true:\n\n1. Ada sits in seat 3.\n2. Esme does not sit in seat 4.\n3. Fitz sits in seat 4.\n4. Cleo sits in seat 1.\n5. There are exactly 0 seats between Esme and Cleo.\n6. Ada and Esme sit next to each other.\n\nWho sits where?\n\nGive the names in seat order from seat 1 to the last seat, separated by commas.\nReason as much as you like, then finish with one final line of the form\nANSWER: <your answer>"
+          }
+        ]
+      }
+    ],
+    "generationConfig": {
+      "temperature": 0
+    }
+  },
+  "response": {
+    "candidates": [
+      {
+        "content": {
+          "parts": [
+            {
+              "text": "Based on the clues provided:\n\n1. **Cleo sits in seat 1.** (Clue 4)\n2. **Ada sits in seat 3.** (Clue 1)\n3. **Fitz sits in seat 4.** (Clue 3)\n4. This leaves seat 2 for **Esme**. \n\nLet's verify this with the remaining clues:\n- Esme does not sit in seat 4. (Clue 2 - True, she is in seat 2)\n- There are exactly 0 seats between Esme and Cleo. (Clue 5 - True, they are in seats 2 and 1, respectively, so they are adjacent)\n- Ada and Esme sit next to each other. (Clue 6 - True, they are in seats 3 and 2, respectively)\n\nThe seating arrangement from seat 1 to seat 4 is Cleo, Esme, Ada, and Fitz.\n\nANSWER: Cleo, Esme, Ada, Fitz",
+              "thoughtSignature": "EtALCs0LARFNMg8lqvwYdPJZ3eQeeSAfPAjUYD0nGCEq6C0mTSi/JQWiSOVqXezRGCmnmOZf7rCjA/lqOYwvAnJLxdjhKl0YFEFB7518Q2riZl9KwLkDEEE1pgvydKdZ5oq1BV4Q/Tv6d8wzw5HZ+a1iu35gaikzRdmdQ/920/lF5BcJnf0TlqWCljjrDRxjBjWNHXRiwfYhBSSeO9NqPkZSeG6tGVoLI7TMPb8s+f9xLpcFtlNlNni3GLwG7rjkiI4HXmFrq13qvA1+8HvzbNRPaXZJeYPxSgpZckIhVEm3PTQ9ZE12b0H3jFSqpxM11wQ3s7o5OLe+kW241UC9ji3Qg6RqX4pc+B8yRtHA8elkO7UIJLjMXyP6JLZZNqmKfraduhcdTGDXCv1TRz7fd382eQmwAAi859oudElnp6VLzEzKH0NcTAEDDTjXRJFcR+pI7m5OYDadehDmFvve3UyQQQOoB+9PbxiTzrLV3ZwtwZ7xHsaFxfxfwEA/iwz9MOQ2tgG1uaWdvrAbdahAz+uaZm0HbMT/nLnvgIGr8oy83xZASAh8pfuLDz8h8u+h0FeCemmdW1PZ3s+R8Fjx6LwsXTXDLtCLQRCjHZwKNxsKWktK5/ApfsSSdxsNKycsNvbZfoijIaKC8Dr8a9m/K9oCtBlix432DLuBSZHHslhl4POgAYRt9gjjYMqAIX8Nef838I3dgnmHZndROEzt5bb1gwK1XLhvbICs4VSQkhAV5vhueC10Q42uBmit6q3wYs1WDEv/nBOyePfweEAatLddbodQVEvA+U2E6n2jJFokYzm3zRNz+f1ytLqfRLEPMfFdBUdkyhIlMPIQ4/1Ysn988/5Hs+gGIfK+/eP5rDf3TbLjxdsuUJYiH+ZysPu0zicOe6l+dMPxv09gpBpdI8YJmT4CU2zS7T3BcKonRF6I5KlEsaK42tx8TGQv/FQgETlnrTPsxlZVZzPCPqvj9DwZOxHqFZNTxQr1l7oenLWs3Xo9JhFfETxhtal3m4ARys6N4CLlJB1/xikFSZMpNNXdK4AhIWY6Nkffud3Om91VknBq5yaD5+mnGFgh6Ig2SKjg+EXljup9xnU1j5t9z1rE18hO1Klnc/ox8R4rCsTxXMkCgI8oWUXOT4JcJPsC0CFVQZbUwYayraG2/jmvQZJM0QjizE3dmBMwPg0oommEn0pHpgf/egPuW5xjxQ0w0psyzqYunZRrjLu/jmmKJOnc4ULalJPTCX0x5iK7kdnObCOYHkYmFlhsbKb0JWOmCXb2fBpb2bzTdwhoPuI30+wuxEwGA8nng2hrZfPmEnDVMDBlOgtjcXzo5ouVuh2JflEqX6aD8rB1z+A9lBhYQz4f4n86m/Dm6tKY2Lsj8exGrlltRTv5SQtqcnqmsBIKyWq1JZcXhJ0+zWUs5l+VYgkFlY9hKN6ihMfNzaZ9IyEBWGwTl7gfMrwCmT++HAm9LpcE4aq1a8Rt/tcmtIeTD4+mFPU6P4XoGmf8CmlpMgYt4ANIKqJp6hBNP1Y7ETHkVERPjVQN+AlUypg0EPj926em2fvE4d+gxS8wM1th/QfXwb7EVwZ7klv1mhfRmat4O7kbUKzFkZn9voYJbvjxu4cUyIV77yFaRIX74/TtS78N6YX38kKkEcRoq2vqtmWJxDICQ0w9MQb85Dotd+xWUyMzVLE/IxfWIjiZX+l/PHISsBAav/oo8xuSMEpps7ZZrJEolxiultM2cPTOonMaqQWdAUNLinauDFhEquLb/iblbGP+aYPR0uR8SnO8XxDf8/rQk3I57tCjL2K98eBM+hdKzzsTHwcxKPA8ujH0U4ZVvikPbvKDRtO67hycpzsvlGdMdTq8saBfl8RpO1sPVsgIhHAwRKtaV5O/+czfFuT/fKkmwrataIJlQY5gWG9m8comq1q42RRk0QuSguZXVXWRCKS8/i6pgtCX+Ev31XIGVqp55w4CtZJ+nsDEIwI7qo3o"
+            }
+          ],
+          "role": "model"
+        },
+        "finishReason": "STOP",
+        "index": 0
+      }
+    ],
+    "usageMetadata": {
+      "promptTokenCount": 187,
+      "candidatesTokenCount": 218,
+      "totalTokenCount": 886,
+      "promptTokensDetails": [
+        {
+          "modality": "TEXT",
+          "tokenCount": 187
+        }
+      ],
+      "thoughtsTokenCount": 481,
+      "serviceTier": "standard"
+    },
+    "modelVersion": "gemini-3.1-pro-preview",
+    "responseId": "u_CmasTZGsuj_PUPmsOfOA"
+  },
+  "incomplete": false
+}

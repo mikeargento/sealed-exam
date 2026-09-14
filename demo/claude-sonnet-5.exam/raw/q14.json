@@ -1,0 +1,55 @@
+{
+  "version": "exam-raw/1",
+  "id": 14,
+  "family": "logic",
+  "provider": "anthropic",
+  "model": "claude-sonnet-5",
+  "request": {
+    "model": "claude-sonnet-5",
+    "max_tokens": 16000,
+    "system": "You are sitting a written exam. Answer each question on its own. Follow the question's answer-format instructions exactly.",
+    "messages": [
+      {
+        "role": "user",
+        "content": "4 people (Hugo, Gwen, Ada, Esme) sit in a row of 4 seats numbered 1 to 4 from left to right. All of the following are true:\n\n1. Esme and Gwen sit next to each other.\n2. Esme and Ada do not sit next to each other.\n3. Ada sits in seat 1.\n4. There are exactly 0 seats between Gwen and Ada.\n5. Gwen and Esme sit next to each other.\n6. Gwen sits immediately to the left of Esme.\n7. There are exactly 1 seat between Gwen and Hugo.\n\nWho sits where?\n\nGive the names in seat order from seat 1 to the last seat, separated by commas.\nReason as much as you like, then finish with one final line of the form\nANSWER: <your answer>"
+      }
+    ]
+  },
+  "response": {
+    "model": "claude-sonnet-5",
+    "id": "msg_011CeysgJoqWjxSrhAdD6LMf",
+    "type": "message",
+    "role": "assistant",
+    "content": [
+      {
+        "type": "thinking",
+        "thinking": "",
+        "signature": "EpIGCpABCBEYAipA9UNRV3oTX2R5gFky/TY2+fdw8lLryhnl5vq3NMlnPwrevoWEyyxVdanjb2jjqXujOEV0JV16ShbPzgoFBi1uOzIPY2xhdWRlLXNvbm5ldC01OABCCHRoaW5raW5nWiQ1OTk1ZWU0Zi0xOGU5LTQ2NjMtOGFhZi1lNmY3N2EwMDc1YjeoAZuAltUGEgyPwWAg9Ba8sxMzVxQaDMjtCD5INFRl0RZjtyIwiOW7ev5IONVGif+E6p/lEqqIQuzHGhmhod3/+zuhWgUpet+yyK340uhfriKFgacbKq4EKEtzz7tWfWo8os1H42RwSKkm1ELQ+L7Bt4ahze1ewccWqlT+audZSWO09VVKFwC31HaL0FT/gNEaGX/K7Ie5DyC44XLToZXsKl7BQu3Ndw0LpGwx9+Dr1uc6O1py61PJl8w4vDYAKj2yTFhXHgwPK5JifzSR+e5nNd3KTRratxSXXJNvGfZyI+9tWfJAgHTGyxl77gHWS7t1cneQE2DBsSJkiRoetX5V+AhGfp3crEZSHSk4+9ZZHBCQ7HOHrhWN0hnbN1MfgvuAnnaBhOlgEQZ2vwTBD3ZQhRLvjr7a8VtKu2QUPfk6mSlTS068QkU+ws5/miuiYLeJE2oHXpFvIRZH0dd1pgiSFnj8tVp4xUZWTU/AC7AblYC3LtbtnADExqzXRgpmliL673+T8BDe07T81hfUg3RU+a0dWL0zMNiL+j1HqnYy1pNV2xk3ZDhagHjsAlY7ezr3u1ew7oHdAtQFo4CTQNU6tDi9vnTpnYWUtXn/Y4KgW5/tLHqnbidrIJEjenEX4OuqLbpReAf5eapLjmKy1BOEyIirCcpcwo/1v6ym6TK9j2PzZDjgO6sIStTzVKdNINPkYrzjJqpjegZn5ep26kRyLMWROEbgwEM1KOjHGVtOPi2psGPvSrwRmLH1SCc/txi2otbvPnxGUTiycxnTkUw7MKaBqp/nR0TIrKDmINBw/3AgilJR9huQmXItYz2ctxj+NHTl6wB8wTTCiQeSonrIC0UgbUnkGAE="
+      },
+      {
+        "type": "text",
+        "text": "Ada, Gwen, Esme, Hugo\n\nANSWER: Ada, Gwen, Esme, Hugo"
+      }
+    ],
+    "container": null,
+    "stop_reason": "end_turn",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 300,
+      "cache_creation_input_tokens": 0,
+      "cache_read_input_tokens": 0,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 317,
+      "output_tokens_details": {
+        "thinking_tokens": 275
+      },
+      "service_tier": "standard",
+      "inference_geo": "global"
+    }
+  },
+  "incomplete": false
+}

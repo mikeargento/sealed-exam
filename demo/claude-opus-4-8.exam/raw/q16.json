@@ -1,0 +1,50 @@
+{
+  "version": "exam-raw/1",
+  "id": 16,
+  "family": "spec",
+  "provider": "anthropic",
+  "model": "claude-opus-4-8",
+  "request": {
+    "model": "claude-opus-4-8",
+    "max_tokens": 16000,
+    "system": "You are sitting a written exam. Answer each question on its own. Follow the question's answer-format instructions exactly.",
+    "messages": [
+      {
+        "role": "user",
+        "content": "Write a JavaScript function f(xs), where xs is an array of integers, that returns an integer computed as follows:\n\n1. Keep only the elements at even indices (index 0, 2, 4, …).\n2. Replace each kept element x with x * x.\n3. Return the smallest resulting element, or -2 if there are none.\n\nReply with only the function, in a single ```js code block. Name it f, take one parameter xs, use no libraries, and write no import, require or export statements."
+      }
+    ]
+  },
+  "response": {
+    "model": "claude-opus-4-8",
+    "id": "msg_011CeysiPwUHZTbNcyLMbvYh",
+    "type": "message",
+    "role": "assistant",
+    "content": [
+      {
+        "type": "text",
+        "text": "```js\nfunction f(xs) {\n  let result = -2;\n  let first = true;\n  for (let i = 0; i < xs.length; i += 2) {\n    const sq = xs[i] * xs[i];\n    if (first || sq < result) {\n      result = sq;\n      first = false;\n    }\n  }\n  return result;\n}\n```"
+      }
+    ],
+    "container": null,
+    "stop_reason": "end_turn",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 193,
+      "cache_creation_input_tokens": 0,
+      "cache_read_input_tokens": 0,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 107,
+      "output_tokens_details": {
+        "thinking_tokens": 0
+      },
+      "service_tier": "standard",
+      "inference_geo": "global"
+    }
+  },
+  "incomplete": false
+}

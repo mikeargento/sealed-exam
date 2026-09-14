@@ -1,0 +1,50 @@
+{
+  "version": "exam-raw/1",
+  "id": 11,
+  "family": "logic",
+  "provider": "anthropic",
+  "model": "claude-opus-4-8",
+  "request": {
+    "model": "claude-opus-4-8",
+    "max_tokens": 16000,
+    "system": "You are sitting a written exam. Answer each question on its own. Follow the question's answer-format instructions exactly.",
+    "messages": [
+      {
+        "role": "user",
+        "content": "4 people (Dev, Fitz, Esme, Ada) sit in a row of 4 seats numbered 1 to 4 from left to right. All of the following are true:\n\n1. Fitz and Esme do not sit next to each other.\n2. There are exactly 1 seat between Esme and Fitz.\n3. Dev does not sit in seat 1.\n4. Esme sits in seat 4.\n5. Dev and Fitz sit next to each other.\n\nWho sits where?\n\nGive the names in seat order from seat 1 to the last seat, separated by commas.\nReason as much as you like, then finish with one final line of the form\nANSWER: <your answer>"
+      }
+    ]
+  },
+  "response": {
+    "model": "claude-opus-4-8",
+    "id": "msg_011CeysiC3rSVT7NJyCmEyz9",
+    "type": "message",
+    "role": "assistant",
+    "content": [
+      {
+        "type": "text",
+        "text": "Esme is in seat 4. Fitz has exactly 1 seat between them, so Fitz is in seat 2.\n\nDev sits next to Fitz: seat 1 or 3. Dev not in seat 1, so Dev in seat 3.\n\nAda in seat 1.\n\nCheck: Fitz(2) and Esme(4) not adjacent ✓, exactly 1 seat between ✓.\n\nANSWER: Ada, Fitz, Dev, Esme"
+      }
+    ],
+    "container": null,
+    "stop_reason": "end_turn",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 254,
+      "cache_creation_input_tokens": 0,
+      "cache_read_input_tokens": 0,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 155,
+      "output_tokens_details": {
+        "thinking_tokens": 0
+      },
+      "service_tier": "standard",
+      "inference_geo": "global"
+    }
+  },
+  "incomplete": false
+}

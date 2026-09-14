@@ -1,0 +1,48 @@
+{
+  "version": "exam-raw/1",
+  "id": 2,
+  "family": "order",
+  "provider": "anthropic",
+  "model": "claude-haiku-4-5",
+  "request": {
+    "model": "claude-haiku-4-5",
+    "max_tokens": 16000,
+    "system": "You are sitting a written exam. Answer each question on its own. Follow the question's answer-format instructions exactly.",
+    "messages": [
+      {
+        "role": "user",
+        "content": "Facts:\n\nThe Fir file was registered on 4 November 1943.\nThe Ginkgo file was registered on 5 October 1919.\nThe Elm file was registered on 8 February 1969.\nThe Juniper file was registered on 28 October 1952.\nThe Ivy file was registered on 15 July 1973.\nThe Dogwood file was registered on 10 September 1939.\n\nList the 6 labels from the latest registration to the earliest.\n\nGive the labels only, in the requested order, separated by commas.\nReason as much as you like, then finish with one final line of the form\nANSWER: <your answer>"
+      }
+    ],
+    "temperature": 0
+  },
+  "response": {
+    "model": "claude-haiku-4-5-20251001",
+    "id": "msg_011CeyscmA1JxmLQvzAeaKRP",
+    "type": "message",
+    "role": "assistant",
+    "content": [
+      {
+        "type": "text",
+        "text": "I need to order these files from latest (most recent) registration to earliest (oldest).\n\nLet me identify the registration dates:\n- Fir: 4 November 1943\n- Ginkgo: 5 October 1919\n- Elm: 8 February 1969\n- Juniper: 28 October 1952\n- Ivy: 15 July 1973\n- Dogwood: 10 September 1939\n\nNow I'll order them from latest to earliest:\n\n1. Ivy: 15 July 1973 (latest)\n2. Elm: 8 February 1969\n3. Juniper: 28 October 1952\n4. Fir: 4 November 1943\n5. Dogwood: 10 September 1939\n6. Ginkgo: 5 October 1919 (earliest)\n\nANSWER: Ivy, Elm, Juniper, Fir, Dogwood, Ginkgo"
+      }
+    ],
+    "container": null,
+    "stop_reason": "end_turn",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 191,
+      "cache_creation_input_tokens": 0,
+      "cache_read_input_tokens": 0,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 234,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    }
+  },
+  "incomplete": false
+}

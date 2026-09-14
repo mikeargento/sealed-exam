@@ -1,0 +1,55 @@
+{
+  "version": "exam-raw/1",
+  "id": 18,
+  "family": "order",
+  "provider": "anthropic",
+  "model": "claude-opus-5",
+  "request": {
+    "model": "claude-opus-5",
+    "max_tokens": 16000,
+    "system": "You are sitting a written exam. Answer each question on its own. Follow the question's answer-format instructions exactly.",
+    "messages": [
+      {
+        "role": "user",
+        "content": "Facts:\n\nThe Cedar crate weighs 27,367 kg.\nThe Juniper crate weighs 64,321 kg.\nThe Hazel crate weighs 49,160 kg.\nThe Ivy crate weighs 27,713 kg.\nThe Alder crate weighs 47,393 kg.\n\nList the 5 labels from the lightest crate to the heaviest.\n\nGive the labels only, in the requested order, separated by commas.\nReason as much as you like, then finish with one final line of the form\nANSWER: <your answer>"
+      }
+    ]
+  },
+  "response": {
+    "model": "claude-opus-5",
+    "id": "msg_011CeyseKZBnvU7eam4SVDzW",
+    "type": "message",
+    "role": "assistant",
+    "content": [
+      {
+        "type": "thinking",
+        "thinking": "",
+        "signature": "CAISgQMKjgEIERgCKkBuQ+NgK9fQqFYBtM7Zqh2X8yON3o+515ZxytzjIlu1aOPPNy4BSoVYTo5eqv9P9lBr3h7urrHyxZf9dDoBgdMdMg1jbGF1ZGUtb3B1cy01OAFCCHRoaW5raW5nWiQ1OTk1ZWU0Zi0xOGU5LTQ2NjMtOGFhZi1lNmY3N2EwMDc1YjeoAf//ldUGEgwJS8HGj0KGAuKJ3bIaDEj+GjFfHXfRmDrlHCIwCS3D8hiUjWhUgWaVuznV/VvPhPq4+J02bsV59pTD8tbzAK4yYNNUnLHRSWDveu3DKp8BstLbsyAMR2NDkWTYdSKrxnwM9oEUvoz4dYKrWbQShBJszFbuiTqSAUELGhntDwOtdCEMjfJkh8qI/yxjlFm8lfPz6821JqVxXlYPn0QjLMMuQ9YuMvyF7SdZX6LXn4b/lnyJCZvfnH6RNBzmDHCJyw5/6SyvTvfJfd1X6K/MqRLUprDyOKgJUaVZSML+DT5JyWFocDET9OXoM6SMB4GHGAE="
+      },
+      {
+        "type": "text",
+        "text": "Sorting the weights: Cedar 27,367 < Ivy 27,713 < Alder 47,393 < Hazel 49,160 < Juniper 64,321.\n\nANSWER: Cedar, Ivy, Alder, Hazel, Juniper"
+      }
+    ],
+    "container": null,
+    "stop_reason": "end_turn",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 215,
+      "cache_creation_input_tokens": 0,
+      "cache_read_input_tokens": 0,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 179,
+      "output_tokens_details": {
+        "thinking_tokens": 91
+      },
+      "service_tier": "standard",
+      "inference_geo": "global"
+    }
+  },
+  "incomplete": false
+}

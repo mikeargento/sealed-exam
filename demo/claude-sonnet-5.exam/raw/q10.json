@@ -1,0 +1,55 @@
+{
+  "version": "exam-raw/1",
+  "id": 10,
+  "family": "arith",
+  "provider": "anthropic",
+  "model": "claude-sonnet-5",
+  "request": {
+    "model": "claude-sonnet-5",
+    "max_tokens": 16000,
+    "system": "You are sitting a written exam. Answer each question on its own. Follow the question's answer-format instructions exactly.",
+    "messages": [
+      {
+        "role": "user",
+        "content": "Compute exactly:\n\n(371408427 + 67555272) * 822690582 - 672600389\n\nGive the exact integer, with no thousands separators.\nReason as much as you like, then finish with one final line of the form\nANSWER: <your answer>"
+      }
+    ]
+  },
+  "response": {
+    "model": "claude-sonnet-5",
+    "id": "msg_011CeysfCu75VmBng4yzPj3w",
+    "type": "message",
+    "role": "assistant",
+    "content": [
+      {
+        "type": "thinking",
+        "thinking": "",
+        "signature": "EuYYCpABCBEYAipAJVyjjy6qZHNHk7xWDNmrzaWT67NHX63Uo8bfVNJFKNRca3rJsf1xo7G+rADYrTlz+5RTNkc4W2sCq0zGNy8XqDIPY2xhdWRlLXNvbm5ldC01OABCCHRoaW5raW5nWiQ1OTk1ZWU0Zi0xOGU5LTQ2NjMtOGFhZi1lNmY3N2EwMDc1YjeoAZOAltUGEgx7lwKdAlDlVYr2KWgaDC0l0QPvfi3AzUNNISIwRSjRhHFFzRgZRPx+Mu9jGJZ/nh6qcm0fmZSUfjke64S+GDpD1BqqGDvh66AUyhfKKoIXa+WXhyZs+LxYNVET2zHVrbYFcZTPEhhdJvG0H01LGpYtXe8/dF8uo/GRQ2eFxWBhsfivqDPLLIC/q3Sr00kVDw26HsNx0lpzoHqhe87txWIuEP4UYOEq3WwQ46QtIF06wjGayOcyRMjo67IfFCC45aDZ3FwhquPRFbjW15zmBuxQVviUg9wrYwjKEU+VLlhw9ZWrAhKyOwc5laFljwxORvbMs8juruDOmM3o6grKzclxIbT+cwNJx8mouboFNqXqPNCnicUSQirzpRXFD4TGqZ1GmVp+1+YFjEolMHDVRSlpVe7qgM07p6ljdpE0j+KN86qcO1yteFXZAYph0ypu47c+zTzzQ0d+jC5/iUaQ3CxYqK6baeUV592ao5pjGZGjfqEUwo3K8zW40e/6uaD04v68AHYlFKVocG9PIhqtRz46MmxHrPKCZRpot8SDyqiWuLrYlr3ni89SYGrIcNND34GFVeYckwTlhYZsUiPsAK2xUw4xy9nCHXvTO66kpz4JpWSqI0BGTzL0fIY6JxcNOhKRPz6xfuLEjH/Zu7GsxhyFanXR2QgY/S18/Ma5VE1Yi5y1x21AhDR7xUvha7IvDo5za+R3lmwgmVVBxTvTZUiEAdkvHS8Vq/elreIk673vFqroaSM9Vtf5Xr1LnyHDWqGit6l5x0O9fggmYAsjutn4QYQR4gNXOilgNpMSuxwuZzyKKisr7rXvK5nsh2n9WXklpqO1y7YyHWTN6obGG9hbzR7Sjx+Yd0xOEUcmtzzX9BxEx/WeFiPz8cvrSm2u6Wzq1xYiX7supq8qCzJTQsa2RpBHXG3Mcue0LBcbDdlQ9RkbDV+TCgsFvRUrHBElEfU+LLLCDGyE7S/M/NBWXT7HqQiE8vEGEeN+a2d8E6qzmh7VkZKoF2pm8kDkScocba8o0is64Pb9eInmIms7AwTWchKlzJG2psu1oTFofElX/x4ms19KI57NJXSybtY65muFC3yZrazefHlU5F2gySKWBfp6p+kmSAC46o5wj2sqcSmd7tFCdBVHbsv37qpMvOgZFm1ijf1wsX8yT7J1T37vvkRS663UhOd+cMtlZG8U4jCjFiKQ/1GPlstGkHLEmTWaLS5ZdqKlwIptaqN1b1RdruG5YOML8FkrSZTxhF8Hw3ZXKCx73ICIO9PK8ep066qzhRukzgIuZbkbFb5FA6hP2C8rvKvdYxWCNaRNECH9xAoJTGwZGjY5cFowNWinhGvGs+ulBK+bfUDndkSxItIyYjm7PzjVXqPqhWen22XB/SES3hyEDFlS6ypiGjMpRZxhi/1FLaIlYCTc69msRDuowYEZajf/Nh1cGHRGT5T5OuPc6QxD5ZZU4pnWudQAW/y9M4yEJnXlze8ErU77ZZYhmCd+WgJ3WIhGtLcjVsK7Lj1cJ6edUuz3dHQfxWUoWsGD6IqI/qxzi/svFLDzLsR84DXCltkq2A6O00v/DlUGZIYMzUXxf6CdRNCGm6/IcKEJMnesVIi1+DMJj4PHjG32FImRBgraz5wKcAIAv4Vj1KPpP3+dCsu644GkTNnxUTBP7ExZwh6QWolEYhC/hcrfZGMmEbLXuxxEGToYmJaCyYMWwMW2ltaoSiuF2k1HppS9iMQeYPFEGZpOY8caAJLyremc4mtlvMZoSeMwhlK9BB/lQ3ptf0xsKIY2oq9HKHgNw3UO9pijNBrEIpXmsbJ3szDt0fS8ZllNnkMjAIkvEsyuB2nqZE/LXDmUkkYqIklIrJvx+pybM9NYqAys2K6YSu82vIZAXclBi2IW81BCpnM5hkEkG/KN/t7VmCD+3eNz9wpYplL5InlPX0ou94I4TXDCSS/dBlxBOz6KlG/iN7IQnuwvC3fSo0qlRSO1mcIXlfEq+CzMhSJsiVeibDwcmHhNiPhwp5BIc9LBI/sV9UNJAYKXeSVrMIwWg8VF7B/CTBnq06VlWfVOgx/OvmZWmGMbkda4vSmCGZqq36KLvYhfC7PBMf5GitSPy2hGv7HUSXujLS0ZOVQ7d718V1x+llIPwfRKCEaV518MZ8lb9geuvhwBLbB5vXYu5V+0wy2rL8nhMUC08bXvGIoiU0tc7JXdyXxZQwS4Z8GNSybpMrA9ys1zqUup5G/Rj9x/SgHdmzLMlmq+GepvjLVL8CQ/4EpAy8lSYW/9yOupBp0JfmrBluTFG/bRjPOKDz4TAVQmgOy50KzZZ5HIizkxft2/Qqh34Nv3C2oY9qOjjwNSDgpOVWaG4aHD46lKpKLMACjfY8uDrsXPz7Y0Of3/OFIGUJhMGlmA9pepFkBme7Ry4tscXMmlz5tivQ2UwHfFnExN83wYBb42dSO51eTlOcUkl5nDx/wddFQLwsN0uo2CdcqrjhmHV1+FPsKOF8pxEcQlunTghXo5wMuBz1epkdsXexbv34YnyUhrYNY2ds4N2qntBl3uZsEzwd6VGwz6pF6ZWMTOphodt9I08VMBdEsBc2yk9BYop9z2tx3ByeWdb3j4VvOw8zYLGZj9E5o3+glYoeLUs056EI8jM0YTiXgt9ti9j8iBWYDfofkx5Ie+SF3Fi2QcYXa/cSNXrUnkHyoxDaH6xeEJBvqSdHN1B4tiEpp8Tscbc/0PqklI62Z7tyacqSbCgQ7tJbLGW8tBWRrEFqqsQM2V5DT3fvRLWk8H331D1j8nnmeYmIM9mjdKHzZBJaexO0su814d2bAqIV3d348A1j7XFoyacAoY3uZyNuYOqpIycYnfrJn1uP7Vt96k6tUz+oI2+tZAaAYF/zjPEl15hEoBADJ9zB4fFvhSHmf0p0fvnGvMDHzTSrwJ+I/dSwIaf4/7rI/AK52uIOZpUTcEJEQOFwQIzZONFiNz52EdyYW+aKb95t0x1rBMSoeP3LAcI0+VWsVUbTDzPqCWBVZPnzFYcwtQn9+teqSRL7K/Ocnd71CgT7oN4/Pj67R5UaNMoF0nrlsLvc/j3BORsiAfcOjYJ6D/Wv37v68EGnga0S1JZ9+zrqtMmArN5cbogxM/FS+lxWw6pU+G3VvvVRaU2kqECGf8X5E4cVRo/eVEDKk4OVlylZuzUzyXxmjHiIOgYpH+EUdVKwQ4MaldwZAb6SK3ADoMubFaPcMH68JrQhoeUuaB233PNl2f7LeoMWkurupMbDkTteLGELpL2yrAwChFtezyvPZEpluBAWZVITeh+buCJM+aLHtkX2goQ2CvVs/HN+V9S5gmNH9ZWCZjo29rxilHFkH1L7otzVgV7YAhXYPz0xMONaITYD8Mj5Ybk0iWCPxAquGEAl5wEWOhsw3EKjrwVOGfigZ54Tar9FsIDyTbg6aox6+GZRrv7UQJE82IH5RSsL8CpBYt8phyq7/IzJlpRwhfZ79XcWCU9Q5E0l7p0DIVV3ycERceVlTNyQB7No0KIWiwqqTWe3aBxf+vXQrrB+cvymW5ow61+uUcKuNEXDBUXovlp/3u1cUArtSI4GZsJGtW3tk43XVV6jOnJQswGVZ3j2Id1irH/WVusPaOLTEa+z0uL8GImXb3rvbLnuan9yzx78mX1fzzEhg+Vr5TE0OOKCeeC8xxP7Ax9s4XVI4H9IV8YXmEbYVsQlqj+M3uTuCVXBKCMXgbSGxwzMIEsu8PqpQ9urUgJWv7DHXJMGFcfVHumH/6djqWLOLJg5Lww/qAngizbyupOqVjf6RokFJ69R7yfziNKfdmKBSJZA5xtDySx+UCNDUmJ+cXsRKUimF4wrhlbSm3OdmuAjkwZsQmVZMIMY+IPgav1/b5BhFRorvCa/qoeVJcQhAGtfDAluC6KWRTvpxaoBSwybmZU0aN8rt60KtjhJzcCYL1QNPIBLw8WShZo9/12KEI8eAWIqasMv3Yed/EP9+bCzFGsHk6PygQiQVAikVVbPCtMU4P9skwoGRxaKGPgGewmu4abklGaM4rGAE="
+      },
+      {
+        "type": "text",
+        "text": "Looking at this problem, I need to compute:\n(371408427 + 67555272) * 822690582 - 672600389\n\n**Step 1: Add the two numbers**\n371408427 + 67555272 = 438963699\n\n**Step 2: Multiply by 822690582**\n\nI'll break this down: 822690582 = 800000000 + 22690582\n\n- 438963699 × 800000000 = 351170959200000000\n\n- 438963699 × 22690582:\n  - Break 22690582 = 22000000 + 690582\n  - 438963699 × 22000000 = 9657201378000000\n  - 438963699 × 690582:\n    - 438963699 × 700000 = 307274589300000\n    - 438963699 × 9418 = 4134160117182\n    - 307274589300000 − 4134160117182 = 303140429182818\n  - Sum: 9657201378000000 + 303140429182818 = 9960341807182818\n\nTotal multiplication:\n351170959200000000 + 9960341807182818 = 361131301007182818\n\n**Step 3: Subtract 672600389**\n\n361131301007182818 − 672600389\n\nTaking the last 9 digits: 007182818 − 672600389 requires borrowing.\nBorrow 1 from the higher block: 1007182818 − 672600389 = 334582429\n\nSo the final result is:\n361131300334582429\n\nANSWER: 361131300334582429"
+      }
+    ],
+    "container": null,
+    "stop_reason": "end_turn",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 122,
+      "cache_creation_input_tokens": 0,
+      "cache_read_input_tokens": 0,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 1765,
+      "output_tokens_details": {
+        "thinking_tokens": 1318
+      },
+      "service_tier": "standard",
+      "inference_geo": "global"
+    }
+  },
+  "incomplete": false
+}

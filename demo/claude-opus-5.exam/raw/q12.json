@@ -1,0 +1,55 @@
+{
+  "version": "exam-raw/1",
+  "id": 12,
+  "family": "arith",
+  "provider": "anthropic",
+  "model": "claude-opus-5",
+  "request": {
+    "model": "claude-opus-5",
+    "max_tokens": 16000,
+    "system": "You are sitting a written exam. Answer each question on its own. Follow the question's answer-format instructions exactly.",
+    "messages": [
+      {
+        "role": "user",
+        "content": "Compute exactly:\n\n(769900 + 73374423) * 825122026 - 466475879\n\nGive the exact integer, with no thousands separators.\nReason as much as you like, then finish with one final line of the form\nANSWER: <your answer>"
+      }
+    ]
+  },
+  "response": {
+    "model": "claude-opus-5",
+    "id": "msg_011Ceysdmb5Cj7z79FPJ3xBj",
+    "type": "message",
+    "role": "assistant",
+    "content": [
+      {
+        "type": "thinking",
+        "thinking": "",
+        "signature": "CAIS3AkKjgEIERgCKkASsT/luQQfZkONaao5Xx/PNpKC2Ai1KgX5LbGrIReynKBjwM8UrueesJYqURf7jJ2MJsinay/6Khri7YTGeujRMg1jbGF1ZGUtb3B1cy01OAFCCHRoaW5raW5nWiQ1OTk1ZWU0Zi0xOGU5LTQ2NjMtOGFhZi1lNmY3N2EwMDc1YjeoAfz/ldUGEgw9e2UDNSYJmArRCCEaDHQ/S4NwWK/NrtO/lyIwbPRD1Ol4IWrhqwrWssVew4YJ0dmj7+yJRymENNuYb9J5T+zke6cnZkby8Q0r4UZsKvoHFsm80HSqQUtkia7D+Mox7pdabmLOvmD+GP8Gapog4fYjVUyitTDNDPvPZcRM4klaKF108pX/zI7mM1bO/cMGnvnBrCJfDpgHwqHBEGkxBZHbXcBtR8eB2z5RgHdsh8YlR3i59ZtLzpeVLaA2EiDLu++n786XXZPjJAaAxMFHlHFhASfdBsTnd/cJKJOg/Q+5+SNS4f9g7UieT9X5noL4rsJfXU8lyro26QlWS7Pd/c438kpKajasfhFPdi2L5mY8IJX1v4/Sl/pBfmPFGzSv/fsXYJXtJn0oyBClKhGwZdymc821uNnR6MmwzkU14lFBfnn+HA5jWCusU5DEXJoAHiXjg0X0f8QDYoV3maI0BXiI8/Z1LiK0Vzd/uqayNYzlBMHlOrTDWDRYB0Y0/sc61Q1LvKAMKqSQl5t8Gumok4liaHUOyhuLihRpN9x/pYrS4bOcuJ90nwxSJaJ3RMvWGUuSHVKrd1CGihq6ZasNZ4LepLLJcz5bfikdqUz4v7F/HwEd8cZYtzfeRGOYsPYZrSIWsztEQlebSv69FjplShqxvGQLNiKyUkCtgSwaGT9kCvlXpgLpIhGt1rl6pz3veDb5GBFRwifPa99HuXbUz2xrX2tCkLouZx2/NE8f1M/tWgI2P+t/Esg4B+aps22c/Nbzr2T3RupWiNEiZDrm5nufUyQZNNlZN3AV0UgHOq84TAoAufCG/EQn4s3e/2KNtHdHrpiQOwRBZvrzm5nd3r/sYNB5FnM/Iv3U/wGDWvqjOInwFELGcQkm0R2U/67TI7tyenRieXTi3lQxabB4QOvmiCNNGlUS9jPo5BrzlXPBivWCK7+oA/gKZimHX5AVYtJazysoVA9x/7IOIVQv0NG1bOwv0Y8Maj5Gx0dDf0vc9smd9j0QwL7e2lZgWyo43khFVNzt4VCYvR1BlJq3+sSfm4MKPGB5G2CYi+XCxT6FKXcgD+GldrtPzGWJy1m+qxmePtF3SjRMr4m/B2JdKeJnED/olR9pokfyUy+q6n1/Af/q7s57hCn+lK3GoDzDx3dGnZ3WlUxlQ3alv6Ux3s/811M0ZEzH0ZVFWNLga+Z9P6pFWo/aN1p/2ki0yX2YZ9R85gIkVPf7n6/jQuXyfH9PTo4FlV1r+WaGHV1qQSH/WivtSXOHbvp491lRJkP8PbGdtjig8vp2UlvQSd0kfYTHjR3KbxDEBLLZW2XiD1j17n+hvcKwmRiffhwkdrhzsgmT9n9+3uu5/dKiFpOmZUNKDinxWhyOv6oQbmjDqVVLWpTAteTknUVOsBzoG4L5mJA7f1DONyXyvTccn/pMZyr0lsGYenTKNC5N2cvi3Hvv9wyvrjf9xwU3ABgB"
+      },
+      {
+        "type": "text",
+        "text": "**Step 1:** 769900 + 73374423 = 74144323\n\n**Step 2:** 74144323 × 825122026\n\n- 74144323 × 800,000,000 = 59,315,458,400,000,000\n- 74144323 × 25,000,000 = 1,853,608,075,000,000\n- 74144323 × 122,026 = 9,047,535,158,398\n\nSum: 59,315,458,400,000,000 + 1,853,608,075,000,000 = 61,169,066,475,000,000\n61,169,066,475,000,000 + 9,047,535,158,398 = 61,178,114,010,158,398\n\n**Step 3:** 61,178,114,010,158,398 − 466,475,879 = 61,178,113,543,682,519\n\nANSWER: 61178113543682519"
+      }
+    ],
+    "container": null,
+    "stop_reason": "end_turn",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 121,
+      "cache_creation_input_tokens": 0,
+      "cache_read_input_tokens": 0,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 814,
+      "output_tokens_details": {
+        "thinking_tokens": 553
+      },
+      "service_tier": "standard",
+      "inference_geo": "global"
+    }
+  },
+  "incomplete": false
+}

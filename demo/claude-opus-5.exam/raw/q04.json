@@ -1,0 +1,55 @@
+{
+  "version": "exam-raw/1",
+  "id": 4,
+  "family": "logic",
+  "provider": "anthropic",
+  "model": "claude-opus-5",
+  "request": {
+    "model": "claude-opus-5",
+    "max_tokens": 16000,
+    "system": "You are sitting a written exam. Answer each question on its own. Follow the question's answer-format instructions exactly.",
+    "messages": [
+      {
+        "role": "user",
+        "content": "4 people (Ada, Hugo, Esme, Cleo) sit in a row of 4 seats numbered 1 to 4 from left to right. All of the following are true:\n\n1. Hugo sits immediately to the left of Ada.\n2. Ada does not sit in seat 2.\n3. Esme does not sit in seat 2.\n4. Hugo does not sit at either end of the row.\n5. Hugo does not sit in seat 1.\n6. Ada sits at one end of the row.\n7. Hugo and Esme do not sit next to each other.\n\nWho sits where?\n\nGive the names in seat order from seat 1 to the last seat, separated by commas.\nReason as much as you like, then finish with one final line of the form\nANSWER: <your answer>"
+      }
+    ]
+  },
+  "response": {
+    "model": "claude-opus-5",
+    "id": "msg_011CeysdEouePRoBoQCz8q3S",
+    "type": "message",
+    "role": "assistant",
+    "content": [
+      {
+        "type": "thinking",
+        "thinking": "",
+        "signature": "CAISiwQKjgEIERgCKkAxFWRPEpPdK61kvj1Cl6Wa+yzocMQ+q9AGO41c6HfhCbT0xYL1MuQYaayBk5ldoJvZ4Ne0UK3NMGtzxx8fGEUNMg1jbGF1ZGUtb3B1cy01OAFCCHRoaW5raW5nWiQ1OTk1ZWU0Zi0xOGU5LTQ2NjMtOGFhZi1lNmY3N2EwMDc1YjeoAfH/ldUGEgyO7bD7Vuky6XrjFhoaDN2+1Rj5jLfenawOdCIwjXmKKAHmmEtiMwaytn1bTNfjF01PiuLZdBClHY/1ZqjX9qkJvxJ8VczM/kn1UcXiKqkCbPRftiPJNLvgM40fcr1LSJpCZKCu6g4DJyigA+MccL2C2FRjDn0UOiEn62eqFx24HAdBIqPq7BnqWmSLb/OsMKs5gGERRzjhMdmcbGSe70O0TWl8mWlZNMnimrgEomoMM3nAcmUXpLdYkvIvz4YB2iYTCVJZhS0ll1gpMjRG3cQd/UEiNmfJX2Wc1hzIRibeb/SAiiKbiv1KPkCx99rGxYUdqmgDLTnhJEwUfybIbUNbveUYk/uhfmVZ9uLo5fkCodUoF1yBVAO+m/YX7jqNNmOtVr3/ZrjLtFq+6MfIPrgKgBKjcV8FhX4KXpCp+dxB/wOdTQ3Gg7Zx5xjhBvkczRcuXv87dC/pTqSJM1g5gJW+daAkQTlkjNTtYIx/3W26/YsFLlU25F3aGAE="
+      },
+      {
+        "type": "text",
+        "text": "**Working:**\n\n- From 4 (and 5), Hugo is in seat 2 or 3.\n- From 1, Hugo–Ada are adjacent pairs: (2,3) or (3,4).\n- From 6, Ada sits at an end → Ada in seat 4, so Hugo in seat 3.\n- Remaining seats 1 and 2 for Esme and Cleo; by 3, Esme isn't in seat 2, so Esme is in seat 1 and Cleo in seat 2.\n- Check 7: Esme (1) and Hugo (3) are not adjacent ✓. Check 2: Ada in 4 ✓.\n\nANSWER: Esme, Cleo, Hugo, Ada"
+      }
+    ],
+    "container": null,
+    "stop_reason": "end_turn",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 286,
+      "cache_creation_input_tokens": 0,
+      "cache_read_input_tokens": 0,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 417,
+      "output_tokens_details": {
+        "thinking_tokens": 181
+      },
+      "service_tier": "standard",
+      "inference_geo": "global"
+    }
+  },
+  "incomplete": false
+}

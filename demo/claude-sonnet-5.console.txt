@@ -1,0 +1,9 @@
+Opened position 8595. Floor: block 25962579, 12 Sep 2026 16:38:11Z.
+Wrote 20 questions from that position and sealed them at position 8596. Floor: block 25962579, 12 Sep 2026 16:38:11Z.
+Sealed the answers at position 8614. Floor: block 25962584.
+Asked claude-sonnet-5. 20 answers back.
+Verified
+Score 20/20. Report: claude-sonnet-5.exam/report.html
+Paper not before block 25962579 (header time 12 Sep 2026 16:38:11Z).
+Answers not before block 25962584 (header time 12 Sep 2026 16:39:11Z).
+exit=0

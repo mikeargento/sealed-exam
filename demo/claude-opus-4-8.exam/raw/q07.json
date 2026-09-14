@@ -1,0 +1,50 @@
+{
+  "version": "exam-raw/1",
+  "id": 7,
+  "family": "logic",
+  "provider": "anthropic",
+  "model": "claude-opus-4-8",
+  "request": {
+    "model": "claude-opus-4-8",
+    "max_tokens": 16000,
+    "system": "You are sitting a written exam. Answer each question on its own. Follow the question's answer-format instructions exactly.",
+    "messages": [
+      {
+        "role": "user",
+        "content": "5 people (Cleo, Dev, Gwen, Hugo, Bram) sit in a row of 5 seats numbered 1 to 5 from left to right. All of the following are true:\n\n1. Gwen does not sit in seat 5.\n2. There are exactly 0 seats between Gwen and Hugo.\n3. Dev sits at one end of the row.\n4. There are exactly 1 seat between Hugo and Dev.\n5. Bram sits somewhere to the left of Cleo.\n6. Bram sits immediately to the left of Cleo.\n7. There are exactly 2 seats between Gwen and Cleo.\n\nWho sits where?\n\nGive the names in seat order from seat 1 to the last seat, separated by commas.\nReason as much as you like, then finish with one final line of the form\nANSWER: <your answer>"
+      }
+    ]
+  },
+  "response": {
+    "model": "claude-opus-4-8",
+    "id": "msg_011Ceyshq9kGyj1R1yA5GFtk",
+    "type": "message",
+    "role": "assistant",
+    "content": [
+      {
+        "type": "text",
+        "text": "Clue 2: Gwen and Hugo adjacent.\nClue 3: Dev at end (seat 1 or 5).\nClue 4: exactly 1 seat between Hugo and Dev means |Hugo-Dev|=2.\n\nIf Dev=1, Hugo=3, Gwen=2 or 4. Gwen adjacent to Hugo, so Gwen=2 or 4.\nIf Dev=5, Hugo=3, Gwen=2 or 4.\n\nClue 7: |Gwen-Cleo|=3 (2 seats between).\n\nCase Dev=1, Hugo=3:\n- Gwen=2: Cleo=5. Bram immediately left of Cleo → Bram=4. Remaining seat... seats: 1 Dev,2 Gwen,3 Hugo,4 Bram,5 Cleo. Check clue 1: Gwen≠5 ok. Clue6 Bram(4) left of Cleo(5) ok. Clue5 ok. All good!\n- Gwen=4: Cleo=1 or 7 → Cleo=1, but Dev=1. No.\n\nLet me verify all clues:\n1. Gwen seat2 ≠5 ✓\n2. Gwen2,Hugo3 adjacent, 0 seats between ✓\n3. Dev seat1 end ✓\n4. Hugo3,Dev1: |3-1|=2, 1 seat between ✓\n5. Bram4 left of Cleo5 ✓\n6. Bram immediately left ✓\n7. Gwen2,Cleo5: 2 seats between ✓\n\nANSWER: Dev, Gwen, Hugo, Bram, Cleo"
+      }
+    ],
+    "container": null,
+    "stop_reason": "end_turn",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 313,
+      "cache_creation_input_tokens": 0,
+      "cache_read_input_tokens": 0,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 560,
+      "output_tokens_details": {
+        "thinking_tokens": 0
+      },
+      "service_tier": "standard",
+      "inference_geo": "global"
+    }
+  },
+  "incomplete": false
+}

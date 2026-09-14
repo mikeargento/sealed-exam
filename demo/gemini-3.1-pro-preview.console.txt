@@ -1,0 +1,9 @@
+Opened position 9789. Floor: block 25970424, 13 Sep 2026 18:51:23Z.
+Wrote 20 questions from that position and sealed them at position 9790. Floor: block 25970424, 13 Sep 2026 18:51:23Z.
+Asked gemini-3.1-pro-preview. 20 answers back.
+Sealed the answers at position 9822. Floor: block 25970442.
+Verified
+Score 20/20. Report: gemini-3.1-pro-preview.exam/report.html
+Paper not before block 25970424 (header time 13 Sep 2026 18:51:23Z).
+Answers not before block 25970442 (header time 13 Sep 2026 18:54:59Z).
+exit=0

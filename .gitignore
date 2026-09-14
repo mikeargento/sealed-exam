@@ -1,0 +1,13 @@
+node_modules/
+dist/
+*.tgz
+package-lock.json
+.DS_Store
+
+# Written by the verifier beside the folder it checks. Generated, never read
+# back: `exam verify` recomputes everything and ignores any verdict or grade
+# file it finds (see the graded-file-lies fixture). Committing them would put
+# claimed results in a repo whose whole argument is that claimed results do
+# not count.
+report.html
+verdict.json

@@ -1,0 +1,57 @@
+{
+  "version": "exam-raw/1",
+  "id": 3,
+  "family": "order",
+  "provider": "openai",
+  "model": "gpt-6-astra",
+  "request": {
+    "model": "gpt-6-astra",
+    "messages": [
+      {
+        "role": "system",
+        "content": "You are sitting a written exam. Answer each question on its own. Follow the question's answer-format instructions exactly."
+      },
+      {
+        "role": "user",
+        "content": "Facts:\n\nThe Juniper crate weighs 51,036 kg.\nThe Elm crate weighs 87,611 kg.\nThe Birch crate weighs 2,688 kg.\nThe Alder crate weighs 11,050 kg.\nThe Ginkgo crate weighs 47,960 kg.\nThe Hazel crate weighs 88,354 kg.\nThe Fir crate weighs 25,000 kg.\n\nList the 7 labels from the heaviest crate to the lightest.\n\nGive the labels only, in the requested order, separated by commas.\nReason as much as you like, then finish with one final line of the form\nANSWER: <your answer>"
+      }
+    ]
+  },
+  "response": {
+    "id": "chatcmpl-ENjX1RYeRMOONclc7POn0ADr34dEk",
+    "object": "chat.completion",
+    "created": 1789325275,
+    "model": "gpt-6-astra",
+    "choices": [
+      {
+        "index": 0,
+        "message": {
+          "role": "assistant",
+          "content": "ANSWER: Hazel, Elm, Juniper, Ginkgo, Fir, Alder, Birch",
+          "refusal": null,
+          "annotations": []
+        },
+        "finish_reason": "stop"
+      }
+    ],
+    "usage": {
+      "prompt_tokens": 159,
+      "completion_tokens": 20,
+      "total_tokens": 179,
+      "prompt_tokens_details": {
+        "cached_tokens": 0,
+        "cache_write_tokens": 0,
+        "audio_tokens": 0
+      },
+      "completion_tokens_details": {
+        "reasoning_tokens": 0,
+        "audio_tokens": 0,
+        "accepted_prediction_tokens": 0,
+        "rejected_prediction_tokens": 0
+      }
+    },
+    "service_tier": "default",
+    "system_fingerprint": null
+  },
+  "incomplete": false
+}

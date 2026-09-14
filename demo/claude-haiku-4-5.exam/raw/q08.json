@@ -1,0 +1,48 @@
+{
+  "version": "exam-raw/1",
+  "id": 8,
+  "family": "arith",
+  "provider": "anthropic",
+  "model": "claude-haiku-4-5",
+  "request": {
+    "model": "claude-haiku-4-5",
+    "max_tokens": 16000,
+    "system": "You are sitting a written exam. Answer each question on its own. Follow the question's answer-format instructions exactly.",
+    "messages": [
+      {
+        "role": "user",
+        "content": "Compute exactly:\n\n4904367 * 257087311 + 143202 * 97708459 - 304134\n\nGive the exact integer, with no thousands separators.\nReason as much as you like, then finish with one final line of the form\nANSWER: <your answer>"
+      }
+    ],
+    "temperature": 0
+  },
+  "response": {
+    "model": "claude-haiku-4-5-20251001",
+    "id": "msg_011CeysgaG24ZqzZ82XVGC7p",
+    "type": "message",
+    "role": "assistant",
+    "content": [
+      {
+        "type": "text",
+        "text": "I need to compute: 4904367 * 257087311 + 143202 * 97708459 - 304134\n\nLet me break this into parts and calculate carefully.\n\n**Part 1: 4904367 * 257087311**\n\nLet me use the standard multiplication approach, breaking it down:\n4904367 * 257087311\n\nI'll compute this step by step:\n4904367 * 257087311\n= 4904367 * (257000000 + 87311)\n= 4904367 * 257000000 + 4904367 * 87311\n\n4904367 * 257000000 = 4904367 * 257 * 1000000\n4904367 * 257 = 1,260,422,319\nSo: 1,260,422,319 * 1000000 = 1,260,422,319,000,000\n\n4904367 * 87311:\n= 4904367 * (87000 + 311)\n= 4904367 * 87000 + 4904367 * 311\n= 426,679,929,000 + 1,524,858,137\n= 428,204,787,137\n\nPart 1 total: 1,260,422,319,000,000 + 428,204,787,137 = 1,260,850,523,787,137\n\n**Part 2: 143202 * 97708459**\n\n143202 * 97708459\n= 143202 * (97000000 + 708459)\n= 143202 * 97000000 + 143202 * 708459\n\n143202 * 97000000 = 13,890,594,000,000\n\n143202 * 708459:\n= 143202 * (700000 + 8459)\n= 143202 * 700000 + 143202 * 8459\n= 100,241,400,000 + 1,212,077,118\n= 101,453,477,118\n\nPart 2 total: 13,890,594,000,000 + 101,453,477,118 = 13,992,047,477,118\n\n**Final calculation:**\n1,260,850,523,787,137 + 13,992,047,477,118 - 304,134\n= 1,274,842,571,264,255 - 304,134\n= 1,274,842,570,960,121\n\nANSWER: 1274842570960121"
+      }
+    ],
+    "container": null,
+    "stop_reason": "end_turn",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 99,
+      "cache_creation_input_tokens": 0,
+      "cache_read_input_tokens": 0,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 618,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    }
+  },
+  "incomplete": false
+}

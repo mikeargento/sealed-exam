@@ -1,0 +1,57 @@
+{
+  "version": "exam-raw/1",
+  "id": 2,
+  "family": "spec",
+  "provider": "openai",
+  "model": "gpt-6-astra",
+  "request": {
+    "model": "gpt-6-astra",
+    "messages": [
+      {
+        "role": "system",
+        "content": "You are sitting a written exam. Answer each question on its own. Follow the question's answer-format instructions exactly."
+      },
+      {
+        "role": "user",
+        "content": "Write a JavaScript function f(xs), where xs is an array of integers, that returns an integer computed as follows:\n\n1. Keep only the elements divisible by 5.\n2. Leave the kept elements unchanged.\n3. Return the alternating sum of the resulting elements: the first minus the second plus the third minus the fourth, and so on (0 if there are none).\n\nReply with only the function, in a single ```js code block. Name it f, take one parameter xs, use no libraries, and write no import, require or export statements."
+      }
+    ]
+  },
+  "response": {
+    "id": "chatcmpl-ENjX1kHzhZsxEyzlA5wGipILL4OAB",
+    "object": "chat.completion",
+    "created": 1789325275,
+    "model": "gpt-6-astra",
+    "choices": [
+      {
+        "index": 0,
+        "message": {
+          "role": "assistant",
+          "content": "```js\nfunction f(xs) {\n  let sum = 0;\n  let sign = 1;\n  for (const x of xs) {\n    if (x % 5 === 0) {\n      sum += sign * x;\n      sign = -sign;\n    }\n  }\n  return sum;\n}\n```",
+          "refusal": null,
+          "annotations": []
+        },
+        "finish_reason": "stop"
+      }
+    ],
+    "usage": {
+      "prompt_tokens": 146,
+      "completion_tokens": 69,
+      "total_tokens": 215,
+      "prompt_tokens_details": {
+        "cached_tokens": 0,
+        "cache_write_tokens": 0,
+        "audio_tokens": 0
+      },
+      "completion_tokens_details": {
+        "reasoning_tokens": 0,
+        "audio_tokens": 0,
+        "accepted_prediction_tokens": 0,
+        "rejected_prediction_tokens": 0
+      }
+    },
+    "service_tier": "default",
+    "system_fingerprint": null
+  },
+  "incomplete": false
+}

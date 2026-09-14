@@ -1,0 +1,9 @@
+Opened position 8603. Floor: block 25962581, 12 Sep 2026 16:38:35Z.
+Wrote 20 questions from that position and sealed them at position 8604. Floor: block 25962581, 12 Sep 2026 16:38:35Z.
+Sealed the answers at position 8607. Floor: block 25962581.
+Asked claude-haiku-4-5. 20 answers back.
+Verified
+Score 17/20. Report: claude-haiku-4-5.exam/report.html
+Paper not before block 25962581 (header time 12 Sep 2026 16:38:35Z).
+Answers not before block 25962581 (header time 12 Sep 2026 16:38:35Z).
+exit=0

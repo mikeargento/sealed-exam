@@ -1,0 +1,50 @@
+{
+  "version": "exam-raw/1",
+  "id": 20,
+  "family": "arith",
+  "provider": "anthropic",
+  "model": "claude-opus-4-8",
+  "request": {
+    "model": "claude-opus-4-8",
+    "max_tokens": 16000,
+    "system": "You are sitting a written exam. Answer each question on its own. Follow the question's answer-format instructions exactly.",
+    "messages": [
+      {
+        "role": "user",
+        "content": "Compute exactly:\n\n83901026 * (235304595 + 52875090) + 346296540\n\nGive the exact integer, with no thousands separators.\nReason as much as you like, then finish with one final line of the form\nANSWER: <your answer>"
+      }
+    ]
+  },
+  "response": {
+    "model": "claude-opus-4-8",
+    "id": "msg_011CeysiowrF9TKgSzxBTtn8",
+    "type": "message",
+    "role": "assistant",
+    "content": [
+      {
+        "type": "text",
+        "text": "I need to compute 83901026 * (235304595 + 52875090) + 346296540.\n\nFirst, the sum inside parentheses:\n235304595 + 52875090 = 288179685\n\nNow multiply: 83901026 * 288179685\n\nLet me break this down. Let me use 288179685 = 288000000 + 179685.\n\n83901026 * 288000000:\n83901026 * 288 = ?\n83901026 * 288 = 83901026 * 300 - 83901026 * 12\n= 25170307800 - 1006812312\n= 24163495488\nSo 83901026 * 288000000 = 24163495488000000\n\n83901026 * 179685:\nLet me break 179685 = 180000 - 315.\n83901026 * 180000 = 83901026 * 18 * 10000\n83901026 * 18 = 1510218468\n* 10000 = 15102184680000\n\n83901026 * 315 = 83901026 * 300 + 83901026 * 15\n= 25170307800 + 1258515390\n= 26428823190\n\nSo 83901026 * 179685 = 15102184680000 - 26428823190 = 15075755856810\n\nNow sum:\n24163495488000000 + 15075755856810 = 24178571243856810\n\nAdd 346296540:\n24178571243856810 + 346296540 = 24178571590153350\n\nANSWER: 24178571590153350"
+      }
+    ],
+    "container": null,
+    "stop_reason": "end_turn",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 121,
+      "cache_creation_input_tokens": 0,
+      "cache_read_input_tokens": 0,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 434,
+      "output_tokens_details": {
+        "thinking_tokens": 0
+      },
+      "service_tier": "standard",
+      "inference_geo": "global"
+    }
+  },
+  "incomplete": false
+}

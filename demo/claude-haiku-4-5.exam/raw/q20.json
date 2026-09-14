@@ -1,0 +1,48 @@
+{
+  "version": "exam-raw/1",
+  "id": 20,
+  "family": "order",
+  "provider": "anthropic",
+  "model": "claude-haiku-4-5",
+  "request": {
+    "model": "claude-haiku-4-5",
+    "max_tokens": 16000,
+    "system": "You are sitting a written exam. Answer each question on its own. Follow the question's answer-format instructions exactly.",
+    "messages": [
+      {
+        "role": "user",
+        "content": "Facts:\n\nThe Birch crate weighs 98,224 kg.\nThe Ivy crate weighs 57,489 kg.\nThe Ginkgo crate weighs 31,027 kg.\nThe Cedar crate weighs 21,976 kg.\nThe Hazel crate weighs 79,884 kg.\nThe Elm crate weighs 3,878 kg.\n\nList the 6 labels from the heaviest crate to the lightest.\n\nGive the labels only, in the requested order, separated by commas.\nReason as much as you like, then finish with one final line of the form\nANSWER: <your answer>"
+      }
+    ],
+    "temperature": 0
+  },
+  "response": {
+    "model": "claude-haiku-4-5-20251001",
+    "id": "msg_011CeyshCz8BVd6nhLP2z2AD",
+    "type": "message",
+    "role": "assistant",
+    "content": [
+      {
+        "type": "text",
+        "text": "I need to order the crates from heaviest to lightest by comparing their weights.\n\nLet me list the weights:\n- Birch: 98,224 kg\n- Ivy: 57,489 kg\n- Ginkgo: 31,027 kg\n- Cedar: 21,976 kg\n- Hazel: 79,884 kg\n- Elm: 3,878 kg\n\nNow I'll order them from heaviest to lightest:\n1. Birch: 98,224 kg (heaviest)\n2. Hazel: 79,884 kg\n3. Ivy: 57,489 kg\n4. Ginkgo: 31,027 kg\n5. Cedar: 21,976 kg\n6. Elm: 3,878 kg (lightest)\n\nANSWER: Birch, Hazel, Ivy, Ginkgo, Cedar, Elm"
+      }
+    ],
+    "container": null,
+    "stop_reason": "end_turn",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 186,
+      "cache_creation_input_tokens": 0,
+      "cache_read_input_tokens": 0,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 217,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    }
+  },
+  "incomplete": false
+}

@@ -1,0 +1,48 @@
+{
+  "version": "exam-raw/1",
+  "id": 9,
+  "family": "arith",
+  "provider": "anthropic",
+  "model": "claude-haiku-4-5",
+  "request": {
+    "model": "claude-haiku-4-5",
+    "max_tokens": 16000,
+    "system": "You are sitting a written exam. Answer each question on its own. Follow the question's answer-format instructions exactly.",
+    "messages": [
+      {
+        "role": "user",
+        "content": "Compute exactly:\n\n(6462464 + 34256626) * 71264766 - 3715230\n\nGive the exact integer, with no thousands separators.\nReason as much as you like, then finish with one final line of the form\nANSWER: <your answer>"
+      }
+    ],
+    "temperature": 0
+  },
+  "response": {
+    "model": "claude-haiku-4-5-20251001",
+    "id": "msg_011CeysRvbE2YEQsEtzpnGyN",
+    "type": "message",
+    "role": "assistant",
+    "content": [
+      {
+        "type": "text",
+        "text": "I need to compute: (6462464 + 34256626) * 71264766 - 3715230\n\nLet me break this down step by step.\n\n**Step 1: Add the numbers in parentheses**\n6462464 + 34256626 = 40719090\n\n**Step 2: Multiply by 71264766**\n40719090 * 71264766\n\nLet me compute this carefully by breaking it down:\n40719090 * 71264766\n\nI'll use the standard multiplication approach:\n40719090 * 71264766\n= 40719090 * (70000000 + 1264766)\n= 40719090 * 70000000 + 40719090 * 1264766\n\nFirst part: 40719090 * 70000000 = 2850336300000000\n\nSecond part: 40719090 * 1264766\n= 40719090 * 1000000 + 40719090 * 264766\n= 40719090000000 + 40719090 * 264766\n\nFor 40719090 * 264766:\n= 40719090 * (260000 + 4766)\n= 40719090 * 260000 + 40719090 * 4766\n= 10587063400000 + 194107223340\n= 10781170623340\n\nSo: 40719090 * 1264766 = 40719090000000 + 10781170623340 = 51500260623340\n\nTherefore: 40719090 * 71264766 = 2850336300000000 + 51500260623340 = 2901836560623340\n\n**Step 3: Subtract 3715230**\n2901836560623340 - 3715230 = 2901836556908110\n\nLet me verify this subtraction:\n2901836560623340\n-           3715230\n= 2901836556908110\n\nANSWER: 2901836556908110"
+      }
+    ],
+    "container": null,
+    "stop_reason": "end_turn",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 96,
+      "cache_creation_input_tokens": 0,
+      "cache_read_input_tokens": 0,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 482,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    }
+  },
+  "incomplete": false
+}

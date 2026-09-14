@@ -1,0 +1,50 @@
+{
+  "version": "exam-raw/1",
+  "id": 9,
+  "family": "order",
+  "provider": "anthropic",
+  "model": "claude-opus-4-8",
+  "request": {
+    "model": "claude-opus-4-8",
+    "max_tokens": 16000,
+    "system": "You are sitting a written exam. Answer each question on its own. Follow the question's answer-format instructions exactly.",
+    "messages": [
+      {
+        "role": "user",
+        "content": "Facts:\n\nThe Elm crate weighs 77,955 kg.\nThe Ginkgo crate weighs 38,890 kg.\nThe Juniper crate weighs 97,751 kg.\nThe Alder crate weighs 23,598 kg.\nThe Hazel crate weighs 63,949 kg.\n\nList the 5 labels from the lightest crate to the heaviest.\n\nGive the labels only, in the requested order, separated by commas.\nReason as much as you like, then finish with one final line of the form\nANSWER: <your answer>"
+      }
+    ]
+  },
+  "response": {
+    "model": "claude-opus-4-8",
+    "id": "msg_011CeyshzBUUFKuKtRXZ9wHv",
+    "type": "message",
+    "role": "assistant",
+    "content": [
+      {
+        "type": "text",
+        "text": "Weights:\n- Alder: 23,598\n- Ginkgo: 38,890\n- Hazel: 63,949\n- Elm: 77,955\n- Juniper: 97,751\n\nANSWER: Alder, Ginkgo, Hazel, Elm, Juniper"
+      }
+    ],
+    "container": null,
+    "stop_reason": "end_turn",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 216,
+      "cache_creation_input_tokens": 0,
+      "cache_read_input_tokens": 0,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 92,
+      "output_tokens_details": {
+        "thinking_tokens": 0
+      },
+      "service_tier": "standard",
+      "inference_geo": "global"
+    }
+  },
+  "incomplete": false
+}

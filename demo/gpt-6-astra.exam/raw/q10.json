@@ -1,0 +1,57 @@
+{
+  "version": "exam-raw/1",
+  "id": 10,
+  "family": "order",
+  "provider": "openai",
+  "model": "gpt-6-astra",
+  "request": {
+    "model": "gpt-6-astra",
+    "messages": [
+      {
+        "role": "system",
+        "content": "You are sitting a written exam. Answer each question on its own. Follow the question's answer-format instructions exactly."
+      },
+      {
+        "role": "user",
+        "content": "Facts:\n\nThe Fir file was registered on 14 July 2013.\nThe Birch file was registered on 27 November 2014.\nThe Alder file was registered on 11 June 1973.\nThe Ginkgo file was registered on 11 September 1905.\nThe Cedar file was registered on 21 April 1952.\nThe Juniper file was registered on 1 January 1971.\n\nList the 6 labels from the earliest registration to the latest.\n\nGive the labels only, in the requested order, separated by commas.\nReason as much as you like, then finish with one final line of the form\nANSWER: <your answer>"
+      }
+    ]
+  },
+  "response": {
+    "id": "chatcmpl-ENjX6r2DQt3SO3SmUB8gWfl4buXYT",
+    "object": "chat.completion",
+    "created": 1789325280,
+    "model": "gpt-6-astra",
+    "choices": [
+      {
+        "index": 0,
+        "message": {
+          "role": "assistant",
+          "content": "ANSWER: Ginkgo, Cedar, Juniper, Alder, Fir, Birch",
+          "refusal": null,
+          "annotations": []
+        },
+        "finish_reason": "stop"
+      }
+    ],
+    "usage": {
+      "prompt_tokens": 165,
+      "completion_tokens": 18,
+      "total_tokens": 183,
+      "prompt_tokens_details": {
+        "cached_tokens": 0,
+        "cache_write_tokens": 0,
+        "audio_tokens": 0
+      },
+      "completion_tokens_details": {
+        "reasoning_tokens": 0,
+        "audio_tokens": 0,
+        "accepted_prediction_tokens": 0,
+        "rejected_prediction_tokens": 0
+      }
+    },
+    "service_tier": "default",
+    "system_fingerprint": null
+  },
+  "incomplete": false
+}

@@ -1,0 +1,48 @@
+{
+  "version": "exam-raw/1",
+  "id": 15,
+  "family": "strings",
+  "provider": "anthropic",
+  "model": "claude-haiku-4-5",
+  "request": {
+    "model": "claude-haiku-4-5",
+    "max_tokens": 16000,
+    "system": "You are sitting a written exam. Answer each question on its own. Follow the question's answer-format instructions exactly.",
+    "messages": [
+      {
+        "role": "user",
+        "content": "Start with the string (between the brackets, without them): [NCRSXHWq3SYmoXB]\n\nApply these steps in order:\n\n1. Shift every letter forward by 5 places in the alphabet, wrapping from z back to a (and Z back to A); keep each letter's case; leave digits unchanged.\n2. Sort the characters in ascending ASCII order (digits before uppercase letters before lowercase letters).\n3. Swap the case of every letter (lowercase becomes uppercase and uppercase becomes lowercase); leave digits unchanged.\n4. Delete every 4th character (the 4th, 8th, 12th, … counting from 1).\n\nWhat is the resulting string?\n\nGive the final string exactly, and nothing else after ANSWER:.\nReason as much as you like, then finish with one final line of the form\nANSWER: <your answer>"
+      }
+    ],
+    "temperature": 0
+  },
+  "response": {
+    "model": "claude-haiku-4-5-20251001",
+    "id": "msg_011CeysSEXyYtGvN44sv5abk",
+    "type": "message",
+    "role": "assistant",
+    "content": [
+      {
+        "type": "text",
+        "text": "I'll work through this step-by-step.\n\n**Starting string:** NCRSXHWq3SYmoXB\n\n**Step 1: Shift every letter forward by 5 places, keep case, leave digits unchanged**\n\n- N → S\n- C → H\n- R → W\n- S → X\n- X → C\n- H → M\n- W → B\n- q → v\n- 3 → 3\n- S → X\n- Y → D\n- m → r\n- o → t\n- X → C\n- B → G\n\nResult: **SHWXCMBv3XDrtCG**\n\n**Step 2: Sort characters in ascending ASCII order**\n\nASCII values: digits (48-57) < uppercase (65-90) < lowercase (97-122)\n\nCharacters: 3, B, C, C, D, G, H, M, S, W, X, X, r, t, v\n\nSorted: **3BCCDHGMSWXX rtv**\n\nWait, let me sort more carefully:\n- 3 (ASCII 51)\n- B, C, C, D, G, H, M, S, W, X, X (uppercase, ASCII 65-90)\n- r, t, v (lowercase, ASCII 97-122)\n\nSorted: **3BCCDHGMSWXXRTV** - no wait, I need to include all characters.\n\nLet me list them: 3, B, C, C, D, G, H, M, S, W, X, X, r, t, v\n\nSorted by ASCII:\n- 3 (51)\n- B (66), C (67), C (67), D (68), G (71), H (72), M (77), S (83), W (87), X (88), X (88)\n- r (114), t (116), v (118)\n\nResult: **3BCCDHGMSWXXRTV** - wait, that's wrong. Let me recount from step 1.\n\nFrom Step 1: S, H, W, X, C, M, B, v, 3, X, D, r, t, C, G\n\nSorted: 3, B, C, C, D, G, H, M, S, W, X, X, r, t, v\n\nResult: **3BCCDHGMSWXXRTV** - no, lowercase comes after uppercase.\n\nResult: **3BCCDGHMSWXXrtv**\n\n**Step 3: Swap case of every letter, leave digits unchanged**\n\n- 3 → 3\n- B → b\n- C → c\n- C → c\n- D → d\n- G → g\n- H → h\n- M → m\n- S → s\n- W → w\n- X → x\n- X → x\n- r → R\n- t → T\n- v → V\n\nResult: **3bccdhgmswxxRTV**\n\n**Step 4: Delete every 4th character (4th, 8th, 12th, ...)**\n\nPositions: 1:3, 2:b, 3:c, 4:c(DELETE), 5:d, 6:h, 7:g, 8:m(DELETE), 9:s, 10:w, 11:x, 12:x(DELETE), 13:R, 14:T, 15:V\n\nKeeping positions 1,2,3,5,6,7,9,10,11,13,14,15:\n\nResult: **3bcdghswxRTV**\n\nANSWER: 3bcdghswxRTV"
+      }
+    ],
+    "container": null,
+    "stop_reason": "end_turn",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 224,
+      "cache_creation_input_tokens": 0,
+      "cache_read_input_tokens": 0,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 864,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    }
+  },
+  "incomplete": false
+}

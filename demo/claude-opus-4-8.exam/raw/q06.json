@@ -1,0 +1,50 @@
+{
+  "version": "exam-raw/1",
+  "id": 6,
+  "family": "strings",
+  "provider": "anthropic",
+  "model": "claude-opus-4-8",
+  "request": {
+    "model": "claude-opus-4-8",
+    "max_tokens": 16000,
+    "system": "You are sitting a written exam. Answer each question on its own. Follow the question's answer-format instructions exactly.",
+    "messages": [
+      {
+        "role": "user",
+        "content": "Start with the string (between the brackets, without them): [Zggs7uluHZzQyw]\n\nApply these steps in order:\n\n1. Reverse the string.\n2. Shift every letter forward by 16 places in the alphabet, wrapping from z back to a (and Z back to A); keep each letter's case; leave digits unchanged.\n3. Rotate the string left by 1: move its first 1 character to the end, in the same order.\n\nWhat is the resulting string?\n\nGive the final string exactly, and nothing else after ANSWER:.\nReason as much as you like, then finish with one final line of the form\nANSWER: <your answer>"
+      }
+    ]
+  },
+  "response": {
+    "model": "claude-opus-4-8",
+    "id": "msg_011CeyshoVnGCGxKAGA251rB",
+    "type": "message",
+    "role": "assistant",
+    "content": [
+      {
+        "type": "text",
+        "text": "Start: Zggs7uluHZzQyw\n\nStep 1: Reverse\nOriginal: Z g g s 7 u l u H Z z Q y w\nReversed: w y Q z Z H u l u 7 s g g Z\n\nStep 2: Shift forward by 16.\n\nw -> w(22)+16=38, 38-26=12 -> m... let me use a=0.\nw=22, +16=38-26=12 -> m\ny=24, +16=40-26=14 -> o\nQ=16, +16=32-26=6 -> G\nz=25, +16=41-26=15 -> p\nZ=25, +16=15 -> P\nH=7, +16=23 -> X\nu=20, +16=36-26=10 -> k\nl=11, +16=27-26=1 -> b\nu=20 -> k\n7 -> 7\ns=18, +16=34-26=8 -> i\ng=6, +16=22 -> w\ng=6 -> w\nZ=25 -> P\n\nResult: m o G p P X k b k 7 i w w P\n\"moGpPXkbk7iwwP\"\n\nStep 3: Rotate left by 1: move first char to end.\n\"oGpPXkbk7iwwPm\"\n\nANSWER: oGpPXkbk7iwwPm"
+      }
+    ],
+    "container": null,
+    "stop_reason": "end_turn",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 244,
+      "cache_creation_input_tokens": 0,
+      "cache_read_input_tokens": 0,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 409,
+      "output_tokens_details": {
+        "thinking_tokens": 0
+      },
+      "service_tier": "standard",
+      "inference_geo": "global"
+    }
+  },
+  "incomplete": false
+}

@@ -1,0 +1,109 @@
+{
+  "version": "exam-bank/1",
+  "k": 20,
+  "perFamily": 4,
+  "families": [
+    {
+      "id": "arith",
+      "title": "Multi-step arithmetic",
+      "params": {
+        "operandDigits": [
+          6,
+          9
+        ],
+        "operands": [
+          4,
+          5
+        ],
+        "operators": [
+          "+",
+          "-",
+          "*"
+        ],
+        "shapes": 5
+      },
+      "answerFormat": "Give the exact integer, with no thousands separators."
+    },
+    {
+      "id": "logic",
+      "title": "Seating puzzle",
+      "params": {
+        "people": [
+          4,
+          5
+        ],
+        "constraints": [
+          5,
+          7
+        ],
+        "constraintKinds": 7,
+        "uniqueSolution": true,
+        "maxDraws": 1000
+      },
+      "answerFormat": "Give the names in seat order from seat 1 to the last seat, separated by commas."
+    },
+    {
+      "id": "strings",
+      "title": "String transformation",
+      "params": {
+        "length": [
+          12,
+          20
+        ],
+        "alphabet": "a-z A-Z 0-9",
+        "steps": [
+          3,
+          4
+        ],
+        "operationKinds": 8
+      },
+      "answerFormat": "Give the final string exactly, and nothing else after ANSWER:."
+    },
+    {
+      "id": "spec",
+      "title": "Specification to function",
+      "params": {
+        "language": "javascript",
+        "filters": 8,
+        "maps": 4,
+        "reductions": 5,
+        "hiddenTests": 5,
+        "testLength": [
+          0,
+          8
+        ],
+        "testValues": [
+          -20,
+          20
+        ]
+      },
+      "answerFormat": "Reply with only the function, in a single ```js code block. Name it f, take one parameter xs, use no libraries, and write no import, require or export statements."
+    },
+    {
+      "id": "order",
+      "title": "Ordering from facts",
+      "params": {
+        "items": [
+          5,
+          7
+        ],
+        "modes": [
+          "dates",
+          "weights"
+        ],
+        "years": [
+          1900,
+          2025
+        ],
+        "kilograms": [
+          1000,
+          99999
+        ],
+        "directions": 2
+      },
+      "answerFormat": "Give the labels only, in the requested order, separated by commas."
+    }
+  ],
+  "generatorTarDigestB64": "ujljISvkcW11PADsnYxJm0VRHfGrnbcw/G4Snp1ThSE=",
+  "bankDigestB64": "/VEJoBwdHB4yZlPWNOg1IPVAMJiTAO8l7qoUmGIdBpg="
+}

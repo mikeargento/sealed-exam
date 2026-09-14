@@ -1,0 +1,55 @@
+{
+  "version": "exam-raw/1",
+  "id": 8,
+  "family": "order",
+  "provider": "anthropic",
+  "model": "claude-sonnet-5",
+  "request": {
+    "model": "claude-sonnet-5",
+    "max_tokens": 16000,
+    "system": "You are sitting a written exam. Answer each question on its own. Follow the question's answer-format instructions exactly.",
+    "messages": [
+      {
+        "role": "user",
+        "content": "Facts:\n\nThe Alder file was registered on 22 April 1951.\nThe Fir file was registered on 28 January 2003.\nThe Juniper file was registered on 1 July 2003.\nThe Hazel file was registered on 4 January 1983.\nThe Birch file was registered on 4 September 1992.\nThe Elm file was registered on 25 December 1949.\nThe Ginkgo file was registered on 10 March 2010.\n\nList the 7 labels from the earliest registration to the latest.\n\nGive the labels only, in the requested order, separated by commas.\nReason as much as you like, then finish with one final line of the form\nANSWER: <your answer>"
+      }
+    ]
+  },
+  "response": {
+    "model": "claude-sonnet-5",
+    "id": "msg_011Ceysf9zjxmttkHhKBgrtS",
+    "type": "message",
+    "role": "assistant",
+    "content": [
+      {
+        "type": "thinking",
+        "thinking": "",
+        "signature": "Eu8CCpABCBEYAipAE3UwEVw5G+ZnRmPJIwcMemJ0qFPjhpEt/d/9SwPl1/o/sOWr362kzWGHihe/plsIoPd0uknIinPSNhtAbR+tWjIPY2xhdWRlLXNvbm5ldC01OABCCHRoaW5raW5nWiQ1OTk1ZWU0Zi0xOGU5LTQ2NjMtOGFhZi1lNmY3N2EwMDc1YjeoAYmAltUGEgyQFWTCWOJPM+OFYTAaDI8X0F/1URiZjTXpSSIw8s5pVjAxxr1vx8DtcbwlAKSMoareyY4LdV5DTC+jHPPk5d5XNWyulv+v0sXCvvSrKosB8ZbWbcAAK97kt2YhEw6Ppr/rhLKQIKtLTt09xbC8F5cQdmYgMVu51XmH9d+ZM/J4YsSZ4B+lLUbYbJzNj1sFgReVMSlk84pNSpdKmtdrLUbBSlw85CO54dVVbQ2akVytPUdzP4FrJlJdk4xHXV27nFtEvSFRQH5tbdulxAMW9Ze2GaR3MOW19irOtBgB"
+      },
+      {
+        "type": "text",
+        "text": "ANSWER: Elm, Alder, Hazel, Birch, Fir, Juniper, Ginkgo"
+      }
+    ],
+    "container": null,
+    "stop_reason": "end_turn",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 250,
+      "cache_creation_input_tokens": 0,
+      "cache_read_input_tokens": 0,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 122,
+      "output_tokens_details": {
+        "thinking_tokens": 83
+      },
+      "service_tier": "standard",
+      "inference_geo": "global"
+    }
+  },
+  "incomplete": false
+}

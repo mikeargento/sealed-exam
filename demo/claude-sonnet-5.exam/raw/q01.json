@@ -1,0 +1,55 @@
+{
+  "version": "exam-raw/1",
+  "id": 1,
+  "family": "logic",
+  "provider": "anthropic",
+  "model": "claude-sonnet-5",
+  "request": {
+    "model": "claude-sonnet-5",
+    "max_tokens": 16000,
+    "system": "You are sitting a written exam. Answer each question on its own. Follow the question's answer-format instructions exactly.",
+    "messages": [
+      {
+        "role": "user",
+        "content": "4 people (Dev, Cleo, Ada, Esme) sit in a row of 4 seats numbered 1 to 4 from left to right. All of the following are true:\n\n1. Dev and Cleo do not sit next to each other.\n2. Dev sits at one end of the row.\n3. Cleo sits in seat 3.\n4. Ada sits somewhere to the left of Cleo.\n5. Esme does not sit in seat 3.\n6. There are exactly 2 seats between Dev and Esme.\n7. Ada and Dev sit next to each other.\n\nWho sits where?\n\nGive the names in seat order from seat 1 to the last seat, separated by commas.\nReason as much as you like, then finish with one final line of the form\nANSWER: <your answer>"
+      }
+    ]
+  },
+  "response": {
+    "model": "claude-sonnet-5",
+    "id": "msg_011Ceysek9mqq4fAFex1zfGg",
+    "type": "message",
+    "role": "assistant",
+    "content": [
+      {
+        "type": "thinking",
+        "thinking": "",
+        "signature": "EtIHCpABCBEYAipAde2XpavF2io8C5bPAfrYirpP57OpHkGsH90Ty1RI/GhctG3W5W2iPxQVBkhO3IRTahBejUEPlUfdoEB4PL0eMTIPY2xhdWRlLXNvbm5ldC01OABCCHRoaW5raW5nWiQ1OTk1ZWU0Zi0xOGU5LTQ2NjMtOGFhZi1lNmY3N2EwMDc1YjeoAYaAltUGEgz+jo2wyemlzDoLbEgaDKpmVEM/CzPI19Y4CSIwUH6xlc+NiHgbWnYceJ55YcrPrFPn7y4da9h8KhhWJMp7mg8KpiMivvpJV0aCG4Y0Ku4F8M9zkLch3Gr7BB+UkY21smIMCU4wE33QTkacutf3aJF3UYHkHO/d0Tyte1j/a6Go84UBEm2HJO/JBx+NxV2wBWNP7/MbkUGl7uWh6LqmD71Q2sYpMSmlFVh2i3W1EOmgcQdSliWdNa3LopojbSI6kGAFhk7ZVS9pX4zrY5FZCy7uNtuLVY9VNbdq3VgGgZCNI3NBCWy0iXEYkk4a5F3GgeqZVqL+GYErI8ioC0hQSAurOnxzqMIHlZDD9j/+GqktpqqdngrE1m9aiTg0YMKzQN8/cKVGO/l2RysYkXE/Gc+2QlkvoDFEoEqgsAHGBgqy0FABktIfoZnrYw0tHYCAvLDJMt795UlEX54SqHxyxV7pUXTAWZzoLIDdH/ZaojoZD2X59sDcxYYB0s5czqc78DhTPtrV8VmO1wIy7wMsvVoeA3PwZ9MYIaJFu8MQkNOTELTiS/JZ/b8neFF9LXk12Tlcka/KlvJkX/HANtVx9hCSmrVSI8VFbOKUJUZOvNzuAPG7fot99DjVmQ27MX+rioEOxQLT96qu1WDMKRQcVjlztrGXl1wRaFdKc4RnmWcpNDbxhVOwO3Z98RQxK+YtfLrSC1qqfDGIGKujBfzksMwr8E9+LzdCfNuzX7zucqKbpqB1Z6YzGvvWGq+C/3wGT7ySD4+Pnti+ZtLwYmzjDcVQUDQGwUk41yJQDF+hE06/FD75i8+Tu/4OwaDN+2DtuSDymZmjq75F45R62pgDY0DL7p6aH1jY6iRTNHYWiifVYFpEZBsrj2MdIDQqzL4wCxwvoZQrr0nxr9elirSZBwvWQk6mcfhW+nYJXUUcwo3ZQDEPWR2qYH77JkmLYy1Wd9xL0nqFk5AScoGiKXLqikmTKcCtw4ykLFane7qd6LlPNZ4VfkGiWk/xMv2dfSIyoLhVjMK96e+fcvV6rmoYgxcFgN6bmaZguRlYl8s9HIEQdtqvFEUvkWgpi/wmoQZE+nDKAZomR7C27JJd6McRGAE="
+      },
+      {
+        "type": "text",
+        "text": "**Reasoning:**\n\n- Clue 3: Cleo = seat 3.\n- Clue 2: Dev is at an end (seat 1 or 4).\n- Clue 1: Dev and Cleo not adjacent → Dev ≠ seat 4 (since seat 4 is adjacent to seat 3). So Dev = seat 1.\n- Clue 4: Ada is left of Cleo (seat 3), so Ada ∈ {1,2}. Since Dev = 1, Ada = 2.\n- Clue 7: Ada and Dev adjacent → seats 1 and 2, consistent.\n- Remaining seat 4 → Esme.\n- Check clue 6: Dev (1) and Esme (4) have seats 2 and 3 between them → exactly 2 seats, satisfied.\n- Check clue 5: Esme not in seat 3 → seat 4, fine.\n\nAll constraints satisfied.\n\nANSWER: Dev, Ada, Cleo, Esme"
+      }
+    ],
+    "container": null,
+    "stop_reason": "end_turn",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 289,
+      "cache_creation_input_tokens": 0,
+      "cache_read_input_tokens": 0,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 682,
+      "output_tokens_details": {
+        "thinking_tokens": 355
+      },
+      "service_tier": "standard",
+      "inference_geo": "global"
+    }
+  },
+  "incomplete": false
+}

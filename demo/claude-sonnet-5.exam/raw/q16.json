@@ -1,0 +1,55 @@
+{
+  "version": "exam-raw/1",
+  "id": 16,
+  "family": "order",
+  "provider": "anthropic",
+  "model": "claude-sonnet-5",
+  "request": {
+    "model": "claude-sonnet-5",
+    "max_tokens": 16000,
+    "system": "You are sitting a written exam. Answer each question on its own. Follow the question's answer-format instructions exactly.",
+    "messages": [
+      {
+        "role": "user",
+        "content": "Facts:\n\nThe Juniper file was registered on 13 April 2012.\nThe Dogwood file was registered on 23 January 2005.\nThe Cedar file was registered on 13 September 2021.\nThe Birch file was registered on 20 July 1930.\nThe Fir file was registered on 4 May 1974.\n\nList the 5 labels from the latest registration to the earliest.\n\nGive the labels only, in the requested order, separated by commas.\nReason as much as you like, then finish with one final line of the form\nANSWER: <your answer>"
+      }
+    ]
+  },
+  "response": {
+    "model": "claude-sonnet-5",
+    "id": "msg_011CeysgbE4fwLsLJENZi5tU",
+    "type": "message",
+    "role": "assistant",
+    "content": [
+      {
+        "type": "thinking",
+        "thinking": "",
+        "signature": "Eq8CCpABCBEYAipAIB5G+M8UKh1/YOERgLuzNCU3x6QrLpoUgCfiQP5vz7k3hQQtG5DSStqAaVMdNpgpbgFBvER5ONi3DcyRSxs9UDIPY2xhdWRlLXNvbm5ldC01OABCCHRoaW5raW5nWiQ1OTk1ZWU0Zi0xOGU5LTQ2NjMtOGFhZi1lNmY3N2EwMDc1YjeoAZ2AltUGEgxo3hgqbvbavchSPvoaDMWAF8N8osO1D+bVSCIwiwd1f6ZZziH/QW+edBFMFwsVL/tHBG2UFxIAKwXmki3T1l/4KFQHg4i7zYsVrzOfKkwgJCQtG/0yNPMH4XxUb1rnevCqOWL6YOaAzVLhvDf3rF+4/X556E2rzO6d0pxAMgUf1EWT7PR7nYu9VUrdwIlSHTczzY7dv+hay/SDGAE="
+      },
+      {
+        "type": "text",
+        "text": "ANSWER: Cedar, Juniper, Dogwood, Fir, Birch"
+      }
+    ],
+    "container": null,
+    "stop_reason": "end_turn",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 213,
+      "cache_creation_input_tokens": 0,
+      "cache_read_input_tokens": 0,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 70,
+      "output_tokens_details": {
+        "thinking_tokens": 40
+      },
+      "service_tier": "standard",
+      "inference_geo": "global"
+    }
+  },
+  "incomplete": false
+}

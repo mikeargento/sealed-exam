@@ -1,0 +1,57 @@
+{
+  "version": "exam-raw/1",
+  "id": 8,
+  "family": "strings",
+  "provider": "openai",
+  "model": "gpt-6-astra",
+  "request": {
+    "model": "gpt-6-astra",
+    "messages": [
+      {
+        "role": "system",
+        "content": "You are sitting a written exam. Answer each question on its own. Follow the question's answer-format instructions exactly."
+      },
+      {
+        "role": "user",
+        "content": "Start with the string (between the brackets, without them): [EP8DH1qm60nrml5WY]\n\nApply these steps in order:\n\n1. Rotate the string left by 13: move its first 13 characters to the end, in the same order.\n2. Sort the characters in ascending ASCII order (digits before uppercase letters before lowercase letters).\n3. Delete every 3rd character (the 3rd, 6th, 9th, … counting from 1).\n\nWhat is the resulting string?\n\nGive the final string exactly, and nothing else after ANSWER:.\nReason as much as you like, then finish with one final line of the form\nANSWER: <your answer>"
+      }
+    ]
+  },
+  "response": {
+    "id": "chatcmpl-ENjX5YWnGDHMynq5Mc0yJgadGUX8W",
+    "object": "chat.completion",
+    "created": 1789325279,
+    "model": "gpt-6-astra",
+    "choices": [
+      {
+        "index": 0,
+        "message": {
+          "role": "assistant",
+          "content": "ANSWER: 0168EHWYmmqr",
+          "refusal": null,
+          "annotations": []
+        },
+        "finish_reason": "stop"
+      }
+    ],
+    "usage": {
+      "prompt_tokens": 177,
+      "completion_tokens": 185,
+      "total_tokens": 362,
+      "prompt_tokens_details": {
+        "cached_tokens": 0,
+        "cache_write_tokens": 0,
+        "audio_tokens": 0
+      },
+      "completion_tokens_details": {
+        "reasoning_tokens": 166,
+        "audio_tokens": 0,
+        "accepted_prediction_tokens": 0,
+        "rejected_prediction_tokens": 0
+      }
+    },
+    "service_tier": "default",
+    "system_fingerprint": null
+  },
+  "incomplete": false
+}

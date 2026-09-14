@@ -1,0 +1,48 @@
+{
+  "version": "exam-raw/1",
+  "id": 6,
+  "family": "logic",
+  "provider": "anthropic",
+  "model": "claude-haiku-4-5",
+  "request": {
+    "model": "claude-haiku-4-5",
+    "max_tokens": 16000,
+    "system": "You are sitting a written exam. Answer each question on its own. Follow the question's answer-format instructions exactly.",
+    "messages": [
+      {
+        "role": "user",
+        "content": "5 people (Hugo, Cleo, Fitz, Esme, Gwen) sit in a row of 5 seats numbered 1 to 5 from left to right. All of the following are true:\n\n1. Hugo sits immediately to the left of Fitz.\n2. Cleo does not sit in seat 5.\n3. Esme and Fitz do not sit next to each other.\n4. Esme sits somewhere to the left of Cleo.\n5. Gwen sits in seat 3.\n6. Fitz does not sit in seat 3.\n\nWho sits where?\n\nGive the names in seat order from seat 1 to the last seat, separated by commas.\nReason as much as you like, then finish with one final line of the form\nANSWER: <your answer>"
+      }
+    ],
+    "temperature": 0
+  },
+  "response": {
+    "model": "claude-haiku-4-5-20251001",
+    "id": "msg_011CeysRpDkEd74nExVqphZy",
+    "type": "message",
+    "role": "assistant",
+    "content": [
+      {
+        "type": "text",
+        "text": "I need to find the seating arrangement for 5 people in seats 1-5.\n\nLet me work through the constraints:\n\n**From constraint 5:** Gwen sits in seat 3.\n- Seats: _, _, Gwen, _, _\n\n**From constraint 1:** Hugo sits immediately to the left of Fitz.\n- This means Hugo and Fitz are in consecutive seats: (Hugo, Fitz) could be in positions (1,2), (2,3), (3,4), or (4,5).\n\n**From constraint 6:** Fitz does not sit in seat 3.\n- Since Gwen is in seat 3, Fitz cannot be in seat 3 anyway.\n- But this also means if Hugo-Fitz are consecutive, they can't be in positions (2,3).\n- So Hugo-Fitz must be in positions (1,2), (3,4), or (4,5).\n\n**From constraint 3:** Esme and Fitz do not sit next to each other.\n- This will help narrow down where Fitz can be.\n\nLet me test the possible positions for Hugo-Fitz:\n\n**Case 1: Hugo in seat 1, Fitz in seat 2**\n- Seats: Hugo, Fitz, Gwen, _, _\n- Remaining people: Cleo, Esme for seats 4, 5\n- From constraint 3: Esme cannot be next to Fitz (seat 2), so Esme cannot be in seat 1 or 3. Esme must be in seat 4 or 5.\n- From constraint 4: Esme sits left of Cleo.\n- If Esme is in seat 4 and Cleo in seat 5: This satisfies constraint 4. Check constraint 2: Cleo not in seat 5 - VIOLATED.\n- If Esme is in seat 5: Then Cleo must be to the right of Esme, which is impossible.\n- Case 1 fails.\n\n**Case 2: Hugo in seat 3, Fitz in seat 4**\n- But Gwen is in seat 3, so Hugo cannot be in seat 3.\n- Case 2 is impossible.\n\n**Case 3: Hugo in seat 4, Fitz in seat 5**\n- Seats: _, _, Gwen, Hugo, Fitz\n- Remaining people: Cleo, Esme for seats 1, 2\n- From constraint 3: Esme cannot be next to Fitz (seat 5), so Esme cannot be in seat 4. Esme can be in seats 1 or 2.\n- From constraint 4: Esme sits left of Cleo.\n- If Esme in seat 1, Cleo in seat 2: Esme is left of Cleo ✓\n- From constraint 2: Cleo not in seat 5 ✓ (Cleo is in seat 2)\n- Check constraint 3: Esme (seat 1) and Fitz (seat 5) are not next to each other ✓\n- All constraints satisfied!\n\nLet me verify all constraints for: Esme, Cleo, Gwen, Hugo, Fitz\n\n1. Hugo (seat 4) immediately left of Fitz (seat 5) ✓\n2. Cleo (seat 2) not in seat 5 ✓\n3. Esme (seat 1) and Fitz (seat 5) not next to each other ✓\n4. Esme (seat 1) left of Cleo (seat 2) ✓\n5. Gwen in seat 3 ✓\n6. Fitz not in seat 3 (Fitz in seat 5) ✓\n\nANSWER: Esme, Cleo, Gwen, Hugo, Fitz"
+      }
+    ],
+    "container": null,
+    "stop_reason": "end_turn",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 224,
+      "cache_creation_input_tokens": 0,
+      "cache_read_input_tokens": 0,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 928,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    }
+  },
+  "incomplete": false
+}
