@@ -1,4 +1,4 @@
-# A paper that could not have existed before block N
+# Freshness is a claim. This is a check.
 
 Mike Argento, Argento Computing Inc. · bitgraph.ing · 13 September 2026
 
