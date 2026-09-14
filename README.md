@@ -283,7 +283,7 @@ npm install
 npm run build
 ```
 
-**From `BitGraph-Sealed-Exam-Demo.zip`** on the Releases page, nothing at all: the five packages
+**From `BitGraph-Sealed-Exam.zip`** on the Releases page, nothing at all: the five packages
 and their dependencies are vendored under `verifier/node_modules/`, so there is no install step
 and no network at any point. Take this one if you would rather run than read, or if you want to
 watch it work with the wifi off.

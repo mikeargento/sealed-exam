@@ -1,5 +1,5 @@
 #!/bin/bash
-# Assemble BitGraph-Sealed-Exam-Demo — the release zip — from THIS repository.
+# Assemble BitGraph-Sealed-Exam — the release zip — from THIS repository.
 #
 #   scripts/build-package.sh [out-dir]        default: ~/Desktop/sealed exam outreach
 #
@@ -18,7 +18,7 @@
 set -euo pipefail
 root="$(cd "$(dirname "$0")/.." && pwd)"
 out="${1:-$HOME/Desktop/sealed exam outreach}"
-pkg="$out/BitGraph-Sealed-Exam-Demo"
+pkg="$out/BitGraph-Sealed-Exam"
 say() { printf '\033[2m%s\033[0m\n' "$*"; }
 
 say "building the five packages"
@@ -61,8 +61,8 @@ say "the documents"
 for f in README.md SPEC.md LICENSE.txt THIRD-PARTY-NOTICES.txt; do cp "$root/$f" "$pkg/$f"; done
 
 say "the zip"
-( cd "$out" && rm -f BitGraph-Sealed-Exam-Demo.zip && zip -qr BitGraph-Sealed-Exam-Demo.zip BitGraph-Sealed-Exam-Demo -x '*.DS_Store' )
-du -h "$out/BitGraph-Sealed-Exam-Demo.zip" | cut -f1
+( cd "$out" && rm -f BitGraph-Sealed-Exam.zip && zip -qr BitGraph-Sealed-Exam.zip BitGraph-Sealed-Exam -x '*.DS_Store' )
+du -h "$out/BitGraph-Sealed-Exam.zip" | cut -f1
 
 say "smoke: the table, offline, from the zip's own tree"
 ( cd "$pkg" && node verifier/demo.mjs | tail -2 )
