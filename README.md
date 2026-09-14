@@ -1,6 +1,6 @@
 # Freshness is a claim. This is a check.
 
-Mike Argento, Argento Computing Inc. · bitgraph.ing · 13 September 2026
+Mike Argento, Argento Computing Inc. · bitgraph.ing · github.com/mikeargento/sealed-exam · 14 September 2026
 
 **Proves:** the exact question instances were derived from a commitment that did not exist before
 the floor block, so they were not in any training set frozen before that block; the paper's digest
@@ -272,12 +272,13 @@ that runs anything at all.
 
 Node 20 or later, and then the same three commands whichever way you got this.
 
-**From a clone of this repository**, one install, which is the only moment anything touches the
-network. The five exam packages are the workspaces in `packages/`; `npm install` fetches the
-published BitGraph verifier, auditor and player they build on, and `npm run build` compiles the
-five with `tsc`.
+**From a clone**, one install, which is the only moment anything touches the network. The five exam
+packages are the workspaces in `packages/`; `npm install` fetches the published BitGraph verifier,
+auditor and player they build on, and `npm run build` compiles the five with `tsc`.
 
 ```bash
+git clone https://github.com/mikeargento/sealed-exam
+cd sealed-exam
 npm install
 npm run build
 ```
