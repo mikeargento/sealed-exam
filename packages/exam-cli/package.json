@@ -1,6 +1,6 @@
 {
   "name": "@mikeargento/exam-cli",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "exam: open a position, derive and seal a paper, ask a model, seal the answers, grade, export, verify.",
   "license": "SEE LICENSE IN LICENSE",
   "type": "module",

@@ -1,6 +1,6 @@
 {
   "name": "@mikeargento/exam-ask",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Asks a model the sealed exam's questions through its own API and writes the answer sheet.",
   "license": "SEE LICENSE IN LICENSE",
   "type": "module",
