@@ -14,7 +14,7 @@ and sits at a later position on the same chain; where a unit's `base-ceiling/` i
 existed by that Base block.
 
 **Does not prove:** that the template families are unfamiliar to the model; that the model worked
-alone, without tools, or quickly.
+alone, without tools, or quickly; that the answers came from the model the sheet names.
 
 That paragraph is the whole claim. It is printed by the verifier, it is the last thing on every
 report page, and it is what this package asks you to attack. Everything else here is running code
@@ -75,6 +75,7 @@ in this package, in a process where `fetch` and sockets throw.
   Every value above was recomputed from the files, with fetch and sockets disabled in this process.
   paper and answers: each BitGraph, by number. floor: not before this Base block (the time in its header).
   ceiling: existed by this Base block (the time in its header). All times UTC.
+  -: not in the folder, or in the folder and failing its check; exam verify on the folder lists which.
 ```
 
 Three words, kept apart the way the Player's `check` keeps its three values apart. **ACCEPT**:
@@ -84,7 +85,7 @@ things: the paper, the commitment, the answers, or the order. **NO-EVIDENCE**: s
 claim needs is not in hand. Absence is never a verdict against the run.
 
 All six sittings are one chain, `bitgraph:main`, one enclave (v10), one epoch: the papers were
-sealed between 02:47:43 and 02:49:43 UTC on 7 October 2026. Each BitGraph is named by its position
+sealed between 02:47:43 and 02:49:42 UTC on 7 October 2026. Each BitGraph is named by its position
 on that chain, as its proof page names it, and the paper's BitGraph spent the position opened just
 before it. The block numbers are Base mainnet, which stamps block N at `1686789347 + 2 × N` seconds:
 block 52275983, the floor of the Sonnet 5.5 paper, is 7 October 2026 02:48:33 UTC
@@ -95,17 +96,18 @@ sittings, on an Ethereum floor, are in `archive/2026-09-sittings/` and verify as
 GPT-6 Astra and GPT-6 Luna scored 20/20, Sonnet 5.5 19, Opus 5.5 17, Haiku 4.5 14, Fable 5.1 8.
 The bank is small and the families are easy for a frontier model on purpose: this demonstration
 is about freshness, not difficulty. Haiku 4.5 is the only model that answered anything wrong: all
-four nine-digit multiplications, one string pipeline and one function specification. Every other
-point lost was a refusal. Opus 5.5, Sonnet 5.5 and Fable 5.1 got right every question they
-answered and **refused the rest outright** (`stop_reason: refusal`, category `cyber`, zero output
-tokens): Sonnet one function specification; Opus three string-transformation puzzles; Fable twelve,
-every string puzzle, every function specification and every multiplication. The refusals are in
+four multi-step arithmetic questions, one string pipeline and one function specification. Every
+other point lost was a refusal. Opus 5.5, Sonnet 5.5 and Fable 5.1 got right every question they
+answered and **refused the rest** (`stop_reason: refusal`, category `cyber`, no answer text; Fable
+spent some thinking tokens on two of them before refusing): Sonnet one function specification; Opus
+three string-transformation puzzles; Fable twelve, every string puzzle, every function specification
+and every arithmetic question. The refusals are in
 `raw/` exactly as the API returned them, count as wrong, and the verdict carries a note. No fallback
 model is configured, on purpose: an answer from a different model attributed to the one asked would
 be the wrong record.
 
-The seven fixtures are what the verifier is for. Each was made from real positions, not by
-editing signatures into shape:
+The seven fixtures are what the verifier is for. Each was made from real positions; the only one
+that edits a signed file, answers-before-paper, says so:
 
 - **honest**: an untouched sitting (Haiku 4.5, 14/20).
 - **edited-paper**: a slot was opened, the paper derived, one prompt altered, and the altered paper
@@ -134,9 +136,9 @@ them are in the files and are recomputed by the verifier.
 
 1. **Open.** `POST /api/fuse/allocate` on bitgraph.ing returns a signed position record: position
    96 on `bitgraph:main`, epoch `8To+KaIm…`, a 32-byte nonce from the enclave's hardware entropy,
-   the enclave's signature, and the Base block the enclave fixed for that position as it opened
-   it: block 52275983. The proof that fills the position signs that block as `commit.slotFloor`.
-   The floor is fixed here, before any question exists.
+   the enclave's signature. Beside it, unsigned there, comes the Base block the enclave fixed for
+   that position as it opened it: block 52275983. The proof that fills the position signs that
+   block as `commit.slotFloor`. The floor is fixed here, before any question exists.
 2. **Commitment.** `SHA-256("bitgraph-fuse/1" || 0x00 || SHA-256(canonical position record) || nonce)`
    = `PoL3tDFjUYVyNdJcYJnc6Irazg1MLSQIK1dNiDjAjyQ=`. Recomputable by anyone from the position record
    inside the proof; the nonce is public once the proof is.
@@ -156,7 +158,7 @@ them are in the files and are recomputed by the verifier.
    `yRzQ7AAKXPoFWb8fcYTI5sGasU809pNbt90LE36Hfyk=`. Fused under placement `trailer/1`: the paper
    bytes plus a 48-byte trailer (`BGFUSE01`, eight zero bytes, the commitment). The fused bytes,
    SHA-256 `ITjVZgVqhLIDZv6LYD7aXVV4Df22rdFNhH2p/z2VMp4=`, are committed under position 96 and land
-   at position 97: BitGraph #97, recorded at 02:48:36 UTC by its attestation, and carried by a Base
+   at position 97: BitGraph #97, recorded 02:48:36 UTC by its attestation, and carried by a Base
    transaction included in block 52275987 (02:48:41 UTC), its ceiling. The proof's signed
    attribution names the placement and the origin digest, so a holder of `paper.json` alone can
    rebuild the committed bytes exactly.
@@ -165,14 +167,15 @@ them are in the files and are recomputed by the verifier.
    The answer sheet lists, per question, the extracted answer and the SHA-256 of that raw file.
 7. **Answers.** The sheet, canonical JSON with `paperDigestB64 = ITjV…` (the fused paper's digest),
    is recorded as an ordinary BitGraph: BitGraph #99, floor Base block 52275994 (02:48:55 UTC),
-   recorded at 02:48:57, ceiling Base block 52275996 (02:48:59 UTC). The binding to the paper is the
+   recorded 02:48:57 UTC, ceiling Base block 52275996 (02:48:59 UTC). The binding to the paper is the
    digest inside the committed sheet; the order is the chain's.
 8. **Export, verify, report.** The folder is written in the shape the bitgraph.ing drop zone
    reads (drop it there and both BitGraphs show). Each BitGraph's Base ceiling is fetched into
    `base-ceiling/ceiling.json` and kept only if it checks against the proof. Then the folder is
    verified offline, and `report.html` is written beside the files.
 
-One of the twenty, question 1 of that paper, as the model saw it, and what came back:
+One of the twenty, question 1 of that paper, as the model saw it (less the answer-format lines every
+question ends with), and what came back:
 
 ```
 Start with the string (between the brackets, without them): [lpgavokSCisDKFXjm9G]
@@ -209,7 +212,7 @@ drawn from the seed; nobody wrote this puzzle, and it did not exist before BitGr
    `base-floor/floor-header.json`: it keccak-hashes to the signed block hash, carries the signed
    number and the signed time, and that time is Base mainnet's schedule for the block; the time is
    the floor unless it is later than the attestation document, in which case it is withheld and
-   said so. For an Ethereum floor (`commit.slotAnchor`, papers made before 7 October 2026) the
+   said so. For an Ethereum floor (`commit.slotAnchor`, papers made before enclave v10, 7 October 2026 01:47 UTC) the
    witness header in `ethereum-anchors/` keccak-hashes to the signed block hash, and its timestamp
    is the floor. Where `base-ceiling/ceiling.json` is in the folder, the Base ceiling: a
    transaction from BitGraph's published writer, included in a Base block by the inclusion proof
@@ -245,18 +248,18 @@ hardware random generator, the position record is signed inside the enclave, and
 commitment is derived from that signed record, so no one outside could have computed it earlier.
 It fixes the floor at that same moment: the newest Base block it has been given, checked inside the
 enclave against the header it hashed itself, is kept with the position and signed into the proof
-that fills it as `commit.slotFloor` (chain, number, hash, time). The issuer did not choose it, the
-packager cannot change it without breaking the signature, and the verifier does not choose it
-either; it reads the block from the proof and checks one header: keccak-256 to the signed hash,
+that fills it as `commit.slotFloor` (chain, number, hash, time). Whoever feeds the enclave headers
+could hold back newer blocks, which only makes the floor earlier, never later; the packager cannot
+change it without breaking the signature, and the verifier does not choose it either; it reads the block from the proof and checks one header: keccak-256 to the signed hash,
 the signed number, the signed time, and Base mainnet's schedule, which stamps block N at
 `1686789347 + 2 × N`. And it refuses a position with no floor: without a Base header the
 boundary declines to open one.
 
-Papers made before 7 October 2026 (enclave v7 to v9) have an Ethereum floor instead: every slot got
+Papers made before enclave v10 (7 October 2026, 01:47 UTC; enclave v7 to v9) have an Ethereum floor instead: every slot got
 a copy of the chain's latest authenticated Ethereum anchor, carried signed as `commit.slotAnchor`,
 with the anchor proofs and their header witnesses in `ethereum-anchors/`. Those folders verify as
-they always have. New positions have no Ethereum anchors at all, and no anchor after them: order
-after the paper is the chain of proof hashes.
+they always have. New positions have no Ethereum anchors at all: order after the paper is the chain
+of proof hashes, and the time after it is the Base ceiling.
 
 The ceiling comes after, from outside the enclave. Seconds after a BitGraph is made, BitGraph's
 ceiling writer (`0xf3972408D853c975F86351C311f4310220bbF2a3` on Base) posts a Merkle root over the
@@ -285,23 +288,28 @@ paper that is a function of the commitment.
   the proof hashes to the signed block hash and keeps Base mainnet's schedule, and that the ceiling
   transaction is included in the block whose header the ceiling file carries. That those blocks are
   canonical is Base's claim, resting on its sequencer until its batch data is on Ethereum.
-- **Ethereum**, only for papers made before 7 October 2026, whose floors are Ethereum anchors: the
+- **Ethereum**, only for papers made before enclave v10, whose floors are Ethereum anchors (and for the bank's
+  own recording, made in September): the
   verifier checks the witness header hashes to the enclave-signed block hash; that the block is
   canonical is Ethereum's claim.
 - **The vendored verification code**, all MIT, all readable: `@mikeargento/bitgraph-verify`,
   `@mikeargento/bitgraph-audit`, `@mikeargento/bitgraph-player` (for the list of published
   measurements), `@mikeargento/exam-verify`, and the noble cryptography underneath.
 
-Not trusted: bitgraph.ing, its ledger, the packager, the model provider, and me. The verifier asks
-none of them anything; `verifier/exam.mjs` replaces `fetch` and every socket constructor with a
-throw before it loads, so a verifier that tried would fail loudly rather than quietly.
+Not trusted for the paper, its floor, the order or the score: bitgraph.ing, its ledger, the packager, the
+model provider, and me. Who answered is the packager's word (see Does not prove). The verifier asks
+none of them anything; `verifier/exam.mjs` replaces `fetch`, socket connects and HTTP requests with
+a throw before it loads, so a verifier that tried would fail loudly rather than quietly. (The one
+child process the grader starts, for function specifications, is outside that fence; see below.)
 
 ---
 
 ## Does not prove
 
-- The families (seating, big arithmetic, string pipelines, JS specs, date order) are unfamiliar.
+- The families (seating, big arithmetic, string pipelines, JS specs, ordering) are unfamiliar.
 - The model had no tools, no help, or a time bound.
+- The answers came from the model the sheet names. `raw/` holds the requests and replies as the
+  packager recorded them; nothing in the folder ties them to the provider.
 - General capability. The bank is easy on purpose.
 
 ---
@@ -310,7 +318,7 @@ throw before it loads, so a verifier that tried would fail loudly rather than qu
 
 You are being asked to run a stranger's code. Here is what it does, and how to check that rather than take it.
 
-**It reaches nothing.** Both entry points open the same way: `verifier/exam.mjs` lines 25 to 30 and `verifier/demo.mjs`
+**The verifier reaches nothing.** Both entry points open the same way: `verifier/exam.mjs` lines 25 to 30 and `verifier/demo.mjs`
 lines 18 to 23 replace `fetch`, `net.Socket.prototype.connect`, `tls.connect`, `http.request` and `https.request` with
 functions that throw, so a verifier that reached for the network would fail loudly rather than quietly. The shortest
 test is to turn your network off and then run the commands below: every number still prints, because none of it was
@@ -328,7 +336,8 @@ that runs anything at all.
 
 ## Run it
 
-Node 20 or later, and then the same three commands whichever way you got this.
+Node 22.13 or later (the grader uses `node --permission`), and then the same three commands
+whichever way you got this.
 
 **From a clone**, one install, which is the only moment anything touches the network. The five exam
 packages are the workspaces in `packages/`; `npm install` fetches the published BitGraph verifier,
@@ -402,15 +411,15 @@ demo/<model>.exam/                the six sittings; each holds:
   answers/                          answers.json, proof.json, base-floor/, base-ceiling/
   bank/                             bank.json, generator.tar, proof.json (the bank's own recording, position 8546), ethereum-anchors/
   raw/q01.json … q20.json           every request and reply, verbatim
-  README.txt, report.html, verdict.json
+  README.txt (report.html and verdict.json are written beside it when you verify)
 demo/<model>.console.txt          what `exam run` printed
-archive/2026-09-sittings/         the September 2026 sittings and fixtures, on the Ethereum floor; they verify as they did
-archive/2026-09-fixtures/
-packages/exam-bank/               the five packages, in source:
-packages/exam-core/                 bank and generators; seed, DRBG, derivation, the two positions;
-packages/exam-ask/                  asking a model; offline verification and grading; the CLI.
-packages/exam-verify/               exam-cli/fixtures/ holds the seven fixtures.
-packages/exam-cli/
+archive/2026-09-sittings/         the September 2026 sittings, on the Ethereum floor; they verify as they did
+archive/2026-09-fixtures/         the September 2026 fixtures
+packages/exam-bank/               the bank and its generators
+packages/exam-core/               the seed, the DRBG, the derivation, the two positions
+packages/exam-ask/                asking a model
+packages/exam-verify/             offline verification and grading
+packages/exam-cli/                the CLI; fixtures/ holds the seven fixtures
 verifier/exam.mjs                 `exam verify` and `exam selftest` with the network nailed shut
 verifier/demo.mjs                 the table
 SPEC.md                           the derivation, with vectors

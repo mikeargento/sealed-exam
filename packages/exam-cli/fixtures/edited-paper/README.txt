@@ -8,7 +8,7 @@ Answers: BitGraph #119, https://bitgraph.ing/proof/Prbag9S4RCqVPLJncdSl_EfDQndPZ
 
 Proves: the exact question instances were derived from the position commitment, a value that did not exist until the enclave opened the paper's position, so the questions did not exist before that position; the position opened after its floor block, so they were not in any training set frozen before that block; the paper's digest spent that position; the answer sheet names the paper and sits at a later position on the same chain; where a unit's base-ceiling/ is in the folder, it existed by that Base block.
 
-Does not prove: that the template families are unfamiliar to the model; that the model worked alone, without tools, or quickly.
+Does not prove: that the template families are unfamiliar to the model; that the model worked alone, without tools, or quickly; that the answers came from the model the sheet names.
 
 What is here:
   bank/      bank.json (the public item bank, recorded once as a BitGraph: proof.json), generator.tar (its generator source)

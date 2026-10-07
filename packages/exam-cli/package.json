@@ -22,7 +22,7 @@
     "selftest": "tsc && node dist/cli.js selftest"
   },
   "engines": {
-    "node": ">=20"
+    "node": ">=22.13"
   },
   "dependencies": {
     "@mikeargento/bitgraph-verify": "^1.17.0",

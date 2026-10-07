@@ -6,7 +6,7 @@ The derivation, with vectors, is `SPEC.md` in `@mikeargento/exam-core`. Used by 
 
 ## src/ is frozen
 
-`src/**` — the thirteen files listed by `tar -tf <sitting>/bank/generator.tar` — is archived
+`src/**` (the thirteen files listed by `tar -tf <sitting>/bank/generator.tar`) is archived
 verbatim into every recorded sitting and hashed into the bank digest, which the paper names and the
 verifier recomputes. **Editing any byte of `src/` invalidates every sitting ever recorded**, including
 the six in this repository: the verifier stops being able to re-derive their papers and reports

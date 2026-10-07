@@ -26,7 +26,7 @@ export const CLAIM = {
   proves:
     "Proves: the exact question instances were derived from the position commitment, a value that did not exist until the enclave opened the paper's position, so the questions did not exist before that position; the position opened after its floor block, so they were not in any training set frozen before that block; the paper's digest spent that position; the answer sheet names the paper and sits at a later position on the same chain; where a unit's base-ceiling/ is in the folder, it existed by that Base block.",
   doesNotProve:
-    "Does not prove: that the template families are unfamiliar to the model; that the model worked alone, without tools, or quickly.",
+    "Does not prove: that the template families are unfamiliar to the model; that the model worked alone, without tools, or quickly; that the answers came from the model the sheet names.",
   footer: "Verified offline from the files in this folder. Nothing was fetched.",
 } as const;
 

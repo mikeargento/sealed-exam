@@ -91,4 +91,5 @@ console.log("");
 console.log("  Every value above was recomputed from the files, with fetch and sockets disabled in this process.");
 console.log("  paper and answers: each BitGraph, by number. floor: not before this Base block (the time in its header).");
 console.log("  ceiling: existed by this Base block (the time in its header). All times UTC.");
+console.log("  -: not in the folder, or in the folder and failing its check; exam verify on the folder lists which.");
 console.log("");
