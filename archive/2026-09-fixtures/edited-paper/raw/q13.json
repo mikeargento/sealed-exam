@@ -1,0 +1,48 @@
+{
+  "version": "exam-raw/1",
+  "id": 13,
+  "family": "spec",
+  "provider": "anthropic",
+  "model": "claude-haiku-4-5",
+  "request": {
+    "model": "claude-haiku-4-5",
+    "max_tokens": 16000,
+    "system": "You are sitting a written exam. Answer each question on its own. Follow the question's answer-format instructions exactly.",
+    "messages": [
+      {
+        "role": "user",
+        "content": "Write a JavaScript function f(xs), where xs is an array of integers, that returns an integer computed as follows:\n\n1. Keep only the even elements (0 counts as even; negatives count by their value).\n2. Replace each kept element with its absolute value.\n3. Return how many resulting elements there are.\n\nReply with only the function, in a single ```js code block. Name it f, take one parameter xs, use no libraries, and write no import, require or export statements."
+      }
+    ],
+    "temperature": 0
+  },
+  "response": {
+    "model": "claude-haiku-4-5-20251001",
+    "id": "msg_011CeysdQ4XGxwLe2s6nPPrz",
+    "type": "message",
+    "role": "assistant",
+    "content": [
+      {
+        "type": "text",
+        "text": "```js\nfunction f(xs) {\n  return xs.filter(x => x % 2 === 0).map(x => Math.abs(x)).length;\n}\n```"
+      }
+    ],
+    "container": null,
+    "stop_reason": "end_turn",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 138,
+      "cache_creation_input_tokens": 0,
+      "cache_read_input_tokens": 0,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 46,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    }
+  },
+  "incomplete": false
+}

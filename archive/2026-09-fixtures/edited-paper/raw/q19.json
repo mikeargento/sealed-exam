@@ -1,0 +1,48 @@
+{
+  "version": "exam-raw/1",
+  "id": 19,
+  "family": "arith",
+  "provider": "anthropic",
+  "model": "claude-haiku-4-5",
+  "request": {
+    "model": "claude-haiku-4-5",
+    "max_tokens": 16000,
+    "system": "You are sitting a written exam. Answer each question on its own. Follow the question's answer-format instructions exactly.",
+    "messages": [
+      {
+        "role": "user",
+        "content": "Compute exactly:\n\n77551448 * 81958180 + 477685 * 495225215 - 31445592\n\nGive the exact integer, with no thousands separators.\nReason as much as you like, then finish with one final line of the form\nANSWER: <your answer>"
+      }
+    ],
+    "temperature": 0
+  },
+  "response": {
+    "model": "claude-haiku-4-5-20251001",
+    "id": "msg_011Ceysdkv9by1FSiAtKr5YE",
+    "type": "message",
+    "role": "assistant",
+    "content": [
+      {
+        "type": "text",
+        "text": "I need to compute: 77551448 * 81958180 + 477685 * 495225215 - 31445592\n\nLet me break this into parts and calculate carefully.\n\n**Part 1: 77551448 * 81958180**\n\nLet me use the standard multiplication approach:\n77551448 * 81958180\n\nI'll break this down:\n77551448 * 80000000 = 6204115840000000\n77551448 * 1958180 = 151,869,697,574,240\n\nLet me recalculate more carefully:\n77551448 * 81958180\n= 77551448 * (80000000 + 1958180)\n= 77551448 * 80000000 + 77551448 * 1958180\n= 6204115840000000 + 151,869,697,574,240\n\nFor 77551448 * 1958180:\n77551448 * 2000000 = 155,102,896,000,000\n77551448 * (-41820) = -3,243,198,425,760\nSo: 77551448 * 1958180 = 155,102,896,000,000 - 3,243,198,425,760 = 151,859,697,574,240\n\nPart 1 total: 6204115840000000 + 151,859,697,574,240 = 6,355,975,537,574,240\n\n**Part 2: 477685 * 495225215**\n\n477685 * 495225215\n= 477685 * (500000000 - 4774785)\n= 477685 * 500000000 - 477685 * 4774785\n= 238,842,500,000,000 - 2,281,969,589,225\n\nLet me verify the second part:\n477685 * 4774785 = 2,281,969,589,225\n\nPart 2 total: 238,842,500,000,000 - 2,281,969,589,225 = 236,560,530,410,775\n\n**Part 3: Combine all parts**\n\n6,355,975,537,574,240 + 236,560,530,410,775 - 31,445,592\n\n= 6,592,536,067,985,015 - 31,445,592\n= 6,592,536,036,539,423\n\nLet me verify my calculations once more by checking the magnitudes:\n- 77551448 * 81958180 ≈ 7.76 × 10^7 * 8.20 × 10^7 ≈ 6.36 × 10^15 ✓\n- 477685 * 495225215 ≈ 4.78 × 10^5 * 4.95 × 10^8 ≈ 2.37 × 10^14 ✓\n- Sum ≈ 6.59 × 10^15 ✓\n\nANSWER: 6592536036539423"
+      }
+    ],
+    "container": null,
+    "stop_reason": "end_turn",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 100,
+      "cache_creation_input_tokens": 0,
+      "cache_read_input_tokens": 0,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 758,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    }
+  },
+  "incomplete": false
+}

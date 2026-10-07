@@ -1,0 +1,48 @@
+{
+  "version": "exam-raw/1",
+  "id": 14,
+  "family": "arith",
+  "provider": "anthropic",
+  "model": "claude-haiku-4-5",
+  "request": {
+    "model": "claude-haiku-4-5",
+    "max_tokens": 16000,
+    "system": "You are sitting a written exam. Answer each question on its own. Follow the question's answer-format instructions exactly.",
+    "messages": [
+      {
+        "role": "user",
+        "content": "Compute exactly:\n\n527509 * 158604 + 407263 * 152909 - 9846975\n\nGive the exact integer, with no thousands separators.\nReason as much as you like, then finish with one final line of the form\nANSWER: <your answer>"
+      }
+    ],
+    "temperature": 0
+  },
+  "response": {
+    "model": "claude-haiku-4-5-20251001",
+    "id": "msg_011CeysdThYYvHBv5crw6GcP",
+    "type": "message",
+    "role": "assistant",
+    "content": [
+      {
+        "type": "text",
+        "text": "I need to compute: 527509 * 158604 + 407263 * 152909 - 9846975\n\nLet me break this into parts and calculate carefully.\n\n**Part 1: 527509 * 158604**\n\nLet me use the standard multiplication approach:\n527509 * 158604\n\nI'll break this down:\n527509 * 158604 = 527509 * (160000 - 1396)\n= 527509 * 160000 - 527509 * 1396\n\n527509 * 160000 = 84401440000\n\n527509 * 1396:\n527509 * 1000 = 527509000\n527509 * 396 = 527509 * 400 - 527509 * 4\n= 211003600 - 2110036\n= 208893564\n\nSo 527509 * 1396 = 527509000 + 208893564 = 736402564\n\nTherefore: 527509 * 158604 = 84401440000 - 736402564 = 83665037436\n\n**Part 2: 407263 * 152909**\n\n407263 * 152909 = 407263 * (153000 - 91)\n= 407263 * 153000 - 407263 * 91\n\n407263 * 153000 = 407263 * 153 * 1000\n407263 * 153 = 407263 * 150 + 407263 * 3\n= 61089450 + 1221789\n= 62311239\n\nSo 407263 * 153000 = 62311239000\n\n407263 * 91 = 407263 * 90 + 407263 * 1\n= 36653670 + 407263\n= 37060933\n\nTherefore: 407263 * 152909 = 62311239000 - 37060933 = 62274178067\n\n**Part 3: Combine all parts**\n\n83665037436 + 62274178067 - 9846975\n\n= 145939215503 - 9846975\n\n= 145929368528\n\nANSWER: 145929368528"
+      }
+    ],
+    "container": null,
+    "stop_reason": "end_turn",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 97,
+      "cache_creation_input_tokens": 0,
+      "cache_read_input_tokens": 0,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 536,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    }
+  },
+  "incomplete": false
+}

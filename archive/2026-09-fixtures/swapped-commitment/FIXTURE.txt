@@ -1,0 +1,1 @@
+swapped-commitment: the paper of one position presented with the proof of another (both real); the trailer carries the wrong slot's commitment. Expected: REJECT (commitment)

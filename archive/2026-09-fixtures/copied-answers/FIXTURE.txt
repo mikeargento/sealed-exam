@@ -1,0 +1,1 @@
+copied-answers: the answer sheet of run A presented with the paper of run B (both real, both honest on their own). Expected: REJECT (answers)

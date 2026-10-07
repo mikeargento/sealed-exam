@@ -23,7 +23,8 @@ import { floorStep, floorPhrase } from "../index.js";
 
 const PKG = fileURLToPath(new URL("../../", import.meta.url));
 const FIX = join(PKG, "test-fixtures", "base-floor");
-const HONEST = join(PKG, "..", "exam-cli", "fixtures", "honest");
+/** An Ethereum-floored real folder (enclave v9): the September 2026 honest fixture, archived when the fixtures moved to the Base floor. */
+const HONEST = join(PKG, "..", "..", "archive", "2026-09-fixtures", "honest");
 
 const BLOCK = 52271417;
 const TS = 1791332181; // 1686789347 + 2 * 52271417

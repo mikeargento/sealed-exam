@@ -470,6 +470,7 @@ export async function fetchCeiling(t: Transport, proof: BitGraphProof): Promise<
   if (r.status === 404) return { sidecar: null, note: "the ceiling has not been written yet" };
   if (r.status !== 200 || r.json === null || typeof r.json !== "object") return { sidecar: null, note: `the site answered ${r.status}` };
   const sidecar = r.json as CeilingSidecar;
+  if (sidecar.status === "pending" || sidecar.anchor === null) return { sidecar: null, note: "the ceiling has not been written yet" };
   const checked = await verifyCeiling(proof, sidecar, { writerAddress: BITGRAPH_CEILING_WRITER, chainId: BASE_MAINNET_CHAIN_ID, proofAlreadyVerified: true });
   if (!checked.ok) return { sidecar: null, note: `the site's ceiling does not check: ${checked.reason ?? "invalid"}` };
   return { sidecar, note: null };

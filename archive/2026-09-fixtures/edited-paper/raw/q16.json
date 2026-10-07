@@ -1,0 +1,48 @@
+{
+  "version": "exam-raw/1",
+  "id": 16,
+  "family": "strings",
+  "provider": "anthropic",
+  "model": "claude-haiku-4-5",
+  "request": {
+    "model": "claude-haiku-4-5",
+    "max_tokens": 16000,
+    "system": "You are sitting a written exam. Answer each question on its own. Follow the question's answer-format instructions exactly.",
+    "messages": [
+      {
+        "role": "user",
+        "content": "Start with the string (between the brackets, without them): [Zdj9VKcrxWfa]\n\nApply these steps in order:\n\n1. Rotate the string left by 10: move its first 10 characters to the end, in the same order.\n2. Shift every letter forward by 17 places in the alphabet, wrapping from z back to a (and Z back to A); keep each letter's case; leave digits unchanged.\n3. Keep only the characters at odd positions (the 1st, 3rd, 5th, …, counting from 1).\n4. Delete every 3rd character (the 3rd, 6th, 9th, … counting from 1).\n\nWhat is the resulting string?\n\nGive the final string exactly, and nothing else after ANSWER:.\nReason as much as you like, then finish with one final line of the form\nANSWER: <your answer>"
+      }
+    ],
+    "temperature": 0
+  },
+  "response": {
+    "model": "claude-haiku-4-5-20251001",
+    "id": "msg_011CeysddvTdhvMnYF5q6pmX",
+    "type": "message",
+    "role": "assistant",
+    "content": [
+      {
+        "type": "text",
+        "text": "I'll work through this step-by-step.\n\n**Starting string:** Zdj9VKcrxWfa\n\n**Step 1: Rotate left by 10**\nMove the first 10 characters to the end.\n- First 10 characters: Zdj9VKcrxW\n- Remaining: fa\n- Result: faZdj9VKcrxW\n\n**Step 2: Shift every letter forward by 17 places**\n- f → w (f is 6, +17 = 23 = w)\n- a → r (a is 1, +17 = 18 = r)\n- Z → Q (Z is 26, +17 = 43, 43-26 = 17 = Q)\n- d → u (d is 4, +17 = 21 = u)\n- j → a (j is 10, +17 = 27, 27-26 = 1 = a)\n- 9 → 9 (digit, unchanged)\n- V → M (V is 22, +17 = 39, 39-26 = 13 = M)\n- K → B (K is 11, +17 = 28, 28-26 = 2 = B)\n- c → t (c is 3, +17 = 20 = t)\n- r → i (r is 18, +17 = 35, 35-26 = 9 = i)\n- x → o (x is 24, +17 = 41, 41-26 = 15 = o)\n- W → N (W is 23, +17 = 40, 40-26 = 14 = N)\n\nResult: wrQuа9MBtioN\n\n**Step 3: Keep only characters at odd positions (1st, 3rd, 5th, ...)**\nString: wrQuа9MBtioN (positions 1-12)\n- Position 1: w\n- Position 3: Q\n- Position 5: а\n- Position 7: M\n- Position 9: t\n- Position 11: o\n\nResult: wQаMto\n\n**Step 4: Delete every 3rd character (3rd, 6th, 9th, ...)**\nString: wQаMto (positions 1-6)\n- Position 1: w (keep)\n- Position 2: Q (keep)\n- Position 3: а (delete)\n- Position 4: M (keep)\n- Position 5: t (keep)\n- Position 6: o (delete)\n\nResult: wQMt\n\nANSWER: wQMt"
+      }
+    ],
+    "container": null,
+    "stop_reason": "end_turn",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 238,
+      "cache_creation_input_tokens": 0,
+      "cache_read_input_tokens": 0,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 639,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    }
+  },
+  "incomplete": false
+}

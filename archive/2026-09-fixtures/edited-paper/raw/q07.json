@@ -1,0 +1,48 @@
+{
+  "version": "exam-raw/1",
+  "id": 7,
+  "family": "strings",
+  "provider": "anthropic",
+  "model": "claude-haiku-4-5",
+  "request": {
+    "model": "claude-haiku-4-5",
+    "max_tokens": 16000,
+    "system": "You are sitting a written exam. Answer each question on its own. Follow the question's answer-format instructions exactly.",
+    "messages": [
+      {
+        "role": "user",
+        "content": "Start with the string (between the brackets, without them): [7CpL3vo2MIhRlL]\n\nApply these steps in order:\n\n1. Sort the characters in ascending ASCII order (digits before uppercase letters before lowercase letters).\n2. Swap the case of every letter (lowercase becomes uppercase and uppercase becomes lowercase); leave digits unchanged.\n3. Keep only the characters at odd positions (the 1st, 3rd, 5th, …, counting from 1).\n4. Reverse the string.\n\nWhat is the resulting string?\n\nGive the final string exactly, and nothing else after ANSWER:.\nReason as much as you like, then finish with one final line of the form\nANSWER: <your answer>"
+      }
+    ],
+    "temperature": 0
+  },
+  "response": {
+    "model": "claude-haiku-4-5-20251001",
+    "id": "msg_011CeysdBDMJMNKWFr7Q2bzK",
+    "type": "message",
+    "role": "assistant",
+    "content": [
+      {
+        "type": "text",
+        "text": "I'll work through this step-by-step.\n\n**Starting string:** 7CpL3vo2MIhRlL\n\n**Step 1: Sort characters in ascending ASCII order**\n- Digits first: 2, 3, 7\n- Uppercase letters: C, I, L, L, M, R\n- Lowercase letters: h, l, o, p, v\n\nSorted: 237CILLMRhllopv\n\n**Step 2: Swap the case of every letter (digits unchanged)**\n- 2 → 2\n- 3 → 3\n- 7 → 7\n- C → c\n- I → i\n- L → l\n- L → l\n- M → m\n- R → r\n- h → H\n- l → L\n- l → L\n- o → O\n- p → P\n- v → V\n\nResult: 237cilmrHLLOPV\n\n**Step 3: Keep only characters at odd positions (1st, 3rd, 5th, ...)**\nPositions (1-indexed):\n1. 2\n2. 3\n3. 7\n4. c\n5. i\n6. l\n7. m\n8. r\n9. H\n10. L\n11. L\n12. O\n13. P\n14. V\n\nOdd positions (1, 3, 5, 7, 9, 11, 13): 2, 7, i, m, H, L, P\n\nResult: 27imHLP\n\n**Step 4: Reverse the string**\n27imHLP reversed: PLHmi72\n\nANSWER: PLHmi72"
+      }
+    ],
+    "container": null,
+    "stop_reason": "end_turn",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 193,
+      "cache_creation_input_tokens": 0,
+      "cache_read_input_tokens": 0,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 393,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    }
+  },
+  "incomplete": false
+}

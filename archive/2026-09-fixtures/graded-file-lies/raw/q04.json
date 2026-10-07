@@ -1,0 +1,48 @@
+{
+  "version": "exam-raw/1",
+  "id": 4,
+  "family": "arith",
+  "provider": "anthropic",
+  "model": "claude-haiku-4-5",
+  "request": {
+    "model": "claude-haiku-4-5",
+    "max_tokens": 16000,
+    "system": "You are sitting a written exam. Answer each question on its own. Follow the question's answer-format instructions exactly.",
+    "messages": [
+      {
+        "role": "user",
+        "content": "Compute exactly:\n\n(6019474 - 639740392) * (3642672 + 6982553)\n\nGive the exact integer, with no thousands separators.\nReason as much as you like, then finish with one final line of the form\nANSWER: <your answer>"
+      }
+    ],
+    "temperature": 0
+  },
+  "response": {
+    "model": "claude-haiku-4-5-20251001",
+    "id": "msg_011CeysRXrk76vRba5berRzN",
+    "type": "message",
+    "role": "assistant",
+    "content": [
+      {
+        "type": "text",
+        "text": "I need to compute (6019474 - 639740392) * (3642672 + 6982553).\n\nLet me break this into two parts:\n\n**Part 1: 6019474 - 639740392**\n6019474 - 639740392 = -(639740392 - 6019474) = -633720918\n\n**Part 2: 3642672 + 6982553**\n3642672 + 6982553 = 10625225\n\n**Final multiplication:**\n(-633720918) * 10625225\n\nLet me compute this carefully:\n633720918 * 10625225\n\nI'll break this down:\n633720918 * 10625225\n= 633720918 * (10000000 + 625225)\n= 633720918 * 10000000 + 633720918 * 625225\n\nFirst part: 633720918 * 10000000 = 6337209180000000\n\nSecond part: 633720918 * 625225\nLet me compute 633720918 * 625225:\n= 633720918 * (625000 + 225)\n= 633720918 * 625000 + 633720918 * 225\n\n633720918 * 625000 = 633720918 * 625 * 1000\n633720918 * 625 = 396075573750\n633720918 * 625000 = 396075573750000\n\n633720918 * 225:\n= 633720918 * 200 + 633720918 * 25\n= 126744183600 + 15843022950\n= 142587206550\n\nSo: 633720918 * 625225 = 396075573750000 + 142587206550 = 396218160956550\n\nTotal positive product:\n6337209180000000 + 396218160956550 = 6733427340956550\n\nSince we had a negative sign from Part 1:\n(-633720918) * 10625225 = -6733427340956550\n\nANSWER: -6733427340956550"
+      }
+    ],
+    "container": null,
+    "stop_reason": "end_turn",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 97,
+      "cache_creation_input_tokens": 0,
+      "cache_read_input_tokens": 0,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 509,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    }
+  },
+  "incomplete": false
+}
