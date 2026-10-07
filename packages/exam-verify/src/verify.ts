@@ -428,6 +428,11 @@ export async function verifyExam(root: string): Promise<ExamVerdict> {
   // hash, an anchor that is not the floor's) is still a contradiction.
   const firstFail = lines.find((l) => l.state === "FAIL");
   if (disagreed === null && firstFail !== undefined) fail(firstFail.step === 3 ? "answers" : "paper", `${firstFail.detail.charAt(0).toUpperCase()}${firstFail.detail.slice(1)}.`);
+  // Without a validated AWS Nitro attestation nothing ties the signing key to the
+  // measured enclave, so the claim is not established: a missing document is
+  // NO-EVIDENCE for the whole verdict, never an ACCEPT with one quiet line (2026-10-07).
+  const missingAttestation = lines.find((l) => l.state === "NO-EVIDENCE" && / attestation$/.test(l.name));
+  if (undetermined === null && missingAttestation !== undefined) undetermined = `${missingAttestation.detail.charAt(0).toUpperCase()}${missingAttestation.detail.slice(1)}, so nothing ties its signature to the measured enclave.`;
   const verdict: Verdict = disagreed !== null ? "REJECT" : undetermined !== null ? "NO-EVIDENCE" : "ACCEPT";
   const paperPos = positionOf(paperProof!, paperFloor);
   return {
