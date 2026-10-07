@@ -8,6 +8,6 @@
   "engines": { "node": ">=20" },
   "scripts": {
     "build": "npm run build -w @mikeargento/exam-bank -w @mikeargento/exam-core -w @mikeargento/exam-ask -w @mikeargento/exam-verify -w @mikeargento/exam-cli",
-    "test": "npm run build && node verifier/exam.mjs selftest"
+    "test": "npm run build && node verifier/exam.mjs selftest && npm test -w @mikeargento/exam-bank -w @mikeargento/exam-core -w @mikeargento/exam-verify"
   }
 }

@@ -1,6 +1,6 @@
 {
   "name": "@mikeargento/exam-ask",
-  "version": "0.1.1",
+  "version": "0.2.0",
   "description": "Asks a model the sealed exam's questions through its own API and writes the answer sheet.",
   "license": "SEE LICENSE IN LICENSE",
   "type": "module",
@@ -26,9 +26,9 @@
     "node": ">=20"
   },
   "dependencies": {
-    "@mikeargento/bitgraph-verify": "^1.11.0",
-    "@mikeargento/exam-bank": "^0.1.0",
-    "@mikeargento/exam-core": "^0.1.0",
+    "@mikeargento/bitgraph-verify": "^1.17.0",
+    "@mikeargento/exam-bank": "^0.2.0",
+    "@mikeargento/exam-core": "^0.2.0",
     "@noble/hashes": "^1.4.0"
   },
   "devDependencies": {

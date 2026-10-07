@@ -46,7 +46,8 @@ const { formatUtc } = await import(pathToFileURL(join(home("exam-core"), "dist",
 const DEMO = join(HERE, "..", "demo");
 const FIXTURES = join(home("exam-cli"), "fixtures");
 
-const floor = (f) => (f === null ? "-" : `${f.blockNumber} ${f.time === null ? "(no header)" : formatUtc(f.time)}`);
+/* A Base floor (papers from 2026-10-07) says so; an Ethereum floor prints as it always has. */
+const floor = (f) => (f === null ? "-" : `${f.chain === "base" ? "Base " : ""}${f.blockNumber} ${f.time === null ? (f.timeWithheld ? "(time withheld)" : "(no header)") : formatUtc(f.time)}`);
 const pad = (s, n) => String(s).padEnd(n);
 
 async function rows(dir, label) {
@@ -67,11 +68,14 @@ const all = [...(await rows(DEMO, "demo")), ...(await rows(FIXTURES, "fixture"))
 const W = { name: 22, verdict: 22, score: 6, model: 18, paper: 7, pfloor: 33, answers: 9, afloor: 33 };
 W.name = Math.max(W.name, ...all.map((r) => r.name.length + 2));
 W.model = Math.max(W.model, ...all.map((r) => r.model.length + 2));
+W.pfloor = Math.max(W.pfloor, ...all.map((r) => r.pfloor.length + 2));
+W.afloor = Math.max(W.afloor, ...all.map((r) => r.afloor.length + 2));
 console.log("");
 console.log(`  ${pad("folder", W.name)}${pad("verdict", W.verdict)}${pad("score", W.score)}${pad("model", W.model)}${pad("paper", W.paper)}${pad("paper not before block", W.pfloor)}${pad("answers", W.answers)}${pad("answers not before block", W.afloor)}`);
 console.log(`  ${"-".repeat(Object.values(W).reduce((a, b) => a + b, 0))}`);
 let section = "";
 for (const r of all) {
+  // TODO(resit): the demo label names September 2026; say when the new sittings were made.
   if (r.label !== section) { section = r.label; console.log(`  ${section === "demo" ? "demo/ (real runs, September 2026)" : "fixtures (from @mikeargento/exam-cli)"}`); }
   console.log(`  ${pad(r.name, W.name)}${pad(r.verdict, W.verdict)}${pad(r.score, W.score)}${pad(r.model, W.model)}${pad(r.paper, W.paper)}${pad(r.pfloor, W.pfloor)}${pad(r.answers, W.answers)}${pad(r.afloor, W.afloor)}`);
   if (r.expected && !r.verdict.startsWith(r.expected.split(" ")[0])) { console.log(`    !! expected ${r.expected}`); process.exitCode = 1; }

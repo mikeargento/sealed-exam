@@ -1,6 +1,6 @@
 {
   "name": "@mikeargento/exam-cli",
-  "version": "0.1.1",
+  "version": "0.2.0",
   "description": "exam: open a position, derive and seal a paper, ask a model, seal the answers, grade, export, verify.",
   "license": "SEE LICENSE IN LICENSE",
   "type": "module",
@@ -25,11 +25,11 @@
     "node": ">=20"
   },
   "dependencies": {
-    "@mikeargento/bitgraph-verify": "^1.11.0",
-    "@mikeargento/exam-ask": "^0.1.0",
-    "@mikeargento/exam-bank": "^0.1.0",
-    "@mikeargento/exam-core": "^0.1.0",
-    "@mikeargento/exam-verify": "^0.1.0"
+    "@mikeargento/bitgraph-verify": "^1.17.0",
+    "@mikeargento/exam-ask": "^0.2.0",
+    "@mikeargento/exam-bank": "^0.2.0",
+    "@mikeargento/exam-core": "^0.2.0",
+    "@mikeargento/exam-verify": "^0.2.0"
   },
   "devDependencies": {
     "@types/node": "^20.0.0",

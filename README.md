@@ -1,10 +1,12 @@
 # Freshness is a claim. This is a check.
 
-Mike Argento, Argento Computing Inc. · bitgraph.ing · github.com/mikeargento/sealed-exam · 14 September 2026
+Mike Argento, Argento Computing Inc. · bitgraph.ing · github.com/mikeargento/sealed-exam · 14 September 2026 <!-- TODO(resit): date -->
 
-**Proves:** the exact question instances were derived from a commitment that did not exist before
-the floor block, so they were not in any training set frozen before that block; the paper's digest
-spent that slot; the answer sheet names the paper and sits at a later position on the same chain.
+**Proves:** the exact question instances were derived from the position commitment, a value that
+did not exist until the enclave opened the paper's position, so the questions did not exist before
+that position; the position opened after its floor block, so they were not in any training set
+frozen before that block; the paper's digest spent that position; the answer sheet names the paper
+and sits at a later position on the same chain.
 
 **Does not prove:** that the template families are unfamiliar to the model; that the model worked
 alone, without tools, or quickly; when the answers were produced beyond their own floor. The answer
@@ -12,7 +14,7 @@ sheet has a floor, not a ceiling.
 
 That paragraph is the whole claim. It is printed by the verifier, it is the last thing on every
 report page, and it is what this package asks you to attack. Everything else here is running code
-and real evidence: six models from three vendors sat the same kind of paper on 12 and 13 September
+and real evidence: <!-- TODO(resit): the sittings, their dates and their vendors --> six models from three vendors sat the same kind of paper on 12 and 13 September
 2026, each paper derived from a value that came into existence at a signed position on a public
 chain, and each sitting is a folder you verify with nothing but Node, offline, in three commands.
 
@@ -20,19 +22,23 @@ The intuition is the newspaper in the photo, turned around. A hash of a question
 today is a postmark: it proves the set existed no later than now, which is the wrong direction
 for contamination. What contamination needs is a floor: proof that the exact questions could not
 have existed before some public moment, so no training corpus frozen before it can contain them.
-So the questions are made from the newspaper instead of photographed next to it. A slot on the
-BitGraph chain is allocated; the enclave signs into it the latest Ethereum block it has
-authenticated; a commitment is derived from that signed slot record; the twenty questions are
-derived, deterministically, from that commitment and a public bank; the paper is committed under
-the same slot. The paper cannot predate the block, because it is a function of a value that did
-not exist before the slot did. The answer sheet is then recorded at a later position, which is
-the postmark half, with its own floor. "Fresh" stops being a promise about a process and becomes
-a check a stranger runs.
+So the questions are made from the newspaper instead of photographed next to it, and the newspaper
+is the position itself. The enclave opens a position on the BitGraph chain: it draws a nonce from
+its hardware random generator, signs a position record, and fixes to that position the newest Base
+block it has been given, which the proof that fills the position carries signed. The position
+commitment is derived from the signed record. The twenty questions
+are derived, deterministically, from the commitment and a public bank, and the paper is committed
+under the same position. The commitment did not exist before the position opened, so neither did
+the paper: that is the floor that matters. The Base block is what lets anyone date that moment
+publicly, since the position opened after it. The answer sheet is then recorded at a later
+position, which is the postmark half, with its own floor. "Fresh" stops being a promise about a
+process and becomes a check a stranger runs.
 
 ---
 
 ## The result
 
+<!-- TODO(resit): this table, regenerated from the new sittings -->
 `node verifier/demo.mjs` prints this. Every value was recomputed by that program from the files
 in this package, in a process where `fetch` and sockets throw.
 
@@ -61,6 +67,7 @@ everything recomputes and agrees, and the score is what re-running the checkers 
 things: the paper, the commitment, the answers, or the order. **NO-EVIDENCE**: something the
 claim needs is not in hand. Absence is never a verdict against the run.
 
+<!-- TODO(resit): the next two paragraphs (chain, epochs, the explorer link, the scores and refusals) -->
 All six sittings are one chain, `bitgraph:main`, one enclave. The four Anthropic sittings are one
 epoch, within two minutes of each other on 12 September; the GPT-6 and Gemini sittings are the
 next day's epoch, since the enclave starts a fresh epoch each UTC day. Positions are counters on that chain;
@@ -104,6 +111,9 @@ editing signatures into shape:
 
 ## How a sitting is made
 
+<!-- TODO(resit): this walk-through and the question after it, with one new sitting's numbers. Step 1
+now reads: the allocation returns the signed position record and the Base block the enclave fixed for
+it, which the proof later signs as commit.slotFloor; the floor's evidence is base-floor/floor-header.json. -->
 The Sonnet 5 folder, `demo/claude-sonnet-5.exam/`, step by step, with its own numbers. All of them
 are in the files and are recomputed by the verifier.
 
@@ -178,8 +188,14 @@ did not exist before block 25962579.
    trailer is the one the signed attribution names; the AWS Nitro attestation document inside the
    proof validates to the AWS root, its PCR0 equals the proof's measurement, its `user_data` equals
    SHA-256 of the signed body (`validateNitroAttestationDocument` from `@mikeargento/bitgraph-audit`);
-   the PCR0 is a published BitGraph measurement; the witness block header keccak-hashes to the
-   signed floor's block hash, and its timestamp is the floor.
+   the PCR0 is a published BitGraph measurement; the floor block's header checks against the floor
+   the proof signs. For a Base floor (`commit.slotFloor`) that header is
+   `base-floor/floor-header.json`: it keccak-hashes to the signed block hash, carries the signed
+   number and the signed time, and that time is Base mainnet's schedule for the block; the time is
+   the floor unless it is later than the attestation document, in which case it is withheld and
+   said so. For an Ethereum floor (`commit.slotAnchor`, papers made before 7 October 2026) the
+   witness header in `ethereum-anchors/` keccak-hashes to the signed block hash, and its timestamp
+   is the floor.
 2. **The paper re-derived.** The commitment recomputed from the slot record; the bank digest
    recomputed from `bank/bank.json` and `bank/generator.tar` and checked against what the paper
    names; the verifier's own generator source checked against the shipped archive, byte for byte;
@@ -198,24 +214,34 @@ Exit codes follow the Player: 0 ACCEPT, 1 REJECT, 2 NO-EVIDENCE, 3 error.
 
 ## Where the floor comes from
 
-The enclave is an AWS Nitro image whose measurement, `eccfc1c78006f4b7…`, is reproducible from
-tag `enclave-v8` of https://github.com/mikeargento/bitgraph with
+The enclave is an AWS Nitro image whose measurement,
+`5a947cc66095adcceefa9e5ece5d1416dfe08c3470df1bcaa5b2bc5267b0480e6cdc172fe077cd06b0afb07614307973`,
+is reproducible from tag `enclave-v10` of https://github.com/mikeargento/bitgraph with
 `server/commit-service/reproducible-build/verify-pcr0.sh`. Three things it does are what this
 package rests on.
 
-It authenticates anchors. The anchor service signs each claim (epoch, chain, block number, block
-hash) with a key whose public half is a constant of the enclave image; the enclave verifies the
-signature, requires block numbers to climb within the epoch, and only then signs `commit.anchor`
-into an anchor proof. It fixes the floor at allocation: every slot gets a copy of the chain's
-latest authenticated anchor, and the proof that fills the slot carries that copy, signed, as
-`commit.slotAnchor`. The issuer did not choose it, the packager cannot change it without breaking
-the signature, and the verifier does not choose it either; it reads the block hash from the proof
-and checks one header. And it refuses to sign a floorless proof: a slot allocated before an
-epoch's first anchor has no floor, so the boundary declines it.
+It opens the position before anything exists to put in it. The nonce comes from the enclave's
+hardware random generator, the position record is signed inside the enclave, and the position
+commitment is derived from that signed record, so no one outside could have computed it earlier.
+It fixes the floor at that same moment: the newest Base block it has been given, checked inside the
+enclave against the header it hashed itself, is kept with the position and signed into the proof
+that fills it as `commit.slotFloor` (chain, number, hash, time). The issuer did not choose it, the
+packager cannot change it without breaking the signature, and the verifier does not choose it
+either; it reads the block from the proof and checks one header: keccak-256 to the signed hash,
+the signed number, the signed time, and Base mainnet's schedule, which stamps block N at
+`1686789347 + 2 × N`. And it refuses a position with no floor: without a fresh Base header the
+boundary declines to open one.
+
+Papers made before 7 October 2026 (enclave v7 to v9) have an Ethereum floor instead: every slot got
+a copy of the chain's latest authenticated Ethereum anchor, carried signed as `commit.slotAnchor`,
+with the anchor proofs and their header witnesses in `ethereum-anchors/`. Those folders verify as
+they always have. New positions have no Ethereum anchors at all, and no anchor after them: order
+after the paper is the chain of proof hashes.
 
 Nothing was added to the enclave for this demonstration. The paper is fused under `trailer/1`
-exactly as a photograph is on bitgraph.ing; the answer sheet is recorded exactly as any file is.
-What is new is only what the bytes are: a paper that is a function of the commitment.
+exactly as a photograph is on bitgraph.ing, under the bare position commitment (`bitgraph-fuse/1`);
+the answer sheet is recorded exactly as any file is. What is new is only what the bytes are: a
+paper that is a function of the commitment.
 
 ---
 
@@ -224,11 +250,16 @@ What is new is only what the bytes are: a paper that is a function of the commit
 - **The AWS Nitro Enclaves root CA**, bundled in the vendored auditor, the same PEM Amazon
   publishes. A document that validates and binds is Amazon's hardware saying: this measurement
   produced this signed body under this key.
-- **The published measurement**, `eccfc1c78006f4b7…`, reproducible from the tag above on any
-  linux/amd64 host. That is what makes the enclave's rules yours to read: the floor copied at
-  allocation, the refusal to sign without one, the 120-second slot lifetime, one filling per slot.
-- **Ethereum**, for the floor's block header and its timestamp. The verifier checks the header
-  hashes to the enclave-signed block hash; that the block is canonical is Ethereum's claim.
+- **The published measurement**, `5a947cc66095adcc…`, reproducible from the tag above on any
+  linux/amd64 host. That is what makes the enclave's rules yours to read: the floor fixed at
+  allocation, the refusal to open a position without one, the 120-second slot lifetime, one
+  filling per slot. Earlier papers name earlier measurements, each published with its tag.
+- **Base**, for the floor block: its header and its time. The enclave checks the header it was
+  given before it signs the block; the verifier checks the header beside the proof hashes to the
+  signed block hash and keeps Base mainnet's schedule; that the block is canonical is Base's claim.
+- **Ethereum**, only for papers made before 7 October 2026, whose floors are Ethereum anchors: the
+  verifier checks the witness header hashes to the enclave-signed block hash; that the block is
+  canonical is Ethereum's claim.
 - **The vendored verification code**, all MIT, all readable: `@mikeargento/bitgraph-verify`,
   `@mikeargento/bitgraph-audit`, `@mikeargento/bitgraph-player` (for the list of published
   measurements), `@mikeargento/exam-verify`, and the noble cryptography underneath.
@@ -288,6 +319,7 @@ and their dependencies are vendored under `verifier/node_modules/`, so there is 
 and no network at any point. Take this one if you would rather run than read, or if you want to
 watch it work with the wifi off.
 
+<!-- TODO(resit): the folder named in these commands and in the paragraph after them -->
 ```bash
 node verifier/demo.mjs                                   # the table above, every value recomputed
 node verifier/exam.mjs verify demo/claude-sonnet-5.exam  # one folder, every check listed; writes report.html and verdict.json beside it
@@ -336,6 +368,7 @@ not-before.
 
 ## What is in here
 
+<!-- TODO(resit): the sittings' folders below. A new sitting's paper/ and answers/ hold base-floor/floor-header.json in place of ethereum-anchors/. -->
 ```
 demo/<model>.exam/                the six sittings; each holds:
   paper/                            paper.json (the twenty questions), new-file/paper.fused.json (the committed bytes), proof.json, ethereum-anchors/

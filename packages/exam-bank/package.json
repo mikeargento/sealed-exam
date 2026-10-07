@@ -1,6 +1,6 @@
 {
   "name": "@mikeargento/exam-bank",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "The sealed exam's public item bank: five template families, deterministic generators, checkers, and the bank digest.",
   "license": "SEE LICENSE IN LICENSE",
   "type": "module",
@@ -29,7 +29,7 @@
     "node": ">=20"
   },
   "dependencies": {
-    "@mikeargento/bitgraph-verify": "^1.11.0",
+    "@mikeargento/bitgraph-verify": "^1.17.0",
     "@noble/hashes": "^1.4.0"
   },
   "devDependencies": {

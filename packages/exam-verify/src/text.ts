@@ -1,12 +1,15 @@
 // Copyright (c) Argento Computing Inc. Licensed under the MIT License. See LICENSE.
 
 /** The verdict for a terminal: floors, score, the boundary. No durations, no "at". */
-import { formatUtc } from "@mikeargento/exam-core";
+import { blockName, formatUtc } from "@mikeargento/exam-core";
 import type { ExamVerdict, FloorReport } from "./verify.js";
 
+/** "not before Base block N (header time T)"; an Ethereum floor (papers before 2026-10-07) is "Ethereum block N". */
 export function floorPhrase(f: FloorReport | null): string {
   if (f === null) return "no floor in hand";
-  return f.time === null ? `not before block ${f.blockNumber} (header time not in hand)` : `not before block ${f.blockNumber} (header time ${formatUtc(f.time)})`;
+  const block = blockName(f.blockNumber, f.chain ?? "ethereum");
+  if (f.time !== null) return `not before ${block} (header time ${formatUtc(f.time)})`;
+  return f.timeWithheld !== undefined ? `not before ${block} (header time withheld: stamped after the attestation)` : `not before ${block} (header time not in hand)`;
 }
 
 export function renderText(v: ExamVerdict): string {

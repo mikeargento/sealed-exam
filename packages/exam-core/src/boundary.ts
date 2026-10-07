@@ -1,24 +1,27 @@
 // Copyright (c) Argento Computing Inc. All rights reserved. See LICENSE.
 
 /**
- * The exam's two positions on the anchored chain, through the routes the
- * site already exposes. Nothing here is new to the enclave.
+ * The exam's two positions on the chain, through the routes the site
+ * already exposes. Nothing here is new to the enclave.
  *
- *   open           POST /api/fuse/allocate       a held slot record (the nonce never leaves this process except inside slot.json)
- *   floor          GET  /api/proofs/anchors      the anchor the slot stands on, and its block-header witness
- *   paper          the real core fuse(): allocate is answered with the HELD slot, everything else goes to the boundary
+ *   open           POST /api/fuse/allocate       a held slot record (the nonce never leaves this process except inside slot.json),
+ *                                                and the floor the enclave fixed for it: a Base block since enclave v10
+ *   paper          the real core fuse(): allocate is answered with the HELD slot and NO floor, so the paper is
+ *                  bitgraph-fuse/1 (the bare position commitment); everything else goes to the boundary
  *   answers        POST /api/commit              a recorded position, the sheet's digest, no attribution
- *   anchors        GET  /api/proofs/anchors + /api/proofs/witness, both sides, into ethereum-anchors/
+ *   floor          Base floor (commit.slotFloor):     GET /api/proofs/floor-header, checked, into base-floor/
+ *                  Ethereum floor (commit.slotAnchor): GET /api/proofs/anchors + /api/proofs/witness, both sides,
+ *                  into ethereum-anchors/ (papers made before 2026-10-07)
  */
 import { sha256 } from "@noble/hashes/sha256";
 import { builderFor, fuse, FuseError } from "@mikeargento/bitgraph";
 import type { FuseResult } from "@mikeargento/bitgraph";
-import { computeSlotCommitment, verifyProofIntegrity } from "@mikeargento/bitgraph-verify";
-import type { BitGraphProof, SlotAllocation } from "@mikeargento/bitgraph-verify";
+import { checkFloorHeader, computeSlotCommitment, evmHexToBytes, onBaseSchedule, signedFloorOf as verifySignedFloorOf, verifyProofIntegrity } from "@mikeargento/bitgraph-verify";
+import type { BitGraphProof, SignedFloor, SlotAllocation } from "@mikeargento/bitgraph-verify";
 import type { Bank } from "@mikeargento/exam-bank";
 import { b64, derivePaper, type DerivedPaper } from "./paper.js";
 import { blockTimeFromHeader, headerHash } from "./rlp.js";
-import { remove, writeBytes } from "./folder.js";
+import { ANCHOR_DIR, BASE_FLOOR_DIR, FLOOR_HEADER_FILE, remove, writeBytes } from "./folder.js";
 import { join } from "node:path";
 
 export const CHAIN = "bitgraph:main";
@@ -69,15 +72,68 @@ export function isSlotRecord(x: unknown): x is SlotAllocation {
     && typeof s.epochId === "string" && typeof s.publicKeyB64 === "string" && typeof s.signatureB64 === "string" && B64_64.test(s.signatureB64) && s.chainId === CHAIN;
 }
 
-/** 1. open. */
-export async function allocate(t: Transport = {}): Promise<SlotAllocation> {
+/** The Base floor an enclave v10 allocation names: the block it signs at commit as commit.slotFloor. */
+export interface BaseFloorMark {
+  chain: "base";
+  evmChainId: 8453;
+  blockNumber: number;
+  blockHash: string;
+  blockTimestamp: number;
+}
+
+/** The Ethereum floor anchor an enclave v9 allocation names: the one it signs at commit as commit.slotAnchor. */
+export interface AnchorMark {
+  counter: string;
+  blockNumber: number;
+  blockHash: string;
+}
+
+export function isBaseFloorMark(x: unknown): x is BaseFloorMark {
+  if (x === null || typeof x !== "object" || Array.isArray(x)) return false;
+  const a = x as Record<string, unknown>;
+  return a.chain === "base" && a.evmChainId === 8453
+    && typeof a.blockNumber === "number" && Number.isSafeInteger(a.blockNumber) && a.blockNumber > 0
+    && typeof a.blockHash === "string" && /^0x[0-9a-f]{64}$/.test(a.blockHash)
+    && typeof a.blockTimestamp === "number" && Number.isSafeInteger(a.blockTimestamp);
+}
+
+export function isAnchorMark(x: unknown): x is AnchorMark {
+  if (x === null || typeof x !== "object" || Array.isArray(x)) return false;
+  const a = x as Record<string, unknown>;
+  return typeof a.counter === "string" && /^(0|[1-9][0-9]*)$/.test(a.counter)
+    && typeof a.blockNumber === "number" && Number.isSafeInteger(a.blockNumber) && a.blockNumber >= 0
+    && typeof a.blockHash === "string" && /^0x[0-9a-f]{64}$/.test(a.blockHash);
+}
+
+export interface Opened {
+  slot: SlotAllocation;
+  /** The Base block the enclave fixed when it opened the position (enclave v10), or null. Unsigned here; the commit signs the same block as commit.slotFloor. */
+  floor: BaseFloorMark | null;
+  /** The Ethereum anchor an enclave v9 allocation names instead, or null. */
+  anchor: AnchorMark | null;
+}
+
+/**
+ * 1. open. The signed slot record and the floor the allocation names. A
+ * response naming two floors is refused: a proof has one.
+ */
+export async function openPosition(t: Transport = {}): Promise<Opened> {
   const r = await call(t, "/api/fuse/allocate", { method: "POST", body: {} });
   const code = (r.json as { code?: unknown } | null)?.code;
-  if (r.status === 503 && code === "tee-restarting") throw new BoundaryError("tee-restarting", "the boundary is restarting or waiting for its first anchor; try again in a moment", 503);
+  if (r.status === 503 && code === "tee-restarting") throw new BoundaryError("tee-restarting", "the boundary is restarting or waiting for its floor; try again in a moment", 503);
   if (r.status !== 200) throw new BoundaryError("refused", (r.json as { error?: string } | null)?.error ?? `allocation failed (${r.status})`, r.status);
-  const slot = (r.json as { slot?: unknown } | null)?.slot;
+  const body = r.json as { slot?: unknown; floor?: unknown; anchor?: unknown } | null;
+  const slot = body?.slot;
   if (!isSlotRecord(slot)) throw new BoundaryError("malformed", "the allocation response is not a slot record on bitgraph:main");
-  return slot;
+  const floor = isBaseFloorMark(body?.floor) ? body.floor : null;
+  const anchor = isAnchorMark(body?.anchor) ? body.anchor : null;
+  if (floor !== null && anchor !== null) throw new BoundaryError("malformed", "the allocation names two floors (a Base block and an Ethereum anchor); a position has one");
+  return { slot, floor, anchor };
+}
+
+/** 1. open, the slot record alone. */
+export async function allocate(t: Transport = {}): Promise<SlotAllocation> {
+  return (await openPosition(t)).slot;
 }
 
 export interface Floor {
@@ -138,10 +194,20 @@ export async function floorOfSlot(t: Transport, slot: SlotAllocation): Promise<F
   return { counter: a.counter ?? null, blockNumber: a.anchor.blockNumber, blockHash: a.anchor.blockHash, time: header ? blockTimeFromHeader(header) : null, anchor: side.anchor, witness: side.witness };
 }
 
-/** The floor a COMMITTED proof carries, signed by the enclave: commit.slotAnchor. */
-export function signedFloorOf(proof: BitGraphProof): { counter: string; blockNumber: number; blockHash: string } | null {
-  const s = proof.commit.slotAnchor;
-  return s && typeof s.blockNumber === "number" && typeof s.blockHash === "string" && typeof s.counter === "string" ? { counter: s.counter, blockNumber: s.blockNumber, blockHash: s.blockHash } : null;
+/**
+ * The floor a COMMITTED proof signs, whichever kind: a Base block
+ * (commit.slotFloor, enclave v10) or an Ethereum anchor (commit.slotAnchor,
+ * enclave v7 to v9), read through bitgraph-verify's signedFloorOf. `counter`
+ * is the Ethereum anchor's position, null for a Base floor. Null when the
+ * proof signs no floor; throws when it signs both (ambiguous, it floors nothing).
+ */
+export interface ExamSignedFloor extends SignedFloor {
+  counter: string | null;
+}
+
+export function signedFloorOf(proof: BitGraphProof): ExamSignedFloor | null {
+  const f = verifySignedFloorOf(proof);
+  return f === null ? null : { ...f, counter: f.anchorCounter ?? null };
 }
 
 export interface FusedUnderSlot {
@@ -167,6 +233,11 @@ export interface FusedPaper extends DerivedPaper, FusedUnderSlot {}
 export async function fuseUnderSlot(t: Transport, slot: SlotAllocation, bytes: Uint8Array, fusedFile: string): Promise<FusedUnderSlot> {
   const b = bound(t);
   const commitment = computeSlotCommitment(slot);
+  // The held slot is handed to the core's fuse() with NO floor, on purpose:
+  // the core then makes bitgraph-fuse/1 (producerCommitment with no floor),
+  // the bare position commitment the paper is derived from. The enclave still
+  // signs the floor it fixed at allocation into the proof (commit.slotFloor on
+  // v10), and the site accepts a floorless fuse/1 commit on a v10 position.
   const held: typeof fetch = async (input, init) => {
     const url = typeof input === "string" ? input : input instanceof URL ? input.toString() : input.url;
     if (url.endsWith("/api/fuse/allocate") && (init?.method ?? "GET") === "POST") {
@@ -205,7 +276,7 @@ export async function record(t: Transport, bytes: Uint8Array): Promise<BitGraphP
   const digestB64 = b64(sha256(bytes));
   const r = await call(t, "/api/commit", { method: "POST", body: { digests: [{ digestB64, hashAlg: "sha256" }], chainId: CHAIN } });
   const code = (r.json as { code?: unknown } | null)?.code;
-  if (r.status === 503 && code === "tee-restarting") throw new BoundaryError("tee-restarting", "the boundary is restarting or waiting for its first anchor; try again in a moment", 503);
+  if (r.status === 503 && code === "tee-restarting") throw new BoundaryError("tee-restarting", "the boundary is restarting or waiting for its floor; try again in a moment", 503);
   if (r.status !== 200) throw new BoundaryError("refused", (r.json as { error?: string } | null)?.error ?? `commit refused (${r.status})`, r.status);
   const proof = (Array.isArray(r.json) ? r.json[0] : (r.json as { proof?: unknown } | null)?.proof ?? r.json) as BitGraphProof | null;
   if (!proof || typeof proof !== "object" || proof.artifact?.digestB64 !== digestB64) throw new BoundaryError("malformed", "the commit response does not carry a proof of these bytes");
@@ -221,8 +292,9 @@ export interface AnchorFiles {
 }
 
 /**
- * Both sides of a committed position, as the site writes them into
- * ethereum-anchors/. The BEFORE side is the proof's own signed floor: the
+ * Both sides of a committed position with an ETHEREUM floor (or none), as
+ * the site writes them into ethereum-anchors/. A Base-floored proof has no
+ * anchors; its evidence is floorEvidenceFor's base-floor/. The BEFORE side is the proof's own signed floor: the
  * anchor the enclave chose when the SLOT was allocated (commit.slotAnchor),
  * asked for by the slot counter, so the witness beside the proof is the
  * header of the floor block and not of some later anchor that landed
@@ -232,7 +304,8 @@ export interface AnchorFiles {
 export async function anchorFilesFor(t: Transport, proof: BitGraphProof, askedAt: Date = new Date()): Promise<AnchorFiles> {
   const epochId = proof.commit.epochId ?? "";
   const counter = proof.commit.counter ?? "";
-  const signed = signedFloorOf(proof);
+  const floor = signedFloorOf(proof);
+  const signed = floor?.chain === "ethereum" ? floor : null;
   const [before, after] = await Promise.all([askSide(t, epochId, proof.commit.slotCounter ?? counter, "before"), askSide(t, epochId, counter, "after")]);
   if (signed !== null) {
     const got = (before.anchor?.commit as { anchor?: { blockHash?: string } } | undefined)?.anchor?.blockHash?.toLowerCase();
@@ -266,4 +339,99 @@ export async function anchorFilesFor(t: Transport, proof: BitGraphProof, askedAt
 export async function writeAnchorFiles(dir: string, anchors: AnchorFiles): Promise<void> {
   await remove(join(dir, "anchors-status.json"));
   for (const f of anchors.files) await writeBytes(join(dir, f.name), f.text);
+}
+
+// ── Base floors (enclave v10) ───────────────────────────────────────────────
+
+/** bitgraph-audit's floor header file format, as its carrier unpacker writes base-floor/floor-header.json. */
+export const FLOOR_HEADER_VERSION = "bitgraph-floor-header/1";
+
+export interface FloorHeaderFile {
+  version: typeof FLOOR_HEADER_VERSION;
+  chain: "base";
+  evmChainId: 8453;
+  blockNumber: number;
+  blockHash: string;
+  blockTimestamp: number;
+  /** The block header's RLP as 0x hex. The only evidence here; the other fields are for readers. */
+  header: string;
+}
+
+/**
+ * The header of the Base block a proof signs as its floor, from the site's
+ * copy (GET /api/proofs/floor-header), believed only after checkFloorHeader:
+ * keccak-256 to the signed hash, the signed number, the signed time, Base
+ * mainnet's schedule. A failed read or a failed check is a note, never a file.
+ */
+export async function fetchBaseFloorHeader(t: Transport, signed: SignedFloor): Promise<{ file: FloorHeaderFile | null; note: string | null }> {
+  if (signed.chain !== "base" || signed.blockTimestamp === undefined) return { file: null, note: "the proof does not sign a Base floor" };
+  if (!onBaseSchedule(signed.blockNumber, signed.blockTimestamp)) return { file: null, note: `the signed time of Base block ${signed.blockNumber} is not Base mainnet's schedule for that block` };
+  let r: { status: number; json: unknown };
+  try {
+    r = await call(t, `/api/proofs/floor-header?chain=base&block=${signed.blockNumber}&hash=${encodeURIComponent(signed.blockHash)}`, { method: "GET" });
+  } catch (err) {
+    return { file: null, note: `the request failed: ${err instanceof Error ? err.message : String(err)}` };
+  }
+  if (r.status !== 200) return { file: null, note: `the site answered ${r.status}` };
+  const header = (r.json as { header?: unknown } | null)?.header;
+  const raw = typeof header === "string" ? evmHexToBytes(header) : null;
+  if (raw === null) return { file: null, note: "the site's answer carries no header" };
+  const checked = checkFloorHeader(signed, raw, "base");
+  if (!checked.ok) return { file: null, note: `the site's header does not check: ${checked.reason}` };
+  return {
+    file: {
+      version: FLOOR_HEADER_VERSION,
+      chain: "base",
+      evmChainId: 8453,
+      blockNumber: checked.header.number,
+      blockHash: checked.header.hash,
+      blockTimestamp: checked.header.timestamp,
+      header: (header as string).toLowerCase().startsWith("0x") ? (header as string).toLowerCase() : `0x${(header as string).toLowerCase()}`,
+    },
+    note: null,
+  };
+}
+
+export interface FloorEvidence {
+  /** The floor the proof signs, or null when it signs none. */
+  floor: ExamSignedFloor | null;
+  /** The directory beside proof.json the evidence goes in. */
+  dir: typeof BASE_FLOOR_DIR | typeof ANCHOR_DIR;
+  files: Array<{ name: string; text: string }>;
+  /** Unix seconds from a checked header, or null when none is in hand. */
+  time: number | null;
+  /** Why no header is in hand, when none is. */
+  note: string | null;
+  /** The Ethereum sides, for an Ethereum floor (or none). Null for a Base floor: it has no anchors. */
+  anchors: AnchorFiles | null;
+}
+
+/**
+ * The floor's evidence for a committed proof, by the floor it signs. Base:
+ * base-floor/floor-header.json, no anchors, no anchors-status. Ethereum (and
+ * a proof that signs none): ethereum-anchors/, exactly as before.
+ */
+export async function floorEvidenceFor(t: Transport, proof: BitGraphProof, askedAt: Date = new Date()): Promise<FloorEvidence> {
+  const floor = signedFloorOf(proof);
+  if (floor?.chain === "base") {
+    const got = await fetchBaseFloorHeader(t, floor);
+    return {
+      floor,
+      dir: BASE_FLOOR_DIR,
+      files: got.file ? [{ name: FLOOR_HEADER_FILE, text: `${JSON.stringify(got.file, null, 2)}\n` }] : [],
+      time: got.file ? got.file.blockTimestamp : null,
+      note: got.note,
+      anchors: null,
+    };
+  }
+  const anchors = await anchorFilesFor(t, proof, askedAt);
+  const w = anchors.before.witness;
+  const time = floor !== null && w !== null && w.blockNumber === floor.blockNumber && typeof w.headerRlpHex === "string" ? blockTimeFromHeader(w.headerRlpHex) : null;
+  return { floor, dir: ANCHOR_DIR, files: anchors.files, time, note: null, anchors };
+}
+
+/** Write a unit's floor evidence into <unitDir>/base-floor/ or <unitDir>/ethereum-anchors/. A Base header not in hand leaves any earlier one in place. */
+export async function writeFloorEvidence(unitDir: string, ev: FloorEvidence): Promise<void> {
+  if (ev.anchors !== null) { await writeAnchorFiles(join(unitDir, ANCHOR_DIR), ev.anchors); return; }
+  for (const f of ev.files) await writeBytes(join(unitDir, ev.dir, f.name), f.text);
 }

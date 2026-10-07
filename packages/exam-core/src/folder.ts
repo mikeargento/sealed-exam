@@ -3,15 +3,22 @@
 /**
  * The run folder, `<name>.exam/`. Three export units in the shape the
  * bitgraph.ing drop zone already reads (a directory holding proof.json, the
- * artifact beside it, a fused recording's new bytes under new-file/, anchors
- * under ethereum-anchors/), plus the raw replies and a README.
+ * artifact beside it, a fused recording's new bytes under new-file/, and the
+ * floor's evidence), plus the raw replies and a README.
  *
- *   bank/      bank.json (recorded), generator.tar, proof.json, ethereum-anchors/
- *   paper/     paper.json (the origin), new-file/paper.fused.json (committed), proof.json, ethereum-anchors/
- *   answers/   answers.json (committed), proof.json, ethereum-anchors/
+ * The floor's evidence follows the floor the proof signs. A Base floor
+ * (commit.slotFloor, enclave v10, from 2026-10-07): base-floor/floor-header.json,
+ * the block's header (bitgraph-floor-header/1). An Ethereum floor
+ * (commit.slotAnchor, enclave v7 to v9, papers made before then):
+ * ethereum-anchors/, the anchor proofs and their witnesses.
+ *
+ *   bank/      bank.json (recorded), generator.tar, proof.json, base-floor/ or ethereum-anchors/
+ *   paper/     paper.json (the origin), new-file/paper.fused.json (committed), proof.json, base-floor/ or ethereum-anchors/
+ *   answers/   answers.json (committed), proof.json, base-floor/ or ethereum-anchors/
  *   raw/       q01.json … one file per question, digests named in answers.json
  *   README.txt the claim boundary and the two floors
  *   slot.json  a held, unspent position; deleted the moment it is spent
+ *   floor.json the Base floor the allocation named for that position; deleted with slot.json
  */
 import { statSync } from "node:fs";
 import { mkdir, readFile, rm, writeFile } from "node:fs/promises";
@@ -19,6 +26,8 @@ import { dirname, join, resolve } from "node:path";
 
 export const FOLDER_SUFFIX = ".exam";
 export const ANCHOR_DIR = "ethereum-anchors";
+export const BASE_FLOOR_DIR = "base-floor";
+export const FLOOR_HEADER_FILE = "floor-header.json";
 
 const isDir = (p: string): boolean => { try { return statSync(p).isDirectory(); } catch { return false; } };
 
@@ -27,6 +36,7 @@ export const paths = {
   root: (name: string): string => (name.endsWith(FOLDER_SUFFIX) || isDir(name) ? resolve(name) : resolve(`${name}${FOLDER_SUFFIX}`)),
   readme: (root: string) => join(root, "README.txt"),
   slot: (root: string) => join(root, "slot.json"),
+  heldFloor: (root: string) => join(root, "floor.json"),
   report: (root: string) => join(root, "report.html"),
   verdict: (root: string) => join(root, "verdict.json"),
   bank: {
@@ -35,6 +45,7 @@ export const paths = {
     tar: (root: string) => join(root, "bank", "generator.tar"),
     proof: (root: string) => join(root, "bank", "proof.json"),
     anchors: (root: string) => join(root, "bank", ANCHOR_DIR),
+    baseFloor: (root: string) => join(root, "bank", BASE_FLOOR_DIR),
   },
   paper: {
     dir: (root: string) => join(root, "paper"),
@@ -42,12 +53,14 @@ export const paths = {
     fused: (root: string) => join(root, "paper", "new-file", "paper.fused.json"),
     proof: (root: string) => join(root, "paper", "proof.json"),
     anchors: (root: string) => join(root, "paper", ANCHOR_DIR),
+    baseFloor: (root: string) => join(root, "paper", BASE_FLOOR_DIR),
   },
   answers: {
     dir: (root: string) => join(root, "answers"),
     json: (root: string) => join(root, "answers", "answers.json"),
     proof: (root: string) => join(root, "answers", "proof.json"),
     anchors: (root: string) => join(root, "answers", ANCHOR_DIR),
+    baseFloor: (root: string) => join(root, "answers", BASE_FLOOR_DIR),
   },
   raw: {
     dir: (root: string) => join(root, "raw"),

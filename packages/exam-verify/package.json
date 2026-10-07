@@ -1,6 +1,6 @@
 {
   "name": "@mikeargento/exam-verify",
-  "version": "0.1.2",
+  "version": "0.2.0",
   "description": "Offline verification and grading of a sealed exam folder; extends bitgraph-verify, never forks it.",
   "license": "MIT",
   "type": "module",
@@ -26,11 +26,11 @@
     "node": ">=20"
   },
   "dependencies": {
-    "@mikeargento/bitgraph-audit": "^0.5.0",
-    "@mikeargento/bitgraph-player": "^0.15.0",
-    "@mikeargento/bitgraph-verify": "^1.11.0",
-    "@mikeargento/exam-bank": "^0.1.0",
-    "@mikeargento/exam-core": "^0.1.0",
+    "@mikeargento/bitgraph-audit": "^0.10.0",
+    "@mikeargento/bitgraph-player": "^0.16.0",
+    "@mikeargento/bitgraph-verify": "^1.17.0",
+    "@mikeargento/exam-bank": "^0.2.0",
+    "@mikeargento/exam-core": "^0.2.0",
     "@noble/hashes": "^1.4.0"
   },
   "devDependencies": {

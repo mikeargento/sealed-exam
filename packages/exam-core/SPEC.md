@@ -5,11 +5,14 @@ depends on a library whose output could move.
 
 ## 1. Inputs
 
-- **commitment** (32 bytes): the BitGraph slot commitment of the paper's proof, recomputed from the
-  proof's own slot record exactly as `@mikeargento/bitgraph-verify` does:
+- **commitment** (32 bytes): the position commitment of the paper's proof (the bare slot
+  commitment, `bitgraph-fuse/1`), recomputed from the proof's own slot record exactly as
+  `@mikeargento/bitgraph-verify`'s `computeSlotCommitment` does:
   `SHA-256("bitgraph-fuse/1" || 0x00 || slotRecordHash || nonce)`, where `slotRecordHash` is
   SHA-256 of the canonical JSON of the slot record without `signatureB64` and `nonce` is the
   record's `nonceB64` decoded. The same 32 bytes are the last 32 of the fused paper's 48-byte trailer.
+  The floor block is not part of this preimage: the paper stays `bitgraph-fuse/1` on every enclave,
+  and its floor is the block the proof signs beside it (section 6).
 - **bankDigest** (32 bytes): `bank.json`'s `bankDigestB64` decoded. Recomputed as
   SHA-256 of the canonical JSON of `bank.json` with the `bankDigestB64` member removed, where
   `generatorTarDigestB64` inside it is SHA-256 of the generator source archive (section 5).
@@ -95,6 +98,23 @@ zero blocks at the end. `generatorTarDigestB64` = SHA-256 of the whole archive.
 - **Answers**: `exam-answers/1` canonical JSON, recorded (no fuse, no attribution): the proof's
   `artifact.digestB64` is SHA-256 of `answers.json`. `paperDigestB64` inside it is the FUSED paper's
   digest. Its `commit.counter` must exceed the paper's on the same `epochId` and `chainId`.
-- **Floors**: each proof's signed `commit.slotAnchor { counter, blockNumber, blockHash }`; the
-  witness file's header must keccak-256 to `blockHash`; the header's 12th RLP field is the block
-  timestamp. Print floors as "not before block N (header time T)". Never a ceiling. Never "at".
+- **Floors**: each proof signs exactly one floor, read with `signedFloorOf` from
+  `@mikeargento/bitgraph-verify` (a proof that signs two is ambiguous and floors nothing).
+  - **Base** (enclave v10, papers made from 2026-10-07): `commit.slotFloor { chain: "base",
+    evmChainId: 8453, blockNumber, blockHash, blockTimestamp }`, the Base mainnet block the enclave
+    fixed when it opened the position. Its header is in `base-floor/floor-header.json` beside the
+    proof, `bitgraph-floor-header/1` as `@mikeargento/bitgraph-audit` reads it:
+    `{ version, chain: "base", evmChainId: 8453, blockNumber, blockHash, blockTimestamp, header }`,
+    `header` the block header's RLP as 0x hex. Checks (`checkFloorHeader`): keccak-256 of the header
+    is `blockHash`; its number is `blockNumber`; its time is the signed `blockTimestamp`, which is
+    Base mainnet's schedule, `1686789347 + 2 × blockNumber`. The floor time is stated only when it
+    is not after the attestation document's own time (`floorTimeIsBound`); otherwise it is withheld
+    and said so, and the block still floors the paper. There are no Ethereum anchors for these
+    positions and no anchor after: order after the paper is the chain of proof hashes.
+  - **Ethereum** (enclave v7 to v9, papers made before 2026-10-07, the earlier format):
+    `commit.slotAnchor { counter, blockNumber, blockHash }`; the witness file
+    `ethereum-anchors/anchor-before-witness.json` holds the header, which must keccak-256 to
+    `blockHash`; the header's 12th RLP field is the block timestamp.
+
+  Print floors with their chain: "not before Base block N (header time T)", "not before Ethereum
+  block N (header time T)". Never a ceiling. Never "at".

@@ -13,7 +13,9 @@
  *
  * The steps of the brief, in order. Step 1 verifies the paper's BitGraph
  * as trailer/1 today does (bitgraph-verify's verifyFuse, the audit
- * package's Nitro attestation validator, the witness by keccak). Step 2
+ * package's Nitro attestation validator, the floor block's header by
+ * keccak: base-floor/floor-header.json for a Base floor, the anchor witness
+ * in ethereum-anchors/ for an Ethereum floor). Step 2
  * re-derives the paper from the recomputed commitment and the shipped bank.
  * Step 3 verifies the answer sheet's BitGraph, its binding to the fused
  * paper, and its place after the paper. Step 4 grades.
@@ -23,10 +25,10 @@ import { join } from "node:path";
 import { sha256 } from "@noble/hashes/sha256";
 import { validateNitroAttestationDocument } from "@mikeargento/bitgraph-audit";
 import { KNOWN_ENCLAVE_MEASUREMENTS } from "@mikeargento/bitgraph-player";
-import { TRAILER_LENGTH, canonicalize, computeSignedBodyHash, computeSlotCommitment, getPlacement, readFuseAttribution, verifyFuse, verifyProofIntegrity } from "@mikeargento/bitgraph-verify";
-import type { BitGraphProof } from "@mikeargento/bitgraph-verify";
+import { TRAILER_LENGTH, canonicalize, checkFloorHeader, computeSignedBodyHash, computeSlotCommitment, evmHexToBytes, floorTimeIsBound, getPlacement, onBaseSchedule, readFuseAttribution, signedFloorOf, verifyFuse, verifyProofIntegrity } from "@mikeargento/bitgraph-verify";
+import type { BitGraphProof, SignedFloor } from "@mikeargento/bitgraph-verify";
 import { computeBankDigest, familyById, generatorSourceTar, isBank, type Bank } from "@mikeargento/exam-bank";
-import { CLAIM, b64, blockTimeFromHeader, derivePaper, fromB64, headerHash, isPaper, paths, readBytes, readJson, type Paper } from "@mikeargento/exam-core";
+import { ANCHOR_DIR, BASE_FLOOR_DIR, CLAIM, FLOOR_HEADER_FILE, b64, blockTimeFromHeader, derivePaper, fromB64, headerHash, isPaper, paths, readBytes, readJson, type Paper } from "@mikeargento/exam-core";
 
 export type Verdict = "ACCEPT" | "REJECT" | "NO-EVIDENCE";
 export type LineState = "PASS" | "FAIL" | "NO-EVIDENCE" | "UNDETERMINED";
@@ -35,11 +37,16 @@ export type Disagreed = "paper" | "commitment" | "answers" | "order";
 export interface Line { step: 1 | 2 | 3 | 4; name: string; state: LineState; detail: string }
 
 export interface FloorReport {
+  /** The floor's chain: "base" for commit.slotFloor (enclave v10), "ethereum" for commit.slotAnchor (v7 to v9). */
+  chain: "base" | "ethereum";
+  /** The Ethereum anchor's position; null for a Base floor. */
   counter: string | null;
   blockNumber: number;
   blockHash: string;
-  /** Unix seconds from the witnessed header; null when no witness could be checked. */
+  /** Unix seconds from the checked header; null when no header could be checked, or when its time is withheld. */
   time: number | null;
+  /** Why the header's time is not stated as a bound although the header checks (it is stamped after the attestation). */
+  timeWithheld?: string;
 }
 
 export interface PositionReport {
@@ -95,35 +102,93 @@ const isSheet = (x: unknown): x is Sheet => {
 
 const bytesEq = (a: Uint8Array, b: Uint8Array): boolean => a.length === b.length && a.every((x, i) => x === b[i]);
 
-async function attestationLine(step: 1 | 3, proof: BitGraphProof, what: string): Promise<Line[]> {
+/** The attestation lines, and the document's own time (ms) when it validates: the instant a Base floor's time must not be after. */
+async function attestationLine(step: 1 | 3, proof: BitGraphProof, what: string): Promise<{ lines: Line[]; attestedAtMs: number | null }> {
   const out: Line[] = [];
   const report = proof.environment?.attestation?.reportB64;
   if (typeof report !== "string") {
     out.push({ step, name: `${what} attestation`, state: "NO-EVIDENCE", detail: `the ${what}'s proof carries no attestation document` });
-    return out;
+    return { lines: out, attestedAtMs: null };
   }
   const expectedUserDataB64 = computeSignedBodyHash(proof);
   const r = await validateNitroAttestationDocument(report, { expectedPcr0: proof.environment.measurement, expectedUserDataB64 });
   const failed = r.checks.find((c) => !c.pass);
   if (!r.documentValid || failed !== undefined) {
     out.push({ step, name: `${what} attestation`, state: "FAIL", detail: `AWS Nitro attestation: ${failed?.detail ?? r.failure ?? "invalid"}` });
-    return out;
+    return { lines: out, attestedAtMs: null };
   }
   out.push({ step, name: `${what} attestation`, state: "PASS", detail: `AWS Nitro attestation chains to the AWS root; PCR0 equals the proof's measurement; user_data is this proof's signed body` });
   const known = KNOWN_ENCLAVE_MEASUREMENTS.find((m) => m.pcr0 === (r.pcr0 ?? "").toLowerCase());
   out.push(known
     ? { step, name: `${what} enclave`, state: "PASS", detail: `PCR0 is the published BitGraph ${known.label} measurement (${known.period})` }
     : { step, name: `${what} enclave`, state: "UNDETERMINED", detail: `PCR0 ${(r.pcr0 ?? "").slice(0, 16)}… is not among the BitGraph enclave measurements this verifier knows` });
-  return out;
+  return { lines: out, attestedAtMs: typeof r.timestamp === "number" ? r.timestamp : null };
 }
 
-async function floorOf(step: 1 | 3, proof: BitGraphProof, anchorsDir: string, what: string, lines: Line[]): Promise<FloorReport | null> {
-  const s = proof.commit.slotAnchor;
-  if (!s || typeof s.blockNumber !== "number" || typeof s.blockHash !== "string") {
-    lines.push({ step, name: `${what} floor`, state: "NO-EVIDENCE", detail: `the ${what}'s proof carries no signed floor (commit.slotAnchor); it was signed by an enclave older than v7 or is not a chain proof` });
-    return null;
+/**
+ * The floor step for one proof. The floor is the block the proof SIGNS
+ * (signedFloorOf): a Base block (commit.slotFloor) checked against
+ * base-floor/floor-header.json, or an Ethereum anchor (commit.slotAnchor)
+ * checked against the witness in ethereum-anchors/, exactly as before the
+ * Base floor existed. `unitDir` is the directory holding the proof.
+ */
+export async function floorStep(step: 1 | 3, proof: BitGraphProof, unitDir: string, what: string, attestedAtMs: number | null): Promise<{ floor: FloorReport | null; lines: Line[] }> {
+  const lines: Line[] = [];
+  let signed: SignedFloor | null;
+  try {
+    signed = signedFloorOf(proof);
+  } catch (err) {
+    lines.push({ step, name: `${what} floor`, state: "FAIL", detail: `the ${whose(what)} proof does not sign one readable floor: ${err instanceof Error ? err.message : String(err)}` });
+    return { floor: null, lines };
   }
-  const floor: FloorReport = { counter: typeof s.counter === "string" ? s.counter : null, blockNumber: s.blockNumber, blockHash: s.blockHash.toLowerCase(), time: null };
+  if (signed === null) {
+    lines.push({ step, name: `${what} floor`, state: "NO-EVIDENCE", detail: `the ${whose(what)} proof carries no signed floor (commit.slotFloor or commit.slotAnchor); it was signed by an enclave older than v7 or is not a chain proof` });
+    return { floor: null, lines };
+  }
+  if (signed.chain === "base") return { floor: await baseFloorOf(step, signed, join(unitDir, BASE_FLOOR_DIR), what, attestedAtMs, lines), lines };
+  return { floor: await ethereumFloorOf(step, proof, signed, join(unitDir, ANCHOR_DIR), what, lines), lines };
+}
+
+/** "the paper's", "the answers'". */
+const whose = (what: string): string => (what.endsWith("s") ? `${what}'` : `${what}'s`);
+
+async function baseFloorOf(step: 1 | 3, signed: SignedFloor, dir: string, what: string, attestedAtMs: number | null, lines: Line[]): Promise<FloorReport> {
+  const floor: FloorReport = { chain: "base", counter: null, blockNumber: signed.blockNumber, blockHash: signed.blockHash.toLowerCase(), time: null };
+  const ts = signed.blockTimestamp;
+  if (ts === undefined || !onBaseSchedule(signed.blockNumber, ts)) {
+    lines.push({ step, name: `${what} floor`, state: "FAIL", detail: `the signed time of Base block ${signed.blockNumber} (${ts ?? "none"}) is not Base mainnet's schedule for that block` });
+    return floor;
+  }
+  const file = await readJson<Record<string, unknown>>(join(dir, FLOOR_HEADER_FILE));
+  if (file === null) {
+    lines.push({ step, name: `${what} floor header`, state: "NO-EVIDENCE", detail: `no ${BASE_FLOOR_DIR}/${FLOOR_HEADER_FILE} beside the ${whose(what)} proof; the floor block is signed, its header is not in hand` });
+    return floor;
+  }
+  const raw = typeof file.header === "string" ? evmHexToBytes(file.header) : null;
+  const checked = raw === null ? { ok: false as const, reason: "the file carries no header as hex" } : checkFloorHeader(signed, raw, file.chain);
+  if (!checked.ok) {
+    lines.push({ step, name: `${what} floor header`, state: "FAIL", detail: `${BASE_FLOOR_DIR}/${FLOOR_HEADER_FILE} beside the ${whose(what)} proof does not check against the signed floor, Base block ${signed.blockNumber}: ${checked.reason}` });
+    return floor;
+  }
+  const h = checked.header;
+  const stated = (k: string, v: unknown) => file[k] === undefined || (typeof file[k] === "string" && typeof v === "string" ? (file[k] as string).toLowerCase() === v : file[k] === v);
+  if (!stated("blockNumber", h.number) || !stated("blockHash", h.hash) || !stated("blockTimestamp", h.timestamp) || !stated("evmChainId", 8453)) {
+    lines.push({ step, name: `${what} floor header`, state: "FAIL", detail: `${BASE_FLOOR_DIR}/${FLOOR_HEADER_FILE} beside the ${whose(what)} proof names a different block than the header it carries` });
+    return floor;
+  }
+  lines.push({ step, name: `${what} floor header`, state: "PASS", detail: `the Base block header hashes to the signed floor block ${signed.blockNumber}, carries its number and the signed time, and the time is Base mainnet's schedule for that block` });
+  const bound = floorTimeIsBound(h.timestamp, attestedAtMs);
+  if (bound.ok) {
+    floor.time = h.timestamp;
+  } else {
+    floor.timeWithheld = bound.reason;
+    lines.push({ step, name: `${what} floor time`, state: "UNDETERMINED", detail: `the header time is not stated as a bound: ${bound.reason}; the ${what} still did not exist before Base block ${signed.blockNumber}` });
+  }
+  return floor;
+}
+
+async function ethereumFloorOf(step: 1 | 3, proof: BitGraphProof, signed: SignedFloor, anchorsDir: string, what: string, lines: Line[]): Promise<FloorReport> {
+  const floor: FloorReport = { chain: "ethereum", counter: signed.anchorCounter ?? null, blockNumber: signed.blockNumber, blockHash: signed.blockHash.toLowerCase(), time: null };
   const witness = await readJson<{ headerRlpHex?: unknown; blockNumber?: unknown; blockHash?: unknown }>(join(anchorsDir, "anchor-before-witness.json"));
   if (witness === null || typeof witness.headerRlpHex !== "string") {
     lines.push({ step, name: `${what} floor witness`, state: "NO-EVIDENCE", detail: `no anchor-before-witness.json beside the ${what}'s proof; the floor block is signed, its header time is not in hand` });
@@ -228,8 +293,11 @@ export async function verifyExam(root: string): Promise<ExamVerdict> {
   } else {
     lines.push({ step: 1, name: "paper origin", state: "PASS", detail: "stripping the 48-byte trailer recovers the origin the signed attribution names" });
   }
-  lines.push(...(await attestationLine(1, paperProof!, "paper")));
-  const paperFloor = await floorOf(1, paperProof!, paths.paper.anchors(root), "paper", lines);
+  const paperAttestation = await attestationLine(1, paperProof!, "paper");
+  lines.push(...paperAttestation.lines);
+  const paperStep = await floorStep(1, paperProof!, paths.paper.dir(root), "paper", paperAttestation.attestedAtMs);
+  lines.push(...paperStep.lines);
+  const paperFloor = paperStep.floor;
   if (paperFloor === null && undetermined === null) undetermined = "The paper's proof carries no signed floor, so nothing can be said about a block it could not have existed before.";
   if (originFile !== null && !bytesEq(originFile, origin)) {
     lines.push({ step: 1, name: "paper copy", state: "FAIL", detail: "paper/paper.json is not the origin recovered from the fused bytes" });
@@ -310,8 +378,11 @@ export async function verifyExam(root: string): Promise<ExamVerdict> {
       : { step: 3, name: "answers proof", state: "FAIL", detail: `bitgraph-verify: ${integrity.reason}` });
     if (!integrity.valid) fail("answers", `The answer sheet's proof does not verify: ${integrity.reason}.`);
   }
-  lines.push(...(await attestationLine(3, sheetProof!, "answers")));
-  const answersFloor = await floorOf(3, sheetProof!, paths.answers.anchors(root), "answers", lines);
+  const answersAttestation = await attestationLine(3, sheetProof!, "answers");
+  lines.push(...answersAttestation.lines);
+  const answersStep = await floorStep(3, sheetProof!, paths.answers.dir(root), "answers", answersAttestation.attestedAtMs);
+  lines.push(...answersStep.lines);
+  const answersFloor = answersStep.floor;
   let refused = 0;
   if (sheet !== null) {
     let checked = 0, absent = 0;
@@ -374,7 +445,7 @@ export async function verifyExam(root: string): Promise<ExamVerdict> {
     model: sheet?.model ?? null,
     lines,
     notes,
-    claim: { sentence: paperFloor ? CLAIM.sentence(paperFloor.blockNumber) : null, proves: CLAIM.proves, doesNotProve: CLAIM.doesNotProve, footer: CLAIM.footer },
+    claim: { sentence: paperFloor ? CLAIM.sentence(paperFloor.blockNumber, paperFloor.chain) : null, proves: CLAIM.proves, doesNotProve: CLAIM.doesNotProve, footer: CLAIM.footer },
   };
 }
 

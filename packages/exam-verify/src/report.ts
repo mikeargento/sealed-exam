@@ -9,12 +9,16 @@
  *
  * Verified / Contradiction / No evidence never share a colour or a word.
  */
-import { formatUtc } from "@mikeargento/exam-core";
+import { blockName, formatUtc } from "@mikeargento/exam-core";
 import type { ExamVerdict, FloorReport } from "./verify.js";
 
 const esc = (s: string): string => s.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;");
 
-const EXPLORER = "https://etherscan.io/block/";
+const EXPLORER = { ethereum: "https://etherscan.io/block/", base: "https://basescan.org/block/" } as const;
+const explorer = (f: FloorReport): string => `${EXPLORER[f.chain ?? "ethereum"]}${f.blockNumber}`;
+/** "Base block <a>N</a>": the chain as a word, the number linked to a public explorer. */
+const blockLink = (f: FloorReport, cls = ""): string => esc(blockName(f.blockNumber, f.chain ?? "ethereum")).replace(String(f.blockNumber), `<a${cls ? ` class="${cls}"` : ""} href="${explorer(f)}">${f.blockNumber}</a>`);
+const timeOf = (f: FloorReport): string => f.time !== null ? `header time ${esc(formatUtc(f.time))}` : f.timeWithheld !== undefined ? "header time withheld: the block is stamped after the attestation" : "header time not in hand";
 
 const CSS = `
 :root { color-scheme: light; }
@@ -47,15 +51,14 @@ details pre { white-space: pre-wrap; background: #fff; border: 1px solid #000; p
 
 function floorLine(label: string, f: FloorReport | null): string {
   if (f === null) return `<p class="floor"><b>${esc(label)}:</b> no floor in hand.</p>`;
-  const when = f.time === null ? "header time not in hand" : `header time ${esc(formatUtc(f.time))}`;
-  return `<p class="floor"><b>${esc(label)}:</b> block <a class="mono" href="${EXPLORER}${f.blockNumber}">${f.blockNumber}</a>, ${when}.</p>`;
+  return `<p class="floor"><b>${esc(label)}:</b> ${blockLink(f, "mono")}, ${timeOf(f)}.</p>`;
 }
 
 export function renderReport(v: ExamVerdict): string {
   const word = v.verdict === "ACCEPT" ? "Verified" : v.verdict === "REJECT" ? "Contradiction" : "No evidence";
   const cls = v.verdict === "ACCEPT" ? "verified" : v.verdict === "REJECT" ? "contradiction" : "noevidence";
   const parts: string[] = [];
-  parts.push(`<!doctype html>\n<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>${esc(word)} — sealed exam</title>`);
+  parts.push(`<!doctype html>\n<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>${esc(word)}: sealed exam</title>`);
   parts.push(`<link rel="stylesheet" href="https://use.typekit.net/svq0oqy.css">`);
   parts.push(`<style>${CSS}</style></head><body><main>`);
   parts.push(`<h1 class="${cls}">${esc(word)}</h1>`);
@@ -64,8 +67,8 @@ export function renderReport(v: ExamVerdict): string {
   if (v.score) parts.push(`<p class="score">${v.score.correct}/${v.score.k}</p>`);
   if (v.claim.sentence && v.paper?.floor) {
     const f = v.paper.floor;
-    parts.push(`<p class="sentence">These questions could not have existed before block <a href="${EXPLORER}${f.blockNumber}">${f.blockNumber}</a>.</p>`);
-    parts.push(`<p>Not before ${f.time === null ? "the time in that block's header (not in hand here)" : esc(formatUtc(f.time))}.</p>`);
+    parts.push(`<p class="sentence">These questions could not have existed before ${blockLink(f)}.</p>`);
+    parts.push(`<p>Not before ${f.time !== null ? esc(formatUtc(f.time)) : f.timeWithheld !== undefined ? "the block itself; its header time is withheld, being after the attestation" : "the time in that block's header (not in hand here)"}.</p>`);
   }
   if (v.paper || v.answers) {
     parts.push(`<div class="section"><h2>Floors</h2>`);

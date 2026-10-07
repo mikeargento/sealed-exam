@@ -9,10 +9,12 @@ export { HmacDrbg } from "./drbg.js";
 export { EXAM_DOMAIN, deriveSeed, DrbgRng } from "./seed.js";
 export { PAPER_VERSION, derivePaper, familiesOf, isPaper, b64, fromB64, type Paper, type PaperQuestion, type DerivedPaper } from "./paper.js";
 export { blockTimeFromHeader, headerHash, hexToBytes, bytesToHex0x, formatUtc } from "./rlp.js";
-export { FOLDER_SUFFIX, ANCHOR_DIR, paths, writeBytes, writeJson, readBytes, readJson, remove } from "./folder.js";
+export { FOLDER_SUFFIX, ANCHOR_DIR, BASE_FLOOR_DIR, FLOOR_HEADER_FILE, paths, writeBytes, writeJson, readBytes, readJson, remove } from "./folder.js";
 export {
-  CHAIN, DEFAULT_BASE_URL, BoundaryError, isSlotRecord,
-  allocate, fetchWitness, askSide, floorOfSlot, signedFloorOf, fuseUnderSlot, fusePaper, record, anchorFilesFor, writeAnchorFiles,
+  CHAIN, DEFAULT_BASE_URL, BoundaryError, isSlotRecord, isBaseFloorMark, isAnchorMark,
+  openPosition, allocate, fetchWitness, askSide, floorOfSlot, signedFloorOf, fuseUnderSlot, fusePaper, record, anchorFilesFor, writeAnchorFiles,
+  FLOOR_HEADER_VERSION, fetchBaseFloorHeader, floorEvidenceFor, writeFloorEvidence,
   type Transport, type Floor, type Side, type FusedUnderSlot, type FusedPaper, type AnchorFiles,
+  type BaseFloorMark, type AnchorMark, type Opened, type ExamSignedFloor, type FloorHeaderFile, type FloorEvidence,
 } from "./boundary.js";
-export { CLAIM, CLAIM_PARAGRAPH } from "./claim.js";
+export { CLAIM, CLAIM_PARAGRAPH, blockName, type FloorChain } from "./claim.js";

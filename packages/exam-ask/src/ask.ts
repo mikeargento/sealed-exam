@@ -10,7 +10,7 @@ import { sha256 } from "@noble/hashes/sha256";
 import { canonicalize } from "@mikeargento/bitgraph-verify";
 import type { BitGraphProof } from "@mikeargento/bitgraph-verify";
 import { extractAnswer } from "@mikeargento/exam-bank";
-import { anchorFilesFor, b64, isPaper, paths, readBytes, readJson, record, writeAnchorFiles, writeBytes, writeJson, type Paper, type Transport } from "@mikeargento/exam-core";
+import { b64, floorEvidenceFor, isPaper, paths, readBytes, readJson, record, writeBytes, writeFloorEvidence, writeJson, type FloorEvidence, type Paper, type Transport } from "@mikeargento/exam-core";
 import { providerById, type ProviderId, type Reply } from "./providers.js";
 
 export const ANSWERS_VERSION = "exam-answers/1" as const;
@@ -53,7 +53,7 @@ export type AskEvent =
   | { kind: "asking"; total: number }
   | { kind: "answered"; id: number; done: number; total: number }
   | { kind: "sealing"; total: number }
-  | { kind: "sealed"; proof: BitGraphProof };
+  | { kind: "sealed"; proof: BitGraphProof; floor: FloorEvidence };
 
 export interface AskResult {
   sheet: AnswerSheet;
@@ -116,7 +116,8 @@ export async function askAndSeal(o: AskOptions): Promise<AskResult> {
   o.onEvent?.({ kind: "sealing", total });
   const proof = await record(o.transport ?? {}, sheetBytes);
   await writeJson(paths.answers.proof(o.root), proof);
-  await writeAnchorFiles(paths.answers.anchors(o.root), await anchorFilesFor(o.transport ?? {}, proof));
-  o.onEvent?.({ kind: "sealed", proof });
+  const floor = await floorEvidenceFor(o.transport ?? {}, proof);
+  await writeFloorEvidence(paths.answers.dir(o.root), floor);
+  o.onEvent?.({ kind: "sealed", proof, floor });
   return { sheet, sheetBytes, proof, paper };
 }

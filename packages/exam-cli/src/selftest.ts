@@ -79,7 +79,7 @@ export async function selftest(): Promise<number> {
     const v = await verifyExam(root);
     if (v.verdict !== m[1]) return fail(`${name}: expected ${m[1]}, got ${v.verdict}${v.reason ? ` (${v.reason})` : ""}`);
     if (m[2] && v.disagreed !== m[2]) return fail(`${name}: expected disagreement "${m[2]}", got "${v.disagreed}"`);
-    ok(`${name}: ${v.verdict}${v.disagreed ? ` (${v.disagreed})` : ""}${v.score ? `, score ${v.score.correct}/${v.score.k}` : ""} — ${readme.split("\n")[0]?.trim()}`);
+    ok(`${name}: ${v.verdict}${v.disagreed ? ` (${v.disagreed})` : ""}${v.score ? `, score ${v.score.correct}/${v.score.k}` : ""}; ${readme.split("\n")[0]?.trim()}`);
   }
   process.stdout.write(`\n${n} self-tests passed\n`);
   return 0;

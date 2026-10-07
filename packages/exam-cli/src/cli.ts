@@ -8,7 +8,7 @@
  *   exam paper     [--name n]                       derives the paper from the position and seals it (opens one if none is held)
  *   exam ask       --provider p --model m [--name n] [--no-raw]
  *   exam grade     [--name n]                       the score, by the verifier's own step 4
- *   exam export    <name>                           completes <name>.exam/ (bank, anchors, README)
+ *   exam export    <name>                           completes <name>.exam/ (bank, floor evidence, README)
  *   exam verify    <folder> [--json]                offline; writes verdict.json and report.html beside the files
  *   exam selftest
  *   exam run       --provider p --model m --name n  open → paper → ask → grade → export → verify → report
@@ -23,8 +23,8 @@ import { join, relative } from "node:path";
 import { generatorSourceTar, loadBank, packageRoot as bankRoot } from "@mikeargento/exam-bank";
 import { PROVIDERS, askAndSeal, type ProviderId } from "@mikeargento/exam-ask";
 import {
-  CLAIM, allocate, anchorFilesFor, blockTimeFromHeader, floorOfSlot, formatUtc, fusePaper, isSlotRecord, paths, readBytes, readJson, record, remove, signedFloorOf, writeAnchorFiles, writeBytes, writeJson,
-  type Transport,
+  ANCHOR_DIR, BASE_FLOOR_DIR, CLAIM, blockName, floorEvidenceFor, floorOfSlot, formatUtc, fusePaper, isSlotRecord, openPosition, paths, readBytes, readJson, record, remove, signedFloorOf, writeBytes, writeFloorEvidence, writeJson,
+  type FloorEvidence, type FloorChain, type Transport,
 } from "@mikeargento/exam-core";
 import type { BitGraphProof, SlotAllocation } from "@mikeargento/bitgraph-verify";
 import { renderReport, renderText, verifyExam, floorPhrase, type ExamVerdict } from "@mikeargento/exam-verify";
@@ -76,16 +76,33 @@ function transportOf(flags: Map<string, string | true>): Transport {
   return t;
 }
 
-const floorText = (blockNumber: number, time: number | null) => time === null ? `block ${blockNumber}, header time not in hand` : `block ${blockNumber}, ${formatUtc(time)}`;
+/** "Base block N, 7 Oct 2026 01:52:11Z"; an Ethereum floor (an old folder) is "Ethereum block N". */
+const floorText = (chain: FloorChain, blockNumber: number, time: number | null) => time === null ? `${blockName(blockNumber, chain)}, header time not in hand` : `${blockName(blockNumber, chain)}, ${formatUtc(time)}`;
+
+/** One unit's floor, as written beside its proof. */
+function floorSaid(ev: FloorEvidence): string {
+  if (ev.floor === null) return "";
+  if (ev.floor.chain === "base" && ev.time === null) return ` Floor: ${floorText("base", ev.floor.blockNumber, ev.floor.blockTimestamp ?? null)} (signed). Its header is not in the folder yet (${ev.note ?? "not fetched"}); run export again to add it.`;
+  return ` Floor: ${floorText(ev.floor.chain, ev.floor.blockNumber, ev.time)}.`;
+}
 
 // ── open ────────────────────────────────────────────────────────────────────
 
 async function open(root: string, t: Transport): Promise<SlotAllocation> {
-  const slot = await allocate(t);
+  const opened = await openPosition(t);
+  const slot = opened.slot;
   await mkdir(root, { recursive: true });
   await writeJson(paths.slot(root), slot);
-  const floor = await floorOfSlot(t, slot);
-  say(`Opened position ${slot.counter}. Floor: ${floor ? floorText(floor.blockNumber, floor.time) : "not yet readable from the ledger; the sealed paper will carry it"}.`);
+  if (opened.floor !== null) {
+    // Enclave v10: the Base block it fixed for this position, the one the paper's proof will sign as commit.slotFloor.
+    await writeJson(paths.heldFloor(root), opened.floor);
+    say(`Opened position ${slot.counter}. Floor: ${floorText("base", opened.floor.blockNumber, opened.floor.blockTimestamp)}.`);
+    return slot;
+  }
+  await remove(paths.heldFloor(root));
+  const floor = opened.anchor ?? (await floorOfSlot(t, slot));
+  const time = floor !== null && "time" in floor ? floor.time : null;
+  say(`Opened position ${slot.counter}. Floor: ${floor ? floorText("ethereum", floor.blockNumber, time) : "not yet readable; the sealed paper will carry it"}.`);
   return slot;
 }
 
@@ -104,12 +121,10 @@ async function paper(root: string, t: Transport): Promise<BitGraphProof> {
   await writeBytes(paths.paper.fused(root), fused.fusedBytes);
   await writeJson(paths.paper.proof(root), fused.proof);
   await remove(paths.slot(root));
-  const anchors = await anchorFilesFor(t, fused.proof);
-  await writeAnchorFiles(paths.paper.anchors(root), anchors);
-  const floor = signedFloorOf(fused.proof);
-  const witnessBlock = anchors.before.witness?.blockNumber;
-  const time = anchors.before.witness && floor && witnessBlock === floor.blockNumber ? blockTimeFromHeader(String(anchors.before.witness.headerRlpHex)) : null;
-  say(`Wrote ${fused.paper.k} questions from that position and sealed them at position ${fused.proof.commit.counter}.${floor ? ` Floor: ${floorText(floor.blockNumber, time)}.` : ""}`);
+  await remove(paths.heldFloor(root));
+  const ev = await floorEvidenceFor(t, fused.proof);
+  await writeFloorEvidence(paths.paper.dir(root), ev);
+  say(`Wrote ${fused.paper.k} questions from that position and sealed them at position ${fused.proof.commit.counter}.${floorSaid(ev)}`);
   return fused.proof;
 }
 
@@ -120,10 +135,7 @@ async function ask(root: string, t: Transport, provider: ProviderId, model: stri
     root, provider, model, keepRaw, transport: t,
     onEvent: (e) => {
       if (e.kind === "sealing") say(`Asked ${model}. ${e.total} answers back.`);
-      if (e.kind === "sealed") {
-        const floor = signedFloorOf(e.proof);
-        say(`Sealed the answers at position ${e.proof.commit.counter}.${floor ? ` Floor: block ${floor.blockNumber}.` : ""}`);
-      }
+      if (e.kind === "sealed") say(`Sealed the answers at position ${e.proof.commit.counter}.${floorSaid(e.floor)}`);
     },
   });
   return r.proof;
@@ -140,27 +152,34 @@ async function exportFolder(root: string, t: Transport): Promise<void> {
   const bankProof = await readJson<BitGraphProof>(join(bankProofDir, "proof.json"));
   if (bankProof !== null) {
     await writeJson(paths.bank.proof(root), bankProof);
-    const anchorsDir = join(bankProofDir, "ethereum-anchors");
-    try {
-      for (const name of await readdir(anchorsDir)) await copyFile(join(anchorsDir, name), join(await ensureDir(paths.bank.anchors(root)), name));
-    } catch { /* no anchors shipped with the bank proof */ }
+    // Whichever floor evidence was shipped with the bank's proof: base-floor/ or ethereum-anchors/.
+    for (const dir of [BASE_FLOOR_DIR, ANCHOR_DIR]) {
+      try {
+        for (const name of await readdir(join(bankProofDir, dir))) await copyFile(join(bankProofDir, dir, name), join(await ensureDir(join(paths.bank.dir(root), dir)), name));
+      } catch { /* none shipped */ }
+    }
   }
   for (const unit of ["paper", "answers"] as const) {
     const proof = await readJson<BitGraphProof>(paths[unit].proof(root));
     if (proof === null) continue;
-    await writeAnchorFiles(paths[unit].anchors(root), await anchorFilesFor(t, proof));
+    const ev = await floorEvidenceFor(t, proof);
+    await writeFloorEvidence(paths[unit].dir(root), ev);
+    if (ev.floor?.chain === "base" && ev.files.length === 0) say(`The ${unit === "paper" ? "paper's" : "answer sheet's"} floor header is not in the folder yet (${ev.note ?? "not fetched"}); run export again to add it.`);
   }
   const paperProof = await readJson<BitGraphProof>(paths.paper.proof(root));
   const answersProof = await readJson<BitGraphProof>(paths.answers.proof(root));
   const pf = paperProof ? signedFloorOf(paperProof) : null;
   const af = answersProof ? signedFloorOf(answersProof) : null;
+  const notBefore = (f: typeof pf) => (f ? blockName(f.blockNumber, f.chain) : "block ?");
+  /** What sits beside a unit's proof for its floor: a Base floor's header, or an Ethereum floor's anchors. */
+  const evidence = (f: typeof pf) => (f?.chain === "base" ? `${BASE_FLOOR_DIR}/ (the header of the Base block the proof signs as its floor)` : `${ANCHOR_DIR}/`);
   const readme = [
     "The sealed exam",
     "",
-    pf ? CLAIM.sentence(pf.blockNumber) : "The paper's proof is not in this folder yet.",
+    pf ? CLAIM.sentence(pf.blockNumber, pf.chain) : "The paper's proof is not in this folder yet.",
     "",
-    `Paper: position ${paperProof?.commit.counter ?? "?"}, not before block ${pf?.blockNumber ?? "?"}.`,
-    `Answers: position ${answersProof?.commit.counter ?? "?"}, not before block ${af?.blockNumber ?? "?"}.`,
+    `Paper: position ${paperProof?.commit.counter ?? "?"}, not before ${notBefore(pf)}.`,
+    `Answers: position ${answersProof?.commit.counter ?? "?"}, not before ${notBefore(af)}.`,
     "",
     CLAIM.proves,
     "",
@@ -168,8 +187,8 @@ async function exportFolder(root: string, t: Transport): Promise<void> {
     "",
     "What is here:",
     "  bank/      bank.json (the public item bank, recorded once as a BitGraph: proof.json), generator.tar (its generator source)",
-    "  paper/     paper.json (the questions), new-file/paper.fused.json (the committed bytes: paper.json + a 48-byte trailer carrying the slot commitment), proof.json, ethereum-anchors/",
-    "  answers/   answers.json (the model's answers, naming the fused paper by digest), proof.json, ethereum-anchors/",
+    `  paper/     paper.json (the questions), new-file/paper.fused.json (the committed bytes: paper.json + a 48-byte trailer carrying the position commitment), proof.json, ${evidence(pf)}`,
+    `  answers/   answers.json (the model's answers, naming the fused paper by digest), proof.json, ${evidence(af)}`,
     "  raw/       one file per question: the request sent and the reply received, verbatim",
     "",
     "To check it, offline: `node verifier/exam.mjs verify <this folder>` from the package this came in, or `exam verify <this folder>` from @mikeargento/exam-cli (the tarballs in packages/). Or drop the folder on bitgraph.ing.",
@@ -201,9 +220,9 @@ async function recordBank(t: Transport): Promise<void> {
   if (bytes === null) throw new Error("bank.json is missing; run `npm run bank` in packages/exam-bank");
   const proof = await record(t, bytes);
   await writeJson(join(root, "proof", "proof.json"), proof);
-  await writeAnchorFiles(join(root, "proof", "ethereum-anchors"), await anchorFilesFor(t, proof));
-  const floor = signedFloorOf(proof);
-  say(`Recorded the bank at position ${proof.commit.counter}.${floor ? ` Floor: block ${floor.blockNumber}.` : ""} Proof written to ${relative(process.cwd(), join(root, "proof"))}.`);
+  const ev = await floorEvidenceFor(t, proof);
+  await writeFloorEvidence(join(root, "proof"), ev);
+  say(`Recorded the bank at position ${proof.commit.counter}.${floorSaid(ev)} Proof written to ${relative(process.cwd(), join(root, "proof"))}.`);
 }
 
 // ── main ────────────────────────────────────────────────────────────────────
