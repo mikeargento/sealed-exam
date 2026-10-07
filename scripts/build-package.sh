@@ -51,11 +51,12 @@ cp "$root/verifier/exam.mjs" "$root/verifier/demo.mjs" "$pkg/verifier/"
   && rm -rf node_modules/.package-lock.json package-lock.json )
 [ ! -d "$pkg/verifier/node_modules/@anthropic-ai" ] || { echo "FAIL the provider SDK is in the verifier tree"; exit 1; }
 
-say "the sittings"
+say "the sittings, and the September ones in archive/"
 rm -rf "$pkg/demo"; mkdir -p "$pkg/demo"
 cp -R "$root/demo/." "$pkg/demo/"
+rm -rf "$pkg/archive"; cp -R "$root/archive" "$pkg/archive"
 find "$pkg" -name .DS_Store -delete
-find "$pkg/demo" \( -name report.html -o -name verdict.json \) -delete
+find "$pkg/demo" "$pkg/archive" \( -name report.html -o -name verdict.json \) -delete
 
 say "the documents"
 for f in README.md SPEC.md LICENSE.txt THIRD-PARTY-NOTICES.txt; do cp "$root/$f" "$pkg/$f"; done
