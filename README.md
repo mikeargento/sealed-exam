@@ -1,4 +1,4 @@
-# Freshness is a claim. This is a check.
+# A benchmark you can prove is fresh.
 
 Mike Argento, Argento Computing Inc. · bitgraph.ing · github.com/mikeargento/sealed-exam · 7 October 2026
 
