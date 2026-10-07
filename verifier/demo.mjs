@@ -46,8 +46,12 @@ const { formatUtc } = await import(pathToFileURL(join(home("exam-core"), "dist",
 const DEMO = join(HERE, "..", "demo");
 const FIXTURES = join(home("exam-cli"), "fixtures");
 
-/* A Base floor (papers from 2026-10-07) says so; an Ethereum floor prints as it always has. */
-const floor = (f) => (f === null ? "-" : `${f.chain === "base" ? "Base " : ""}${f.blockNumber} ${f.time === null ? (f.timeWithheld ? "(time withheld)" : "(no header)") : formatUtc(f.time)}`);
+/* A block and the time in its checked header: "52275957 02:47:41Z". The
+   chain and the day are said once, below the table and in the section
+   label, so the columns stay narrow enough to read. An Ethereum floor (a
+   folder from before 2026-10-07) is marked "eth". */
+const hms = (t) => formatUtc(t).replace(/^.* (\d\d:\d\d:\d\dZ)$/, "$1");
+const block = (b) => (b === null ? "-" : `${b.chain === "ethereum" ? "eth " : ""}${b.blockNumber} ${b.time === null ? (b.timeWithheld ? "(withheld)" : "(no header)") : hms(b.time)}`);
 const pad = (s, n) => String(s).padEnd(n);
 
 async function rows(dir, label) {
@@ -57,31 +61,34 @@ async function rows(dir, label) {
     const v = await verifyExam(join(dir, name));
     let expected = "";
     try { expected = /Expected:\s*([A-Z-]+(?:\s*\(\w+\))?)/.exec(await readFile(join(dir, name, "FIXTURE.txt"), "utf8"))?.[1] ?? ""; } catch { expected = ""; }
-    out.push({ label, name: name.replace(/\.exam$/, ""), verdict: v.verdict + (v.disagreed ? ` (${v.disagreed})` : ""), expected, score: v.score ? `${v.score.correct}/${v.score.k}` : "-", model: v.model ? v.model.id : "-", paper: v.paper ? `${v.paper.counter}` : "-", pfloor: floor(v.paper?.floor ?? null), answers: v.answers ? `${v.answers.counter}` : "-", afloor: floor(v.answers?.floor ?? null), reason: v.reason ?? "" });
+    const ceiling = (c) => (c ? block({ chain: "base", blockNumber: c.blockNumber, time: c.time }) : "-");
+    out.push({
+      label, name: name.replace(/\.exam$/, ""), verdict: v.verdict + (v.disagreed ? ` (${v.disagreed})` : ""), expected, score: v.score ? `${v.score.correct}/${v.score.k}` : "-",
+      paper: v.paper ? `#${v.paper.counter}` : "-", pfloor: block(v.paper?.floor ?? null), pceil: ceiling(v.paper?.ceiling ?? null),
+      answers: v.answers ? `#${v.answers.counter}` : "-", afloor: block(v.answers?.floor ?? null), aceil: ceiling(v.answers?.ceiling ?? null),
+      reason: v.reason ?? "",
+    });
   }
   return out;
 }
 
 const all = [...(await rows(DEMO, "demo")), ...(await rows(FIXTURES, "fixture"))];
-/* Columns wide enough for the longest name they hold, so a name as long as
- * its column never runs into the next one (gemini-3.1-pro-preview did). */
-const W = { name: 22, verdict: 22, score: 6, model: 18, paper: 7, pfloor: 33, answers: 9, afloor: 33 };
-W.name = Math.max(W.name, ...all.map((r) => r.name.length + 2));
-W.model = Math.max(W.model, ...all.map((r) => r.model.length + 2));
-W.pfloor = Math.max(W.pfloor, ...all.map((r) => r.pfloor.length + 2));
-W.afloor = Math.max(W.afloor, ...all.map((r) => r.afloor.length + 2));
+/* Columns wide enough for the longest value they hold, so nothing runs into the next column. */
+const COLS = [["name", "folder"], ["verdict", "verdict"], ["score", "score"], ["paper", "paper"], ["pfloor", "floor"], ["pceil", "ceiling"], ["answers", "answers"], ["afloor", "floor"], ["aceil", "ceiling"]];
+const W = Object.fromEntries(COLS.map(([k, h]) => [k, Math.max(h.length, ...all.map((r) => String(r[k]).length)) + 2]));
+const line = (r) => `  ${COLS.map(([k]) => pad(r[k], W[k])).join("")}`;
 console.log("");
-console.log(`  ${pad("folder", W.name)}${pad("verdict", W.verdict)}${pad("score", W.score)}${pad("model", W.model)}${pad("paper", W.paper)}${pad("paper not before block", W.pfloor)}${pad("answers", W.answers)}${pad("answers not before block", W.afloor)}`);
+console.log(line(Object.fromEntries(COLS)));
 console.log(`  ${"-".repeat(Object.values(W).reduce((a, b) => a + b, 0))}`);
 let section = "";
 for (const r of all) {
-  // TODO(resit): the demo label names September 2026; say when the new sittings were made.
-  if (r.label !== section) { section = r.label; console.log(`  ${section === "demo" ? "demo/ (real runs, September 2026)" : "fixtures (from @mikeargento/exam-cli)"}`); }
-  console.log(`  ${pad(r.name, W.name)}${pad(r.verdict, W.verdict)}${pad(r.score, W.score)}${pad(r.model, W.model)}${pad(r.paper, W.paper)}${pad(r.pfloor, W.pfloor)}${pad(r.answers, W.answers)}${pad(r.afloor, W.afloor)}`);
+  if (r.label !== section) { section = r.label; console.log(`  ${section === "demo" ? "demo/ (real runs, 7 October 2026)" : "fixtures (from @mikeargento/exam-cli)"}`); }
+  console.log(line(r));
   if (r.expected && !r.verdict.startsWith(r.expected.split(" ")[0])) { console.log(`    !! expected ${r.expected}`); process.exitCode = 1; }
   if (r.reason) console.log(`    ${r.reason}`);
 }
 console.log("");
 console.log("  Every value above was recomputed from the files, with fetch and sockets disabled in this process.");
-console.log("  Floors are floors: not before block N, whose header time is shown. Nothing here is a ceiling.");
+console.log("  paper and answers: each BitGraph, by number. floor: not before this Base block (the time in its header).");
+console.log("  ceiling: existed by this Base block (the time in its header). All times UTC.");
 console.log("");

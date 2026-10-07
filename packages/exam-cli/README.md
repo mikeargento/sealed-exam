@@ -9,13 +9,17 @@ folder anyone can verify offline.
 did not exist until the enclave opened the paper's position, so the questions did not exist before
 that position; the position opened after its floor block, so they were not in any training set
 frozen before that block; the paper's digest spent that position; the answer sheet names the paper
-and sits at a later position on the same chain.
+and sits at a later position on the same chain; where a unit's `base-ceiling/` is in the folder, it
+existed by that Base block.
 
 **Does not prove:** that the template families are unfamiliar to the model; that the model
-worked alone, without tools, or quickly; when the answers were produced beyond their own floor.
-The answer sheet has a floor, not a ceiling. Nothing here prints a ceiling, and nothing prints
-"at" a time: floors are "not before Base block N (header time T)" ("Ethereum block N" for a paper
-made before 7 October 2026).
+worked alone, without tools, or quickly.
+
+Every report leads with the paper's BitGraph: "These exact questions could not have existed before
+BitGraph #97 began." Each BitGraph then reads as its proof page does: its floor, "not before Base
+block N (header time T)" ("Ethereum block N" for a paper made before 7 October 2026); its recorded
+time, from the AWS Nitro attestation; and its ceiling, "existed by Base block M (header time T)".
+Nothing prints "at" a time.
 
 ## Run
 

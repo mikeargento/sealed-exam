@@ -117,4 +117,5 @@ zero blocks at the end. `generatorTarDigestB64` = SHA-256 of the whole archive.
     `blockHash`; the header's 12th RLP field is the block timestamp.
 
   Print floors with their chain: "not before Base block N (header time T)", "not before Ethereum
-  block N (header time T)". Never a ceiling. Never "at".
+  block N (header time T)". A unit's Base ceiling, when `base-ceiling/ceiling.json` (bitgraph-ceiling/1)
+  is carried and checks, prints as "existed by Base block M (header time T)". Never "at".
