@@ -1,0 +1,8 @@
+Opened position 96. Floor: Base block 52275983, 7 Oct 2026 02:48:33Z.
+Wrote 20 questions from that position and sealed them at position 97. Floor: Base block 52275983, 7 Oct 2026 02:48:33Z.
+Asked claude-sonnet-5-5. 20 answers back.
+Sealed the answers at position 99. Floor: Base block 52275994, 7 Oct 2026 02:48:55Z.
+Verified
+Score 19/20. Report: demo/claude-sonnet-5-5.exam/report.html
+Paper not before Base block 52275983 (header time 7 Oct 2026 02:48:33Z).
+Answers not before Base block 52275994 (header time 7 Oct 2026 02:48:55Z).

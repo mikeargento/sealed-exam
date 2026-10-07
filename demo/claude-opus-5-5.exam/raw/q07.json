@@ -1,0 +1,56 @@
+{
+  "version": "exam-raw/1",
+  "id": 7,
+  "family": "logic",
+  "provider": "anthropic",
+  "model": "claude-opus-5-5",
+  "request": {
+    "model": "claude-opus-5-5",
+    "max_tokens": 16000,
+    "system": "You are sitting a written exam. Answer each question on its own. Follow the question's answer-format instructions exactly.",
+    "messages": [
+      {
+        "role": "user",
+        "content": "5 people (Hugo, Fitz, Cleo, Gwen, Esme) sit in a row of 5 seats numbered 1 to 5 from left to right. All of the following are true:\n\n1. Gwen sits somewhere to the left of Cleo.\n2. Cleo and Gwen do not sit next to each other.\n3. There are exactly 2 seats between Hugo and Gwen.\n4. Fitz sits in seat 5.\n5. There are exactly 0 seats between Gwen and Esme.\n6. Gwen sits at one end of the row.\n\nWho sits where?\n\nGive the names in seat order from seat 1 to the last seat, separated by commas.\nReason as much as you like, then finish with one final line of the form\nANSWER: <your answer>"
+      }
+    ]
+  },
+  "response": {
+    "model": "claude-opus-5-5",
+    "id": "msg_011Cfn7ZcjTp3FyTJHycY7Y4",
+    "type": "message",
+    "role": "assistant",
+    "content": [
+      {
+        "type": "thinking",
+        "thinking": "",
+        "signature": "CAQSuwUKEAgSGAI4AUIIdGhpbmtpbmcSDPkFVI//hSUbbRJYDBoMuZNGr0sSLAGwjNomIjCuTNyM0OepcQ5emGYS5miQ47aOwrWzLEcxNM6KKRxqG+6NDteNfYrntdT2bqbXlT0q2ASSHikq7DAYAVVBByo4y44LgRzUIEUkiJlOFiyQSBgULzI+FpaC5+wWf698u7p2OAQ4nBh8BNdktwTqvN8eXSuXytjxwiW/57GhP8ww3Xy9Y45WQ/t+T8haDGnUbWDs88B9yNieilkVS1I2KqvpK/6ZDEQbUFLfat48ln67xfXPeKSH2awDixK6p59yIfMgy2v7fs4exi0YyNx78u34socWY37rh17lgD6DZbhKP1qM1z51KZxwLZLCDci4Vpw9lNuR4S6YJ/VtBmD0G8dY1HfS98DC3Y0ZSAEWvRLg2CuDaVXYSXPigrarLkVu986hB14T+2XDTw+54d7A2P79KCow8LK2jNjWIuF6PSdgWFPs0wvju14+6I2/0pNLz5jSpsnKg6GUB1PqIyYd2YCA1A3j/mDqQPySgXW5RYhorK0CKYlSoV2HNz+aWq6kz76HDb2QS2lzdrcRiJrd2MD7t4/0cQQ9rR7//BPHJGQ+ADZOfobFXESLoh//+erc5/nkpGDeLsWX+fcSiO7tjCvaOEKg57ljgaV/sj0dXYXh1500PEPvwXh3xcW9lSnnW6CZ6cr6Xzza3nxnHou/vG0hdhq42nagkkV5xJa3h/rdbtZqlj4H5wseDW8+YTzuzGprlBqOL6/p75klFwuTsBhUXKp/eiCn5081yTuyfCiRIv9fjMJ93BZwlFX8XMJbYoaYXvTmLD1mlQ6jMV5jgYBs50u+qjFWaxFPeMDX3wjs4mlBU3sY41bprkw7BKdRQuf/pSZbMS9D1m5ogGw0zI6KVeZ2BaUz5aM0IVAYAQ=="
+      },
+      {
+        "type": "text",
+        "text": "Work through the constraints in order:\n\n- **Fitz:** By constraint 4, Fitz is in seat 5.\n- **Gwen:** By constraint 6, Gwen sits at an end. Seat 5 is taken, so Gwen is in seat 1.\n- **Hugo:** By constraint 3, there are exactly 2 seats between Hugo and Gwen. So Hugo is in seat 4.\n- **Esme:** By constraint 5, there are 0 seats between Gwen and Esme, so they are adjacent. Esme is in seat 2.\n- **Cleo:** The only seat left is seat 3.\n\nCheck the remaining constraints:\n\n- Constraint 1: Gwen (seat 1) is to the left of Cleo (seat 3). ✓\n- Constraint 2: Seats 1 and 3 are not adjacent, so Cleo and Gwen do not sit next to each other. ✓\n\nANSWER: Gwen, Esme, Cleo, Hugo, Fitz"
+      }
+    ],
+    "container": null,
+    "stop_reason": "end_turn",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 293,
+      "cache_creation_input_tokens": 0,
+      "cache_read_input_tokens": 0,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 413,
+      "output_tokens_details": {
+        "thinking_tokens": 81
+      },
+      "service_tier": "standard",
+      "inference_geo": "global"
+    },
+    "diagnostics": null
+  },
+  "incomplete": false
+}

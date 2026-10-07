@@ -1,0 +1,56 @@
+{
+  "version": "exam-raw/1",
+  "id": 2,
+  "family": "arith",
+  "provider": "anthropic",
+  "model": "claude-sonnet-5-5",
+  "request": {
+    "model": "claude-sonnet-5-5",
+    "max_tokens": 16000,
+    "system": "You are sitting a written exam. Answer each question on its own. Follow the question's answer-format instructions exactly.",
+    "messages": [
+      {
+        "role": "user",
+        "content": "Compute exactly:\n\n65382111 * (196182815 + 59466310) + 333404604\n\nGive the exact integer, with no thousands separators.\nReason as much as you like, then finish with one final line of the form\nANSWER: <your answer>"
+      }
+    ]
+  },
+  "response": {
+    "model": "claude-sonnet-5-5",
+    "id": "msg_011Cfn7bPRKMpMqAfuWt2eeM",
+    "type": "message",
+    "role": "assistant",
+    "content": [
+      {
+        "type": "thinking",
+        "thinking": "",
+        "signature": "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"
+      },
+      {
+        "type": "text",
+        "text": "First, 196182815 + 59466310 = 255649125.\n\nNext, 65382111 × 255649125, splitting 255649125 = 255,000,000 + 649,125:\n\n- 65382111 × 255 = 16,672,438,305, so 65382111 × 255,000,000 = 16,672,438,305,000,000.\n- 65382111 × 649 = 42,432,990,039, so 65382111 × 649,000 = 42,432,990,039,000.\n- 65382111 × 125 = 8,172,763,875.\n- Therefore 65382111 × 649,125 = 42,432,990,039,000 + 8,172,763,875 = 42,441,162,802,875.\n\nThe product is 16,672,438,305,000,000 + 42,441,162,802,875 = 16,714,879,467,802,875.\n\nFinally, adding 333,404,604 gives 16,714,879,801,207,479.\n\nANSWER: 16714879801207479"
+      }
+    ],
+    "container": null,
+    "stop_reason": "end_turn",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 123,
+      "cache_creation_input_tokens": 0,
+      "cache_read_input_tokens": 0,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 820,
+      "output_tokens_details": {
+        "thinking_tokens": 510
+      },
+      "service_tier": "standard",
+      "inference_geo": "global"
+    },
+    "diagnostics": null
+  },
+  "incomplete": false
+}

@@ -1,0 +1,57 @@
+{
+  "version": "exam-raw/1",
+  "id": 8,
+  "family": "spec",
+  "provider": "openai",
+  "model": "gpt-6-luna",
+  "request": {
+    "model": "gpt-6-luna",
+    "messages": [
+      {
+        "role": "system",
+        "content": "You are sitting a written exam. Answer each question on its own. Follow the question's answer-format instructions exactly."
+      },
+      {
+        "role": "user",
+        "content": "Write a JavaScript function f(xs), where xs is an array of integers, that returns an integer computed as follows:\n\n1. Keep only the even elements (0 counts as even; negatives count by their value).\n2. Replace each kept element with its absolute value.\n3. Return the largest resulting element, or 1 if there are none.\n\nReply with only the function, in a single ```js code block. Name it f, take one parameter xs, use no libraries, and write no import, require or export statements."
+      }
+    ]
+  },
+  "response": {
+    "id": "chatcmpl-EWC0wSJBBwf6VPFH6KZCu2RWVAk4D",
+    "object": "chat.completion",
+    "created": 1791341386,
+    "model": "gpt-6-luna",
+    "choices": [
+      {
+        "index": 0,
+        "message": {
+          "role": "assistant",
+          "content": "```js\nfunction f(xs) {\n  let found = false;\n  let largest = 0;\n\n  for (const x of xs) {\n    if (x % 2 === 0) {\n      found = true;\n      largest = Math.max(largest, Math.abs(x));\n    }\n  }\n\n  return found ? largest : 1;\n}\n```",
+          "refusal": null,
+          "annotations": []
+        },
+        "finish_reason": "stop"
+      }
+    ],
+    "usage": {
+      "prompt_tokens": 140,
+      "completion_tokens": 186,
+      "total_tokens": 326,
+      "prompt_tokens_details": {
+        "cached_tokens": 0,
+        "cache_write_tokens": 0,
+        "audio_tokens": 0
+      },
+      "completion_tokens_details": {
+        "reasoning_tokens": 103,
+        "audio_tokens": 0,
+        "accepted_prediction_tokens": 0,
+        "rejected_prediction_tokens": 0
+      }
+    },
+    "service_tier": "default",
+    "system_fingerprint": null
+  },
+  "incomplete": false
+}

@@ -1,0 +1,51 @@
+{
+  "version": "exam-raw/1",
+  "id": 4,
+  "family": "order",
+  "provider": "anthropic",
+  "model": "claude-sonnet-5-5",
+  "request": {
+    "model": "claude-sonnet-5-5",
+    "max_tokens": 16000,
+    "system": "You are sitting a written exam. Answer each question on its own. Follow the question's answer-format instructions exactly.",
+    "messages": [
+      {
+        "role": "user",
+        "content": "Facts:\n\nThe Elm file was registered on 15 April 2021.\nThe Alder file was registered on 21 December 1969.\nThe Cedar file was registered on 12 July 2021.\nThe Juniper file was registered on 4 February 1914.\nThe Ivy file was registered on 28 August 1928.\nThe Birch file was registered on 6 June 1914.\nThe Hazel file was registered on 15 July 2008.\n\nList the 7 labels from the latest registration to the earliest.\n\nGive the labels only, in the requested order, separated by commas.\nReason as much as you like, then finish with one final line of the form\nANSWER: <your answer>"
+      }
+    ]
+  },
+  "response": {
+    "model": "claude-sonnet-5-5",
+    "id": "msg_011Cfn7bPWmyyQP6SGiaQw1k",
+    "type": "message",
+    "role": "assistant",
+    "content": [
+      {
+        "type": "text",
+        "text": "Sorting the registration dates from latest to earliest:\n\n1. Cedar: 12 July 2021\n2. Elm: 15 April 2021\n3. Hazel: 15 July 2008\n4. Alder: 21 December 1969\n5. Ivy: 28 August 1928\n6. Birch: 6 June 1914\n7. Juniper: 4 February 1914\n\nANSWER: Cedar, Elm, Hazel, Alder, Ivy, Birch, Juniper"
+      }
+    ],
+    "container": null,
+    "stop_reason": "end_turn",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 251,
+      "cache_creation_input_tokens": 0,
+      "cache_read_input_tokens": 0,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 159,
+      "output_tokens_details": {
+        "thinking_tokens": 0
+      },
+      "service_tier": "standard",
+      "inference_geo": "global"
+    },
+    "diagnostics": null
+  },
+  "incomplete": false
+}

@@ -1,0 +1,49 @@
+{
+  "version": "exam-raw/1",
+  "id": 3,
+  "family": "logic",
+  "provider": "anthropic",
+  "model": "claude-haiku-4-5-20251001",
+  "request": {
+    "model": "claude-haiku-4-5-20251001",
+    "max_tokens": 16000,
+    "system": "You are sitting a written exam. Answer each question on its own. Follow the question's answer-format instructions exactly.",
+    "messages": [
+      {
+        "role": "user",
+        "content": "4 people (Gwen, Dev, Fitz, Hugo) sit in a row of 4 seats numbered 1 to 4 from left to right. All of the following are true:\n\n1. Fitz sits in seat 3.\n2. Dev sits at one end of the row.\n3. Dev sits in seat 1.\n4. There are exactly 1 seat between Hugo and Gwen.\n5. Fitz does not sit in seat 2.\n6. Fitz sits immediately to the left of Hugo.\n7. Dev sits somewhere to the left of Gwen.\n\nWho sits where?\n\nGive the names in seat order from seat 1 to the last seat, separated by commas.\nReason as much as you like, then finish with one final line of the form\nANSWER: <your answer>"
+      }
+    ],
+    "temperature": 0
+  },
+  "response": {
+    "model": "claude-haiku-4-5-20251001",
+    "id": "msg_011Cfn7XWdYosy9sP3Xc8HMu",
+    "type": "message",
+    "role": "assistant",
+    "content": [
+      {
+        "type": "text",
+        "text": "I need to determine who sits in each of the 4 seats based on the given constraints.\n\nLet me work through this systematically:\n\nFrom constraint 1: Fitz sits in seat 3.\nFrom constraint 3: Dev sits in seat 1.\n\nSo far:\n- Seat 1: Dev\n- Seat 2: ?\n- Seat 3: Fitz\n- Seat 4: ?\n\nThe remaining people are Gwen and Hugo, who must occupy seats 2 and 4.\n\nFrom constraint 6: Fitz sits immediately to the left of Hugo.\nSince Fitz is in seat 3, Hugo must be in seat 4.\n\nThis means:\n- Seat 1: Dev\n- Seat 2: Gwen\n- Seat 3: Fitz\n- Seat 4: Hugo\n\nLet me verify all constraints:\n1. Fitz sits in seat 3. ✓ (Fitz is in seat 3)\n2. Dev sits at one end of the row. ✓ (Dev is in seat 1, which is an end)\n3. Dev sits in seat 1. ✓ (Dev is in seat 1)\n4. There are exactly 1 seat between Hugo and Gwen. ✓ (Hugo in seat 4, Gwen in seat 2; seat 3 is between them)\n5. Fitz does not sit in seat 2. ✓ (Fitz is in seat 3)\n6. Fitz sits immediately to the left of Hugo. ✓ (Fitz in seat 3, Hugo in seat 4)\n7. Dev sits somewhere to the left of Gwen. ✓ (Dev in seat 1, Gwen in seat 2)\n\nAll constraints are satisfied.\n\nANSWER: Dev, Gwen, Fitz, Hugo"
+      }
+    ],
+    "container": null,
+    "stop_reason": "end_turn",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 223,
+      "cache_creation_input_tokens": 0,
+      "cache_read_input_tokens": 0,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 439,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null
+  },
+  "incomplete": false
+}

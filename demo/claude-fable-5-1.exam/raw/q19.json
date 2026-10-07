@@ -1,0 +1,46 @@
+{
+  "version": "exam-raw/1",
+  "id": 19,
+  "family": "arith",
+  "provider": "anthropic",
+  "model": "claude-fable-5-1",
+  "request": {
+    "model": "claude-fable-5-1",
+    "max_tokens": 16000,
+    "system": "You are sitting a written exam. Answer each question on its own. Follow the question's answer-format instructions exactly.",
+    "messages": [
+      {
+        "role": "user",
+        "content": "Compute exactly:\n\n(6837948 - 92264513) * (7952856 + 890586822)\n\nGive the exact integer, with no thousands separators.\nReason as much as you like, then finish with one final line of the form\nANSWER: <your answer>"
+      }
+    ]
+  },
+  "response": {
+    "model": "claude-fable-5-1",
+    "id": "msg_011Cfn7dgDuxUrcjnWYSrCKq",
+    "type": "message",
+    "role": "assistant",
+    "content": [],
+    "container": null,
+    "stop_reason": "refusal",
+    "stop_sequence": null,
+    "stop_details": {
+      "type": "refusal",
+      "category": "cyber",
+      "explanation": "This request triggered restrictions on violative cyber content and was blocked under Anthropic's Usage Policy. To learn more, see https://platform.claude.com/docs/en/build-with-claude/refusals-and-fallback. API integrators: you can reduce refusals for your users by configuring a fallback model — see https://platform.claude.com/docs/en/build-with-claude/refusals-and-fallback"
+    },
+    "usage": {
+      "input_tokens": 170,
+      "cache_creation_input_tokens": 0,
+      "cache_read_input_tokens": 0,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 0,
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null
+  },
+  "incomplete": true
+}

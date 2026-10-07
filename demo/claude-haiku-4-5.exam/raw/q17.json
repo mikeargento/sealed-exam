@@ -1,0 +1,49 @@
+{
+  "version": "exam-raw/1",
+  "id": 17,
+  "family": "order",
+  "provider": "anthropic",
+  "model": "claude-haiku-4-5-20251001",
+  "request": {
+    "model": "claude-haiku-4-5-20251001",
+    "max_tokens": 16000,
+    "system": "You are sitting a written exam. Answer each question on its own. Follow the question's answer-format instructions exactly.",
+    "messages": [
+      {
+        "role": "user",
+        "content": "Facts:\n\nThe Elm crate weighs 13,667 kg.\nThe Dogwood crate weighs 49,779 kg.\nThe Hazel crate weighs 52,981 kg.\nThe Ivy crate weighs 51,446 kg.\nThe Alder crate weighs 86,070 kg.\nThe Cedar crate weighs 42,326 kg.\nThe Juniper crate weighs 79,234 kg.\n\nList the 7 labels from the lightest crate to the heaviest.\n\nGive the labels only, in the requested order, separated by commas.\nReason as much as you like, then finish with one final line of the form\nANSWER: <your answer>"
+      }
+    ],
+    "temperature": 0
+  },
+  "response": {
+    "model": "claude-haiku-4-5-20251001",
+    "id": "msg_011Cfn7YPwFN7G9wny3JrjgG",
+    "type": "message",
+    "role": "assistant",
+    "content": [
+      {
+        "type": "text",
+        "text": "I need to order the crates from lightest to heaviest by their weights.\n\nLet me list the weights:\n- Elm: 13,667 kg\n- Dogwood: 49,779 kg\n- Hazel: 52,981 kg\n- Ivy: 51,446 kg\n- Alder: 86,070 kg\n- Cedar: 42,326 kg\n- Juniper: 79,234 kg\n\nNow I'll sort from smallest to largest:\n1. Elm: 13,667 kg (lightest)\n2. Cedar: 42,326 kg\n3. Dogwood: 49,779 kg\n4. Ivy: 51,446 kg\n5. Hazel: 52,981 kg\n6. Juniper: 79,234 kg\n7. Alder: 86,070 kg (heaviest)\n\nANSWER: Elm, Cedar, Dogwood, Ivy, Hazel, Juniper, Alder"
+      }
+    ],
+    "container": null,
+    "stop_reason": "end_turn",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 201,
+      "cache_creation_input_tokens": 0,
+      "cache_read_input_tokens": 0,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 239,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null
+  },
+  "incomplete": false
+}

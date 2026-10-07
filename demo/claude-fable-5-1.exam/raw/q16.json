@@ -1,0 +1,56 @@
+{
+  "version": "exam-raw/1",
+  "id": 16,
+  "family": "arith",
+  "provider": "anthropic",
+  "model": "claude-fable-5-1",
+  "request": {
+    "model": "claude-fable-5-1",
+    "max_tokens": 16000,
+    "system": "You are sitting a written exam. Answer each question on its own. Follow the question's answer-format instructions exactly.",
+    "messages": [
+      {
+        "role": "user",
+        "content": "Compute exactly:\n\n389379861 * (864653212 + 318507) + 7188974\n\nGive the exact integer, with no thousands separators.\nReason as much as you like, then finish with one final line of the form\nANSWER: <your answer>"
+      }
+    ]
+  },
+  "response": {
+    "model": "claude-fable-5-1",
+    "id": "msg_011Cfn7dYu8inZHSZECecKDr",
+    "type": "message",
+    "role": "assistant",
+    "content": [
+      {
+        "type": "thinking",
+        "thinking": "",
+        "signature": "CAQSmwYKEAgSGAI4AUIIdGhpbmtpbmcSDLh9guZ8g96Sld/FQBoM4VAxSVvXPNOznR8sIjARnhqFcs+L0AGu0/wm+dq329Ts+CLqAZPT2Z3jK7bxEtKNw65uOnvztGBszWiEaQYquAXL4btnp3YYmha2fHRGw5Ph64hYBzmO3gucMJmHsZluGrVD7W4FqrzXVWvA6QUs3egGN+yc0Tkb4vuDfIr7a8knOsCVRQR3qJ1ThaCAYZc7QBXXhmgoCCQsTVJ/NURpEllD3Se/NrSZuE7y02CAH/Nwz+ftza6OgmJNpqMJyXW7DJWkITJwvcLfPXGmfktkcdG3b3AGIL1IOWYaZRgJEbNjh+CcgQKOGMafE1CyjklSxfu2n7UO2NBcByBBYasD7QVxWNa33ADbUQdm/x95Jt/tKbapA2IABbpFpalvZ4FXpJCe5n2HtvTeGOe7n1IIKn7OieaZYj1mVJ/auyqBh8377mZkPoyuLThnA1ekGbFLF5yJ+kyGhMHoqR/i/J4KZ0KO/7s3hyhCCVP4z0ZTNzioNZQ5i0Yegg4DHHWHDkv8XNdRG2JnjqrKsoOFFdV0XVFyyOqzgC7t4KhBP5+nfDKypxLYagqPBvpUgLWcIZgRMUO59GzF7ZiLUs7lEmvVPNWABD2bkTmkPEGLSmPO/e47cjHgsk/lpvgs4QwsNtpHGLrySvknNAaVXvgEkA9CQeTxamQezVkgvHbbAMAonI9UFDki1U9IeJItjhw3e6G5KiM3mfyDgw2IM2zK9eS4URY4aEbQ/3Fgc9kbvwY2R5/VpXvUWaOsJFng1c38BAHBv3p694GD0ptkIGSnCBheoPXraeTd8PSIkvYhY62YHYCrQs89yB6kXVbfUQwZpzM4XyjvfKSIr8NbHoSdXwCs2Ciovh2PvWcfvfARnTkuV4hIEKhlA5JH4MrOjjc72GJRVqxch7Q/MeF4WMGG36hSd+ZQwPF+D12HBgWAgXdxG9hPNHqRh3KjUe18IGOXUEVI9ohuRO6tiZW/LomOuiOnVlvOO8TxeD6gNP9IpFpc2NMBolklan2S/v8YAQ=="
+      }
+    ],
+    "container": null,
+    "stop_reason": "refusal",
+    "stop_sequence": null,
+    "stop_details": {
+      "type": "refusal",
+      "category": "cyber",
+      "explanation": "This request triggered restrictions on violative cyber content and was blocked under Anthropic's Usage Policy. To learn more, see https://platform.claude.com/docs/en/build-with-claude/refusals-and-fallback. API integrators: you can reduce refusals for your users by configuring a fallback model — see https://platform.claude.com/docs/en/build-with-claude/refusals-and-fallback"
+    },
+    "usage": {
+      "input_tokens": 122,
+      "cache_creation_input_tokens": 0,
+      "cache_read_input_tokens": 0,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 97,
+      "output_tokens_details": {
+        "thinking_tokens": 97
+      },
+      "service_tier": "standard",
+      "inference_geo": "global"
+    },
+    "diagnostics": null
+  },
+  "incomplete": true
+}

@@ -1,0 +1,56 @@
+{
+  "version": "exam-raw/1",
+  "id": 10,
+  "family": "arith",
+  "provider": "anthropic",
+  "model": "claude-sonnet-5-5",
+  "request": {
+    "model": "claude-sonnet-5-5",
+    "max_tokens": 16000,
+    "system": "You are sitting a written exam. Answer each question on its own. Follow the question's answer-format instructions exactly.",
+    "messages": [
+      {
+        "role": "user",
+        "content": "Compute exactly:\n\n405486157 * 6515743 + 16164184 * 2848288 - 718898\n\nGive the exact integer, with no thousands separators.\nReason as much as you like, then finish with one final line of the form\nANSWER: <your answer>"
+      }
+    ]
+  },
+  "response": {
+    "model": "claude-sonnet-5-5",
+    "id": "msg_011Cfn7bkVLtu4xFt9r26kVh",
+    "type": "message",
+    "role": "assistant",
+    "content": [
+      {
+        "type": "thinking",
+        "thinking": "",
+        "signature": "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"
+      },
+      {
+        "type": "text",
+        "text": "The expression evaluates to 2688083839667745. I computed each product by splitting the multiplier into place-value parts, then combined the results.\n\n**First product:** 405486157 × 6515743\n- 405486157 × 6,000,000 = 2,432,916,942,000,000\n- 405486157 × 515,743 = 209,126,647,069,651\n- Sum: 2,642,043,589,069,651\n\n**Second product:** 16164184 × 2848288\n- 16164184 × 2,800,000 = 45,259,715,200,000\n- 16164184 × 48,288 = 780,536,116,992\n- Sum: 46,040,251,316,992\n\n**Combine:**\n- 2,642,043,589,069,651 + 46,040,251,316,992 = 2,688,083,840,386,643\n- 2,688,083,840,386,643 − 718,898 = 2,688,083,839,667,745\n\n**Check mod 9:** The two products reduce to 7 and 7, which sum to 14, i.e. 5. Also 718898 reduces to 5. So the expression should be 5 − 5 = 0 mod 9. The digits of the result sum to 90, which is 0 mod 9, so the check passes.\n\nANSWER: 2688083839667745"
+      }
+    ],
+    "container": null,
+    "stop_reason": "end_turn",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 128,
+      "cache_creation_input_tokens": 0,
+      "cache_read_input_tokens": 0,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 1371,
+      "output_tokens_details": {
+        "thinking_tokens": 963
+      },
+      "service_tier": "standard",
+      "inference_geo": "global"
+    },
+    "diagnostics": null
+  },
+  "incomplete": false
+}

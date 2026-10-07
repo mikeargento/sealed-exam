@@ -1,0 +1,51 @@
+{
+  "version": "exam-raw/1",
+  "id": 13,
+  "family": "order",
+  "provider": "anthropic",
+  "model": "claude-sonnet-5-5",
+  "request": {
+    "model": "claude-sonnet-5-5",
+    "max_tokens": 16000,
+    "system": "You are sitting a written exam. Answer each question on its own. Follow the question's answer-format instructions exactly.",
+    "messages": [
+      {
+        "role": "user",
+        "content": "Facts:\n\nThe Ivy crate weighs 23,431 kg.\nThe Birch crate weighs 15,627 kg.\nThe Dogwood crate weighs 89,033 kg.\nThe Fir crate weighs 30,528 kg.\nThe Alder crate weighs 30,052 kg.\n\nList the 5 labels from the heaviest crate to the lightest.\n\nGive the labels only, in the requested order, separated by commas.\nReason as much as you like, then finish with one final line of the form\nANSWER: <your answer>"
+      }
+    ]
+  },
+  "response": {
+    "model": "claude-sonnet-5-5",
+    "id": "msg_011Cfn7c9SinYiNf3gtMAqt9",
+    "type": "message",
+    "role": "assistant",
+    "content": [
+      {
+        "type": "text",
+        "text": "Ordering the crates by weight, heaviest first:\n\n- Dogwood: 89,033 kg\n- Fir: 30,528 kg\n- Alder: 30,052 kg\n- Ivy: 23,431 kg\n- Birch: 15,627 kg\n\nANSWER: Dogwood, Fir, Alder, Ivy, Birch"
+      }
+    ],
+    "container": null,
+    "stop_reason": "end_turn",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 216,
+      "cache_creation_input_tokens": 0,
+      "cache_read_input_tokens": 0,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 116,
+      "output_tokens_details": {
+        "thinking_tokens": 0
+      },
+      "service_tier": "standard",
+      "inference_geo": "global"
+    },
+    "diagnostics": null
+  },
+  "incomplete": false
+}

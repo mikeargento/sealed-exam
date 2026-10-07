@@ -1,0 +1,57 @@
+{
+  "version": "exam-raw/1",
+  "id": 6,
+  "family": "order",
+  "provider": "openai",
+  "model": "gpt-6-luna",
+  "request": {
+    "model": "gpt-6-luna",
+    "messages": [
+      {
+        "role": "system",
+        "content": "You are sitting a written exam. Answer each question on its own. Follow the question's answer-format instructions exactly."
+      },
+      {
+        "role": "user",
+        "content": "Facts:\n\nThe Cedar crate weighs 71,380 kg.\nThe Alder crate weighs 86,286 kg.\nThe Birch crate weighs 58,789 kg.\nThe Ginkgo crate weighs 48,120 kg.\nThe Dogwood crate weighs 54,577 kg.\nThe Elm crate weighs 55,752 kg.\nThe Juniper crate weighs 90,627 kg.\n\nList the 7 labels from the heaviest crate to the lightest.\n\nGive the labels only, in the requested order, separated by commas.\nReason as much as you like, then finish with one final line of the form\nANSWER: <your answer>"
+      }
+    ]
+  },
+  "response": {
+    "id": "chatcmpl-EWC0umAey3QhWxbtGVoHvozEgYeeK",
+    "object": "chat.completion",
+    "created": 1791341384,
+    "model": "gpt-6-luna",
+    "choices": [
+      {
+        "index": 0,
+        "message": {
+          "role": "assistant",
+          "content": "ANSWER: Juniper, Alder, Cedar, Birch, Elm, Dogwood, Ginkgo",
+          "refusal": null,
+          "annotations": []
+        },
+        "finish_reason": "stop"
+      }
+    ],
+    "usage": {
+      "prompt_tokens": 160,
+      "completion_tokens": 98,
+      "total_tokens": 258,
+      "prompt_tokens_details": {
+        "cached_tokens": 0,
+        "cache_write_tokens": 0,
+        "audio_tokens": 0
+      },
+      "completion_tokens_details": {
+        "reasoning_tokens": 71,
+        "audio_tokens": 0,
+        "accepted_prediction_tokens": 0,
+        "rejected_prediction_tokens": 0
+      }
+    },
+    "service_tier": "default",
+    "system_fingerprint": null
+  },
+  "incomplete": false
+}

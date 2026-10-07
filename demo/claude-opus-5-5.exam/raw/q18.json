@@ -1,0 +1,56 @@
+{
+  "version": "exam-raw/1",
+  "id": 18,
+  "family": "arith",
+  "provider": "anthropic",
+  "model": "claude-opus-5-5",
+  "request": {
+    "model": "claude-opus-5-5",
+    "max_tokens": 16000,
+    "system": "You are sitting a written exam. Answer each question on its own. Follow the question's answer-format instructions exactly.",
+    "messages": [
+      {
+        "role": "user",
+        "content": "Compute exactly:\n\n7913794 * (50149206 + 49724624) + 209275996\n\nGive the exact integer, with no thousands separators.\nReason as much as you like, then finish with one final line of the form\nANSWER: <your answer>"
+      }
+    ]
+  },
+  "response": {
+    "model": "claude-opus-5-5",
+    "id": "msg_011Cfn7aK95RU4RVZFsALFnr",
+    "type": "message",
+    "role": "assistant",
+    "content": [
+      {
+        "type": "thinking",
+        "thinking": "",
+        "signature": "CAQSjAgKEAgSGAI4AUIIdGhpbmtpbmcSDA3E3ulheZ4Fj4T2pRoMXndpX38TVNfGWvV4IjD5oqB2fWHpjan1LgyPZZE5qsdmG89GBKZ3fm0opwNDk/65ApIdR5kTKHvahJtAcnoqqQdb3YFmlREyivZ8y+hrh5sufL6Sp8D68J9t57VWLqgZLZnk7KUMTzgkA6jNfiC7ILYQHTIgBZJiq0aZN72LLpDLuI6Zz1g9+w+OCRlmm9nrOYqeRFv4iRRlHRlHWNMaj4PLvA5KcLopf8ObDazDvx6t6xkEIj2uPlqHJgB4M8q88Oi0qaXlxhH5gMIVQaHLgtiDUF/YokWdxjN7rIkqGSzVH+LOx4F7fiFfhMf9TWJOre2OooWGf6JYHmNgpr+w/y9wqJoOsotrJAKrJQaeD+tKRxgUjVWpdv7gZXPFNNxMUHUhkwRPynOF0FbfBgFD4bS1MG+4zQLPa5z6LU+lq3e86zX7QbsExXnpBayzr6NS0+ZdlqcrGq6V3xt7RsdK5Vqt5TzW2t1CY+ytz4KIQs6zE2jGxr2sgB0BtXkNBYjHgRcLaQWL63ZJ8Ot7sBK+8iu450+eKfwpxXFLIUySc497c+2vTYBKhuKimBAFN0UeHXdli9RZMDr/4Qeur66de/EpaNN8cRTEwSfvsDXnN6YCfVJJe2/3HbuB+QuZB1uIBZLFGHpgMZJvrQ22fic4A/D7XwY46lA4eiTTyN8OsydSP6kLKoLTVd8kb2YAHzmHpzqh93nuLzikKIL6gMVOhfQ+35W8gNsokZtHk5r1mJ4546mtq4aojBR0XyzBKxkP6bc7bVVlBrvECwiFCpDsyiVk+h0jvrVYNM+8Eri1h0QpapUxzsLt74UG0977dPC6wtgCXIB01z4RpmRAWp9MtzpQoCFqpC6SM1hOqKOEptte2LxprN7oloHCfV6YA9UYakMVHs1UlKbhAoznMsaqaGRwmyJ3hTfpeWJUBLMMQl6vmkmXSqIciR8ZtiF455bCxdrF1sR0j/IfJjgvAg3m5vk1otuQ+cBgruLmkjtzhh4Brcr7zzlVx4Ansrq/juQ2xfncNFBoeLm+CalF2KAJQGEoo/UnPcBsl2xGfq73IUhQJRAdICvVpqzoa+ItkJW5Hve1GJAknspMvcDROGtRIOgk1NLft65B1edOdAuMsbRuPcShYtq9jgV2FxEwoxqovnVGOXMQnu0fN8h94R3YO4sLyFDIuefi+jrxhvUmH+TKpVFyuFIaEmfntqW6bex1sJyzgxvTJvP7G/Kh5Qcr6a2NO65TeKAo21CZaGBdgaeIrEc8OjkHIbTVCJ8h5ZH5gsDmBVSam8wUGYsHJCTW0MG6LGKNDH91gLRWSqNhCmN8Zg0ZZM8TuHDIGAE="
+      },
+      {
+        "type": "text",
+        "text": "The approach is to add the bracketed numbers first, then multiply by splitting the second factor as 10⁸ minus a small remainder.\n\n**Step 1: the sum in parentheses**\n\n50149206 + 49724624 = 99873830\n\n**Step 2: the multiplication**\n\nWrite 99873830 = 100000000 − 126170. Then:\n\n- 7913794 × 100000000 = 791379400000000\n- 7913794 × 126170 = 7913794 × 126000 + 7913794 × 170\n  - 7913794 × 126 = 997138044, so 7913794 × 126000 = 997138044000\n  - 7913794 × 170 = 1345344980\n  - Their sum is 998483388980\n\nSo 7913794 × 99873830 = 791379400000000 − 998483388980 = 790380916611020.\n\n**Step 3: the final addition**\n\n790380916611020 + 209275996 = 790381125887016\n\nANSWER: 790381125887016"
+      }
+    ],
+    "container": null,
+    "stop_reason": "end_turn",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 123,
+      "cache_creation_input_tokens": 0,
+      "cache_read_input_tokens": 0,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 539,
+      "output_tokens_details": {
+        "thinking_tokens": 228
+      },
+      "service_tier": "standard",
+      "inference_geo": "global"
+    },
+    "diagnostics": null
+  },
+  "incomplete": false
+}

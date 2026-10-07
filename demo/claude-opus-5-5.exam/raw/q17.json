@@ -1,0 +1,56 @@
+{
+  "version": "exam-raw/1",
+  "id": 17,
+  "family": "arith",
+  "provider": "anthropic",
+  "model": "claude-opus-5-5",
+  "request": {
+    "model": "claude-opus-5-5",
+    "max_tokens": 16000,
+    "system": "You are sitting a written exam. Answer each question on its own. Follow the question's answer-format instructions exactly.",
+    "messages": [
+      {
+        "role": "user",
+        "content": "Compute exactly:\n\n(187722 - 86106301) * (18767102 + 557039539)\n\nGive the exact integer, with no thousands separators.\nReason as much as you like, then finish with one final line of the form\nANSWER: <your answer>"
+      }
+    ]
+  },
+  "response": {
+    "model": "claude-opus-5-5",
+    "id": "msg_011Cfn7aFrswUgEjupntXiXQ",
+    "type": "message",
+    "role": "assistant",
+    "content": [
+      {
+        "type": "thinking",
+        "thinking": "",
+        "signature": "CAQS1AkKEAgSGAI4AUIIdGhpbmtpbmcSDMM1NhTuyIdw8M6EgxoMcM0pizjgpNVnR8ahIjBVGJHK88TO8x2pkWxv5cnF/rx2CnuYupKJZYaVD2kP5iAOuOsIt+3hlftYUdqxRxoq8QhgHegP2+dfw9QKh9Nj6j/OPuf4moRruk5B3LXCQZD+HqMIO0Cmb38c+u6VwWuvjENiRpqBUonkMv6FCOZ4xugLQwPIGrGKqM+4P08fSTWMElKwSuz7c+xrOWCWoNLC/LSjFkYaRmyfXV0fHFqR6Y6x590UjdiMYztyYVlGLOzCdz9zAgQ73zBY5HGu9Qmi2+FGoT/R5jnZEXgzPDy0S/6LTLvVBtBkNsNFDIjfRSfnoRBy4ZcFN0mWM94EAcIxL4f4KBlRYcA6eWxvAQcx2FiykTYbuAFuHThkmEnjoQ/78dihMGetcDstwZMGVo85uCFDBAs7ogy80O+7oIPruVLZnUpYRVRv7uPkomyqRKlK/oMTF4xYc41OPmH6foc9QLAv9Tn3McWG40JcGGNEk3pJq3EMx0ylxEGqpNwUgF73GxFuuZtpwa8u+6Sw8Omw0G1hUks31GCHgv/aQyMh375vMcV6utGksIZxqRYMoQrrnBwPOmkx29mEo6aTxRAVd+ZDr4BvJHFFoovdsSOZsi+58wpjiEBktWKBwTj+M/f+GZ9HJDx4iDJgdh15u9YG7Ow1fCDfXdOHXemKbN8FfE3hj6BnznDqIEV9+/XS21Gq1OL3Pynfw2bHtKBgsvuIN3jgAUV1POcFSDa3tMmuwX6mYjTzbF8DZcOn89QV2Vq4jBUuqsDxmAEizBIHM2PkARdV3Njl8hlAeRG9KfXCg4A6bLrzEnu/seqn8nWAl9y03huaciMfLiNj9F9VKwtOqkjmRi/jDtdnWKH0hSucQR3UHPwmR8kLSEkmksQCc9ge8U6rb6TUFxrEkKkjpgI0JKmIFl8VtiwW54/1Rx0L6zUWP4tAd/3hOAtOl1ncz/6iMyk99EMZ4nMifPz9+SeKCttyP4sGOJBXbYSTFVR7stI3a2fyM3pVrNCMwrtx/uMKvAi/p88uH3kNSM7pFcHWGR+YlzQMvkB3EtgldIqoYN2jPYZy26Dlcs2k9ubRNjO4HPyVum6w4ebIggfrqvCgDbSYgDhrXvs4BNZM53W7930yPVBa1Fsvdv5UjMpXu7Hpnna79ahB+TykTNLttFg1BPunarvqggYKV8rh7eJAn7dGoFCFXbS+/xdfYB4O3G5jkAs2nAZv8+GH3L5ph6bekqmDYdzZu3j/W96Wml/hhMEo9CsOQy0c3pFpAtESf2+iwgxicVvTRm0pG5BySx83D64/8Dbmtypa63rl0f5nXcBkxGxOg9j6e6nMncRgQ+ylVg/unzlX4fay66pN4yMe9uBKPHVT0t4Tu3so1dDGdiBci9INX+Ob82hzI3PifSudJVzxd/t292O+BDjCwywW+1q3AYt/S3wWnDPwGY6cVPWzn+61b6EQSUKe0+F+l97rJ9tGHk58klWW+dxFWKjvVsGAh+vrlH4VL9/zBB30cIAQS7iLV7TlB8QMiGv5NIhg7dbrazgpFGdrj8ksv5iBPHlq+l7mpXhVZYB3BDhDN3HJD52AziO+40aaDa+wGBLRAoUYAQ=="
+      },
+      {
+        "type": "text",
+        "text": "Let a = 187722 − 86106301 and b = 18767102 + 557039539. Then multiply.\n\n**Step 1: the factors**\n- a = 187722 − 86106301 = −85918579\n- b = 18767102 + 557039539 = 575806641\n\n**Step 2: the product of magnitudes**\n\nSplit 575806641 into 575000000 + 806641.\n\n- 85918579 × 575 = 42959289500 + 6443893425 = 49403182925. So 85918579 × 575000000 = 49403182925000000.\n- 85918579 × 806641:\n  - 85918579 × 800000 = 68734863200000\n  - 85918579 × 6641 = 515511474000 + 55073809139 = 570585283139\n  - The sum of these two is 69305448483139.\n\nTotal: 49403182925000000 + 69305448483139 = 49472488373483139.\n\n**Step 3: the sign**\n\nThe first factor is negative and the second is positive, so the result is negative.\n\nANSWER: -49472488373483139"
+      }
+    ],
+    "container": null,
+    "stop_reason": "end_turn",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 124,
+      "cache_creation_input_tokens": 0,
+      "cache_read_input_tokens": 0,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 685,
+      "output_tokens_details": {
+        "thinking_tokens": 353
+      },
+      "service_tier": "standard",
+      "inference_geo": "global"
+    },
+    "diagnostics": null
+  },
+  "incomplete": false
+}

@@ -1,0 +1,49 @@
+{
+  "version": "exam-raw/1",
+  "id": 19,
+  "family": "order",
+  "provider": "anthropic",
+  "model": "claude-haiku-4-5-20251001",
+  "request": {
+    "model": "claude-haiku-4-5-20251001",
+    "max_tokens": 16000,
+    "system": "You are sitting a written exam. Answer each question on its own. Follow the question's answer-format instructions exactly.",
+    "messages": [
+      {
+        "role": "user",
+        "content": "Facts:\n\nThe Dogwood crate weighs 71,780 kg.\nThe Juniper crate weighs 84,408 kg.\nThe Birch crate weighs 4,762 kg.\nThe Ginkgo crate weighs 26,277 kg.\nThe Cedar crate weighs 93,486 kg.\nThe Elm crate weighs 13,285 kg.\n\nList the 6 labels from the lightest crate to the heaviest.\n\nGive the labels only, in the requested order, separated by commas.\nReason as much as you like, then finish with one final line of the form\nANSWER: <your answer>"
+      }
+    ],
+    "temperature": 0
+  },
+  "response": {
+    "model": "claude-haiku-4-5-20251001",
+    "id": "msg_011Cfn7YXfL3VDkSSbmRFi4c",
+    "type": "message",
+    "role": "assistant",
+    "content": [
+      {
+        "type": "text",
+        "text": "I need to order the crates from lightest to heaviest by their weights.\n\nLet me list the weights:\n- Dogwood: 71,780 kg\n- Juniper: 84,408 kg\n- Birch: 4,762 kg\n- Ginkgo: 26,277 kg\n- Cedar: 93,486 kg\n- Elm: 13,285 kg\n\nNow I'll sort from smallest to largest:\n1. Birch: 4,762 kg (lightest)\n2. Elm: 13,285 kg\n3. Ginkgo: 26,277 kg\n4. Dogwood: 71,780 kg\n5. Juniper: 84,408 kg\n6. Cedar: 93,486 kg (heaviest)\n\nANSWER: Birch, Elm, Ginkgo, Dogwood, Juniper, Cedar"
+      }
+    ],
+    "container": null,
+    "stop_reason": "end_turn",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 187,
+      "cache_creation_input_tokens": 0,
+      "cache_read_input_tokens": 0,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 216,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null
+  },
+  "incomplete": false
+}

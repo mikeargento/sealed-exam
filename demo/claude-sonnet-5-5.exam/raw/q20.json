@@ -1,0 +1,56 @@
+{
+  "version": "exam-raw/1",
+  "id": 20,
+  "family": "strings",
+  "provider": "anthropic",
+  "model": "claude-sonnet-5-5",
+  "request": {
+    "model": "claude-sonnet-5-5",
+    "max_tokens": 16000,
+    "system": "You are sitting a written exam. Answer each question on its own. Follow the question's answer-format instructions exactly.",
+    "messages": [
+      {
+        "role": "user",
+        "content": "Start with the string (between the brackets, without them): [8OWQXT4xjQrLAD4thY]\n\nApply these steps in order:\n\n1. Shift every letter forward by 23 places in the alphabet, wrapping from z back to a (and Z back to A); keep each letter's case; leave digits unchanged.\n2. Rotate the string left by 17: move its first 17 characters to the end, in the same order.\n3. Reverse the string.\n\nWhat is the resulting string?\n\nGive the final string exactly, and nothing else after ANSWER:.\nReason as much as you like, then finish with one final line of the form\nANSWER: <your answer>"
+      }
+    ]
+  },
+  "response": {
+    "model": "claude-sonnet-5-5",
+    "id": "msg_011Cfn7cUm5HTdMXrEPCPujK",
+    "type": "message",
+    "role": "assistant",
+    "content": [
+      {
+        "type": "thinking",
+        "thinking": "",
+        "signature": "CAQS/AgKEAgSGAI4AUIIdGhpbmtpbmcSDCK5x0M2YplZ9jg8oBoMqD20/hqDv5B1jVWnIjBIcLqK7qwNVIZoFknfXsXDGHTRUFT14uPGLZoQgd9/jJm0DqZbpJT/3t/bXVY6Rj0qmQjgPT2Veem6GF2eHTrsT/paUtKTNT1qLcLdJ3gNZt49It4XSgQ0U3KHFEyOBy6EdpAAacF9qtBy7ELtjSjvvEjdmMzubX+Ss8xAP6ICBB0CJoX1eJaUPc4Km28tJEVmOEG462gNWob0+ELnwfhhWMoA+xPxmrrx26DUDu5MTYWIsTs5HLRzTY1KswDR5yfcj6c9OUMYHZ5jErhsgGFeVZMtXaaSdpM1K1ecAfESkdh8ix1m/ZGYh0KRNjxynV1PmJiQV9Pspnd8vYFQmwUeJHlFJjuxnq8RqsUss6fIcfdiBDE4DYANTvkr17XBE+DFVAXAS5kZhbH9purEsLGQExiGbgFO9vtBiEf0aRJ5YKgupyElU41nxMfXn3UPXWkSvjrpPKs5knunqV3bm6xAkcF7Jk4eU3qLK7Kimz4ty9/kOg++bg0TrdefLNKaEnlLXmEwQhSGLBlx2tEqeqV6FgKAaa7erwemGYTq1wYkLbcCnHWUMtgZF6zxYIdJKbzA4cOHJSjfpgUpQxdE+iffVhSYCmJl+RmgQdrbdxn2PUfBdITXAzYwqcuSf+sj2lNDgXSa3Ygpt0VvQf1r/29Rst4JT5DX+O5mJUzLnMWbSdVFuRVjIK8wFXIhSTkguZeZFH6VLSnwPsWEL84Qfw0wz9pQNIRBA6Z2Ed9ObHXAexwfHvGEG2byQHwB6r3LtQpxg4JQSAvoLi5RVoBuPorAsT98+jBWGobwjdppn5UUJXGpOPIN9krlAD0BIZ4skhvLomvoxaBLrOqWNP16rOLzsa0cSrl/9vTIpztXzAU6GuVDrh8bsrpDLL6W0VVxmOhf/R4h7z81CIfgz2+fp0X3hJX6w8HPE2dxm9WouN+0sZjnrgADEWL6QQZImn0GZdfaTusp6reKonEotmsLyDKm0C9gdYwUrDW0/ijR5O2JQwoYN8kldrO4e2kb9BD+iUH5sMY9dv7PmP4E7m+We+M8FEfhLWQ+Owiknyd9BOfNZuI+hUpfrttetZHkDJswqC+CLHSr4rKewmF0ElJxgZrJZr8PwR0ZtnDUEgFo4EYeAjxZ5kx5k45SbfV3yxF/iCoAqRu8jIDNmn7NcRuVF+srqk+VjmgDP5tdaUNQBmxNTlxExHW/S3YNzEXQyC6te6ycP6IuHJibpHuLWzeMGmXuJ0O8gfMSDyY6sKKU+uhKm7u7oUOpM14a5elCUXjs/7jFJOXpTk1izg+Onys17CP5cPgrM8szr3ey1wesZVsuXBfxGbo0CIYRHu4w+llCxpQcZnILilTdOGWg8G4xXYBzoU/z0KQbEXZWloppwDU26JhfNRw3EQHTaZGjas2asKK9tQMi4eos1S0/we5V0Gdy4q9rqUkaArS5Rp7EPJXs29Bx3cgDJkUuY95FbhgB"
+      },
+      {
+        "type": "text",
+        "text": "Working through the steps on the 18-character string:\n\n1. Shifting each letter forward by 23 (the same as back by 3) gives `8LTNUQ4ugNoIXA4qeV`.\n2. Rotating left by 17 moves the first 17 characters to the end. For an 18-character string this puts the last character in front: `V8LTNUQ4ugNoIXA4qe`.\n3. Reversing that string gives `eq4AXIoNgu4QUNTL8V`.\n\nANSWER: eq4AXIoNgu4QUNTL8V"
+      }
+    ],
+    "container": null,
+    "stop_reason": "end_turn",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 251,
+      "cache_creation_input_tokens": 0,
+      "cache_read_input_tokens": 0,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 590,
+      "output_tokens_details": {
+        "thinking_tokens": 405
+      },
+      "service_tier": "standard",
+      "inference_geo": "global"
+    },
+    "diagnostics": null
+  },
+  "incomplete": false
+}

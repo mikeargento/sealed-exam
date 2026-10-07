@@ -1,0 +1,8 @@
+Opened position 92. Floor: Base block 52275971, 7 Oct 2026 02:48:09Z.
+Wrote 20 questions from that position and sealed them at position 93. Floor: Base block 52275971, 7 Oct 2026 02:48:09Z.
+Asked claude-opus-5-5. 20 answers back.
+Sealed the answers at position 95. Floor: Base block 52275983, 7 Oct 2026 02:48:33Z.
+Verified
+Score 17/20. Report: demo/claude-opus-5-5.exam/report.html
+Paper not before Base block 52275971 (header time 7 Oct 2026 02:48:09Z).
+Answers not before Base block 52275983 (header time 7 Oct 2026 02:48:33Z).

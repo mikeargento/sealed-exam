@@ -16,12 +16,12 @@
 import { sha256 } from "@noble/hashes/sha256";
 import { builderFor, fuse, FuseError } from "@mikeargento/bitgraph";
 import type { FuseResult } from "@mikeargento/bitgraph";
-import { checkFloorHeader, computeSlotCommitment, evmHexToBytes, onBaseSchedule, signedFloorOf as verifySignedFloorOf, verifyProofIntegrity } from "@mikeargento/bitgraph-verify";
-import type { BitGraphProof, SignedFloor, SlotAllocation } from "@mikeargento/bitgraph-verify";
+import { BASE_MAINNET_CHAIN_ID, BITGRAPH_CEILING_WRITER, checkFloorHeader, computeSlotCommitment, evmHexToBytes, onBaseSchedule, signedFloorOf as verifySignedFloorOf, verifyCeiling, verifyProofIntegrity } from "@mikeargento/bitgraph-verify";
+import type { BitGraphProof, CeilingSidecar, SignedFloor, SlotAllocation } from "@mikeargento/bitgraph-verify";
 import type { Bank } from "@mikeargento/exam-bank";
 import { b64, derivePaper, type DerivedPaper } from "./paper.js";
 import { blockTimeFromHeader, headerHash } from "./rlp.js";
-import { ANCHOR_DIR, BASE_FLOOR_DIR, FLOOR_HEADER_FILE, remove, writeBytes } from "./folder.js";
+import { ANCHOR_DIR, BASE_FLOOR_DIR, CEILING_DIR, CEILING_FILE, FLOOR_HEADER_FILE, remove, writeBytes } from "./folder.js";
 import { join } from "node:path";
 
 export const CHAIN = "bitgraph:main";
@@ -434,4 +434,48 @@ export async function floorEvidenceFor(t: Transport, proof: BitGraphProof, asked
 export async function writeFloorEvidence(unitDir: string, ev: FloorEvidence): Promise<void> {
   if (ev.anchors !== null) { await writeAnchorFiles(join(unitDir, ANCHOR_DIR), ev.anchors); return; }
   for (const f of ev.files) await writeBytes(join(unitDir, ev.dir, f.name), f.text);
+}
+
+/**
+ * The proof page of a BitGraph: bitgraph.ing/proof/<digest, base64url>. A link
+ * for people to follow; nothing in the folder's verification reads it.
+ */
+export function proofPageUrl(proof: BitGraphProof, baseUrl: string = DEFAULT_BASE_URL): string {
+  const digest = proof.artifact.digestB64.replace(/\+/g, "-").replace(/\//g, "_").replace(/=+$/, "");
+  return `${baseUrl.replace(/\/+$/, "")}/proof/${digest}`;
+}
+
+export interface CeilingEvidence {
+  /** The sidecar, already checked against the proof offline, or null when none is in hand. */
+  sidecar: CeilingSidecar | null;
+  /** Why none is in hand: not written yet, a failed read, or a file that does not check. */
+  note: string | null;
+}
+
+/**
+ * A committed proof's Base ceiling (bitgraph-ceiling/1) from the site's copy
+ * (GET /api/ceilings/<proofHash>), kept only when verifyCeiling passes offline
+ * against this proof and BitGraph's published writer. The writer posts it some
+ * seconds after the commit, so a 404 soon after is expected: a note, not an error.
+ */
+export async function fetchCeiling(t: Transport, proof: BitGraphProof): Promise<CeilingEvidence> {
+  const hash = (proof as { proofHash?: string }).proofHash;
+  if (typeof hash !== "string" || hash.length === 0) return { sidecar: null, note: "the proof carries no proofHash" };
+  let r: { status: number; json: unknown };
+  try {
+    r = await call(t, `/api/ceilings/${encodeURIComponent(hash)}`, { method: "GET" });
+  } catch (err) {
+    return { sidecar: null, note: `the request failed: ${err instanceof Error ? err.message : String(err)}` };
+  }
+  if (r.status === 404) return { sidecar: null, note: "the ceiling has not been written yet" };
+  if (r.status !== 200 || r.json === null || typeof r.json !== "object") return { sidecar: null, note: `the site answered ${r.status}` };
+  const sidecar = r.json as CeilingSidecar;
+  const checked = await verifyCeiling(proof, sidecar, { writerAddress: BITGRAPH_CEILING_WRITER, chainId: BASE_MAINNET_CHAIN_ID, proofAlreadyVerified: true });
+  if (!checked.ok) return { sidecar: null, note: `the site's ceiling does not check: ${checked.reason ?? "invalid"}` };
+  return { sidecar, note: null };
+}
+
+/** Write a unit's ceiling into <unitDir>/base-ceiling/ceiling.json. None in hand leaves any earlier one in place. */
+export async function writeCeiling(unitDir: string, ev: CeilingEvidence): Promise<void> {
+  if (ev.sidecar !== null) await writeBytes(join(unitDir, CEILING_DIR, CEILING_FILE), `${JSON.stringify(ev.sidecar, null, 2)}\n`);
 }

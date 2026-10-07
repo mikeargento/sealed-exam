@@ -1,0 +1,57 @@
+{
+  "version": "exam-raw/1",
+  "id": 20,
+  "family": "spec",
+  "provider": "openai",
+  "model": "gpt-6-astra",
+  "request": {
+    "model": "gpt-6-astra",
+    "messages": [
+      {
+        "role": "system",
+        "content": "You are sitting a written exam. Answer each question on its own. Follow the question's answer-format instructions exactly."
+      },
+      {
+        "role": "user",
+        "content": "Write a JavaScript function f(xs), where xs is an array of integers, that returns an integer computed as follows:\n\n1. Keep only the elements greater than 7.\n2. Replace each kept element with its absolute value.\n3. Return the sum of the resulting elements (0 if there are none).\n\nReply with only the function, in a single ```js code block. Name it f, take one parameter xs, use no libraries, and write no import, require or export statements."
+      }
+    ]
+  },
+  "response": {
+    "id": "chatcmpl-EWC0jjxASvK7JVdKMVM91cF147Xyf",
+    "object": "chat.completion",
+    "created": 1791341373,
+    "model": "gpt-6-astra",
+    "choices": [
+      {
+        "index": 0,
+        "message": {
+          "role": "assistant",
+          "content": "```js\nfunction f(xs) {\n  return xs.filter(x => x > 7).map(x => Math.abs(x)).reduce((sum, x) => sum + x, 0);\n}\n```",
+          "refusal": null,
+          "annotations": []
+        },
+        "finish_reason": "stop"
+      }
+    ],
+    "usage": {
+      "prompt_tokens": 132,
+      "completion_tokens": 45,
+      "total_tokens": 177,
+      "prompt_tokens_details": {
+        "cached_tokens": 0,
+        "cache_write_tokens": 0,
+        "audio_tokens": 0
+      },
+      "completion_tokens_details": {
+        "reasoning_tokens": 0,
+        "audio_tokens": 0,
+        "accepted_prediction_tokens": 0,
+        "rejected_prediction_tokens": 0
+      }
+    },
+    "service_tier": "default",
+    "system_fingerprint": null
+  },
+  "incomplete": false
+}

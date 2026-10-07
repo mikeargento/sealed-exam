@@ -1,0 +1,56 @@
+{
+  "version": "exam-raw/1",
+  "id": 3,
+  "family": "logic",
+  "provider": "anthropic",
+  "model": "claude-sonnet-5-5",
+  "request": {
+    "model": "claude-sonnet-5-5",
+    "max_tokens": 16000,
+    "system": "You are sitting a written exam. Answer each question on its own. Follow the question's answer-format instructions exactly.",
+    "messages": [
+      {
+        "role": "user",
+        "content": "5 people (Dev, Bram, Cleo, Fitz, Esme) sit in a row of 5 seats numbered 1 to 5 from left to right. All of the following are true:\n\n1. There are exactly 2 seats between Dev and Cleo.\n2. Cleo does not sit in seat 3.\n3. Fitz sits in seat 3.\n4. Fitz sits somewhere to the left of Cleo.\n5. Fitz sits immediately to the left of Bram.\n6. Bram and Esme do not sit next to each other.\n\nWho sits where?\n\nGive the names in seat order from seat 1 to the last seat, separated by commas.\nReason as much as you like, then finish with one final line of the form\nANSWER: <your answer>"
+      }
+    ]
+  },
+  "response": {
+    "model": "claude-sonnet-5-5",
+    "id": "msg_011Cfn7bPU4B8JcaCiCNrmDB",
+    "type": "message",
+    "role": "assistant",
+    "content": [
+      {
+        "type": "thinking",
+        "thinking": "",
+        "signature": "CAQSuAYKEAgSGAI4AUIIdGhpbmtpbmcSDBzNCl+3pX8Nl3o1XBoMyxwBYY9OCLyAtNI3IjAyAocuiS8puXlGdvnkacbgBQKL3EEwkSevjsKnERETL6FzEip73RJ5f5kqwXdPoJUq1QWKlDqPRNpaOJhwcGuKjrhjvaOP98Qg7VnsjTXMN8M6G0Bz2VlLs3ITLVWGvLal4bhqINLODjzC0sv+TP18j+H+Dc+nu/EaSGAA8eAu4lC0gfU00AL6oipodqGF52cc9A/pXHjs/8DxYmGqfnxOSS/aTnSk4PLXJAs7Mz68Vv4se0B5ryHqYmHaZ4hFQR6pTPZrai7ZnqDovSaKvf1klpnLFeT36lTAk0c95J05+SzidjNboW367FkMusdW9LjSUAJOuxiWiaq/YKbq7z+8Czo9x9jwfeH7PZ9JbCAmrVvFL7bxFR23avtDS5+JxMguHKS/1SoabFJ66Li79FRRy/yhxUmLRgWzOXHxa6nAAVHpLJmo/B9DbL76OjwoBNATqahecFSdQrwEJLgelwqpSheZdlaNRGKiekjAOh/okWsBav6EDVe3vMEmbwWEKVRaaOVuhyu+fqzSXcJLpqnEKEb3uNL/ITbOpHhefbz2QYh3N7bSv8gI6DQmwW22To/UZkae8WaXlJxEC5j9y+QI2VwFVPPrcr2ksTRbBSS8G57LmlhL0QDCfhcpgbbYmhRPCLGLYL03vSMAV9AAhAwpmqxaMlG2lygIS+xst3sAWFJf/0J/eUyqPgKX4/rq7BiFs6JntO4nqsUhZTLxsQx8vr7OUCV8P3ERgRztpZ3IcpTr1tplzIbTj0/wxLBQ3walPwlSj26xciYTSPqNKbrjaXRofHUzV6puNXfpXxNYijFt5ZPl9bMyRiCYZjQ1z7/HoBt/Jo6AtA7bZLfKwAIjULxLaphTsTwlXeujyFdGSWjPvatGdtHg1Hn1dmm6WIukCntcO+RawpsJ+w79/Mm5zQEOr4/klHcIF5+a8JEUcMBBVbOub9E1xFA6Zu6TzA2RImxpbsvrmi8C6+HxNzhw7P21iqzLp+KD3Blr0yy3Wq/+LEYyMt2VcksF0K5GTQ8nA722lr/thBgB"
+      },
+      {
+        "type": "text",
+        "text": "Fitz is in seat 3 (clue 3), and Bram sits immediately to his right, so Bram is in seat 4 (clue 5).\n\nCleo must be to the right of Fitz (clue 4), so she is in seat 4 or 5. Seat 4 is taken by Bram, so Cleo is in seat 5.\n\nExactly 2 seats must separate Dev and Cleo (clue 1), so Dev is in seat 2.\n\nThat leaves Esme in seat 1. She is not next to Bram, who is in seat 4, so clue 6 holds. Cleo is not in seat 3, so clue 2 holds.\n\nANSWER: Esme, Dev, Fitz, Bram, Cleo"
+      }
+    ],
+    "container": null,
+    "stop_reason": "end_turn",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 286,
+      "cache_creation_input_tokens": 0,
+      "cache_read_input_tokens": 0,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 379,
+      "output_tokens_details": {
+        "thinking_tokens": 143
+      },
+      "service_tier": "standard",
+      "inference_geo": "global"
+    },
+    "diagnostics": null
+  },
+  "incomplete": false
+}

@@ -1,0 +1,57 @@
+{
+  "version": "exam-raw/1",
+  "id": 16,
+  "family": "logic",
+  "provider": "openai",
+  "model": "gpt-6-luna",
+  "request": {
+    "model": "gpt-6-luna",
+    "messages": [
+      {
+        "role": "system",
+        "content": "You are sitting a written exam. Answer each question on its own. Follow the question's answer-format instructions exactly."
+      },
+      {
+        "role": "user",
+        "content": "4 people (Gwen, Bram, Ada, Dev) sit in a row of 4 seats numbered 1 to 4 from left to right. All of the following are true:\n\n1. Bram sits somewhere to the left of Ada.\n2. Ada sits in seat 3.\n3. Dev sits at one end of the row.\n4. Bram does not sit in seat 4.\n5. There are exactly 0 seats between Gwen and Ada.\n6. Ada sits immediately to the left of Gwen.\n7. Dev does not sit in seat 3.\n\nWho sits where?\n\nGive the names in seat order from seat 1 to the last seat, separated by commas.\nReason as much as you like, then finish with one final line of the form\nANSWER: <your answer>"
+      }
+    ]
+  },
+  "response": {
+    "id": "chatcmpl-EWC111D6As6peYeadneF7migkjMTs",
+    "object": "chat.completion",
+    "created": 1791341391,
+    "model": "gpt-6-luna",
+    "choices": [
+      {
+        "index": 0,
+        "message": {
+          "role": "assistant",
+          "content": "ANSWER: Dev, Bram, Ada, Gwen",
+          "refusal": null,
+          "annotations": []
+        },
+        "finish_reason": "stop"
+      }
+    ],
+    "usage": {
+      "prompt_tokens": 194,
+      "completion_tokens": 91,
+      "total_tokens": 285,
+      "prompt_tokens_details": {
+        "cached_tokens": 0,
+        "cache_write_tokens": 0,
+        "audio_tokens": 0
+      },
+      "completion_tokens_details": {
+        "reasoning_tokens": 73,
+        "audio_tokens": 0,
+        "accepted_prediction_tokens": 0,
+        "rejected_prediction_tokens": 0
+      }
+    },
+    "service_tier": "default",
+    "system_fingerprint": null
+  },
+  "incomplete": false
+}

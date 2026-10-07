@@ -1,0 +1,57 @@
+{
+  "version": "exam-raw/1",
+  "id": 19,
+  "family": "spec",
+  "provider": "openai",
+  "model": "gpt-6-astra",
+  "request": {
+    "model": "gpt-6-astra",
+    "messages": [
+      {
+        "role": "system",
+        "content": "You are sitting a written exam. Answer each question on its own. Follow the question's answer-format instructions exactly."
+      },
+      {
+        "role": "user",
+        "content": "Write a JavaScript function f(xs), where xs is an array of integers, that returns an integer computed as follows:\n\n1. Keep only the odd elements.\n2. Replace each kept element with its absolute value.\n3. Return the largest resulting element, or 4 if there are none.\n\nReply with only the function, in a single ```js code block. Name it f, take one parameter xs, use no libraries, and write no import, require or export statements."
+      }
+    ]
+  },
+  "response": {
+    "id": "chatcmpl-EWC0ikqLkIwBi01IWaUTV7pnuxviu",
+    "object": "chat.completion",
+    "created": 1791341372,
+    "model": "gpt-6-astra",
+    "choices": [
+      {
+        "index": 0,
+        "message": {
+          "role": "assistant",
+          "content": "```js\nfunction f(xs) {\n  let largest = 0;\n  for (const x of xs) {\n    if (x % 2 !== 0) {\n      const value = x < 0 ? -x : x;\n      if (value > largest) largest = value;\n    }\n  }\n  return largest === 0 ? 4 : largest;\n}\n```",
+          "refusal": null,
+          "annotations": []
+        },
+        "finish_reason": "stop"
+      }
+    ],
+    "usage": {
+      "prompt_tokens": 129,
+      "completion_tokens": 82,
+      "total_tokens": 211,
+      "prompt_tokens_details": {
+        "cached_tokens": 0,
+        "cache_write_tokens": 0,
+        "audio_tokens": 0
+      },
+      "completion_tokens_details": {
+        "reasoning_tokens": 0,
+        "audio_tokens": 0,
+        "accepted_prediction_tokens": 0,
+        "rejected_prediction_tokens": 0
+      }
+    },
+    "service_tier": "default",
+    "system_fingerprint": null
+  },
+  "incomplete": false
+}

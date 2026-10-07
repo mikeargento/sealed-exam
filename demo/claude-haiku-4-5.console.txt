@@ -1,0 +1,8 @@
+Opened position 88. Floor: Base block 52275957, 7 Oct 2026 02:47:41Z.
+Wrote 20 questions from that position and sealed them at position 89. Floor: Base block 52275957, 7 Oct 2026 02:47:41Z.
+Asked claude-haiku-4-5-20251001. 20 answers back.
+Sealed the answers at position 91. Floor: Base block 52275967, 7 Oct 2026 02:48:01Z.
+Verified
+Score 14/20. Report: demo/claude-haiku-4-5.exam/report.html
+Paper not before Base block 52275957 (header time 7 Oct 2026 02:47:41Z).
+Answers not before Base block 52275967 (header time 7 Oct 2026 02:48:01Z).

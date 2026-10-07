@@ -1,0 +1,51 @@
+{
+  "version": "exam-raw/1",
+  "id": 18,
+  "family": "order",
+  "provider": "anthropic",
+  "model": "claude-sonnet-5-5",
+  "request": {
+    "model": "claude-sonnet-5-5",
+    "max_tokens": 16000,
+    "system": "You are sitting a written exam. Answer each question on its own. Follow the question's answer-format instructions exactly.",
+    "messages": [
+      {
+        "role": "user",
+        "content": "Facts:\n\nThe Juniper file was registered on 2 January 2025.\nThe Ginkgo file was registered on 24 May 1925.\nThe Birch file was registered on 25 November 2017.\nThe Elm file was registered on 22 March 1906.\nThe Fir file was registered on 16 April 2025.\nThe Hazel file was registered on 27 March 1983.\nThe Ivy file was registered on 26 September 1907.\n\nList the 7 labels from the earliest registration to the latest.\n\nGive the labels only, in the requested order, separated by commas.\nReason as much as you like, then finish with one final line of the form\nANSWER: <your answer>"
+      }
+    ]
+  },
+  "response": {
+    "model": "claude-sonnet-5-5",
+    "id": "msg_011Cfn7cRtgbQH3dEQkZnpvU",
+    "type": "message",
+    "role": "assistant",
+    "content": [
+      {
+        "type": "text",
+        "text": "Sorting the registration dates from earliest to latest:\n\n- Elm: 22 March 1906\n- Ivy: 26 September 1907\n- Ginkgo: 24 May 1925\n- Hazel: 27 March 1983\n- Birch: 25 November 2017\n- Juniper: 2 January 2025\n- Fir: 16 April 2025\n\nANSWER: Elm, Ivy, Ginkgo, Hazel, Birch, Juniper, Fir"
+      }
+    ],
+    "container": null,
+    "stop_reason": "end_turn",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 253,
+      "cache_creation_input_tokens": 0,
+      "cache_read_input_tokens": 0,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 156,
+      "output_tokens_details": {
+        "thinking_tokens": 0
+      },
+      "service_tier": "standard",
+      "inference_geo": "global"
+    },
+    "diagnostics": null
+  },
+  "incomplete": false
+}

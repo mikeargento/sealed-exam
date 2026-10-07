@@ -1,0 +1,8 @@
+Opened position 108. Floor: Base block 52276017, 7 Oct 2026 02:49:41Z.
+Wrote 20 questions from that position and sealed them at position 109. Floor: Base block 52276017, 7 Oct 2026 02:49:41Z.
+Asked gpt-6-luna. 20 answers back.
+Sealed the answers at position 111. Floor: Base block 52276024, 7 Oct 2026 02:49:55Z.
+Verified
+Score 20/20. Report: demo/gpt-6-luna.exam/report.html
+Paper not before Base block 52276017 (header time 7 Oct 2026 02:49:41Z).
+Answers not before Base block 52276024 (header time 7 Oct 2026 02:49:55Z).

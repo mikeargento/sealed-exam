@@ -4,13 +4,14 @@
  * report.html: one self-contained page for everyone who is not a developer.
  * Inline CSS, no scripts required (the one expander is a <details>), reads
  * correctly with CSS off because the document order IS the reading order:
- * verdict, score, the sentence, the two floors, the model, the families, one
- * question, the claim boundary, the footer. Nothing else.
+ * verdict, score, the sentence, the two BitGraphs (each as its proof page
+ * reads: floor, recorded, ceiling, and a link to that page), the model, the
+ * families, one question, the claim boundary, the footer. Nothing else.
  *
  * Verified / Contradiction / No evidence never share a colour or a word.
  */
 import { blockName, formatUtc } from "@mikeargento/exam-core";
-import type { ExamVerdict, FloorReport } from "./verify.js";
+import type { CeilingReport, ExamVerdict, FloorReport, PositionReport } from "./verify.js";
 
 const esc = (s: string): string => s.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;");
 
@@ -18,6 +19,7 @@ const EXPLORER = { ethereum: "https://etherscan.io/block/", base: "https://bases
 const explorer = (f: FloorReport): string => `${EXPLORER[f.chain ?? "ethereum"]}${f.blockNumber}`;
 /** "Base block <a>N</a>": the chain as a word, the number linked to a public explorer. */
 const blockLink = (f: FloorReport, cls = ""): string => esc(blockName(f.blockNumber, f.chain ?? "ethereum")).replace(String(f.blockNumber), `<a${cls ? ` class="${cls}"` : ""} href="${explorer(f)}">${f.blockNumber}</a>`);
+const ceilingLink = (c: CeilingReport): string => `Base block <a class="mono" href="${EXPLORER.base}${c.blockNumber}">${c.blockNumber}</a>`;
 const timeOf = (f: FloorReport): string => f.time !== null ? `header time ${esc(formatUtc(f.time))}` : f.timeWithheld !== undefined ? "header time withheld: the block is stamped after the attestation" : "header time not in hand";
 
 const CSS = `
@@ -34,6 +36,12 @@ p { margin: 0 0 18px; }
 .sentence a { color: #e3181c; text-decoration: underline; }
 .floor { margin: 0 0 6px; }
 .floor b { font-weight: 700; }
+.bitgraph { margin: 0 0 24px; }
+.bitgraph .name { font-size: 20px; font-weight: 700; margin: 0 0 8px; }
+.bitgraph .name a { color: #0065a4; }
+.bitgraph .unit { font-weight: 400; color: #555; }
+.row { display: grid; grid-template-columns: 6.5em 1fr; gap: 12px; padding: 4px 0; }
+.row .k { color: #555; }
 .mono, code { font-family: "SF Mono", Menlo, Consolas, "Liberation Mono", monospace; font-size: 15px; }
 .section { margin-top: 40px; }
 h2 { font-size: 15px; text-transform: uppercase; letter-spacing: 0.08em; font-weight: 700; margin: 0 0 12px; border-top: 1px solid #000; padding-top: 10px; }
@@ -49,9 +57,19 @@ details pre { white-space: pre-wrap; background: #fff; border: 1px solid #000; p
 .reason { font-size: 20px; margin-bottom: 28px; }
 `;
 
-function floorLine(label: string, f: FloorReport | null): string {
-  if (f === null) return `<p class="floor"><b>${esc(label)}:</b> no floor in hand.</p>`;
-  return `<p class="floor"><b>${esc(label)}:</b> ${blockLink(f, "mono")}, ${timeOf(f)}.</p>`;
+/** One BitGraph as its proof page reads: name (linked to that page), floor, recorded, ceiling. */
+function bitgraphBlock(unit: string, p: PositionReport): string {
+  const floor = p.floor === null ? "no floor in hand" : `after ${blockLink(p.floor, "mono")}, ${timeOf(p.floor)}`;
+  const recorded = p.recordedAtMs !== null ? `${esc(formatUtc(Math.floor(p.recordedAtMs / 1000)))}, the AWS Nitro attestation's time` : "no validated attestation time";
+  const ceiling = p.ceiling !== null ? `by ${ceilingLink(p.ceiling)}, header time ${esc(formatUtc(p.ceiling.time))}` : "not in this folder";
+  return [
+    `<div class="bitgraph">`,
+    `<p class="name"><a href="${esc(p.proofUrl)}">${esc(p.bitgraph)}</a> <span class="unit">${esc(unit)}</span></p>`,
+    `<div class="row"><span class="k">Floor</span><span>${floor}</span></div>`,
+    `<div class="row"><span class="k">Recorded</span><span>${recorded}</span></div>`,
+    `<div class="row"><span class="k">Ceiling</span><span>${ceiling}</span></div>`,
+    `</div>`,
+  ].join("");
 }
 
 export function renderReport(v: ExamVerdict): string {
@@ -65,15 +83,15 @@ export function renderReport(v: ExamVerdict): string {
   if (v.verdict === "REJECT" && v.reason) parts.push(`<p class="reason">${esc(v.reason)}</p>`);
   if (v.verdict === "NO-EVIDENCE" && v.reason) parts.push(`<p class="reason">${esc(v.reason)}</p>`);
   if (v.score) parts.push(`<p class="score">${v.score.correct}/${v.score.k}</p>`);
-  if (v.claim.sentence && v.paper?.floor) {
-    const f = v.paper.floor;
-    parts.push(`<p class="sentence">These questions could not have existed before ${blockLink(f)}.</p>`);
-    parts.push(`<p>Not before ${f.time !== null ? esc(formatUtc(f.time)) : f.timeWithheld !== undefined ? "the block itself; its header time is withheld, being after the attestation" : "the time in that block's header (not in hand here)"}.</p>`);
+  if (v.claim.sentence && v.paper) {
+    const p = v.paper;
+    parts.push(`<p class="sentence">${esc(v.claim.sentence).replace(esc(p.bitgraph), `<a href="${esc(p.proofUrl)}">${esc(p.bitgraph)}</a>`)}</p>`);
+    if (p.floor) parts.push(`<p>It began after ${blockLink(p.floor)}${p.floor.time !== null ? `, ${esc(formatUtc(p.floor.time))}` : ""}.</p>`);
   }
   if (v.paper || v.answers) {
-    parts.push(`<div class="section"><h2>Floors</h2>`);
-    parts.push(floorLine("Paper not before", v.paper?.floor ?? null));
-    parts.push(floorLine("Answers not before", v.answers?.floor ?? null));
+    parts.push(`<div class="section"><h2>The two BitGraphs</h2>`);
+    if (v.paper) parts.push(bitgraphBlock("the paper", v.paper));
+    if (v.answers) parts.push(bitgraphBlock("the answers", v.answers));
     parts.push(`</div>`);
   }
   if (v.model) {

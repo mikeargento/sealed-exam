@@ -25,10 +25,10 @@ import { join } from "node:path";
 import { sha256 } from "@noble/hashes/sha256";
 import { validateNitroAttestationDocument } from "@mikeargento/bitgraph-audit";
 import { KNOWN_ENCLAVE_MEASUREMENTS } from "@mikeargento/bitgraph-player";
-import { TRAILER_LENGTH, canonicalize, checkFloorHeader, computeSignedBodyHash, computeSlotCommitment, evmHexToBytes, floorTimeIsBound, getPlacement, onBaseSchedule, readFuseAttribution, signedFloorOf, verifyFuse, verifyProofIntegrity } from "@mikeargento/bitgraph-verify";
-import type { BitGraphProof, SignedFloor } from "@mikeargento/bitgraph-verify";
+import { BASE_MAINNET_CHAIN_ID, BITGRAPH_CEILING_WRITER, TRAILER_LENGTH, canonicalize, checkFloorHeader, computeSignedBodyHash, computeSlotCommitment, evmHexToBytes, floorTimeIsBound, getPlacement, onBaseSchedule, readFuseAttribution, signedFloorOf, verifyCeiling, verifyFuse, verifyProofIntegrity } from "@mikeargento/bitgraph-verify";
+import type { BitGraphProof, CeilingSidecar, SignedFloor } from "@mikeargento/bitgraph-verify";
 import { computeBankDigest, familyById, generatorSourceTar, isBank, type Bank } from "@mikeargento/exam-bank";
-import { ANCHOR_DIR, BASE_FLOOR_DIR, CLAIM, FLOOR_HEADER_FILE, b64, blockTimeFromHeader, derivePaper, fromB64, headerHash, isPaper, paths, readBytes, readJson, type Paper } from "@mikeargento/exam-core";
+import { ANCHOR_DIR, BASE_FLOOR_DIR, CEILING_DIR, CEILING_FILE, CLAIM, FLOOR_HEADER_FILE, bitgraphName, proofPageUrl, b64, blockTimeFromHeader, derivePaper, fromB64, headerHash, isPaper, paths, readBytes, readJson, type Paper } from "@mikeargento/exam-core";
 
 export type Verdict = "ACCEPT" | "REJECT" | "NO-EVIDENCE";
 export type LineState = "PASS" | "FAIL" | "NO-EVIDENCE" | "UNDETERMINED";
@@ -49,12 +49,28 @@ export interface FloorReport {
   timeWithheld?: string;
 }
 
+/** A Base ceiling checked offline from base-ceiling/ceiling.json: the Base block whose transaction carries the record. */
+export interface CeilingReport {
+  blockNumber: number;
+  blockHash: string;
+  /** Unix seconds, from the Base block header the file carries (checked by keccak). */
+  time: number;
+}
+
 export interface PositionReport {
+  /** "BitGraph #89": the commit's counter, as the proof page names it. */
+  bitgraph: string;
+  /** Its proof page, for people. Nothing verified here reads it. */
+  proofUrl: string;
   epochId: string;
   counter: string;
   slotCounter: string | null;
   chainId: string | null;
   floor: FloorReport | null;
+  /** Recorded: the validated AWS Nitro attestation's own time (unix ms), the instant the proof page leads with; null when it did not validate. */
+  recordedAtMs: number | null;
+  /** The Base ceiling, when its file is in the folder and checks. */
+  ceiling: CeilingReport | null;
 }
 
 export interface QuestionReport {
@@ -83,7 +99,7 @@ export interface ExamVerdict {
   model: { provider: string; id: string; reportedVersion: string | null } | null;
   lines: Line[];
   notes: string[];
-  claim: { sentence: string | null; proves: string; doesNotProve: string; footer: string };
+  claim: { sentence: string | null; began: string | null; proves: string; doesNotProve: string; footer: string };
 }
 
 interface Sheet {
@@ -220,8 +236,44 @@ async function ethereumFloorOf(step: 1 | 3, proof: BitGraphProof, signed: Signed
   return floor;
 }
 
-function positionOf(proof: BitGraphProof, floor: FloorReport | null): PositionReport {
-  return { epochId: proof.commit.epochId ?? "", counter: proof.commit.counter ?? "", slotCounter: proof.commit.slotCounter ?? null, chainId: (proof.commit as { chainId?: string }).chainId ?? null, floor };
+function positionOf(proof: BitGraphProof, floor: FloorReport | null, recordedAtMs: number | null, ceiling: CeilingReport | null): PositionReport {
+  const counter = proof.commit.counter ?? "";
+  return {
+    bitgraph: bitgraphName(counter), proofUrl: proofPageUrl(proof),
+    epochId: proof.commit.epochId ?? "", counter, slotCounter: proof.commit.slotCounter ?? null, chainId: (proof.commit as { chainId?: string }).chainId ?? null,
+    floor, recordedAtMs, ceiling,
+  };
+}
+
+/**
+ * The ceiling step for one proof: base-ceiling/ceiling.json beside it, the
+ * file the proof page downloads, checked offline by bitgraph-verify's
+ * verifyCeiling against this proof and BitGraph's published writer. Its
+ * absence is not a finding (the exam's claim stands on floors and order); a
+ * file that is there and does not check is a contradiction.
+ */
+export async function ceilingStep(step: 1 | 3, proof: BitGraphProof, file: string, what: string): Promise<{ ceiling: CeilingReport | null; lines: Line[] }> {
+  const lines: Line[] = [];
+  const name = `${what} ceiling`;
+  const sidecar = await readJson<CeilingSidecar>(file);
+  if (sidecar === null) {
+    lines.push({ step, name, state: "NO-EVIDENCE", detail: `no ${CEILING_DIR}/${CEILING_FILE} beside the ${whose(what)} proof; its Base ceiling is not in the folder` });
+    return { ceiling: null, lines };
+  }
+  let r: Awaited<ReturnType<typeof verifyCeiling>>;
+  try {
+    r = await verifyCeiling(proof, sidecar, { writerAddress: BITGRAPH_CEILING_WRITER, chainId: BASE_MAINNET_CHAIN_ID, proofAlreadyVerified: true });
+  } catch (err) {
+    lines.push({ step, name, state: "FAIL", detail: `the ${CEILING_DIR}/${CEILING_FILE} beside the ${whose(what)} proof could not be read as a ceiling: ${err instanceof Error ? err.message : String(err)}` });
+    return { ceiling: null, lines };
+  }
+  if (!r.ok || r.window === undefined) {
+    lines.push({ step, name, state: "FAIL", detail: `the ${CEILING_DIR}/${CEILING_FILE} beside the ${whose(what)} proof does not check: ${r.reason ?? "invalid"}` });
+    return { ceiling: null, lines };
+  }
+  const c = r.window.ceiling;
+  lines.push({ step, name, state: "PASS", detail: `a transaction from BitGraph's published writer, included in Base block ${c.blockNumber} by its header, carries a Merkle root over this proof's hash; the ${what} existed by that block` });
+  return { ceiling: { blockNumber: c.blockNumber, blockHash: c.blockHash, time: c.blockTimestamp }, lines };
 }
 
 export async function verifyExam(root: string): Promise<ExamVerdict> {
@@ -252,7 +304,7 @@ export async function verifyExam(root: string): Promise<ExamVerdict> {
 
   const empty = (verdict: Verdict, r: string): ExamVerdict => ({
     version: "exam-verdict/1", verdict, exitCode: verdict === "ACCEPT" ? 0 : verdict === "REJECT" ? 1 : 2, reason: r, disagreed, missing, score: null, families: [], questions: [],
-    paper: null, answers: null, model: null, lines, notes, claim: { sentence: null, proves: CLAIM.proves, doesNotProve: CLAIM.doesNotProve, footer: CLAIM.footer },
+    paper: null, answers: null, model: null, lines, notes, claim: { sentence: null, began: null, proves: CLAIM.proves, doesNotProve: CLAIM.doesNotProve, footer: CLAIM.footer },
   });
   if (missing.length > 0) return empty("NO-EVIDENCE", `Missing from the folder: ${missing.join(", ")}. Nothing here is a finding against the run; the files are simply not in hand.`);
   const theBank = bank as Bank;
@@ -298,6 +350,8 @@ export async function verifyExam(root: string): Promise<ExamVerdict> {
   const paperStep = await floorStep(1, paperProof!, paths.paper.dir(root), "paper", paperAttestation.attestedAtMs);
   lines.push(...paperStep.lines);
   const paperFloor = paperStep.floor;
+  const paperCeiling = await ceilingStep(1, paperProof!, paths.paper.ceiling(root), "paper");
+  lines.push(...paperCeiling.lines);
   if (paperFloor === null && undetermined === null) undetermined = "The paper's proof carries no signed floor, so nothing can be said about a block it could not have existed before.";
   if (originFile !== null && !bytesEq(originFile, origin)) {
     lines.push({ step: 1, name: "paper copy", state: "FAIL", detail: "paper/paper.json is not the origin recovered from the fused bytes" });
@@ -383,6 +437,8 @@ export async function verifyExam(root: string): Promise<ExamVerdict> {
   const answersStep = await floorStep(3, sheetProof!, paths.answers.dir(root), "answers", answersAttestation.attestedAtMs);
   lines.push(...answersStep.lines);
   const answersFloor = answersStep.floor;
+  const answersCeiling = await ceilingStep(3, sheetProof!, paths.answers.ceiling(root), "answers");
+  lines.push(...answersCeiling.lines);
   let refused = 0;
   if (sheet !== null) {
     let checked = 0, absent = 0;
@@ -434,7 +490,7 @@ export async function verifyExam(root: string): Promise<ExamVerdict> {
   const missingAttestation = lines.find((l) => l.state === "NO-EVIDENCE" && / attestation$/.test(l.name));
   if (undetermined === null && missingAttestation !== undefined) undetermined = `${missingAttestation.detail.charAt(0).toUpperCase()}${missingAttestation.detail.slice(1)}, so nothing ties its signature to the measured enclave.`;
   const verdict: Verdict = disagreed !== null ? "REJECT" : undetermined !== null ? "NO-EVIDENCE" : "ACCEPT";
-  const paperPos = positionOf(paperProof!, paperFloor);
+  const paperPos = positionOf(paperProof!, paperFloor, paperAttestation.attestedAtMs, paperCeiling.ceiling);
   return {
     version: "exam-verdict/1",
     verdict,
@@ -446,11 +502,11 @@ export async function verifyExam(root: string): Promise<ExamVerdict> {
     families,
     questions,
     paper: paperPos,
-    answers: positionOf(sheetProof!, answersFloor),
+    answers: positionOf(sheetProof!, answersFloor, answersAttestation.attestedAtMs, answersCeiling.ceiling),
     model: sheet?.model ?? null,
     lines,
     notes,
-    claim: { sentence: paperFloor ? CLAIM.sentence(paperFloor.blockNumber, paperFloor.chain) : null, proves: CLAIM.proves, doesNotProve: CLAIM.doesNotProve, footer: CLAIM.footer },
+    claim: { sentence: CLAIM.sentence(paperProof!.commit.counter ?? "?"), began: paperFloor ? CLAIM.began(paperProof!.commit.counter ?? "?", paperFloor.blockNumber, paperFloor.chain) : null, proves: CLAIM.proves, doesNotProve: CLAIM.doesNotProve, footer: CLAIM.footer },
   };
 }
 

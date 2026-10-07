@@ -1,0 +1,56 @@
+{
+  "version": "exam-raw/1",
+  "id": 19,
+  "family": "arith",
+  "provider": "anthropic",
+  "model": "claude-opus-5-5",
+  "request": {
+    "model": "claude-opus-5-5",
+    "max_tokens": 16000,
+    "system": "You are sitting a written exam. Answer each question on its own. Follow the question's answer-format instructions exactly.",
+    "messages": [
+      {
+        "role": "user",
+        "content": "Compute exactly:\n\n217198403 * 440164497 - 2354171 * 91451841\n\nGive the exact integer, with no thousands separators.\nReason as much as you like, then finish with one final line of the form\nANSWER: <your answer>"
+      }
+    ]
+  },
+  "response": {
+    "model": "claude-opus-5-5",
+    "id": "msg_011Cfn7aQK7irwVQUYYvZowy",
+    "type": "message",
+    "role": "assistant",
+    "content": [
+      {
+        "type": "thinking",
+        "thinking": "",
+        "signature": "CAQSrQ0KEAgSGAI4AUIIdGhpbmtpbmcSDIM2TkAMwfTFCn7ihhoMs3OneZjTpzN4f+g+IjA2Lm0LIQVDPlic1RTWiDctPj3LoqJnKbwOfBXToCkb8kepJLH6FwVkBDk2YHy8xYIqygxUsOucro9QDEMCzvD8UvxW0E1ItxmNuAZ1IwJFJdR8ZMscJFHTOcqFtmvl3QI3G66mctGdEVdQq5TR/f0y4BY7xrkUeFemgTOVFfO2bNKg9WDGZaxXrQ9lfsQVLXqEzC1Dhx/CHC/fnu2rVf8sWrEcB+JqBYjHLqfVKW10meWxNtM6QldC5Rw00AqqjivOx5OZabRqMI+k9rQts7wS8Up/h05627eiH6/TkE8pTyWSb1meq+fdHpoZXvTGwAF4hrTUyzebMxqQsRiz4PUigwu8Hi+iMesCpeoOLL6iS8DJ8RfHytCoMgemTlgKSXISNwb6AqmZMafw2n209ttegSIK6BgnXIYEOtCV05iDX3nTc9gT6XH4JNBC/XytDQL4V7F7BnGfVZKjrjJtB5qqgPbwQ9tmYVps8q1hjV1VHDFDyRYFQYONs/XTIAukStfVQJ5y4iAL4c+XVEnRLwyOyVwbYC95II4Dgr0EKzmtGm1igUVj6xXaFzztr8gAr+0c83yy9LFExlqPw94s7tXyB7eC6Vua3gAmS828+Km+DsYKbsZlydULj2hTl77xbi3Ca2cdPtD9+y9EwyhG7XWTDODR0++5HXIA+KoylZZXKWP70x+QVM/SsG657Ma/x3Q4c+Ms214hhFDYM1fTB97V+cIS8zLFSWP/1owOEnpFDQD2LExtPxh+/yw1waXx8uWy9EYPq5GRtWCoeeLPzF3Qqg+J1GaD40KOH7ZnpX1AqimUGIyX4wauTNtcr0uSOMxTeCUKwkPUOs7jByUKMgUJiy3paqljA8hvRsBJUo24NNAoCDH9X9UPTI2tQaeNqVLxP3APN5mqZk90qg5m0/Tn8T1iLbwPTpk0GQuLg4/AB7nK0EK0ffR8scNl53Q1h9PrX2BFmaI5vvCZ+5/O9BkqZZdxbRKSY/PybT2csShJgfi2gqHheuxRjI7GPrzhOU1/Yi+OMfZmDlO1MScer2HMe5vQQe1dTLmBio0qYGgUg8nbqG5kW0QzDVQ41pbIi5mHwxUhzluoXMBH1oAxF7DrgROW83IDZiwUKOd0QCi4EGwwyYOauFJyinbIL76FVquNusuwg1A+zx/fylmnuuoYMDDM2/rLZSce/TMiAfSCnJchbUn+Fu1U/2IQ+1XGDoe94x3vSlKKNPyHdxHNbaEnYtlEInqfN+qnRvPGrfIEMLumwzlT/8y0kt9DdJVxlN8GqjS3sve43CyTTIrPlNopuG2AbmUp4rlGQh+5PzOGPbbhXlss/4pjZNJujTYnpUqrnebLv3cmPR6HzpmzsP05s2NYE+fw9z7iOXLbAhw9X0sZOqwJk8A68id3aBXsvq6phEG9po/HR5eKIeP9RdGqctj93IUPpdc2Fn+vTzR0UbOHCW0vngRbvxoJ6tB34XRgL6OKbTQVI0aQ1i9S93q4gwbmjMiW12k3ush9oN4Et3PZEOHcjvo6Crh/9NXHyffX0km7iXc07/b56J/D+dgXaSXt223u8J02TCC+ljp2FZMoJoRruOyQ08SiFemF10oM7hsgQcJ9wQjHtK8/S8kUON6+9UAU6p/aHaANvcWPbDQYXaaCIMh1Gv21bF6qprJyH4CfKA455OpYAFLP7zWvDxWgnCiMqYe0SpJP9eUImS+K+hp+eyERo2DFjmUGYCy0Ajiu4Z/GegyTifMus3O+sawKsFcl1Tjso92KVIktKVX4jKRJlVBMH86wwfRFAZMS45qnKYTcVe+2UCrwiqeGWBqp2I54zezovhFyjMcyDoNGxdGuKMs4OR+xbYnxQ2wkUoN20ZOUQOe61KIie6cM054MwnU812FUr//lrAcZopbXHtp4W1L8heqz8peIBA9fbkntYuDvOyb0/eUk7LpounQRbd+/4dnzP6EtMlAJ660fy4qaCU+JEQoMF3cNBMrTxFv9m5En2UnMziKGAwR9WnH/Y9tmhFkgrVlXb4F90CHBpGjcVvi6SjyaQY3d4Gxdn/0zRm+0i3WErCkwgKOpjIC93cKAw6S5ZJbMIzJmkgDYcnQgue7wgtoV5La1lMgWgfZQuZgenBOXLwzadMpGAqqvM8l9XcacQfpa66oF1s9YwIugppBqkvKvRSyDQntV20KdjSztBTGKxD0NRon60JtjPfc4B/esOlzqRxgB"
+      },
+      {
+        "type": "text",
+        "text": "The approach is to split each product into easier partial products, then subtract.\n\n**First product: 217198403 × 440164497**\n\nSplit 440164497 as 440000000 + 164497.\n\n- 217198403 × 44 = 9556729732, so 217198403 × 440000000 = 95567297320000000.\n- 217198403 × 164497 = 217198403 × 164000 + 217198403 × 497.\n  - 217198403 × 164 = 21719840300 + 13900697792 = 35620538092, so × 164000 = 35620538092000.\n  - 217198403 × 497 = 108599201500 − 651595209 = 107947606291.\n  - Sum: 35620538092000 + 107947606291 = 35728485698291.\n- Total: 95567297320000000 + 35728485698291 = **95603025805698291**.\n\n**Second product: 2354171 × 91451841**\n\nCompute it as 91451841 × 2354171, splitting 2354171 as 2000000 + 354171.\n\n- 91451841 × 2000000 = 182903682000000.\n- 91451841 × 354171 = 91451841 × 354000 + 91451841 × 171.\n  - 91451841 × 354 = 27435552300 + 4938399414 = 32373951714, so × 354000 = 32373951714000.\n  - 91451841 × 171 = 15546812970 + 91451841 = 15638264811.\n  - Sum: 32373951714000 + 15638264811 = 32389589978811.\n- Total: 182903682000000 + 32389589978811 = **215293271978811**.\n\n**Difference**\n\n95603025805698291 − 215293271978811 = **95387732533719480**\n\nANSWER: 95387732533719480"
+      }
+    ],
+    "container": null,
+    "stop_reason": "end_turn",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 123,
+      "cache_creation_input_tokens": 0,
+      "cache_read_input_tokens": 0,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 1090,
+      "output_tokens_details": {
+        "thinking_tokens": 533
+      },
+      "service_tier": "standard",
+      "inference_geo": "global"
+    },
+    "diagnostics": null
+  },
+  "incomplete": false
+}

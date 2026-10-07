@@ -1,0 +1,51 @@
+{
+  "version": "exam-raw/1",
+  "id": 11,
+  "family": "logic",
+  "provider": "anthropic",
+  "model": "claude-fable-5-1",
+  "request": {
+    "model": "claude-fable-5-1",
+    "max_tokens": 16000,
+    "system": "You are sitting a written exam. Answer each question on its own. Follow the question's answer-format instructions exactly.",
+    "messages": [
+      {
+        "role": "user",
+        "content": "4 people (Hugo, Fitz, Bram, Cleo) sit in a row of 4 seats numbered 1 to 4 from left to right. All of the following are true:\n\n1. Bram sits in seat 3.\n2. Fitz and Cleo do not sit next to each other.\n3. There are exactly 1 seat between Hugo and Bram.\n4. Bram sits somewhere to the left of Cleo.\n5. There are exactly 1 seat between Fitz and Cleo.\n6. Cleo sits in seat 4.\n\nWho sits where?\n\nGive the names in seat order from seat 1 to the last seat, separated by commas.\nReason as much as you like, then finish with one final line of the form\nANSWER: <your answer>"
+      }
+    ]
+  },
+  "response": {
+    "model": "claude-fable-5-1",
+    "id": "msg_011Cfn7dN9yQzFGSCg5bWgom",
+    "type": "message",
+    "role": "assistant",
+    "content": [
+      {
+        "type": "text",
+        "text": "Bram in seat 3, Cleo in seat 4. Exactly one seat between Hugo and Bram → Hugo in seat 1. Fitz in seat 2. Check: Fitz (2) and Cleo (4) not adjacent, one seat between them — valid.\n\nANSWER: Hugo, Fitz, Bram, Cleo"
+      }
+    ],
+    "container": null,
+    "stop_reason": "end_turn",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 285,
+      "cache_creation_input_tokens": 0,
+      "cache_read_input_tokens": 0,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 116,
+      "output_tokens_details": {
+        "thinking_tokens": 0
+      },
+      "service_tier": "standard",
+      "inference_geo": "global"
+    },
+    "diagnostics": null
+  },
+  "incomplete": false
+}

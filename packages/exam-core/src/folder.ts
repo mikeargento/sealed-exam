@@ -13,8 +13,14 @@
  * ethereum-anchors/, the anchor proofs and their witnesses.
  *
  *   bank/      bank.json (recorded), generator.tar, proof.json, base-floor/ or ethereum-anchors/
- *   paper/     paper.json (the origin), new-file/paper.fused.json (committed), proof.json, base-floor/ or ethereum-anchors/
- *   answers/   answers.json (committed), proof.json, base-floor/ or ethereum-anchors/
+ *   paper/     paper.json (the origin), new-file/paper.fused.json (committed), proof.json, base-floor/ or ethereum-anchors/, base-ceiling/
+ *   answers/   answers.json (committed), proof.json, base-floor/ or ethereum-anchors/, base-ceiling/
+ *
+ * base-ceiling/ceiling.json is the unit's Base ceiling (bitgraph-ceiling/1, the
+ * file the proof page downloads): the Base block whose transaction carries the
+ * record. It is written some seconds after the commit, so a folder exported at
+ * once may not have it yet; `exam export` again adds it (2026-10-07).
+ *
  *   raw/       q01.json … one file per question, digests named in answers.json
  *   README.txt the claim boundary and the two floors
  *   slot.json  a held, unspent position; deleted the moment it is spent
@@ -28,6 +34,8 @@ export const FOLDER_SUFFIX = ".exam";
 export const ANCHOR_DIR = "ethereum-anchors";
 export const BASE_FLOOR_DIR = "base-floor";
 export const FLOOR_HEADER_FILE = "floor-header.json";
+export const CEILING_DIR = "base-ceiling";
+export const CEILING_FILE = "ceiling.json";
 
 const isDir = (p: string): boolean => { try { return statSync(p).isDirectory(); } catch { return false; } };
 
@@ -54,6 +62,7 @@ export const paths = {
     proof: (root: string) => join(root, "paper", "proof.json"),
     anchors: (root: string) => join(root, "paper", ANCHOR_DIR),
     baseFloor: (root: string) => join(root, "paper", BASE_FLOOR_DIR),
+    ceiling: (root: string) => join(root, "paper", CEILING_DIR, CEILING_FILE),
   },
   answers: {
     dir: (root: string) => join(root, "answers"),
@@ -61,6 +70,7 @@ export const paths = {
     proof: (root: string) => join(root, "answers", "proof.json"),
     anchors: (root: string) => join(root, "answers", ANCHOR_DIR),
     baseFloor: (root: string) => join(root, "answers", BASE_FLOOR_DIR),
+    ceiling: (root: string) => join(root, "answers", CEILING_DIR, CEILING_FILE),
   },
   raw: {
     dir: (root: string) => join(root, "raw"),

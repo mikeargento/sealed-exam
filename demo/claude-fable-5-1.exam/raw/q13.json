@@ -1,0 +1,51 @@
+{
+  "version": "exam-raw/1",
+  "id": 13,
+  "family": "logic",
+  "provider": "anthropic",
+  "model": "claude-fable-5-1",
+  "request": {
+    "model": "claude-fable-5-1",
+    "max_tokens": 16000,
+    "system": "You are sitting a written exam. Answer each question on its own. Follow the question's answer-format instructions exactly.",
+    "messages": [
+      {
+        "role": "user",
+        "content": "5 people (Fitz, Ada, Hugo, Bram, Gwen) sit in a row of 5 seats numbered 1 to 5 from left to right. All of the following are true:\n\n1. There are exactly 2 seats between Hugo and Ada.\n2. There are exactly 1 seat between Hugo and Bram.\n3. There are exactly 3 seats between Hugo and Fitz.\n4. Gwen and Hugo sit next to each other.\n5. Ada sits in seat 2.\n6. There are exactly 0 seats between Gwen and Bram.\n7. Bram and Hugo do not sit next to each other.\n\nWho sits where?\n\nGive the names in seat order from seat 1 to the last seat, separated by commas.\nReason as much as you like, then finish with one final line of the form\nANSWER: <your answer>"
+      }
+    ]
+  },
+  "response": {
+    "model": "claude-fable-5-1",
+    "id": "msg_011Cfn7dT7dfV4zxfjtQLAL8",
+    "type": "message",
+    "role": "assistant",
+    "content": [
+      {
+        "type": "text",
+        "text": "Ada in seat 2. Hugo has exactly 2 seats between him and Ada, so Hugo is in seat 5. Fitz has 3 seats between him and Hugo, so Fitz is in seat 1. Bram has 1 seat between him and Hugo, so Bram is in seat 3. Gwen takes seat 4, which is next to Hugo (seat 5) and adjacent to Bram (0 seats between). Bram (3) and Hugo (5) are not adjacent. All conditions hold.\n\nANSWER: Fitz, Ada, Bram, Gwen, Hugo"
+      }
+    ],
+    "container": null,
+    "stop_reason": "end_turn",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 317,
+      "cache_creation_input_tokens": 0,
+      "cache_read_input_tokens": 0,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 199,
+      "output_tokens_details": {
+        "thinking_tokens": 0
+      },
+      "service_tier": "standard",
+      "inference_geo": "global"
+    },
+    "diagnostics": null
+  },
+  "incomplete": false
+}

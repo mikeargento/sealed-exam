@@ -1,0 +1,56 @@
+{
+  "version": "exam-raw/1",
+  "id": 11,
+  "family": "logic",
+  "provider": "anthropic",
+  "model": "claude-sonnet-5-5",
+  "request": {
+    "model": "claude-sonnet-5-5",
+    "max_tokens": 16000,
+    "system": "You are sitting a written exam. Answer each question on its own. Follow the question's answer-format instructions exactly.",
+    "messages": [
+      {
+        "role": "user",
+        "content": "5 people (Bram, Cleo, Ada, Esme, Gwen) sit in a row of 5 seats numbered 1 to 5 from left to right. All of the following are true:\n\n1. Gwen sits at one end of the row.\n2. Ada and Esme do not sit next to each other.\n3. Ada does not sit in seat 2.\n4. Esme sits somewhere to the left of Ada.\n5. Esme sits somewhere to the left of Gwen.\n6. Cleo sits immediately to the left of Gwen.\n7. Esme sits immediately to the left of Bram.\n\nWho sits where?\n\nGive the names in seat order from seat 1 to the last seat, separated by commas.\nReason as much as you like, then finish with one final line of the form\nANSWER: <your answer>"
+      }
+    ]
+  },
+  "response": {
+    "model": "claude-sonnet-5-5",
+    "id": "msg_011Cfn7brCeKJUqAk75iExJi",
+    "type": "message",
+    "role": "assistant",
+    "content": [
+      {
+        "type": "thinking",
+        "thinking": "",
+        "signature": "CAQS/AcKEAgSGAI4AUIIdGhpbmtpbmcSDFcRoTYmcaUQqjn8hBoMAeIIjuQclOPEdIqhIjBArfihVk1KAkKF+6TfCyKJpeAd5SmSv0BOvb14SI7BJr0i1erkDtw8A0Pk8gzvUOcqmQdt90TEpkhO/TM8NhREqj18JhjbfqcD9Rth+8JUtOF7040p9NU0rVN7IHloQMkb+rNuoXjFJtcMO1KSjz/P3lxslA0GyaxahTKHFoHuCo2O2MhrqZ0KFS/0s/MRRPiA/1dO4MOd3bdxgKUHHfSuR5xq0SS+Zf74FTpTAN7zbikOsuNJmDAv0XrR9Uktlw+4F+WYL730PrKYKNV0v4WjrmN6i2fhd/cVAWY6whqrZfPE/vlGVGU+zGrkcaYnUDSCeqLKP1LGw4gz0wcUDnynlO3FG+17dPjxvsq8OsufAY4lZWu8dkZ9aN/K5g2PN0roXy7r1gwd2fPjmZOMrNtc0vFqekR+/PatadTj0J4231CcjwehQVkItBD7IwmmZWm5VjgvMRj/z3s+9DpxwoQZJYwoNhieRrqpF8G7Hsgi7tCcu5aNJ+P+RxgdOqyeA13vzw82tzXSDumF9kkBdVk8QE98uR9iXh2qyTJr/YUCSL2rjfFTXj/PI0+CIBU+HXvvFdallWhvEKKR4RnJhNCPf0Jlrt2UDEV6WfPr7ZCxWs2zsN88Nv/MIGgytWPUlayIOjbK1Ra985lfHoXt3e/UUyUJmzERIdetmjpbZKokrLwzpGFDWYNE+fYtF+/OQ7sc/uOJ5GUV+LmoExLfSO1WEJO5NqCoU9QE5IkR3aCXiCemSwqDbYejr9OzudoEDaGz/WZHsVL/2C1w99uYdAcj/Kh3FpifoETpI5d/PEwtx1FFVS4cg5U2Xx0DXPBnsuqDHwzBlQUFIRfTIzb0okE9vbmTr00xRcX6iu2olExYepV7AWlIozsEWrqonP1Gm3DTyY2YYWNJvjvg31tDzMGIYlOwlwGX6DHKOfoG6maQg85IDHhS3H8rMQ+npGtvk42Gx3uVHLVG1mscCgZfH+aOK2uqOpvjTA474SwWHqi+I+92rSn5WoCWTyiCPfX6B8KuhUOJi7j0N2/9ljGtW1WSzroOHiBFLFn8iDqW3PoA8YwBFXU1HSC9D4FhVd5nqKOor1ttKvFn9aE+0BcTRb1zHxEE/COvGyXZ5hCoKIEAjNzRzeXSLVQrQckQi+wGr7valuwr39FyngyDWhe8/iUq0hmOH1nTCOlI7cl0JFbI750eR5sOrKFpiPcqwPy4IDA0r68emgTGV4wFAeFa6TMaZX7iD3B/YPEkNAKllBmWde38bXcFrnjEkRGD9Bd21DT8Za0zMFwfv0WXNO0YAQ=="
+      },
+      {
+        "type": "text",
+        "text": "Gwen is at an end, and Esme must sit to her left (clue 5), so Gwen is in seat 5. Cleo is immediately left of Gwen (clue 6), so Cleo is in seat 4.\n\nAda, Esme and Bram fill seats 1–3. Esme is immediately left of Bram (clue 7), so they take seats 1–2 or seats 2–3.\n\n- If Esme is in seat 2 and Bram in seat 3, Ada is in seat 1. That puts Esme to the right of Ada, which breaks clue 4.\n- If Esme is in seat 1 and Bram in seat 2, Ada is in seat 3. Esme is left of Ada (clue 4), they are not adjacent (clue 2), and Ada is not in seat 2 (clue 3). This works.\n\nANSWER: Esme, Bram, Ada, Cleo, Gwen"
+      }
+    ],
+    "container": null,
+    "stop_reason": "end_turn",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 302,
+      "cache_creation_input_tokens": 0,
+      "cache_read_input_tokens": 0,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 547,
+      "output_tokens_details": {
+        "thinking_tokens": 253
+      },
+      "service_tier": "standard",
+      "inference_geo": "global"
+    },
+    "diagnostics": null
+  },
+  "incomplete": false
+}

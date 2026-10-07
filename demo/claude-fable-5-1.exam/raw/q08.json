@@ -1,0 +1,51 @@
+{
+  "version": "exam-raw/1",
+  "id": 8,
+  "family": "logic",
+  "provider": "anthropic",
+  "model": "claude-fable-5-1",
+  "request": {
+    "model": "claude-fable-5-1",
+    "max_tokens": 16000,
+    "system": "You are sitting a written exam. Answer each question on its own. Follow the question's answer-format instructions exactly.",
+    "messages": [
+      {
+        "role": "user",
+        "content": "4 people (Fitz, Ada, Hugo, Esme) sit in a row of 4 seats numbered 1 to 4 from left to right. All of the following are true:\n\n1. Esme sits somewhere to the left of Hugo.\n2. Fitz sits in seat 1.\n3. Esme sits somewhere to the left of Ada.\n4. Fitz sits somewhere to the left of Hugo.\n5. Esme does not sit in seat 3.\n6. There are exactly 0 seats between Esme and Ada.\n\nWho sits where?\n\nGive the names in seat order from seat 1 to the last seat, separated by commas.\nReason as much as you like, then finish with one final line of the form\nANSWER: <your answer>"
+      }
+    ]
+  },
+  "response": {
+    "model": "claude-fable-5-1",
+    "id": "msg_011Cfn7dGNiMgv7gDrS25PQ7",
+    "type": "message",
+    "role": "assistant",
+    "content": [
+      {
+        "type": "text",
+        "text": "Fitz is in seat 1. Esme is left of Hugo and Ada, not in seat 3, so Esme is in seat 2. Ada is adjacent to Esme and to her right, so Ada is in seat 3. Hugo takes seat 4.\n\nANSWER: Fitz, Esme, Ada, Hugo"
+      }
+    ],
+    "container": null,
+    "stop_reason": "end_turn",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 282,
+      "cache_creation_input_tokens": 0,
+      "cache_read_input_tokens": 0,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 109,
+      "output_tokens_details": {
+        "thinking_tokens": 0
+      },
+      "service_tier": "standard",
+      "inference_geo": "global"
+    },
+    "diagnostics": null
+  },
+  "incomplete": false
+}

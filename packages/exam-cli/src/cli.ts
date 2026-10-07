@@ -23,11 +23,11 @@ import { join, relative } from "node:path";
 import { generatorSourceTar, loadBank, packageRoot as bankRoot } from "@mikeargento/exam-bank";
 import { PROVIDERS, askAndSeal, type ProviderId } from "@mikeargento/exam-ask";
 import {
-  ANCHOR_DIR, BASE_FLOOR_DIR, CLAIM, blockName, floorEvidenceFor, floorOfSlot, formatUtc, fusePaper, isSlotRecord, openPosition, paths, readBytes, readJson, record, remove, signedFloorOf, writeBytes, writeFloorEvidence, writeJson,
+  ANCHOR_DIR, BASE_FLOOR_DIR, CEILING_DIR, CLAIM, bitgraphName, blockName, fetchCeiling, floorEvidenceFor, proofPageUrl, writeCeiling, floorOfSlot, formatUtc, fusePaper, isSlotRecord, openPosition, paths, readBytes, readJson, record, remove, signedFloorOf, writeBytes, writeFloorEvidence, writeJson,
   type FloorEvidence, type FloorChain, type Transport,
 } from "@mikeargento/exam-core";
 import type { BitGraphProof, SlotAllocation } from "@mikeargento/bitgraph-verify";
-import { renderReport, renderText, verifyExam, floorPhrase, type ExamVerdict } from "@mikeargento/exam-verify";
+import { renderReport, renderText, verifyExam, bitgraphLines, type ExamVerdict } from "@mikeargento/exam-verify";
 import { selftest } from "./selftest.js";
 
 const USAGE = `exam: the sealed exam
@@ -165,6 +165,9 @@ async function exportFolder(root: string, t: Transport): Promise<void> {
     const ev = await floorEvidenceFor(t, proof);
     await writeFloorEvidence(paths[unit].dir(root), ev);
     if (ev.floor?.chain === "base" && ev.files.length === 0) say(`The ${unit === "paper" ? "paper's" : "answer sheet's"} floor header is not in the folder yet (${ev.note ?? "not fetched"}); run export again to add it.`);
+    const ceiling = await fetchCeiling(t, proof);
+    await writeCeiling(paths[unit].dir(root), ceiling);
+    if (ceiling.sidecar === null && (await readJson(paths[unit].ceiling(root))) === null) say(`The ${unit === "paper" ? "paper's" : "answer sheet's"} Base ceiling is not in the folder yet (${ceiling.note ?? "not fetched"}); run export again to add it.`);
   }
   const paperProof = await readJson<BitGraphProof>(paths.paper.proof(root));
   const answersProof = await readJson<BitGraphProof>(paths.answers.proof(root));
@@ -176,10 +179,11 @@ async function exportFolder(root: string, t: Transport): Promise<void> {
   const readme = [
     "The sealed exam",
     "",
-    pf ? CLAIM.sentence(pf.blockNumber, pf.chain) : "The paper's proof is not in this folder yet.",
+    paperProof ? CLAIM.sentence(paperProof.commit.counter ?? "?") : "The paper's proof is not in this folder yet.",
+    ...(paperProof && pf ? [CLAIM.began(paperProof.commit.counter ?? "?", pf.blockNumber, pf.chain)] : []),
     "",
-    `Paper: position ${paperProof?.commit.counter ?? "?"}, not before ${notBefore(pf)}.`,
-    `Answers: position ${answersProof?.commit.counter ?? "?"}, not before ${notBefore(af)}.`,
+    `Paper: ${paperProof ? `${bitgraphName(paperProof.commit.counter ?? "?")}, ${proofPageUrl(paperProof)}` : "?"}; not before ${notBefore(pf)}.`,
+    `Answers: ${answersProof ? `${bitgraphName(answersProof.commit.counter ?? "?")}, ${proofPageUrl(answersProof)}` : "?"}; not before ${notBefore(af)}.`,
     "",
     CLAIM.proves,
     "",
@@ -187,8 +191,8 @@ async function exportFolder(root: string, t: Transport): Promise<void> {
     "",
     "What is here:",
     "  bank/      bank.json (the public item bank, recorded once as a BitGraph: proof.json), generator.tar (its generator source)",
-    `  paper/     paper.json (the questions), new-file/paper.fused.json (the committed bytes: paper.json + a 48-byte trailer carrying the position commitment), proof.json, ${evidence(pf)}`,
-    `  answers/   answers.json (the model's answers, naming the fused paper by digest), proof.json, ${evidence(af)}`,
+    `  paper/     paper.json (the questions), new-file/paper.fused.json (the committed bytes: paper.json + a 48-byte trailer carrying the position commitment), proof.json, ${evidence(pf)}, ${CEILING_DIR}/ (its Base ceiling)`,
+    `  answers/   answers.json (the model's answers, naming the fused paper by digest), proof.json, ${evidence(af)}, ${CEILING_DIR}/ (its Base ceiling)`,
     "  raw/       one file per question: the request sent and the reply received, verbatim",
     "",
     "To check it, offline: `node verifier/exam.mjs verify <this folder>` from the package this came in, or `exam verify <this folder>` from @mikeargento/exam-cli (the tarballs in packages/). Or drop the folder on bitgraph.ing.",
@@ -281,8 +285,9 @@ async function main(): Promise<number> {
       else {
         say(`${v.verdict === "ACCEPT" ? "Verified" : v.verdict === "REJECT" ? "Contradiction" : "No evidence"}${v.reason ? `: ${v.reason}` : ""}`);
         if (v.score) say(`Score ${v.score.correct}/${v.score.k}. Report: ${relative(process.cwd(), paths.report(root))}`);
-        if (v.paper?.floor) say(`Paper ${floorPhrase(v.paper.floor)}.`);
-        if (v.answers?.floor) say(`Answers ${floorPhrase(v.answers.floor)}.`);
+        if (v.claim.sentence) say(v.claim.sentence);
+        if (v.paper) for (const l of bitgraphLines("Paper", v.paper)) say(l);
+        if (v.answers) for (const l of bitgraphLines("Answers", v.answers)) say(l);
       }
       if (process.platform === "darwin" && !json && !process.env.EXAM_NO_OPEN) spawn("open", [paths.report(root)], { detached: true, stdio: "ignore" }).unref();
       return v.exitCode;

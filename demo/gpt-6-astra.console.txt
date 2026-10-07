@@ -1,0 +1,8 @@
+Opened position 104. Floor: Base block 52276003, 7 Oct 2026 02:49:13Z.
+Wrote 20 questions from that position and sealed them at position 105. Floor: Base block 52276003, 7 Oct 2026 02:49:13Z.
+Asked gpt-6-astra. 20 answers back.
+Sealed the answers at position 107. Floor: Base block 52276016, 7 Oct 2026 02:49:39Z.
+Verified
+Score 20/20. Report: demo/gpt-6-astra.exam/report.html
+Paper not before Base block 52276003 (header time 7 Oct 2026 02:49:13Z).
+Answers not before Base block 52276016 (header time 7 Oct 2026 02:49:39Z).

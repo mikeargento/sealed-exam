@@ -1,0 +1,49 @@
+{
+  "version": "exam-raw/1",
+  "id": 7,
+  "family": "logic",
+  "provider": "anthropic",
+  "model": "claude-haiku-4-5-20251001",
+  "request": {
+    "model": "claude-haiku-4-5-20251001",
+    "max_tokens": 16000,
+    "system": "You are sitting a written exam. Answer each question on its own. Follow the question's answer-format instructions exactly.",
+    "messages": [
+      {
+        "role": "user",
+        "content": "5 people (Dev, Gwen, Fitz, Cleo, Esme) sit in a row of 5 seats numbered 1 to 5 from left to right. All of the following are true:\n\n1. Gwen and Esme sit next to each other.\n2. Gwen does not sit in seat 2.\n3. Gwen sits immediately to the left of Fitz.\n4. Fitz sits at one end of the row.\n5. Dev and Esme do not sit next to each other.\n6. There are exactly 3 seats between Fitz and Dev.\n\nWho sits where?\n\nGive the names in seat order from seat 1 to the last seat, separated by commas.\nReason as much as you like, then finish with one final line of the form\nANSWER: <your answer>"
+      }
+    ],
+    "temperature": 0
+  },
+  "response": {
+    "model": "claude-haiku-4-5-20251001",
+    "id": "msg_011Cfn7Xjp4ETKfYoJp37KNr",
+    "type": "message",
+    "role": "assistant",
+    "content": [
+      {
+        "type": "text",
+        "text": "I need to work through these constraints systematically.\n\nFrom constraint 4: Fitz sits at one end (seat 1 or seat 5).\n\nFrom constraint 3: Gwen sits immediately to the left of Fitz.\n- If Fitz is in seat 1, Gwen would need to be in seat 0 (impossible).\n- So Fitz must be in seat 5, and Gwen is in seat 4.\n\nFrom constraint 2: Gwen does not sit in seat 2.\n- Gwen is in seat 4 ✓ (consistent)\n\nFrom constraint 6: There are exactly 3 seats between Fitz and Dev.\n- Fitz is in seat 5\n- Exactly 3 seats between them means: seats 5 and 1 have seats 2, 3, 4 between them (that's 3 seats)\n- So Dev is in seat 1.\n\nSo far: Dev in seat 1, Gwen in seat 4, Fitz in seat 5.\nRemaining people: Cleo and Esme for seats 2 and 3.\n\nFrom constraint 1: Gwen and Esme sit next to each other.\n- Gwen is in seat 4\n- Esme must be in seat 3 or seat 5\n- Seat 5 is taken by Fitz\n- So Esme is in seat 3.\n\nThis means Cleo is in seat 2.\n\nLet me verify constraint 5: Dev and Esme do not sit next to each other.\n- Dev is in seat 1, Esme is in seat 3\n- They are not adjacent ✓\n\nLet me verify all constraints:\n1. Gwen (seat 4) and Esme (seat 3) sit next to each other ✓\n2. Gwen does not sit in seat 2 (she's in seat 4) ✓\n3. Gwen (seat 4) sits immediately to the left of Fitz (seat 5) ✓\n4. Fitz sits at one end (seat 5) ✓\n5. Dev (seat 1) and Esme (seat 3) do not sit next to each other ✓\n6. Exactly 3 seats between Fitz (seat 5) and Dev (seat 1): seats 2, 3, 4 ✓\n\nANSWER: Dev, Cleo, Esme, Gwen, Fitz"
+      }
+    ],
+    "container": null,
+    "stop_reason": "end_turn",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 229,
+      "cache_creation_input_tokens": 0,
+      "cache_read_input_tokens": 0,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 590,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null
+  },
+  "incomplete": false
+}

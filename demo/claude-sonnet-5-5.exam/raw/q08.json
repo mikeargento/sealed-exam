@@ -1,0 +1,56 @@
+{
+  "version": "exam-raw/1",
+  "id": 8,
+  "family": "arith",
+  "provider": "anthropic",
+  "model": "claude-sonnet-5-5",
+  "request": {
+    "model": "claude-sonnet-5-5",
+    "max_tokens": 16000,
+    "system": "You are sitting a written exam. Answer each question on its own. Follow the question's answer-format instructions exactly.",
+    "messages": [
+      {
+        "role": "user",
+        "content": "Compute exactly:\n\n469405836 * (993241468 + 37570587) + 599234094\n\nGive the exact integer, with no thousands separators.\nReason as much as you like, then finish with one final line of the form\nANSWER: <your answer>"
+      }
+    ]
+  },
+  "response": {
+    "model": "claude-sonnet-5-5",
+    "id": "msg_011Cfn7bdwgoExGPV5ewTyTA",
+    "type": "message",
+    "role": "assistant",
+    "content": [
+      {
+        "type": "thinking",
+        "thinking": "",
+        "signature": "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"
+      },
+      {
+        "type": "text",
+        "text": "First, 993241468 + 37570587 = 1030812055.\n\nThen 469405836 × 1030812055 splits as 469405836 × 1000000000 + 469405836 × 30812055:\n\n- 469405836 × 1000000000 = 469405836000000000\n- 469405836 × 30812055 = 469405836 × 30000000 + 469405836 × 812055\n  - 469405836 × 30000000 = 14082175080000000\n  - 469405836 × 812055 = 375524668800000 + 5658687352980 = 381183356152980\n  - Sum: 14082175080000000 + 381183356152980 = 14463358436152980\n\nAdding the two parts: 469405836000000000 + 14463358436152980 = 483869194436152980.\n\nFinally, adding 599234094 gives 483869194436152980 + 599234094 = 483869195035387074.\n\nANSWER: 483869195035387074"
+      }
+    ],
+    "container": null,
+    "stop_reason": "end_turn",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 123,
+      "cache_creation_input_tokens": 0,
+      "cache_read_input_tokens": 0,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 890,
+      "output_tokens_details": {
+        "thinking_tokens": 594
+      },
+      "service_tier": "standard",
+      "inference_geo": "global"
+    },
+    "diagnostics": null
+  },
+  "incomplete": false
+}

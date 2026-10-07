@@ -1,0 +1,51 @@
+{
+  "version": "exam-raw/1",
+  "id": 15,
+  "family": "logic",
+  "provider": "anthropic",
+  "model": "claude-sonnet-5-5",
+  "request": {
+    "model": "claude-sonnet-5-5",
+    "max_tokens": 16000,
+    "system": "You are sitting a written exam. Answer each question on its own. Follow the question's answer-format instructions exactly.",
+    "messages": [
+      {
+        "role": "user",
+        "content": "4 people (Cleo, Bram, Ada, Esme) sit in a row of 4 seats numbered 1 to 4 from left to right. All of the following are true:\n\n1. Esme and Ada sit next to each other.\n2. Cleo and Esme do not sit next to each other.\n3. There are exactly 1 seat between Esme and Bram.\n4. Bram and Esme do not sit next to each other.\n5. Ada and Cleo do not sit next to each other.\n6. Cleo does not sit in seat 3.\n7. Ada sits in seat 3.\n\nWho sits where?\n\nGive the names in seat order from seat 1 to the last seat, separated by commas.\nReason as much as you like, then finish with one final line of the form\nANSWER: <your answer>"
+      }
+    ]
+  },
+  "response": {
+    "model": "claude-sonnet-5-5",
+    "id": "msg_011Cfn7cG2bqBCEsLDGG6o46",
+    "type": "message",
+    "role": "assistant",
+    "content": [
+      {
+        "type": "text",
+        "text": "Ada is in seat 3. Esme must be next to Ada, so Esme is in seat 2 or 4.\n\nCase Esme in seat 2: Bram must have exactly one seat between him and Esme, so Bram is in seat 4. Cleo is then in seat 1. Check the conditions:\n- Cleo and Esme (seats 1 and 2) are adjacent, which violates condition 2.\n\nCase Esme in seat 4: Bram must be in seat 2. Cleo is then in seat 1. Check the conditions:\n1. Esme (4) and Ada (3) are adjacent. ✓.\n2. Cleo (1) and Esme (4) are not adjacent. ✓.\n3. Exactly one seat lies between Esme (4) and Bram (2). ✓.\n4. Bram (2) and Esme (4) are not adjacent. ✓.\n5. Ada (3) and Cleo (1) are not adjacent. ✓.\n6. Cleo is not in seat 3. ✓.\n7. Ada is in seat 3. ✓.\n\nANSWER: Cleo, Bram, Ada, Esme"
+      }
+    ],
+    "container": null,
+    "stop_reason": "end_turn",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 294,
+      "cache_creation_input_tokens": 0,
+      "cache_read_input_tokens": 0,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 372,
+      "output_tokens_details": {
+        "thinking_tokens": 0
+      },
+      "service_tier": "standard",
+      "inference_geo": "global"
+    },
+    "diagnostics": null
+  },
+  "incomplete": false
+}

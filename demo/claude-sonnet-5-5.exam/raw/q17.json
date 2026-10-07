@@ -1,0 +1,51 @@
+{
+  "version": "exam-raw/1",
+  "id": 17,
+  "family": "strings",
+  "provider": "anthropic",
+  "model": "claude-sonnet-5-5",
+  "request": {
+    "model": "claude-sonnet-5-5",
+    "max_tokens": 16000,
+    "system": "You are sitting a written exam. Answer each question on its own. Follow the question's answer-format instructions exactly.",
+    "messages": [
+      {
+        "role": "user",
+        "content": "Start with the string (between the brackets, without them): [vCyN2vT9fSse]\n\nApply these steps in order:\n\n1. Delete every 2nd character (the 2nd, 4th, 6th, … counting from 1).\n2. Reverse the string.\n3. Keep only the characters at odd positions (the 1st, 3rd, 5th, …, counting from 1).\n\nWhat is the resulting string?\n\nGive the final string exactly, and nothing else after ANSWER:.\nReason as much as you like, then finish with one final line of the form\nANSWER: <your answer>"
+      }
+    ]
+  },
+  "response": {
+    "model": "claude-sonnet-5-5",
+    "id": "msg_011Cfn7cLBPRta7wND1chcqS",
+    "type": "message",
+    "role": "assistant",
+    "content": [
+      {
+        "type": "text",
+        "text": "The starting string is vCyN2vT9fSse. Its characters by position are:\n1 v, 2 C, 3 y, 4 N, 5 2, 6 v, 7 T, 8 9, 9 f, 10 S, 11 s, 12 e.\n\n**Step 1: delete every 2nd character.** Remove positions 2, 4, 6, 8, 10, 12. The characters left are those at positions 1, 3, 5, 7, 9, 11: v, y, 2, T, f, s. The string is \"vy2Tfs\".\n\n**Step 2: reverse.** This gives \"sfT2yv\".\n\n**Step 3: keep odd positions.** Position 1 is s, 3 is T, 5 is y. The result is \"sTy\".\n\nANSWER: sTy"
+      }
+    ],
+    "container": null,
+    "stop_reason": "end_turn",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 229,
+      "cache_creation_input_tokens": 0,
+      "cache_read_input_tokens": 0,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 255,
+      "output_tokens_details": {
+        "thinking_tokens": 0
+      },
+      "service_tier": "standard",
+      "inference_geo": "global"
+    },
+    "diagnostics": null
+  },
+  "incomplete": false
+}

@@ -1,0 +1,56 @@
+{
+  "version": "exam-raw/1",
+  "id": 9,
+  "family": "arith",
+  "provider": "anthropic",
+  "model": "claude-sonnet-5-5",
+  "request": {
+    "model": "claude-sonnet-5-5",
+    "max_tokens": 16000,
+    "system": "You are sitting a written exam. Answer each question on its own. Follow the question's answer-format instructions exactly.",
+    "messages": [
+      {
+        "role": "user",
+        "content": "Compute exactly:\n\n60371473 * (301947716 + 793282264) + 91644971\n\nGive the exact integer, with no thousands separators.\nReason as much as you like, then finish with one final line of the form\nANSWER: <your answer>"
+      }
+    ]
+  },
+  "response": {
+    "model": "claude-sonnet-5-5",
+    "id": "msg_011Cfn7bjgyehLUPdiUdJHyF",
+    "type": "message",
+    "role": "assistant",
+    "content": [
+      {
+        "type": "thinking",
+        "thinking": "",
+        "signature": "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"
+      },
+      {
+        "type": "text",
+        "text": "The exact value is 66120647258005511.\n\nFirst the sum in parentheses: 301947716 + 793282264 = 1095229980.\n\nNext the product: 60371473 × 1095229980 = 10 × (60371473 × 109522998).\n\n- 60371473 × 109522998 = 60371473 × 109523000 − 60371473 × 2.\n- 60371473 × 109523 = 6612064837379, so 60371473 × 109523000 = 6612064837379000.\n- Subtracting 60371473 × 2 = 120742946 gives 6612064716636054.\n- Multiplying by 10 gives 66120647166360540.\n\nFinally, add 91644971: 66120647166360540 + 91644971 = 66120647258005511.\n\nAs a check mod 9, the product term is 0 (since 1095229980 has digit sum 45) and 91644971 is 5, so the result should be 5. The digits of the answer sum to 59, which is also 5 mod 9.\n\nANSWER: 66120647258005511"
+      }
+    ],
+    "container": null,
+    "stop_reason": "end_turn",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 123,
+      "cache_creation_input_tokens": 0,
+      "cache_read_input_tokens": 0,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 1118,
+      "output_tokens_details": {
+        "thinking_tokens": 789
+      },
+      "service_tier": "standard",
+      "inference_geo": "global"
+    },
+    "diagnostics": null
+  },
+  "incomplete": false
+}

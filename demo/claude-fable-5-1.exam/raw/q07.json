@@ -1,0 +1,47 @@
+{
+  "version": "exam-raw/1",
+  "id": 7,
+  "family": "strings",
+  "provider": "anthropic",
+  "model": "claude-fable-5-1",
+  "request": {
+    "model": "claude-fable-5-1",
+    "max_tokens": 16000,
+    "system": "You are sitting a written exam. Answer each question on its own. Follow the question's answer-format instructions exactly.",
+    "messages": [
+      {
+        "role": "user",
+        "content": "Start with the string (between the brackets, without them): [nwxulaMYPgEn]\n\nApply these steps in order:\n\n1. Delete every 2nd character (the 2nd, 4th, 6th, … counting from 1).\n2. Sort the characters in ascending ASCII order (digits before uppercase letters before lowercase letters).\n3. Swap the case of every letter (lowercase becomes uppercase and uppercase becomes lowercase); leave digits unchanged.\n\nWhat is the resulting string?\n\nGive the final string exactly, and nothing else after ANSWER:.\nReason as much as you like, then finish with one final line of the form\nANSWER: <your answer>"
+      }
+    ]
+  },
+  "response": {
+    "model": "claude-fable-5-1",
+    "id": "msg_011Cfn7dF2c9iHbH3EThPbEA",
+    "type": "message",
+    "role": "assistant",
+    "content": [],
+    "container": null,
+    "stop_reason": "refusal",
+    "stop_sequence": null,
+    "stop_details": {
+      "type": "refusal",
+      "category": "cyber",
+      "explanation": "This request triggered restrictions on violative cyber content and was blocked under Anthropic's Usage Policy. To learn more, see https://platform.claude.com/docs/en/build-with-claude/refusals-and-fallback. API integrators: you can reduce refusals for your users by configuring a fallback model — see https://platform.claude.com/docs/en/build-with-claude/refusals-and-fallback"
+    },
+    "usage": {
+      "input_tokens": 263,
+      "cache_creation_input_tokens": 0,
+      "cache_read_input_tokens": 0,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 0,
+      "service_tier": "standard",
+      "inference_geo": "global"
+    },
+    "diagnostics": null
+  },
+  "incomplete": true
+}

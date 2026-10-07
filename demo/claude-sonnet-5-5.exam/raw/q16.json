@@ -1,0 +1,56 @@
+{
+  "version": "exam-raw/1",
+  "id": 16,
+  "family": "logic",
+  "provider": "anthropic",
+  "model": "claude-sonnet-5-5",
+  "request": {
+    "model": "claude-sonnet-5-5",
+    "max_tokens": 16000,
+    "system": "You are sitting a written exam. Answer each question on its own. Follow the question's answer-format instructions exactly.",
+    "messages": [
+      {
+        "role": "user",
+        "content": "4 people (Dev, Ada, Fitz, Hugo) sit in a row of 4 seats numbered 1 to 4 from left to right. All of the following are true:\n\n1. Hugo does not sit in seat 3.\n2. Hugo sits in seat 4.\n3. Fitz and Dev do not sit next to each other.\n4. Fitz does not sit in seat 2.\n5. Fitz sits somewhere to the left of Ada.\n6. Fitz sits at one end of the row.\n7. Fitz sits immediately to the left of Ada.\n\nWho sits where?\n\nGive the names in seat order from seat 1 to the last seat, separated by commas.\nReason as much as you like, then finish with one final line of the form\nANSWER: <your answer>"
+      }
+    ]
+  },
+  "response": {
+    "model": "claude-sonnet-5-5",
+    "id": "msg_011Cfn7cGKxQFj9qyGqFk3Gt",
+    "type": "message",
+    "role": "assistant",
+    "content": [
+      {
+        "type": "thinking",
+        "thinking": "",
+        "signature": "CAQSswYKEAgSGAI4AUIIdGhpbmtpbmcSDAEEPO+fqkC2Rz7VIBoMmzxyTh/37fywrbiqIjDuHqPI7HHaBi9kLwBv5lY6JlRArW6hsO5SscrMxMAqBQ3ZUspMEM8SXebDxxn2at8q0AWFFlBoJjLaGUvruQl+dciA4VnCyqAwTW4hzMsr7ZR4nTcFXgeDSVDqBZgAfMF9DPFoYQEzak8YRDQ06CQH+Tk430bdDX0pn+AvseexsTADpl5nHMFWr1P8beYIK4IJOce7k44EW+2j4CLdW2nY6F0xieVnko1+TJ/kxuSBRrUnhogH4AM+zQGMvNg6iLKQLVKmtJLoxrxMMKjy9EA5H4+tqHqGk2AkNpQUVLCVIqqfy6ANEaUBBeQi0ifeLVfd1U/GcWzLJKo6hGh9miqcO7ITr5G5gfHRcZjaWjM3rMq5bmZEUSCa5sqHMO6Qcg5yBIrbDlLX/Wdzt1YW1DFdLMoUA6gRYc0IgYq1nHj/W2nXkdlrxORkHkPgTtC+P9D9B5Hko8cRbV1idwRp4CtlOjBeJZZY2zYnItq3rcz+Tc2vpCws+vmB/74F1m/Prbq63tb1czD0HBzV2aqWos2UfCGCWBfNqm0d8NEn/HQaf1ezWQynBK4YefaAxQ18YHjIUybXfMJo5Ov8ljC8OlQlTvyP3XOClkVwf6IETHrE2j4dV2ch1OgLQOX59J0isvUMl/Qy0TEAyIgua0C7c51HtO71GBuShCpOCnw1w9jCXMB8masd2er/M9xJYFTUxMihGWxGs602yFe8gLqI6xxl+VnnXS64ibxUfKJ3Z5YTpsyT0zmvXgD/xJc7u+kt/WhvuIEg7Q80VUSIoTEuPHySgP/w/lc3wL0QN6wNS+Rn00j4DXMwdy2j6qDT72/eeZk87FOClzx9LJERdns0rGWUKFt71ov/ErrZ6LchmiWRzzBOrfqua/nU0Anb24sNfnMei3wgKyTCdquIMtZtJJUjE8IflcxpK266uTcQA1X3s1veUVkebh5e0job1pPOQDQpm0lbmel1BnGcKmlzGqrQvb1VIYyH0VvIXJeueWYjlNxod/xduTFGYx/h4POSqt6XMoYYAQ=="
+      },
+      {
+        "type": "text",
+        "text": "Hugo sits in seat 4 (clue 2). Fitz must sit at an end (clue 6), and seat 4 is taken, so Fitz is in seat 1. Ada sits immediately to Fitz's right (clue 7), so Ada is in seat 2. That leaves Dev in seat 3.\n\nChecking the other clues:\n- Clue 1: Hugo is not in seat 3. ✓\n- Clue 3: Fitz (seat 1) and Dev (seat 3) are not adjacent. ✓\n- Clue 4: Fitz is not in seat 2. ✓\n- Clue 5: Fitz is to the left of Ada. ✓\n\nANSWER: Fitz, Ada, Dev, Hugo"
+      }
+    ],
+    "container": null,
+    "stop_reason": "end_turn",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 292,
+      "cache_creation_input_tokens": 0,
+      "cache_read_input_tokens": 0,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 384,
+      "output_tokens_details": {
+        "thinking_tokens": 140
+      },
+      "service_tier": "standard",
+      "inference_geo": "global"
+    },
+    "diagnostics": null
+  },
+  "incomplete": false
+}

@@ -1,0 +1,56 @@
+{
+  "version": "exam-raw/1",
+  "id": 10,
+  "family": "strings",
+  "provider": "anthropic",
+  "model": "claude-opus-5-5",
+  "request": {
+    "model": "claude-opus-5-5",
+    "max_tokens": 16000,
+    "system": "You are sitting a written exam. Answer each question on its own. Follow the question's answer-format instructions exactly.",
+    "messages": [
+      {
+        "role": "user",
+        "content": "Start with the string (between the brackets, without them): [ITdAiYQHbtmS53HZYuh]\n\nApply these steps in order:\n\n1. Reverse the string.\n2. Sort the characters in ascending ASCII order (digits before uppercase letters before lowercase letters).\n3. Delete every 4th character (the 4th, 8th, 12th, … counting from 1).\n4. Rotate the string left by 5: move its first 5 characters to the end, in the same order.\n\nWhat is the resulting string?\n\nGive the final string exactly, and nothing else after ANSWER:.\nReason as much as you like, then finish with one final line of the form\nANSWER: <your answer>"
+      }
+    ]
+  },
+  "response": {
+    "model": "claude-opus-5-5",
+    "id": "msg_011Cfn7Zq5MkNuwdpH3NBKFq",
+    "type": "message",
+    "role": "assistant",
+    "content": [
+      {
+        "type": "thinking",
+        "thinking": "",
+        "signature": "CAQS7gcKEAgSGAI4AUIIdGhpbmtpbmcSDBXrgKQUZxt2XkL2MxoMTe+6Tc+mMYXs7n2xIjA7RP0K7vFgjWhEpegVnD40UiNP9b3Y9XbVqlgJ5cm3NG7wgDdLGh/6MCemcWSX1IwqiweuP0ceGuLkKNaklinsA6K7F/HDM5ZyXJcEeXNcPCZ7rZFBz0dtx8B7gH4Kyexr28yVufATne54nAuohP0hm4AEKVbA/J5CoBEbCxpXmbDL0Hk5VMf7Qj5535LkpeEpGdnDhLtsBXGnPCz2kvpKT36D8EeWCnk/ofp/xzKBeZU7XwSlvt8MhC6lrq9TDhmNUoMl2FvQMchCp8X86wDE1HHb8hSKehsCU36RxbkQPC2a05lG+Vq/f2Bxrrv0rxInFX/HVrTHtQb0ZahfF+13XUBtlx+FJAhMXTtHqUrIaZia2d3ekqZOPIAm7Z6OA28Ehoz7t4fSdpH+1ypYPsr2EpDel5j46+JNJaLhREPJ/Yig6vN5Z292p99ah+Vj3eXtgfB+Bk3WYuQFGMc6MdrcMVux5kJPGjG0g++6COk9uRWvxkR6Sf5wP/FAb4y8LdXcQPeZBWEAi4zubb1wwpLk0J2s928YaS0rVwkVp0Sm601Pgt+pHVyHXi+Uu5y/G/dwdyh7gIs/xk3qhAn/F9W2yJ0SW2MIZ8eoO5tNrlEgtYTrlMn6QWEtdzg2TE46di0TFwxzMVzJ3WRoCl9R2UZxk3bsGxKcRPyXAGOolXkehZOURAm0WdpCoLYbyypS9FWI++wkqVZx2mDy8ZBND4sqCA3pmXxIQT2JigoD+0103Ah/CDP57EebQQqLFK8ogK7W98Dk+MKP2CBxFJftHqXbJPi0o46dzo5EdPQqW7UIkGw30j8gvlbPKE4HyXBijF8ke/A8JQeSL5xcCFLTjWEbDOLuIChVW7Mw9vnRTjxI62x+RufV0WyV9AMCpYGneNVefT5jSzpvcB5GgHGKl7DXTgs7JhRq3+bHKr4ZHLRgXpieB8YEHONjB7OVubGGcZdyz8IfHBBub1JQYLe8pfFzVZs7KfO6i+UfNIb1355/8V6sWpg0gxfuO8kA4yat95Dj6yC/gI9YJ2ZX6z4QwblZXw/YOwJ1bIgsuPDKjAnl6RfWj80GGaOudYDBEzM+lRk+Em7n+nndly8Fnnn42Qk9pVfPBRjbzcw1ctDOGTcqJ+D1iBRPKRMyuFe6zxYqJn+5fdPufmXxra7DuSGXMp1Tu+27Y5kD2SKocc38BTM32x2CpAu1V259pmCu2Ixd+kZrxwJDu4ApyJJqfIN0lq0zh9ulwDRzHIy3SGfERm3sdCNGASauQxAJLdMvaMQwGAE="
+      },
+      {
+        "type": "text",
+        "text": "The final string is QTYYbdhmtu35AHI.\n\n1. Reversing gives hY uZH35Smtb HQYiAdTI; without spaces, \"huYZH35SmtbHQYiAdTI\". It still has 19 characters.\n2. Sorting by ASCII puts digits, then uppercase, then lowercase:\n   - Digits: 3, 5\n   - Uppercase: A, H, H, I, Q, S, T, Y, Y, Z\n   - Lowercase: b, d, h, i, m, t, u\n   - The sorted string is \"35AHHIQSTYYZbdhimtu\".\n3. Deleting positions 4, 8, 12 and 16 removes H, S, Z and i. This leaves \"35AHIQTYYbdhmtu\", which has 15 characters.\n4. Rotating left by 5 moves \"35AHI\" to the end, giving \"QTYYbdhmtu35AHI\".\n\nANSWER: QTYYbdhmtu35AHI"
+      }
+    ],
+    "container": null,
+    "stop_reason": "end_turn",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 263,
+      "cache_creation_input_tokens": 0,
+      "cache_read_input_tokens": 0,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 672,
+      "output_tokens_details": {
+        "thinking_tokens": 343
+      },
+      "service_tier": "standard",
+      "inference_geo": "global"
+    },
+    "diagnostics": null
+  },
+  "incomplete": false
+}

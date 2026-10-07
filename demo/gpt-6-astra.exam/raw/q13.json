@@ -1,0 +1,57 @@
+{
+  "version": "exam-raw/1",
+  "id": 13,
+  "family": "order",
+  "provider": "openai",
+  "model": "gpt-6-astra",
+  "request": {
+    "model": "gpt-6-astra",
+    "messages": [
+      {
+        "role": "system",
+        "content": "You are sitting a written exam. Answer each question on its own. Follow the question's answer-format instructions exactly."
+      },
+      {
+        "role": "user",
+        "content": "Facts:\n\nThe Dogwood file was registered on 3 April 2010.\nThe Birch file was registered on 5 August 2008.\nThe Elm file was registered on 1 January 1966.\nThe Cedar file was registered on 13 February 1915.\nThe Ivy file was registered on 12 June 1919.\nThe Hazel file was registered on 27 March 1907.\nThe Juniper file was registered on 1 June 1950.\n\nList the 7 labels from the earliest registration to the latest.\n\nGive the labels only, in the requested order, separated by commas.\nReason as much as you like, then finish with one final line of the form\nANSWER: <your answer>"
+      }
+    ]
+  },
+  "response": {
+    "id": "chatcmpl-EWC0c5gKzjvDH9xZsmtMOGCpPBLls",
+    "object": "chat.completion",
+    "created": 1791341366,
+    "model": "gpt-6-astra",
+    "choices": [
+      {
+        "index": 0,
+        "message": {
+          "role": "assistant",
+          "content": "ANSWER: Hazel, Cedar, Ivy, Juniper, Elm, Birch, Dogwood",
+          "refusal": null,
+          "annotations": []
+        },
+        "finish_reason": "stop"
+      }
+    ],
+    "usage": {
+      "prompt_tokens": 178,
+      "completion_tokens": 20,
+      "total_tokens": 198,
+      "prompt_tokens_details": {
+        "cached_tokens": 0,
+        "cache_write_tokens": 0,
+        "audio_tokens": 0
+      },
+      "completion_tokens_details": {
+        "reasoning_tokens": 0,
+        "audio_tokens": 0,
+        "accepted_prediction_tokens": 0,
+        "rejected_prediction_tokens": 0
+      }
+    },
+    "service_tier": "default",
+    "system_fingerprint": null
+  },
+  "incomplete": false
+}

@@ -1,0 +1,8 @@
+Opened position 100. Floor: Base block 52275995, 7 Oct 2026 02:48:57Z.
+Wrote 20 questions from that position and sealed them at position 101. Floor: Base block 52275995, 7 Oct 2026 02:48:57Z.
+Asked claude-fable-5-1. 20 answers back.
+Sealed the answers at position 103. Floor: Base block 52276001, 7 Oct 2026 02:49:09Z.
+Verified
+Score 8/20. Report: demo/claude-fable-5-1.exam/report.html
+Paper not before Base block 52275995 (header time 7 Oct 2026 02:48:57Z).
+Answers not before Base block 52276001 (header time 7 Oct 2026 02:49:09Z).

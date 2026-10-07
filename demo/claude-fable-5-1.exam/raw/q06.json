@@ -1,0 +1,51 @@
+{
+  "version": "exam-raw/1",
+  "id": 6,
+  "family": "order",
+  "provider": "anthropic",
+  "model": "claude-fable-5-1",
+  "request": {
+    "model": "claude-fable-5-1",
+    "max_tokens": 16000,
+    "system": "You are sitting a written exam. Answer each question on its own. Follow the question's answer-format instructions exactly.",
+    "messages": [
+      {
+        "role": "user",
+        "content": "Facts:\n\nThe Juniper crate weighs 47,525 kg.\nThe Fir crate weighs 41,564 kg.\nThe Elm crate weighs 85,470 kg.\nThe Cedar crate weighs 38,264 kg.\nThe Alder crate weighs 62,873 kg.\n\nList the 5 labels from the heaviest crate to the lightest.\n\nGive the labels only, in the requested order, separated by commas.\nReason as much as you like, then finish with one final line of the form\nANSWER: <your answer>"
+      }
+    ]
+  },
+  "response": {
+    "model": "claude-fable-5-1",
+    "id": "msg_011Cfn7dDyMdvdTuJnaspJtJ",
+    "type": "message",
+    "role": "assistant",
+    "content": [
+      {
+        "type": "text",
+        "text": "Elm 85,470 > Alder 62,873 > Juniper 47,525 > Fir 41,564 > Cedar 38,264\n\nANSWER: Elm, Alder, Juniper, Fir, Cedar"
+      }
+    ],
+    "container": null,
+    "stop_reason": "end_turn",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 215,
+      "cache_creation_input_tokens": 0,
+      "cache_read_input_tokens": 0,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 75,
+      "output_tokens_details": {
+        "thinking_tokens": 0
+      },
+      "service_tier": "standard",
+      "inference_geo": "global"
+    },
+    "diagnostics": null
+  },
+  "incomplete": false
+}

@@ -1,0 +1,56 @@
+{
+  "version": "exam-raw/1",
+  "id": 6,
+  "family": "spec",
+  "provider": "anthropic",
+  "model": "claude-sonnet-5-5",
+  "request": {
+    "model": "claude-sonnet-5-5",
+    "max_tokens": 16000,
+    "system": "You are sitting a written exam. Answer each question on its own. Follow the question's answer-format instructions exactly.",
+    "messages": [
+      {
+        "role": "user",
+        "content": "Write a JavaScript function f(xs), where xs is an array of integers, that returns an integer computed as follows:\n\n1. Keep only the odd elements.\n2. Replace each kept element x with x * x.\n3. Return the largest resulting element, or 3 if there are none.\n\nReply with only the function, in a single ```js code block. Name it f, take one parameter xs, use no libraries, and write no import, require or export statements."
+      }
+    ]
+  },
+  "response": {
+    "model": "claude-sonnet-5-5",
+    "id": "msg_011Cfn7bbtQnPrr8ovaJaH6u",
+    "type": "message",
+    "role": "assistant",
+    "content": [
+      {
+        "type": "thinking",
+        "thinking": "",
+        "signature": "CAQS0AUKEAgSGAI4AUIIdGhpbmtpbmcSDGdsoyMSr8D7ZkkfLRoMheRg+zmIOhblJV+VIjCSUK45L72WIoutczNI209vT3LuESS0z1H+OG/OTIS75Mnp4exuVniETsYUlJJlJxgq7QSLg+MMze2MZkjowAoafAcP9kettSIAGJjbPA9ncIut+D5Tmn2eYsklC70EsH8LDlLkCrgapyxKlMe/1uumD+kZRHcBNQc0P7Y9LudDxzMo8w6vq1opTJHQoh5Bg1sM0JrgWktFu7BS5CtoJm5Xp9TDDmwlatvU0q/Zz0pUpxnEALE47x2mZCW2rGYMc7aTl2XBHZseTHorWcTz3ZfJKcbzSUNVF/0h2OEJOqYmS/1Rt3VMGXQmXsNDyI0z/GfOwy6TlCLnUoLG1ClG4zn2jN6j6Y5sjdNASTDkuiL2opW2YuDkBQrcKIKMkUralNzaj3bOrlBfr95NxjQNN8XjZ0EIW4PeEF19bnYm7gYEJW4mQTdkjPH/z782YGoV7WLCffwerSGjaiF6OGTfwTDfyT39SlBTVC0GlGAefGabSPwE+XefcV9ydtYCIORlze/w/L3Si2Z8LfoyOC+gN9nDsEm8QcTupotb/uCz2XlR4+SXJu0vB7Vcx8ByYyblVeG1cRVf45Wtbpqn9vTiyPuELQmcK2bYZxSUDlKN1+6qF/g4YbCaOD0SUaGokksI0vKEtflQkl7OBvmWuxc8/XO5cZncKgljV0C46Xkgb+dNNEIQoNJeGl6k+DY1gKJkILj0USapHoJHmWL+ETndPJnVd4P7kzxPaoWZgSw9+CU+gSqQ5gp3qK+jRRoen2I7FJTX2Co+AqgGq+evtLionFZiZ8CJsNjLiNy8tAoOlcxcDwv2KfZg1d7uFv5YLRodvsDCrjIWbbhvYmWHS1nCxcY6BCCbKOtptg4mXetFo758cXtwbYrQA5ivcYhA9OkBjzIYAQ=="
+      },
+      {
+        "type": "text",
+        "text": "```js\nfunction f(xs) {\n  let best = null;\n  for (let i = 0; i < xs.length; i++) {\n    const x = xs[i];\n    if (x % 2 !== 0) {\n      const s = x * x;\n      if (best === null || s > best) best = s;\n    }\n  }\n  return best === null ? 3 : best;\n}\n```"
+      }
+    ],
+    "container": null,
+    "stop_reason": "end_turn",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 180,
+      "cache_creation_input_tokens": 0,
+      "cache_read_input_tokens": 0,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 176,
+      "output_tokens_details": {
+        "thinking_tokens": 62
+      },
+      "service_tier": "standard",
+      "inference_geo": "global"
+    },
+    "diagnostics": null
+  },
+  "incomplete": false
+}

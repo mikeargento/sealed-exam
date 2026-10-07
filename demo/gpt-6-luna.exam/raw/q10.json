@@ -1,0 +1,57 @@
+{
+  "version": "exam-raw/1",
+  "id": 10,
+  "family": "strings",
+  "provider": "openai",
+  "model": "gpt-6-luna",
+  "request": {
+    "model": "gpt-6-luna",
+    "messages": [
+      {
+        "role": "system",
+        "content": "You are sitting a written exam. Answer each question on its own. Follow the question's answer-format instructions exactly."
+      },
+      {
+        "role": "user",
+        "content": "Start with the string (between the brackets, without them): [0ze2rzzgeJBZry2G]\n\nApply these steps in order:\n\n1. Replace every occurrence of the character 2 with T (case-sensitive).\n2. Keep only the characters at odd positions (the 1st, 3rd, 5th, …, counting from 1).\n3. Shift every letter forward by 18 places in the alphabet, wrapping from z back to a (and Z back to A); keep each letter's case; leave digits unchanged.\n4. Reverse the string.\n\nWhat is the resulting string?\n\nGive the final string exactly, and nothing else after ANSWER:.\nReason as much as you like, then finish with one final line of the form\nANSWER: <your answer>"
+      }
+    ]
+  },
+  "response": {
+    "id": "chatcmpl-EWC0xjUxJVbMT6hS0Kk4vf9OZ4ljC",
+    "object": "chat.completion",
+    "created": 1791341387,
+    "model": "gpt-6-luna",
+    "choices": [
+      {
+        "index": 0,
+        "message": {
+          "role": "assistant",
+          "content": "ANSWER: LjTwrjw0",
+          "refusal": null,
+          "annotations": []
+        },
+        "finish_reason": "stop"
+      }
+    ],
+    "usage": {
+      "prompt_tokens": 196,
+      "completion_tokens": 257,
+      "total_tokens": 453,
+      "prompt_tokens_details": {
+        "cached_tokens": 0,
+        "cache_write_tokens": 0,
+        "audio_tokens": 0
+      },
+      "completion_tokens_details": {
+        "reasoning_tokens": 241,
+        "audio_tokens": 0,
+        "accepted_prediction_tokens": 0,
+        "rejected_prediction_tokens": 0
+      }
+    },
+    "service_tier": "default",
+    "system_fingerprint": null
+  },
+  "incomplete": false
+}
